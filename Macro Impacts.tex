@@ -78,7 +78,7 @@ Note, the commas denote covariant differentiation. We now transform into cylindr
 \begin{align}
 -p&=\tau_{rr}\,,\\
 &=\lambda u^s_{,s}+2\mu u_{r,r}\,,\\
-&=\lambda \nabla_{s}g^{ss}u_s+2\mu u_{r,r}\,.
+&=\lambda \nabla u+2\mu u_{r,r}\,.
 \end{align}
 The metric of cylindrical coordinates is
 \begin{align}
@@ -108,9 +108,10 @@ With $f=0$, this and the scalar equation of motion yield
 &=-p+2\mu\f1r\partial_r\phi-\rho\ddot\phi\,,
 \end{align}
 Thus, observe that all the solutions from Hemmann apply with small modification (compare 19 with his equation 9).
+\\\\
 Assuming only outgoing modes are generated, we may write $\phi=F(t-r/\alpha)$ where $\alpha=\sqrt{(\lambda+2\mu)/\rho}$ is the compressional wave velocity. We can, for the sake of reusing Hemmann's work, assume that the cavity produced by the macro existed prior to the generation of compressional modes. This is actually somewhat convenient, since it is the production of the cavity that generates shear modes. Denote differentiation with respect to the retarded time $t'=t-\f r\alpha$ by a prime. I can't figure out how to get the following from equation 11 in Hemmann, but the evolution equation is
 \begin{align}
 -r^3\alpha p&=\alpha\rho r^2 F''+2\mu r F'+2\mu\alpha F\,.
 \end{align}
-After some guessing and checking, it seems that one can arrive at this equation by the substitution $\phi=\f1rF(t-r/\alpha)$. Either way, this simply confirms that we can use Hemmann directly with only slight modification.
+After some guessing and checking, it seems that one can arrive at this equation by the substitution $\phi=\f1rF(t-r/\alpha)$. Either way, this simply confirms that we can use Hemmann directly with only slight modification. In particular, replace $\mu$ in Hemmann's paper with $\mu/2$.
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2016 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JUN 2016 18:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1806,8 +1806,12 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 67.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd) [1
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(./Macro Impacts.aux) ) 
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+
+ []
+
+[2] (./Macro Impacts.aux) ) 
 Here is how much of TeX's memory you used:
  22368 strings out of 493117
  453130 string characters out of 6135433
@@ -1816,18 +1820,19 @@ Here is how much of TeX's memory you used:
  20498 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,9n,84p,10421b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/mnsy
-mbol/MnSymbolC.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/mnsymbol
-/MnSymbolE.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/mnsymbol/MnS
-ymbolD.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/mnsymbol/MnSy
-mbol10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mnsymbol/MnSy
-mbol7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
-.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on "Macro Impacts.pdf" (2 pages, 100366 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/
+mnsymbol/MnSymbolC.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/mnsy
+mbol/MnSymbolE.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/mnsymbol
+/MnSymbolD.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/mnsymbol/
+MnSymbol10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mnsymbol/
+MnSymbol7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
+b>
+Output written on "Macro Impacts.pdf" (2 pages, 100374 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream
