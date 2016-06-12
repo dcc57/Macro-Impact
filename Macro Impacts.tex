@@ -1,0 +1,116 @@
+\documentclass{article}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics, MnSymbol,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+\title{Macro Impacts}
+\author{David Cyncynates \\ dcc57@case.edu}
+\date{\today}
+
+\begin{document}
+\maketitle
+The linearized elastic wave equations are (Hemmann)
+\begin{align}
+0&=(\lambda+2\mu)\nabla^2\phi-\rho\ddot\phi+f\,,\\
+0&=\mu\nabla(\nabla\cdot A)-\mu\nabla\times(\nabla\times A)-\rho\ddot A+G\,,
+\end{align}
+where $u=\nabla\phi+\nabla\times A$ is the displacement and $F=\nabla f+\nabla\times G$ is the body force. Hence, we see to first order that shear waves and compressional waves decouple in the linear regime. If we assume that displacements due to the impact are very small (as we would expect for a very dense macro impact), then we may assume hydrostatic equilibrium, in which case the stress tensor takes the form
+\begin{align}
+-p\delta_{ij}&=\tau_{ij}=\lambda g_{ij} u^s_{,s}+\mu(u_{i,j}+u_{j,i})\,.
+\end{align}
+Note, the commas denote covariant differentiation. We now transform into cylindrical coordinates. In the case that we are interested in, the only important component is the radial one, for which we have
+\begin{align}
+-p&=\tau_{rr}\,,\\
+&=\lambda u^s_{,s}+2\mu u_{r,r}\,,\\
+&=\lambda \nabla_{s}g^{ss}u_s+2\mu u_{r,r}\,.
+\end{align}
+The metric of cylindrical coordinates is
+\begin{align}
+\diff s^2&=\diff r^2+r^2\diff\theta^2+\diff z^2\,,
+\end{align}
+leading to the Christoffel symbols
+\begin{align}
+\Gamma^r_{\theta\theta}&=-r\,,\\
+\Gamma^r_{r\theta}&=\f1r\,.
+\end{align}
+Thus, assuming only the radial component has non-zero derivatives (which will be the case for a cylindrically symmetric source),
+\begin{align}
+\nabla u&=\partial_r u_r+\f1r u_r\,,\\
+&=\f1r\partial_r(ru_r)\,.
+\end{align}
+Hence
+\begin{align}
+-p&=\tau_{rr}=\lambda\f1r\partial_r(ru_r)+2\mu\partial_r u_r\,,\\
+&=\lambda\f1r\partial_r(ru_r)+2\mu\f1r(\partial_r ru_r)-2\mu\f1r(u_r)\,,\\
+&=(\lambda+2\mu)\f1r\partial_r(ru_r)-2\mu\f1ru_r\,,\\
+&=(\lambda+2\mu)\f1r\partial_r(r\partial_r\phi)-2\mu\f1r\partial_r\phi
+\end{align}
+With $f=0$, this and the scalar equation of motion yield
+\begin{align}
+0&=(\lambda+2\mu)\nabla^2\phi-\rho\ddot\phi\,,\\
+&=(\lambda+2\mu)\p{\f1r\partial_r\p{r\partial_r\phi}}-\rho\ddot\phi\,,\\
+&=-p+2\mu\f1r\partial_r\phi-\rho\ddot\phi\,,
+\end{align}
+Thus, observe that all the solutions from Hemmann apply with small modification (compare 19 with his equation 9).
+Assuming only outgoing modes are generated, we may write $\phi=F(t-r/\alpha)$ where $\alpha=\sqrt{(\lambda+2\mu)/\rho}$ is the compressional wave velocity. We can, for the sake of reusing Hemmann's work, assume that the cavity produced by the macro existed prior to the generation of compressional modes. This is actually somewhat convenient, since it is the production of the cavity that generates shear modes. Denote differentiation with respect to the retarded time $t'=t-\f r\alpha$ by a prime. I can't figure out how to get the following from equation 11 in Hemmann, but the evolution equation is
+\begin{align}
+-r^3\alpha p&=\alpha\rho r^2 F''+2\mu r F'+2\mu\alpha F\,.
+\end{align}
+After some guessing and checking, it seems that one can arrive at this equation by the substitution $\phi=\f1rF(t-r/\alpha)$. Either way, this simply confirms that we can use Hemmann directly with only slight modification.
+\end{document}
