@@ -114,4 +114,22 @@ Assuming only outgoing modes are generated, we may write $\phi=F(t-r/\alpha)$ wh
 -r^3\alpha p&=\alpha\rho r^2 F''+2\mu r F'+2\mu\alpha F\,.
 \end{align}
 After some guessing and checking, it seems that one can arrive at this equation by the substitution $\phi=\f1rF(t-r/\alpha)$. Either way, this simply confirms that we can use Hemmann directly with only slight modification. In particular, replace $\mu$ in Hemmann's paper with $\mu/2$.
+\\\\
+The equation between 43 and 44 provides that
+\begin{align}
+S_r&=-\lambda \dot u_r \nabla u -2\mu u_r \partial_r u_r\,,\\
+&=-\lambda \dot u_r\partial_r u_r-\f{\lambda}{r} \dot u_r u_r -2\mu u_r \partial_r u_r\,,\\
+&=-(\lambda+2\mu) \dot u_r\partial_r u_r-\f{\lambda}{r} \dot u_r u_r\,.
+\end{align}
+Again, this only differs from his work by a factor of two on the right-most term. However, in this case, it is not so simple as substituting $\mu/2$ for $\mu$. In this case, we may need to follow through some calculations with the modification unless there is another simple change we can make. However, he appears to drop the problem term in the following steps...
+\\\\
+Now, the obvious modification to calculate $Q$, the total energy radiated from the source, is that instead of integrating over a spherical shell, we must integrate over the length of the explosion and the circle of radius $r$. This yields
+\begin{align}
+Q&=2\pi rL\int_{-\infty}^{\infty}S_r\diff t\,.
+\end{align}
+Dropping the terms as in Hemmann, we find that
+\begin{align}
+Q&=-2\pi rL(\lambda+2\mu)\int_{-\infty}^{\infty}u_r\partial_r u_r\diff t\,.
+\end{align}
+Observe, our version of equation 34 will be different by factors of $r$ since he had to undo the spherical gradient while we have to undo only the polar gradient. I will go through this tomorrow.
 \end{document}
