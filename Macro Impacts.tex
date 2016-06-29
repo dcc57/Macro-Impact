@@ -149,4 +149,16 @@ From this we obtain the fractional energy deposition into the unattenuated wavel
 This approximation holds for $\lambda_0^2\gg\sigma_X$, which is appropriate for the case that $\lambda_0$ is on the order of kilometers and $\sigma_X$ is on the order of centimeters squared.
 \pagebreak
 \section{Vector Modes}
+The following is the equation of motion for the vector potential $a$ without body force:
+\begin{align}
+\mu\nabla^2a-\rho\ddot a=\mu\nabla(\nabla\cdot a)-\mu\nabla\times(\nabla\times a)-\rho\ddot a=0\,,
+\end{align}
+where the leftmost term is the vector laplacian. This gives us three wave equations for the three components of $a$. The constraint equation takes the form
+\begin{align}
+\sigma_{ij}&=\lambda\delta_{ij}\nabla\cdot \nabla\times a+\mu(\partial_j (\nabla\times a)_i+\partial_i (\nabla\times a)_j)\,,\\
+&=\mu(\partial_j (\nabla\times a)_i+\partial_i (\nabla\times a)_j)\,,\\
+&=\mu\mat{ccc}{2\partial_x(\partial_ya_z-\partial_za_y)&(\partial_y^2-\partial_x^2)a_z+\partial_z(\partial_x a_x-\partial_y a_y)&(\partial_x^2-\partial_z^2)a_y+\partial_y(\partial_z a_z-\partial_x a_x)\\
+&2\partial_y(\partial_z a_x-\partial_x a_z)&(\partial_z^2-\partial_y^2)a_x+\partial_x(\partial_ya_y-\partial_za_z)\\
+&&2\partial_z(\partial_xa_y-\partial_ya_x)}\,.
+\end{align}
 \end{document}
