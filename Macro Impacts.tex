@@ -161,4 +161,13 @@ where the leftmost term is the vector laplacian. This gives us three wave equati
 &2\partial_y(\partial_z a_x-\partial_x a_z)&(\partial_z^2-\partial_y^2)a_x+\partial_x(\partial_ya_y-\partial_za_z)\\
 &&2\partial_z(\partial_xa_y-\partial_ya_x)}\,.
 \end{align}
+We now write $a_i$ in terms of its Fourier components
+\begin{align}
+a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\omega t)}\,.
+\end{align}
+Observe the dispersion relation $\beta k=\omega$, which holds for each component $a_i$, and that $\beta=\f\mu\rho$. Thus, the solutions to the wave equation are
+\begin{align}
+a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\beta k t)}\,.
+\end{align}
+We now use the constraint equation to write down the initial vector potential in terms of the initial stress. Note, we will obtain three equations constraining the possible initial stresses (i.e., we will be able to eliminate three components of $\sigma$ from the equations), and three equations writing $A_i$ in terms of $\Sigma_{ij}$.
 \end{document}
