@@ -200,4 +200,20 @@ If you want to be silly, we find
 \begin{align}
 0&=(\Sigma_xk_y-\Sigma_yk_x)^2\,.
 \end{align}
+Anyway, we then have the system of three equations
+\begin{align}
+2k_xk_y\Sigma_{xy}&=k_y^2\Sigma_{xx}+k_x^2\Sigma_{yy}\,,\\
+2k_yk_z\Sigma_{yz}&=k_z^2\Sigma_{yy}+k_y^2\Sigma_{zz}\,,\\
+2k_zk_x\Sigma_{zx}&=k_x^2\Sigma_{zz}+k_z^2\Sigma_{xx}\,.
+\end{align}
+which are non-singular. They yield
+\begin{align}
+\Sigma_{xx}&=\f{k_x}{k_yk_z}\p{k_z\Sigma_{xy}-k_x\Sigma_{yz}+k_y\Sigma_{zx}}\,,\\
+\Sigma_{yy}&=\f{k_y}{k_zk_x}\p{k_z\Sigma_{xy}+k_x\Sigma_{yz}-k_y\Sigma_{zx}}\,,\\
+\Sigma_{zz}&=\f{k_z}{k_xk_y}\p{-k_z\Sigma_{xy}+k_x\Sigma_{yz}+k_y\Sigma_{zx}}\,.
+\end{align}
+This reveals two facts. The first fact is that the only relevant equations are 34-36. The second is that 37 implies that
+\begin{align}
+0&=k^2\ps{\f{\Sigma_{yz}}{k_yk_z}+\f{\Sigma_{zx}}{k_zk_x}+\f{\Sigma_{xy}}{k_xk_y}}\,.
+\end{align}
 \end{document}
