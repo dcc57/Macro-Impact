@@ -180,40 +180,24 @@ In Fourier space we have
 -\Sigma_{yz}&=(k_z^2-k_y^2) A_x+k_x(k_y A_y-k_z A_z)\,,\\
 -\Sigma_{zx}&=(k_x^2-k_z^2) A_y+k_y(k_z A_z-k_x A_x)\,.
 \end{align}
-The first constraint on $\Sigma_{ij}$ is
+First observe that any three of these equations together forms a singular linear system.
+\\\\
+Taking the sum of 31-33 yields
 \begin{align}
 0&=\Sigma_{xx}+\Sigma_{yy}+\Sigma_{zz}\,.
 \end{align}
-Now observe that
+Observe that
 \begin{align}
--\f{\Sigma_{xx}}{2k_x}&=k_y A_z-k_z A_y\,,\\
--\f{\Sigma_{yy}}{2k_y}&=k_z A_x-k_x A_z\,,\\
--\f{\Sigma_{zz}}{2k_z}&=k_x A_y-k_y A_x\,,\\
+\f{-\Sigma_{xx}k_y}{2k_xk_z}&=\f{k_y^2}{k_z}A_z-k_yA_y\,,\\
+\f{-\Sigma_{yy}k_x}{2k_yk_z}&=k_xA_x-\f{k_x^2}{k_z}A_z\,,\\
+\f{-\Sigma_{xy}}{k_z}&=\ps{\f{k_y^2-k_z^2}{k_z}}A_z+k_xA_x-k_yA_y\,.
 \end{align}
-from which we see
+Taking the sum of the first two reveals that
 \begin{align}
--\f{\Sigma_{xx}}{2k_x}-\f{\Sigma_{yy}}{2k_y}&=(k_y-k_x)A_z+k_z(A_x-A_y)\,,\\
-&=-\f{1}{k_x+k_y}\p{\Sigma_{xy}+k_z(k_x A_x-k_y A_y)}+k_z(A_x-A_y)\,,\\
+2k_xk_y\Sigma_{xy}&=k_y^2\Sigma_{xx}+k_x^2\Sigma_{yy}\,.
 \end{align}
+If you want to be silly, we find
 \begin{align}
--(k_x+k_y)\p{\f{\Sigma_{xx}}{2k_x}+\f{\Sigma_{yy}}{2k_y}}&=-\p{\Sigma_{xy}+k_z(k_x A_x-k_y A_y)}+k_z((k_x+k_y)A_x-(k_x+k_y)A_y)\,,\\
-&=-\p{\Sigma_{xy}+k_z(k_x A_x-k_y A_y)}+k_z((k_x+k_y)A_x-(k_x+k_y)A_y)\,,\\
-&=-\Sigma_{xy}+k_z(k_yA_x-k_xA_y)\,.
+0&=(\Sigma_xk_y-\Sigma_yk_x)^2\,.
 \end{align}
-Hence
-\begin{align}
-(k_x+k_y)\p{\f{\Sigma_{xx}}{k_x}+\f{\Sigma_{yy}}{k_y}}&=2\Sigma_{xy}+\Sigma_{zz}\,,\\
-&=2\Sigma_{xy}-\Sigma_{xx}-\Sigma_{yy}\,,\\
-\end{align}
-i.e.
-\begin{align}
-\p{2+\f{k_y}{k_x}}\Sigma_{xx}+\p{2+\f{k_x}{k_y}}\Sigma_{yy}&=2\Sigma_{xy}\,,\\
-\p{2+\f{k_z}{k_y}}\Sigma_{yy}+\p{2+\f{k_y}{k_z}}\Sigma_{zz}&=2\Sigma_{yz}\,,\\
-\p{2+\f{k_x}{k_z}}\Sigma_{zz}+\p{2+\f{k_z}{k_x}}\Sigma_{xx}&=2\Sigma_{zx}\,.
-\end{align}
-Thus, we have
-\begin{align}
-\Sigma_{zz}&=\f{k_x(k_y+2k_z)(k_x+2k_y)\Sigma_{xy}-k_y(k_y+2k_z)(k_y+2k_x)\Sigma_{yz}+k_z(k_y+2k_z)(k_z+2k_y)\Sigma_{zx}}{6(k_x+k_y+k_z)(k_yk_z+k_zk_x+k_xk_y)}\,,
-\end{align}
-etc. But this is wrong! We need to check over all this work.
 \end{document}
