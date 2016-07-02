@@ -180,7 +180,7 @@ In Fourier space we have
 -\Sigma_{yz}&=(k_z^2-k_y^2) A_x+k_x(k_y A_y-k_z A_z)\,,\\
 -\Sigma_{zx}&=(k_x^2-k_z^2) A_y+k_y(k_z A_z-k_x A_x)\,.
 \end{align}
-First observe that any three of these equations together forms a singular linear system.
+First observe that any three of these equations together forms a singular linear system in $A_i$. Thus we cannot invert to solve for $A_i$. However, we can get some information about the $\Sigma$'s.
 \\\\
 Taking the sum of 31-33 yields
 \begin{align}
@@ -192,7 +192,7 @@ Observe that
 \f{-\Sigma_{yy}k_x}{2k_yk_z}&=k_xA_x-\f{k_x^2}{k_z}A_z\,,\\
 \f{-\Sigma_{xy}}{k_z}&=\ps{\f{k_y^2-k_z^2}{k_z}}A_z+k_xA_x-k_yA_y\,.
 \end{align}
-Taking the sum of the first two reveals that
+Taking the sum of the first two reveals that`
 \begin{align}
 2k_xk_y\Sigma_{xy}&=k_y^2\Sigma_{xx}+k_x^2\Sigma_{yy}\,.
 \end{align}
@@ -212,11 +212,40 @@ which is non-singular. They yield
 \Sigma_{yy}&=\f{k_y}{k_zk_x}\p{k_z\Sigma_{xy}+k_x\Sigma_{yz}-k_y\Sigma_{zx}}\,,\\
 \Sigma_{zz}&=\f{k_z}{k_xk_y}\p{-k_z\Sigma_{xy}+k_x\Sigma_{yz}+k_y\Sigma_{zx}}\,.
 \end{align}
-This, along with being traceless, shows that the shear only has two independent degrees of freedom: the polarizations. In other words, we have shown that you can always diagonalize the stress tensor.
+This, along with being traceless, shows that the shear only has two independent degrees of freedom: the polarizations.
 \\\\
-We now solve for $A_i$ in terms of $\Sigma_i$.
-\\\\
-We still have a gauge degree of freedom...
+It is impossible to solve for $A_i$ in terms of the stress as is, hence we must fix a gauge. To do this, we fix $\nabla\cdot a=0$, whence
+\begin{align}
+0=k_xA_x+k_yA_y+k_zA_z\,.
+\end{align}
+From earlier, we have
+\begin{align}
+-\Sigma_{yy}&=2k_y(k_z A_x-k_x A_z)\,,\\
+-\Sigma_{zz}&=2k_z(k_x A_y-k_y A_x)\,,
+\end{align}
+which becomes
+\begin{align}
+-\Sigma_{yy}&=2k_y\ps{-\f{k_z}{k_x} \p{k_yA_y+k_zA_z}-k_x A_z}\,,\\
+-\Sigma_{zz}&=2k_z\ps{k_x A_y+\f{k_y}{k_x} \p{k_yA_y+k_zA_z}}\,,
+\end{align}
+which simplifies to
+\begin{align}
+-\Sigma_{yy}&=-\f{2k_y}{k_x}\ps{k_y k_z A_y+\p{k_z^2+k_x^2} A_z}\,,\\
+-\Sigma_{zz}&=\f{2k_z}{k_x}\ps{\p{k_x^2 + k_y^2}A_y+k_yk_zA_z}\,,
+\end{align}
+Hence
+\begin{align}
+A_x&=\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})+k_x^2(\Sigma_{yy}+\Sigma_{zz})}{2k_x^2k^2}\,,\\
+&=\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})-k_x^2\Sigma_{xx}}{2k_x^2k^2}\,,\\
+&=\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\f{\Sigma_{xx}}{2k^2}\,,\\
+\end{align}
+By symmetry, we have
+\begin{align}
+A_x&=\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\f{\Sigma_{xx}}{2k^2}\,,\\
+A_y&=\f{(k_z^2-k_x^2)}{k_y^2}\f{(\Sigma_{zz}-\Sigma_{xx})}{2k^2}-\f{\Sigma_{yy}}{2k^2}\,,\\
+A_z&=\f{(k_x^2-k_y^2)}{k_z^2}\f{(\Sigma_{xx}-\Sigma_{yy})}{2k^2}-\f{\Sigma_{zz}}{2k^2}\,.
+\end{align}
+Observe, in the case that all stresses are equal, we obtain that $A_x=A_y=A_z=0$, as we should.
 \\\\
 For shocks, check the laser physics book.
 \end{document}
