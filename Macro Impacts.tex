@@ -234,30 +234,19 @@ A_z=\f{k_x\Sigma_{yz}-k_y\Sigma_{zx}}{\mu k_z k^2}
 \end{align}
 Hence, by symmetry
 \begin{align}
-A_z&=\f{k_y\Sigma_{zx}-k_z\Sigma_{xy}}{\mu k_x k^2}\,,\\
+A_x&=\f{k_y\Sigma_{zx}-k_z\Sigma_{xy}}{\mu k_x k^2}\,,\\
 A_y&=\f{k_z\Sigma_{xy}-k_x\Sigma_{yz}}{\mu k_y k^2}\,,\\
 A_z&=\f{k_x\Sigma_{yz}-k_y\Sigma_{zx}}{\mu k_z k^2}\,.
 \end{align}
 \\\\
 Now we take the curl of $A$ to find the shear mode displacement
 \begin{align}
-U_x&=k_y A_z-k_z A_y\,,\\
-&=\f1\mu\f{1}{2k^2k_y^2k_z^2}\ps{-k_z^3\p{-k_y^2\Sigma_{yy}+(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})}+k_y^3\p{(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})-k_z^2\Sigma_{zz}}}\,,\\
-&=\f1\mu\f{1}{2k^2k_y^2k_z^2}\ps{k_z^2k_y^2(k_z\Sigma_{yy}-k_y\Sigma_{zz})-k_z^3(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})+k_y^3(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})}\,,\\
-&=\f1\mu\ps{\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})}\,,\\
-\end{align}
-Just cyclically permute the indices to obtain the expressions for $U_y$ and $U_z$.
-\begin{align}
-\mu U_x&=\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})\,,\\
-\mu U_y&=\f{1}{2k^2}(k_x\Sigma_{zz}-k_z\Sigma_{xx})-\f{k_x(k_y^2-k_x^2)}{2k^2k_z^2}(\Sigma_{yy}-\Sigma_{xx})+\f{k_z(k_y^2-k_z^2)}{2k^2k_x^2}(\Sigma_{yy}-\Sigma_{zz})\,,\\
-\mu U_z&=\f{1}{2k^2}(k_y\Sigma_{xx}-k_x\Sigma_{yy})-\f{k_y(k_z^2-k_y^2)}{2k^2k_x^2}(\Sigma_{zz}-\Sigma_{yy})+\f{k_x(k_z^2-k_x^2)}{2k^2k_y^2}(\Sigma_{zz}-\Sigma_{xx})\,.
+U_x&=\f{k_z^2(k_x\Sigma_{yz}-k_z\Sigma_{xy})+k_y^2(k_x\Sigma_{yz}-k_y\Sigma_{zx})}{\mu k_y k_z k^2}\,,\\
+U_y&=\f{k_x^2(k_y\Sigma_{zx}-k_x\Sigma_{yz})+k_z^2(k_y\Sigma_{zx}-k_z\Sigma_{xy})}{\mu k_z k_x k^2}\,,\\
+U_z&=\f{k_y^2(k_z\Sigma_{xy}-k_y\Sigma_{zx})+k_x^2(k_z\Sigma_{xy}-k_x\Sigma_{yz})}{\mu k_x k_y k^2}\,,
 \end{align}
 Assuming radial symmetry, we have $\Sigma=\Sigma_{zz}=-2\Sigma_{xx}=-2\Sigma_{yy}$.
-\begin{align}
-U_x&=\ps{-(k_z+2k_y)k_x^2k_y^2+3k_zk_x^2(k_x^2-k_z^2)}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,,\\
-U_y&=\ps{(2k_x+k_z)k_x^2k_y^2-3k_zk_y^2(k_y^2-k_z^2)}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,,\\
-U_z&=\ps{(k_x-k_y)k_x^2k_y^2+3(k_x^3-k_y^3)k_z^2+3k_y^5-3k_x^5}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,.
-\end{align}
+
 The energy of these shear waves is given
 \begin{align}
 E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
