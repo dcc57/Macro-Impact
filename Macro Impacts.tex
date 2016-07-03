@@ -277,7 +277,7 @@ p_0=\f{K}{2\pi}\sqrt{\abs{\td{E}{x}{}}\f{1}{\sigma_X(\lambda+2\mu)}}
 \end{align}
 It is not appropriate to use the linear regime until the overpressure is close to 0 compared to some pressure, which we suspect may be $p_{\te{non-linear}}\approx60\te{GPa}$. It is reasonable to assume that the elastic limit holds when the pressures are an order of magnitude smaller than $p_{\te{non-linear}}$, denoted $p_{\te{linear}}\approx6\te{GPa}$. (This stuff needs to be checked). Note that energy losses due to heating, i.e. anelastic frequency attenuation, will dilute the energy density of the shock. However, for a conservative  estimate, we only consider the geometric attenuation, which will dilute the energy density as $r^{-1}$, where $r$ is the radial distance from the Macro's trajectory to the shock front. The shape of the shockwave will rapidly achieve a right-triangular profile. Geometric considerations show that the overpressure will go as $r^{-1}$. Thus, suppose that the peak pressure in the shock is $\bar p$. The overpressure is then given by
 \begin{align}
-p=\bar p\f{r-r_0}{\Delta r}\ps{\theta(r_0+\ell-r)-\theta(r+\ell)}\ps{\theta(z+h/2)-\theta(z-h/2)}
+p=\bar p\f{r-r_0}{\Delta r}\ps{\theta(r_0+\Delta r-r)-\theta(r+\Delta r)}\ps{\theta(z+h/2)-\theta(z-h/2)}
 \end{align}
 where $\Delta r$ is the radial length of the shock and $r_0$ is its base. In the limit where $h$ is much larger than all other fixed lengths, we have (after a large but easy mathematica calculation (triangle pressure.nb))
 \begin{align}
