@@ -235,15 +235,15 @@ which simplifies to
 \end{align}
 Hence
 \begin{align}
-A_x&=\mu\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})+k_x^2(\Sigma_{yy}+\Sigma_{zz})}{2k_x^2k^2}\,,\\
-&=\mu\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})-k_x^2\Sigma_{xx}}{2k_x^2k^2}\,,\\
-&=\mu\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\mu\f{\Sigma_{xx}}{2k^2}\,,\\
+A_x&=\f1\mu\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})+k_x^2(\Sigma_{yy}+\Sigma_{zz})}{2k_x^2k^2}\,,\\
+&=\f1\mu\f{(k_y^2-k_z^2)(\Sigma_{yy}-\Sigma_{zz})-k_x^2\Sigma_{xx}}{2k_x^2k^2}\,,\\
+&=\f1\mu\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\f1\mu\f{\Sigma_{xx}}{2k^2}\,,\\
 \end{align}
 By symmetry, we have
 \begin{align}
-A_x&=\mu\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\mu\f{\Sigma_{xx}}{2k^2}\,,\\
-A_y&=\mu\f{(k_z^2-k_x^2)}{k_y^2}\f{(\Sigma_{zz}-\Sigma_{xx})}{2k^2}-\mu\f{\Sigma_{yy}}{2k^2}\,,\\
-A_z&=\mu\f{(k_x^2-k_y^2)}{k_z^2}\f{(\Sigma_{xx}-\Sigma_{yy})}{2k^2}-\mu\f{\Sigma_{zz}}{2k^2}\,.
+A_x&=\f1\mu\f{(k_y^2-k_z^2)}{k_x^2}\f{(\Sigma_{yy}-\Sigma_{zz})}{2k^2}-\f1\mu\f{\Sigma_{xx}}{2k^2}\,,\\
+A_y&=\f1\mu\f{(k_z^2-k_x^2)}{k_y^2}\f{(\Sigma_{zz}-\Sigma_{xx})}{2k^2}-\f1\mu\f{\Sigma_{yy}}{2k^2}\,,\\
+A_z&=\f1\mu\f{(k_x^2-k_y^2)}{k_z^2}\f{(\Sigma_{xx}-\Sigma_{yy})}{2k^2}-\f1\mu\f{\Sigma_{zz}}{2k^2}\,.
 \end{align}
 Observe, in the case that all stresses are equal, we obtain that $A_x=A_y=A_z=0$, as we should.
 We now solve for $A_i$ in terms of $\Sigma_{i}$.
@@ -251,21 +251,21 @@ We now solve for $A_i$ in terms of $\Sigma_{i}$.
 Now we take the curl of $A$ to find the shear mode displacement
 \begin{align}
 U_x&=k_y A_z-k_z A_y\,,\\
-&=\f{\mu}{2k^2k_y^2k_z^2}\ps{-k_z^3\p{-k_y^2\Sigma_{yy}+(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})}+k_y^3\p{(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})-k_z^2\Sigma_{zz}}}\,,\\
-&=\f{\mu}{2k^2k_y^2k_z^2}\ps{k_z^2k_y^2(k_z\Sigma_{yy}-k_y\Sigma_{zz})-k_z^3(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})+k_y^3(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})}\,,\\
-&=\mu\ps{\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})}\,,\\
+&=\f1\mu\f{1}{2k^2k_y^2k_z^2}\ps{-k_z^3\p{-k_y^2\Sigma_{yy}+(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})}+k_y^3\p{(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})-k_z^2\Sigma_{zz}}}\,,\\
+&=\f1\mu\f{1}{2k^2k_y^2k_z^2}\ps{k_z^2k_y^2(k_z\Sigma_{yy}-k_y\Sigma_{zz})-k_z^3(k_x^2-k_z^2)(\Sigma_{xx}-\Sigma_{zz})+k_y^3(k_x^2-k_y^2)(\Sigma_{xx}-\Sigma_{yy})}\,,\\
+&=\f1\mu\ps{\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})}\,,\\
 \end{align}
 Just cyclically permute the indices to obtain the expressions for $U_y$ and $U_z$.
 \begin{align}
-\f{U_x}{\mu}&=\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})\,,\\
-\f{U_y}{\mu}&=\f{1}{2k^2}(k_x\Sigma_{zz}-k_z\Sigma_{xx})-\f{k_x(k_y^2-k_x^2)}{2k^2k_z^2}(\Sigma_{yy}-\Sigma_{xx})+\f{k_z(k_y^2-k_z^2)}{2k^2k_x^2}(\Sigma_{yy}-\Sigma_{zz})\,,\\
-\f{U_z}{\mu}&=\f{1}{2k^2}(k_y\Sigma_{xx}-k_x\Sigma_{yy})-\f{k_y(k_z^2-k_y^2)}{2k^2k_x^2}(\Sigma_{zz}-\Sigma_{yy})+\f{k_x(k_z^2-k_x^2)}{2k^2k_y^2}(\Sigma_{zz}-\Sigma_{xx})\,,\\
+\mu U_x&=\f{1}{2k^2}(k_z\Sigma_{yy}-k_y\Sigma_{zz})-\f{k_z(k_x^2-k_z^2)}{2k^2k_y^2}(\Sigma_{xx}-\Sigma_{zz})+\f{k_y(k_x^2-k_y^2)}{2k^2k_z^2}(\Sigma_{xx}-\Sigma_{yy})\,,\\
+\mu U_y&=\f{1}{2k^2}(k_x\Sigma_{zz}-k_z\Sigma_{xx})-\f{k_x(k_y^2-k_x^2)}{2k^2k_z^2}(\Sigma_{yy}-\Sigma_{xx})+\f{k_z(k_y^2-k_z^2)}{2k^2k_x^2}(\Sigma_{yy}-\Sigma_{zz})\,,\\
+\mu U_z&=\f{1}{2k^2}(k_y\Sigma_{xx}-k_x\Sigma_{yy})-\f{k_y(k_z^2-k_y^2)}{2k^2k_x^2}(\Sigma_{zz}-\Sigma_{yy})+\f{k_x(k_z^2-k_x^2)}{2k^2k_y^2}(\Sigma_{zz}-\Sigma_{xx})\,.
 \end{align}
-Assuming cylindrical symmetry, we have $\Sigma=\Sigma_{zz}=-2\Sigma_{xx}=-2\Sigma_{yy}$.
+Assuming radial symmetry, we have $\Sigma=\Sigma_{zz}=-2\Sigma_{xx}=-2\Sigma_{yy}$.
 \begin{align}
-U_x&=\ps{-(k_z+2k_y)k_x^2k_y^2+3k_zk_x^2(k_x^2-k_z^2)}\f{\mu}{4k^2k_x^2k_y^2}\Sigma\,,\\
-U_y&=\ps{(2k_x+k_z)k_x^2k_y^2-3k_zk_y^2(k_y^2-k_z^2)}\f{\mu}{4k^2k_x^2k_y^2}\Sigma\,,\\
-U_z&=\ps{(k_x-k_y)k_x^2k_y^2+3(k_x^3-k_y^3)k_z^2+3k_y^5-3k_x^5}\f{\mu}{4k^2k_x^2k_y^2}\Sigma\,.
+U_x&=\ps{-(k_z+2k_y)k_x^2k_y^2+3k_zk_x^2(k_x^2-k_z^2)}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,,\\
+U_y&=\ps{(2k_x+k_z)k_x^2k_y^2-3k_zk_y^2(k_y^2-k_z^2)}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,,\\
+U_z&=\ps{(k_x-k_y)k_x^2k_y^2+3(k_x^3-k_y^3)k_z^2+3k_y^5-3k_x^5}\f{1}{4\mu k^2k_x^2k_y^2}\Sigma\,.
 \end{align}
 The energy of these shear waves is given
 \begin{align}
@@ -274,6 +274,7 @@ E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
 &=\mu\int_V\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}\p{k k'U(\vec k)\bar U(\vec k')}e^{-\I(\vec k\cdot\vec x-i\beta k t)}e^{\I(\vec k'\cdot\vec x-i\beta k' t)}\,,\\
 &=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{k^2\abs{U(\vec k)}^2}\,,\\
 \end{align}
+The integral is horribly divergent about the azimuth - there must have been a mistake...
 \\\\
 For shocks, check the laser physics book.
 
@@ -302,13 +303,20 @@ where $\Delta r$ is the radial length of the shock and $r_0$ is its base. In the
 \begin{align}
 E_{\te{propagated}}&\approx \f{\lambda+2\mu}{K^2}\f{h \bar p^2\pi^2r_0^6}{8\Delta r^2\lambda_0^2}\,.
 \end{align}
-Setting this equal to the earlier $E_{\te{propagated}}$ yields
+Setting this (less than or) equal to the earlier $E_{\te{propagated}}$ yields
 \begin{align}
-\f{h \bar p^2\pi^2r_0^6}{8\Delta r^2\lambda_0^2}&=(\sigma_Xp_0)^2\f{\pi h}{\lambda_0^2}\,,\\
-\bar p&=\p{2\sqrt{2\pi}\f{r_X^2\Delta r}{r_0^3}}p_0\,.
+\f{h \bar p^2\pi^2r_0^6}{8\Delta r^2\lambda_0^2}&\leq (\sigma_Xp_0)^2\f{\pi h}{\lambda_0^2}\,,\\
+\bar p&\leq\p{2\sqrt{2\pi}\f{r_X^2\Delta r}{r_0^3}}p_0\,.
 \end{align}
-We know that shock waves are rapidly attenuated in the earth. Therefore, the estimate of the energy propagated by the initial overpressure serves as an upper bound to the energy propagated during the non-linear phase.
-
+We know that shock waves are rapidly attenuated in the earth. Therefore, the estimate of the energy propagated by the initial overpressure serves as an upper bound to the energy propagated during the non-linear phase. Thus, this value for $\bar p$ as a function of $p_0$ serves as an upper bound to the maximum pressure in the shock. By fixing an acceptable value for $\bar p$ to begin the linear propagation, we can find suitable values of $r_0$ and $\Delta r$. Note, $\Delta r$ is quite small, and should be on the order of $r_X$, since the width of the shock will not change much from the original (half) width of the overpressure. Hence, a reasonable estimate is
+\begin{align}
+\bar p&\leq\p{2\sqrt{2\pi}\f{r_X^3}{r_0^3}}p_0\,.
+\end{align}
+Using this, we can find an upper bound for $r_0$
+\begin{align}
+r_0&\leq r_X\sqrt[3]{\p{2\sqrt{2\pi}}\f{p_0}{\bar p}}\,.
+\end{align}
+It is therefore sufficient to take the linear radius to be equality in the above expression. But all this is really saying is that it is sufficient to estimate the fraction of energy propagated by our original calculation using the cylindrical overpressure.
 \pagebreak
 \section{What we still need to do}
 What we've calculated is the the pressure from the total energy deposition. We need to figure out the total energy, pressure, and shape of the shock after it becomes sufficiently acoustic. It would also be good to know the velocity of the shock. From this, we can calculate the energy deposited in the measurable range.
