@@ -295,7 +295,32 @@ $\bar p$ can be taken to be the maximum stress such that the elastic limit holds
 &\approx10^{-18}
 \end{align}
 This is within one order of magnitude of the answer gotten from (24). Note, my estimate for $r_0$ turned out to be about 1 kilometer. I'm still not entirely sure of the correct way to calculate $r_0$. If we take $\bar p\approx 10^{8}$ Pa, then $\Xi\approx 10^{-10}$. That said, it's 2:00 am and I'm doing these estimates in my head, so don't take any of this too seriously. The only really important thing is the idea that we can ignore the non-linear evolution since we can reasonably guess its end state and assume no energy loss in between.
-
+\\\\
+If we want to calculate the total energy, it may be better to work in real space. Observe
+\begin{align}
+U(\vec k)=\I\f{P(\vec k)}{K}\f{\vec k}{k^2}\,.
+\end{align}
+Hence,
+\begin{align}
+\nabla\cdot u&=-\int\f{P(\vec k)}{K}e^{-\I(\vec k\cdot\vec x-\alpha k t)}\,,\\
+&=-\f{p}{K}
+\end{align}
+Thus, the total energy is
+\begin{align}
+E_{\te{total}}&=\f{\lambda+2\mu}{K^2}\int\diff^3 x (p^2)\,,
+\end{align}
+Hence, for the asymptotic shock wave
+\begin{align}
+E_{\te{total}}&=\f{\lambda+2\mu}{K^2}\bar p^2\pi\Delta r h\f16(4 r_0+3\Delta r)\,.
+\end{align}
+Setting this equal to the original energy of the impact yields (note, i think the original total energy calculation is off by a factor of $4\pi^2$ so I correct that here):
+\begin{align}
+\bar p^2\Delta r\f16(4 r_0+3\Delta r)&=p_0^2 r_X^2
+\end{align}
+Assuming that $r_X\approx \Delta r$, we have
+\begin{align}
+r_0&=\f34r_X\f{2p_0^2-\bar p^2}{\bar p^2}
+\end{align}
 %Setting this (less than or) equal to the earlier $E_{\te{propagated}}$ yields
 %\begin{align}
 %\f{h \bar p^2\pi^2r_0^6}{8\Delta r^2\lambda_0^2}&\leq (\sigma_Xp_0)^2\f{\pi h}{\lambda_0^2}\,,\\

@@ -1,0 +1,191 @@
+\documentclass{article}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics, MnSymbol,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+\title{Homework}
+\author{David Cyncynates \\ dcc57@case.edu}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Scalar Modes}
+In the following, lower case denotes a quantity in position space while capital letters denote their components in Fourier space.
+\\\\
+Denote the displacement field $u(\vec x,t)=\nabla\phi(\vec x,t)+\nabla\times a(\vec x,t)$\,. The linearized (acoustic) wave equation for $\phi$ is then
+\begin{align}
+\alpha^2\nabla^2\phi&=\partial_t^2\phi\,,
+\end{align}
+where $\alpha^2=\f{\lambda+2\mu}{\rho}$. We may write
+\begin{align}
+\phi(\vec x,t)=\int\f{\diff^3 k}{(2\pi)^3}\Phi(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\omega t)}\,,
+\end{align}
+from which we obtain the dispersion relation $\alpha k=\omega$, and hence the solution
+\begin{align}
+\phi(\vec x,t)=\int\f{\diff^3 k}{(2\pi)^3}\Phi(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\alpha k t)}\,.
+\end{align}
+We now impose the constraint equation
+\begin{align}
+\sigma_{ij}&=\delta_{ij}\lambda\nabla\cdot u+\mu(u_{i,j}+u_{j,i})
+\end{align}
+which, for the scalar modes becomes
+\begin{align}
+\sigma_{ij}&=\delta_{ij}\lambda\nabla^2\phi+2\mu\partial_i\partial_j\phi
+\end{align}
+and whose trace is
+\begin{align}
+-p=K\nabla^2\phi=K\nabla\cdot u\,,
+\end{align}
+where $K=\lambda+\f23\mu$ is the bulk modulus and $p=-\f13\tr\sigma_{ij}$. We take this constraint as an initial condition at $t=0$. In Fourier space
+\begin{align}
+P(\vec k)=Kk^2\Phi(\vec K)\,,
+\end{align}
+from which we obtain the displacement field components
+\begin{align}
+U(\vec k)&=\I\f{P(\vec k)}{K}\f{\vec k}{k^2}\,,
+\end{align}
+and hence
+\begin{align}
+u(\vec x,t)=\int\f{\diff^3 k}{(2\pi)^3}\I\f{P(\vec k)}{K}\f{\vec k}{k^2}e^{\I(\vec k\cdot\vec x-\alpha k t)}\,,
+\end{align}
+The equation for the energy of the compressional modes is
+\begin{align}
+E&=\f12\int_V\diff^3x\p{\rho\abs{\partial_t u}^2+(\lambda+2\mu)\abs{\nabla\cdot u}^2}\,,\\
+&=\f{\lambda+2\mu}{K^2}\int\f{\diff^3 k}{(2\pi)^3}\abs{P(\vec k)}^2
+\end{align}
+In the case that $P$ depends only on the frequency
+\begin{align}
+E&=4\pi\f{\lambda+2\mu}{K^2}\int\f{\diff\tilde\lambda}{\tilde\lambda^4}\abs{P(\tilde\lambda)}^2\,.
+\end{align}
+\\\\
+Observe, the total energy can be calculated directly from $p$ as it is always true that half the energy is spring potential and half is kinetic.
+\begin{align}
+E&=\f{\lambda+2\mu}{K^2}\int_V\diff^3 x (p^2)
+\end{align}
+Now consider the case of a step function type pressure source - a cylinder of height $h$ and radius $r_X$
+\begin{align}
+p(\vec x,0)&=p_0\theta(r_X-r)\ps{\theta(z+h/2)-\theta(z-h/2)}\,,
+\end{align}
+whose Fourier components are
+\begin{align}
+P(\vec k)&=\f{4\pi r_X p_0}{\sqrt{k_x^2+k_y^2}k_z}J_1\p{\sqrt{k_x^2+k_y^2}r_X}\sin\p{\f{h}{2}k_z}\,,
+\end{align}
+which, in polar $k$-space is
+\begin{align}
+P(k,\varphi,\theta)&=\f{4\pi r_X p_0}{k^2\sin\theta\cos\theta}J_1\p{r_Xk\sin\theta}\sin\p{\f{h}{2}k\cos\theta}\,,
+\end{align}
+The total energy is clearly
+\begin{align}
+E_{\te{total}}&=\f{\lambda+2\mu}{K^2}p_0^2\sigma_Xh
+\end{align}
+where $\sigma_X=\pi r_X^2$. To calculate the energy deposition into the low frequency spectrum, we integrate $k$ from $0$ to $k_0$. Observe, we can make the following approximation
+\begin{align}
+P(\vec k)&\approx_{k\ll r_X}\f{2\pi r_Xp_0}{k^2\cos\theta\sin\theta}r_X k\sin\theta\sin\p{\f{h}{2}k\cos\theta}\,,\\
+&=\f{2\pi r_X^2 p_0}{k\cos\theta}\sin\p{\f{h}{2}k\cos\theta}\,.
+\end{align}
+From this we obtain the portion of the energy relegated to the long wavelength spectrum
+\begin{align}
+E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{2\pi r_X^2 p_0}{k\cos\theta}\sin\p{\f{h}{2}k\cos\theta}}^2\,,\\
+&=\ps{\f{1}{2h}(r_X^2p_0)^2\f{\lambda+2\mu}{K^2}}\ps{hk_0\cos(hk_0)+\sin(hk_0)+hk_0\p{-2+hk_0\te{Si}(hk_0)}}\,,\\
+&\approx_{h\gg\lambda_0\gg1}\ps{(r_X^2p_0)^2\f{\lambda+2\mu}{K^2}}\ps{\f{\pi^3 h}{\lambda_0^2}}\,,\\
+&=\ps{(\sigma_Xp_0)^2\f{\lambda+2\mu}{K^2}}\ps{\f{\pi h}{\lambda_0^2}}\,.
+\end{align}
+From this we obtain the fractional energy deposition into the unattenuated wavelengths
+\begin{align}
+\Xi&=\f{\sigma_X}{\lambda_0^2}\,.
+\end{align}
+This approximation holds for $\lambda_0^2\gg\sigma_X$, which is appropriate for the case that $\lambda_0$ is on the order of kilometers and $\sigma_X$ is on the order of centimeters squared.
+\pagebreak
+\\
+It is wrong, however, to assume that the wave evolves linearly close to the source. Modes will be coupled to one another, and our expression (25) will only hold in a small neighborhood of the event. Effects such as heating and rock fracturing will cause the high frequency modes in the shock to rapidly attenuate. They are, however, difficult to quantify. It is not controversial to say that the energy of the shock after its non-linear evolution (when the overpressure exceeds the elastic limit of the Earth) will be less than its initial energy. It is also well known that the behavior of shockwaves for long time tends towards a sharp wave-front with a linearly decreasing tail. To produce an over-estimate of the detectible energy, we hypothesize an approximate pressure waveform and endow it with energy equivalent to that of the initial blast. Then, we calculate the energy per mode, and sum over only those modes whose frequency is in the regime that will not rapidly attenuate.
+\\\\
+We describe the long-time waveform of the shock by
+\begin{align}
+p=\bar p\f{r-r_0}{\Delta r}\ps{\theta(r_0+\Delta r-r)-\theta(r+\Delta r)}\ps{\theta(z+h/2)-\theta(z-h/2)}\,.
+\end{align}
+$\Delta r$ is the length of the tail, and $r_0$ is its base. $\bar p$ is the peak pressure of the shock, and we can take it to be the stress corresponding to the elastic limit of rock. It is reasonable to say that $\Delta r$ should be within an order of magnitude of $r_X$. The total energy of this pressure wave is
+\begin{align}
+E_{\te{total}}=\f{\lambda+2\mu}{K^2}\f16 \bar p^2 \pi\Delta r h(4 r_0+3\Delta r)\,.
+\end{align}
+We require that this be equal to the initial total energy. From this, we can obtain an expression for $r_0$ in terms of $\Delta r$.
+\begin{align}
+r_0&=\f{3(2p_0^2r_X^2-\bar p^2\Delta r^2)}{4\bar p^2\Delta r}\,.
+\end{align}
+The energy in the longest modes is, for $h\gg\lambda_0$
+\begin{align}
+E_{\te{propagated}}&\approx\f{\lambda+2\mu}{K^2}\f{\bar p^2 \pi^3 h \Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}\,.
+\end{align}
+Then we have that the fraction of energy that will reach seismometers is
+\begin{align}
+\Xi&=\f{2\pi^2\Delta r(3r_0+2\Delta r)^2}{3(4 r_0+3\Delta r)\lambda_0^2}\,,\\
+&=\pi^2\p{\f{18 p_0^2 r_X^2-\bar p^2\Delta r^2}{12 p_0\bar p r_X\lambda_0}}^2
+\end{align}
+Since we know that the total energy is, assuming that the velocity of the macro remains approximately constant throughout its journey through Earth
+\begin{align}
+\f{\lambda+2\mu}{K^2}p_0^2\sigma_Xh=E_{\te{total}}=h\abs{\td{E}{x}{}}=h\rho_{\oplus}\sigma_Xv_X^2\,.
+\end{align}
+Thus we obtain the following expression for $p_0$
+\begin{align}
+p_0&=\sqrt{\f{\rho}{\lambda+2\mu}}Kv_X\,.
+\end{align}
+Thus, the suppression factor is
+\begin{align}
+\Xi&=\pi \f{(\bar p^2\pi \Delta r^2(\lambda+2\mu)-18K^2\sigma_Xv_X^2\rho_{\oplus})^2}{144K^2(\lambda+2\mu)\rho_{\oplus}\bar p^2 \sigma_X v_X^2\lambda_0^2}\,.
+\end{align}
+\end{document}
