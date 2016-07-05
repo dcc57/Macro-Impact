@@ -167,7 +167,7 @@ We require that this be equal to the initial total energy. From this, we can obt
 \begin{align}
 r_0&=\f{3(2p_0^2r_X^2-\bar p^2\Delta r^2)}{4\bar p^2\Delta r}\,.
 \end{align}
-The energy in the longest modes is, for $h\gg\lambda_0$
+The energy in the longest modes is, for $h\gg\lambda_0\gg r_0$
 \begin{align}
 E_{\te{propagated}}&\approx\f{\lambda+2\mu}{K^2}\f{\bar p^2 \pi^3 h \Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}\,.
 \end{align}
@@ -188,4 +188,25 @@ Thus, the suppression factor is
 \begin{align}
 \Xi&=\pi \f{(\bar p^2\pi \Delta r^2(\lambda+2\mu)-18K^2\sigma_Xv_X^2\rho_{\oplus})^2}{144K^2(\lambda+2\mu)\rho_{\oplus}\bar p^2 \sigma_X v_X^2\lambda_0^2}\,.
 \end{align}
+One source suggests that Earth reacts elastically when the acceleration $\ddot u$ is bounded by $4\te{ms}^{-2}$. Observe,
+\begin{align}
+U(\vec k)=\I\f{P(\vec k)}{K}\f{\vec k}{k^2}\,,
+\end{align}
+hence
+\begin{align}
+\ddot U(\vec k)=-\I\alpha^2\f{P(\vec k)}{K}\vec k\,.
+\end{align}
+The inverse transform yields
+\begin{align}
+\ddot u&=-\f{\alpha^2}{K}\nabla p\,.
+\end{align}
+For our case, within the shock front
+\begin{align}
+\ddot u&=-\f{\alpha^2}{K}\bar p\f{2r-r_0}{r\Delta r}\,.
+\end{align}
+This function is monotonic increasing, and thus has maximum absolute value
+\begin{align}
+\ddot u_{\te{max}}&=\f{\alpha^2}{K}\bar p\f{2\Delta r+r_0}{(\Delta r+r_0)\Delta r}\,.
+\end{align}
+We have $r_0$ in terms of $\Delta r$, and hence we can solve the system for both. Unfortunately, the numerical results for $r_0$ and $\Delta r$ are huge... roughly $r_0=10^{17}\te{m}$ and $\Delta r=10^5\te{m}$. Moreover, plugging these results in for the energy $E_{\te{prop}}$ yields an enormous number, on the order of $10^{57}\te{J}$. Given that the total energy deposition is $10^{12}$, it is clear that we made a mistake somewhere...
 \end{document}
