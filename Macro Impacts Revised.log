@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 JUL 2016 19:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  6 JUL 2016 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1821,12 +1821,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--159
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 190--194
-
- []
-
-[4] [5] (./Macro Impacts Revised.aux) ) 
+[3] [4] [5] (./Macro Impacts Revised.aux) ) 
 Here is how much of TeX's memory you used:
  22372 strings out of 493117
  453247 string characters out of 6135433
@@ -1835,23 +1830,23 @@ Here is how much of TeX's memory you used:
  21103 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,12n,84p,10429b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/font
-s/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/local/texlive/2014/texmf-dist/fonts/en
-c/dvips/mnsymbol/MnSymbolE.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dv
-ips/mnsymbol/MnSymbolF.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/
-mnsymbol/MnSymbolC.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/m
-nsymbol/MnSymbol10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/m
-nsymbol/MnSymbol7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
-pfb>
-Output written on "Macro Impacts Revised.pdf" (5 pages, 171622 bytes).
+{/usr/local/texlive/2014/texmf-dist/
+fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/local/texlive/2014/texmf-dist/font
+s/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/local/texlive/2014/texmf-dist/fonts/en
+c/dvips/mnsymbol/MnSymbolF.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dv
+ips/mnsymbol/MnSymbolC.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/mnsymbol/MnSymbol10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/mnsymbol/MnSymbol7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb>
+Output written on "Macro Impacts Revised.pdf" (5 pages, 172553 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  62 compressed objects within 1 object stream
