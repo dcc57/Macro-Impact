@@ -195,7 +195,8 @@ Reviewing a USGS document (Rock Failure and Earthquakes) suggests that $\bar p$ 
 \end{align}
 Given the relative magnitudes of $\bar p$ and $K^2$,
 \begin{align}
-\Xi&=\p{\f{3\pi r_X v_XK}{2\alpha\bar p \lambda_0}}^2\,.
+\Xi&=\p{\f{3\pi r_X v_XK}{2\alpha\bar p \lambda_0}}^2\,,\\
+&=\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
 The following are the approximate quantities used
 \begin{align}
@@ -221,4 +222,119 @@ E_{\te{propagated}}&=\f{8\times 10^{13}\te{J m}^2}{\lambda_0^2}\,,\\
 \Xi&=\f{17.6\te{m}^2}{\lambda_0^2}\,.
 \end{align}
 Conservatively we set $\lambda_0$ at about $6$ kilometers. This yields a total suppression factor of $\Xi=4.9\times 10^{-7}$. Keep in mind that this estimate is incredibly conservative, and does not take into account any non-conservative processes in the nonlinear regime $r<r_0$. Note, even though both $\lambda_0$ and $r_0$ are on the same order of magnitude, the approximations used are still good since they are overestimates of the Bessel $J$ and Struve $H$ functions.
+\\\\
+Our result shows that the suppression factor only depends on the stopping factor, which in turn only depends on the velocity and cross-section of the macro. This is sensible since the velocity and cross-section of the macro are the defining characteristics of the impact. The only factor missing is the density of the macro. However, we are assuming that the density is large enough that the average velocity of the macro on its journey through the earth is close to its initial velocity.
+\\\\
+It is significant that $\Xi$ is proportional to $\sigma_X$. For the very largest macros, our very conservative suppression factor is near unity. However, it may still be enough to rule out detection.
+\\\\
+Note, it is incorrect to consider the expression for $\Xi$ in the small and large parameter limits: we required (in some approximations) that $r_0\ll \lambda_0$, which places a lower bound on $\bar p$. Moreover $\bar p$ is supposed to be less than $p_0$.
+\pagebreak
+\section{Vector Modes}
+The following is the equation of motion for the vector potential $a$ without body force:
+\begin{align}
+\mu\nabla^2a-\rho\ddot a=\mu\nabla(\nabla\cdot a)-\mu\nabla\times(\nabla\times a)-\rho\ddot a=0\,,
+\end{align}
+where the leftmost term is the vector laplacian. This gives us three wave equations for the three components of $a$. The constraint equation takes the form
+\begin{align}
+\sigma_{ij}&=\lambda\delta_{ij}\nabla\cdot \nabla\times a+\mu(\partial_j (\nabla\times a)_i+\partial_i (\nabla\times a)_j)\,,\\
+&=\mu(\partial_j (\nabla\times a)_i+\partial_i (\nabla\times a)_j)\,,\\
+&=\mu\mat{ccc}{2\partial_x(\partial_ya_z-\partial_za_y)&(\partial_y^2-\partial_x^2)a_z+\partial_z(\partial_x a_x-\partial_y a_y)&(\partial_x^2-\partial_z^2)a_y+\partial_y(\partial_z a_z-\partial_x a_x)\\
+&2\partial_y(\partial_z a_x-\partial_x a_z)&(\partial_z^2-\partial_y^2)a_x+\partial_x(\partial_ya_y-\partial_za_z)\\
+&&2\partial_z(\partial_xa_y-\partial_ya_x)}\,.
+\end{align}
+We now write $a_i$ in terms of its Fourier components
+\begin{align}
+a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\omega t)}\,.
+\end{align}
+Observe the dispersion relation $\beta k=\omega$, which holds for each component $a_i$, and that $\beta=\f\mu\rho$. Thus, the solutions to the wave equation are
+\begin{align}
+a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\beta k t)}\,.
+\end{align}
+We now use the constraint equation to write down the initial vector potential in terms of the initial stress. Note, we will obtain three equations constraining the possible initial stresses (i.e., we will be able to eliminate three components of $\sigma$ from the equations), and three equations writing $A_i$ in terms of $\Sigma_{ij}$.
+\\\\
+In Fourier space we have
+\begin{align}
+-\Sigma_{xx}&=\mu2k_x(k_y A_z-k_z A_y)\,,\\
+-\Sigma_{yy}&=\mu2k_y(k_z A_x-k_x A_z)\,,\\
+-\Sigma_{zz}&=\mu2k_z(k_x A_y-k_y A_x)\,,\\
+-\Sigma_{xy}&=\mu\ps{(k_y^2-k_x^2) A_z+k_z(k_x A_x-k_y A_y)}\,,\\
+-\Sigma_{yz}&=\mu\ps{(k_z^2-k_y^2) A_x+k_x(k_y A_y-k_z A_z)}\,,\\
+-\Sigma_{zx}&=\mu\ps{(k_x^2-k_z^2) A_y+k_y(k_z A_z-k_x A_x)}\,.
+\end{align}
+First observe that any three of these equations together forms a singular linear system in $A_i$. Thus we cannot invert to solve for $A_i$. However, we can get some information about the $\Sigma$'s.
+\\\\
+Taking the sum of 31-33 yields
+\begin{align}
+0&=\Sigma_{xx}+\Sigma_{yy}+\Sigma_{zz}\,.
+\end{align}
+Observe that
+\begin{align}
+\f{-\Sigma_{xx}k_y}{2\mu k_xk_z}&=\f{k_y^2}{k_z}A_z-k_yA_y\,,\\
+\f{-\Sigma_{yy}k_x}{2\mu k_yk_z}&=k_xA_x-\f{k_x^2}{k_z}A_z\,,\\
+\f{-\Sigma_{xy}}{\mu k_z}&=\ps{\f{k_y^2-k_z^2}{k_z}}A_z+k_xA_x-k_yA_y\,.
+\end{align}
+Taking the sum of the first two reveals that`
+\begin{align}
+2k_xk_y\Sigma_{xy}&=k_y^2\Sigma_{xx}+k_x^2\Sigma_{yy}\,.
+\end{align}
+If you want to be silly, we find
+\begin{align}
+0&=(\Sigma_{x}k_y-\Sigma_{y}k_x)^2\,.
+\end{align}
+Anyway, we then have the system of three equations
+\begin{align}
+2k_xk_y\Sigma_{xy}&=k_y^2\Sigma_{xx}+k_x^2\Sigma_{yy}\,,\\
+2k_yk_z\Sigma_{yz}&=k_z^2\Sigma_{yy}+k_y^2\Sigma_{zz}\,,\\
+2k_zk_x\Sigma_{zx}&=k_x^2\Sigma_{zz}+k_z^2\Sigma_{xx}\,.
+\end{align}
+which is non-singular. They yield
+\begin{align}
+\Sigma_{xx}&=\f{k_x}{k_yk_z}\p{k_z\Sigma_{xy}-k_x\Sigma_{yz}+k_y\Sigma_{zx}}\,,\\
+\Sigma_{yy}&=\f{k_y}{k_zk_x}\p{k_z\Sigma_{xy}+k_x\Sigma_{yz}-k_y\Sigma_{zx}}\,,\\
+\Sigma_{zz}&=\f{k_z}{k_xk_y}\p{-k_z\Sigma_{xy}+k_x\Sigma_{yz}+k_y\Sigma_{zx}}\,.
+\end{align}
+This, along with being traceless, shows that the shear only has two independent degrees of freedom: the polarizations.
+\\\\
+It is impossible to solve for $A_i$ in terms of the stress as is, hence we must fix a gauge. To do this, we fix $\nabla\cdot a=0$, whence
+\begin{align}
+0=k_xA_x+k_yA_y+k_zA_z\,.
+\end{align}
+From earlier
+\begin{align}
+-\Sigma_{yz}&=\mu\ps{(k_z^2-k_y^2) A_x+k_x(k_y A_y-k_z A_z)}\,,\\
+-\Sigma_{zx}&=\mu\ps{(k_x^2-k_z^2) A_y+k_y(k_z A_z-k_x A_x)}\,.
+\end{align}
+Imposing the Gauge condition,
+\begin{align}
+-\Sigma_{yz}&=\mu\ps{(k_x^2-k_y^2+k_z^2) A_x+2k_xk_y A_y}\,,\\
+-\Sigma_{zx}&=\mu\ps{(k_x^2-k_y^2-k_z^2) A_y-2k_x k_y A_x}\,.
+\end{align}
+Inverting:
+\begin{align}
+A_z=\f{k_x\Sigma_{yz}-k_y\Sigma_{zx}}{\mu k_z k^2}
+\end{align}
+Hence, by symmetry
+\begin{align}
+A_x&=\f{k_y\Sigma_{zx}-k_z\Sigma_{xy}}{\mu k_x k^2}\,,\\
+A_y&=\f{k_z\Sigma_{xy}-k_x\Sigma_{yz}}{\mu k_y k^2}\,,\\
+A_z&=\f{k_x\Sigma_{yz}-k_y\Sigma_{zx}}{\mu k_z k^2}\,.
+\end{align}
+\\\\
+Now we take the curl of $A$ to find the shear mode displacement
+\begin{align}
+U_x&=\f{k_z^2(k_x\Sigma_{yz}-k_z\Sigma_{xy})+k_y^2(k_x\Sigma_{yz}-k_y\Sigma_{zx})}{\mu k_y k_z k^2}\,,\\
+U_y&=\f{k_x^2(k_y\Sigma_{zx}-k_x\Sigma_{yz})+k_z^2(k_y\Sigma_{zx}-k_z\Sigma_{xy})}{\mu k_z k_x k^2}\,,\\
+U_z&=\f{k_y^2(k_z\Sigma_{xy}-k_y\Sigma_{zx})+k_x^2(k_z\Sigma_{xy}-k_x\Sigma_{yz})}{\mu k_x k_y k^2}\,,
+\end{align}
+Assuming radial symmetry, we have $\Sigma=\Sigma_{zz}=-2\Sigma_{xx}=-2\Sigma_{yy}$.
+
+The energy of these shear waves is given
+\begin{align}
+E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
+&=\rho\int_V\abs{u_t}^2\,,\\
+&=\mu\int_V\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}\p{k k'U(\vec k)\bar U(\vec k')}e^{-\I(\vec k\cdot\vec x-i\beta k t)}e^{\I(\vec k'\cdot\vec x-i\beta k' t)}\,,\\
+&=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{k^2\abs{U(\vec k)}^2}\,,\\
+\end{align}
+The integral is horribly divergent about the azimuth - there must have been a mistake...
+
 \end{document}
