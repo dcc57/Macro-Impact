@@ -196,16 +196,25 @@ Thus, the suppression factor is
 \begin{align}
 \Xi&=\pi \f{(\bar p^2\pi \Delta r^2(\lambda+2\mu)-18K^2\sigma_Xv_X^2\rho_{\oplus})^2}{144K^2(\lambda+2\mu)\rho_{\oplus}\bar p^2 \sigma_X v_X^2\lambda_0^2}\,.
 \end{align}
-Reviewing a USGS document (Rock Failure and Earthquakes) suggests that $\bar p$ be set at $10^8$. To calculate $\Delta r$, notice that the Earth is initially displaced by $r_X$. The Earth will then collapse back into the hole due to ambient pressure at the speed of sound $\alpha$, yielding a time of collapse $r_X/\alpha$. The speed of the shockwave initially produced by the object is approximately the speed of the object itself. Hence $\Delta r/v_X=r_X/\alpha$. Thus $\Delta r\approx\f{v_X}{\alpha}r_X$. Thus
+Using the upper bound for $\Delta r$ from earlier
 \begin{align}
-\Xi&=\pi \f{(\bar p^2\pi \f{v_X^2}{\alpha^2}r_X^2(\lambda+2\mu)-18K^2\sigma_Xv_X^2\rho_{\oplus})^2}{144K^2(\lambda+2\mu)\rho_{\oplus}\bar p^2 \sigma_X v_X^2\lambda_0^2}\,,\\
-&=\p{\pi r_X v_X\f{\bar p^2 -18K^2}{12K\alpha\bar p \lambda_0}}^2\,.
+\Xi&\geq\p{\f{K^2}{\lambda+2\mu}}\p{\f{4\pi}{3\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
-Given the relative magnitudes of $\bar p$ and $K^2$,
+Taking $\Delta r$ to be 0, we find
 \begin{align}
-\Xi&=\p{\f{3\pi r_X v_XK}{2\alpha\bar p \lambda_0}}^2\,,\\
-&=\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
+\Xi&\leq\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
+\\\\
+%Reviewing a USGS document (Rock Failure and Earthquakes) suggests that $\bar p$ be set at $10^8$. To calculate $\Delta r$, notice that the Earth is initially displaced by $r_X$. The Earth will then collapse back into the hole due to ambient pressure at the speed of sound $\alpha$, yielding a time of collapse $r_X/\alpha$. The speed of the shockwave initially produced by the object is approximately the speed of the object itself. Hence $\Delta r/v_X=r_X/\alpha$. Thus $\Delta r\approx\f{v_X}{\alpha}r_X$. Thus
+%\begin{align}
+%\Xi&=\pi \f{(\bar p^2\pi \f{v_X^2}{\alpha^2}r_X^2(\lambda+2\mu)-18K^2\sigma_Xv_X^2\rho_{\oplus})^2}{144K^2(\lambda+2\mu)\rho_{\oplus}\bar p^2 \sigma_X v_X^2\lambda_0^2}\,,\\
+%&=\p{\pi r_X v_X\f{\bar p^2 -18K^2}{12K\alpha\bar p \lambda_0}}^2\,.
+%\end{align}
+%Given the relative magnitudes of $\bar p$ and $K^2$,
+%\begin{align}
+%\Xi&=\p{\f{3\pi r_X v_XK}{2\alpha\bar p \lambda_0}}^2\,,\\
+%&=\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
+%\end{align}
 The following are the approximate quantities used
 \begin{align}
 h&=1.2\times 10^7\te{m}\,,\\
@@ -222,7 +231,7 @@ r_X&=1.8\times 10^{-6}\te{m}\,,\\
 K&=1.2\times 10^{11}\te{Pa}\,,\\
 \bar p&=10^8\te{Pa}\,.
 \end{align}
-These lead to the results
+These lead to the results, (using my estimation scheme $\Delta r=\f{v_X}{\alpha}r_X$ from earlier, which may be incorrect)
 \begin{align}
 \Delta r&=7.4\times 10^{-4}\te{m}\,,\\
 r_0&=1.6\times 10^3\te{m}\,,\\
