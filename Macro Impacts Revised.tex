@@ -246,7 +246,7 @@ We now write $a_i$ in terms of its Fourier components
 \begin{align}
 a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\omega t)}\,.
 \end{align}
-Observe the dispersion relation $\beta k=\omega$, which holds for each component $a_i$, and that $\beta=\f\mu\rho$. Thus, the solutions to the wave equation are
+Observe the dispersion relation $\beta k=\omega$, which holds for each component $a_i$, and that $\beta^2=\f\mu\rho$. Thus, the solutions to the wave equation are
 \begin{align}
 a_i(\vec x,t)&=\int\f{\diff^3k}{(2\pi)^3}A_i(\vec k,\omega)e^{\I(\vec k\cdot\vec x-\beta k t)}\,.
 \end{align}
@@ -320,21 +320,25 @@ A_y&=\f{k_z\Sigma_{xy}-k_x\Sigma_{yz}}{\mu k_y k^2}\,,\\
 A_z&=\f{k_x\Sigma_{yz}-k_y\Sigma_{zx}}{\mu k_z k^2}\,.
 \end{align}
 \\\\
-Now we take the curl of $A$ to find the shear mode displacement
+Now we take the curl of $A$ to find the shear mode displacement and use the relations (73) through (75) to obtain
 \begin{align}
-U_x&=\f{k_z^2(k_x\Sigma_{yz}-k_z\Sigma_{xy})+k_y^2(k_x\Sigma_{yz}-k_y\Sigma_{zx})}{\mu k_y k_z k^2}\,,\\
-U_y&=\f{k_x^2(k_y\Sigma_{zx}-k_x\Sigma_{yz})+k_z^2(k_y\Sigma_{zx}-k_z\Sigma_{xy})}{\mu k_z k_x k^2}\,,\\
-U_z&=\f{k_y^2(k_z\Sigma_{xy}-k_y\Sigma_{zx})+k_x^2(k_z\Sigma_{xy}-k_x\Sigma_{yz})}{\mu k_x k_y k^2}\,,
+U_x&=-\I\f{\Sigma_{xx}}{2k_x\mu}\,,\\
+U_y&=-\I\f{\Sigma_{yy}}{2k_y\mu}\,,\\
+U_z&=-\I\f{\Sigma_{zz}}{2k_z\mu}\,,
 \end{align}
-Assuming radial symmetry, we have $\Sigma=\Sigma_{zz}=-2\Sigma_{xx}=-2\Sigma_{yy}$.
-
 The energy of these shear waves is given
 \begin{align}
 E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
 &=\rho\int_V\abs{u_t}^2\,,\\
-&=\mu\int_V\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}\p{k k'U(\vec k)\bar U(\vec k')}e^{-\I(\vec k\cdot\vec x-i\beta k t)}e^{\I(\vec k'\cdot\vec x-i\beta k' t)}\,,\\
+&=\rho\beta^2\int_V\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}\p{k k'U(\vec k)\bar U(\vec k')}e^{-\I(\vec k\cdot\vec x-i\beta k t)}e^{\I(\vec k'\cdot\vec x-i\beta k' t)}\,,\\
 &=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{k^2\abs{U(\vec k)}^2}\,,\\
+&=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{\f{\Sigma_{zz}^2\sec^2\theta+\csc^2\theta(\Sigma_{yy}^2\csc^2\phi+\Sigma_{xx}^2\sec^2\phi)}{4\mu^2}}\,,\\
 \end{align}
-The integral is horribly divergent about the azimuth - there must have been a mistake...
+Assuming axial symmetry, we have $\Sigma_{xx}=\Sigma\cos^2\theta$, $\Sigma_{yy}=\Sigma\sin^2\theta$, and $\Sigma_{zz}=-\Sigma$. Hence, 
+\begin{align}
+E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\p{\f{\sec^2\theta+\csc^2\theta}{4\mu^2}}\,,\\
+&=\f{1}{\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\csc^2(2\theta)\,,\\
+&=\f{1}{\mu}\int\f{\diff k\diff\theta}{(2\pi)^2}\Sigma^2k^2\csc^2(2\theta)\,.
+\end{align}
 
 \end{document}
