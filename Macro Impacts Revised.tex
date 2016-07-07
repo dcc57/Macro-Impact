@@ -3,7 +3,7 @@
 % Packages
 
 \usepackage{fullpage}
-\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics, MnSymbol,tikz-cd}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics,tikz-cd}
 \usepackage[mathscr]{euscript}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
@@ -59,8 +59,7 @@
 \usetikzlibrary{matrix,arrows,decorations.pathmorphing}
 
 % Title
-\title{Homework}
-\author{David Cyncynates \\ dcc57@case.edu}
+\title{Macro Impacts}
 \date{\today}
 
 \begin{document}
@@ -153,7 +152,7 @@ From this we obtain the fractional energy deposition into the unattenuated wavel
 This approximation holds for $\lambda_0^2\gg\sigma_X$, which is appropriate for the case that $\lambda_0$ is on the order of kilometers and $\sigma_X$ is on the order of centimeters squared.
 \pagebreak
 \\
-It is wrong, however, to assume that the wave evolves linearly close to the source. Modes will be coupled to one another, and our expression (25) will only hold in a small neighborhood of the event. Effects such as heating and rock fracturing will cause the high frequency modes in the shock to rapidly attenuate. They are, however, difficult to quantify. It is not controversial to say that the energy of the shock after its non-linear evolution (when the overpressure exceeds the elastic limit of the Earth) will be less than its initial energy. It is also well known that the behavior of shockwaves for long time tends towards a sharp wave-front with a linearly decreasing tail. To produce an over-estimate of the detectible energy, we hypothesize an approximate pressure waveform and endow it with energy equivalent to that of the initial blast. Then, we calculate the energy per mode, and sum over only those modes whose frequency is in the regime that will not rapidly attenuate.
+It is wrong, however, to assume that the wave evolves linearly close to the source. Modes will be coupled to one another, and our expression (24) will only hold in a small neighborhood of the event. Effects such as heating and rock fracturing will cause the high frequency modes in the shock to rapidly attenuate. They are, however, difficult to quantify. It is not controversial to say that the energy of the shock after its non-linear evolution (when the overpressure exceeds the elastic limit of the Earth) will be less than its initial energy. It is also well known that the behavior of shockwaves for long time tends towards a sharp wave-front with a linearly decreasing tail. To produce an over-estimate of the detectible energy, we hypothesize an approximate pressure waveform and endow it with energy equivalent to that of the initial blast. Then, we calculate the energy per mode, and sum over only those modes whose frequency is in the regime that will not rapidly attenuate.
 \\\\
 We describe the long-time waveform of the shock by
 \begin{align}
@@ -167,7 +166,16 @@ We require that this be equal to the initial total energy. From this, we can obt
 \begin{align}
 r_0&=\f{3(2p_0^2r_X^2-\bar p^2\Delta r^2)}{4\bar p^2\Delta r}\,.
 \end{align}
-The energy in the longest modes is, for $h\gg\lambda_0\gg r_0$
+A lower bound for $r_0$ is clearly 0, which sets an upper bound for $\Delta r$, i.e.
+\begin{align}
+\Delta r&\leq \f{\sqrt{2}p_0r_X}{\bar p}\,,\\
+&=\f{1}{\bar p}\sqrt{\f{2}{\pi}\f{K^2}{\lambda+2\mu}\abs{\td{E}{x}{}}}\,.
+\end{align}
+Plugging in some numbers (from below) yields
+\begin{align}
+\Delta r\leq 1.2\te{m}\,.
+\end{align}
+The energy in the longest modes is, for $h\gg\lambda_0\gg r_0+\Delta r$
 \begin{align}
 E_{\te{propagated}}&\approx\f{\lambda+2\mu}{K^2}\f{\bar p^2 \pi^3 h \Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}\,.
 \end{align}
@@ -334,7 +342,7 @@ E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
 &=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{k^2\abs{U(\vec k)}^2}\,,\\
 &=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{\f{\Sigma_{zz}^2\sec^2\theta+\csc^2\theta(\Sigma_{yy}^2\csc^2\phi+\Sigma_{xx}^2\sec^2\phi)}{4\mu^2}}\,.
 \end{align}
-Assuming axial symmetry, we have $\Sigma_{xx}=\Sigma\cos^2\theta$, $\Sigma_{yy}=\Sigma\sin^2\theta$, and $\Sigma_{zz}=-\Sigma$. Note that this choice is justified since the full stress tensor is invariant under rotations about the $z$-axis. Hence, 
+Assuming axial symmetry, we have $\Sigma_{xx}=\Sigma\cos^2\phi$, $\Sigma_{yy}=\Sigma\sin^2\phi$, and $\Sigma_{zz}=-\Sigma$. Note that this choice is justified since the full stress tensor is invariant under rotations about the $z$-axis. Hence, 
 \begin{align}
 E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\p{\f{\sec^2\theta+\csc^2\theta}{4\mu^2}}\,,\\
 &=\f{1}{\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\csc^2(2\theta)\,,\\
@@ -343,6 +351,9 @@ E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\p{\f{\sec^2\theta+\csc^2\theta}{4\mu^2
 \end{align}
 In cartesian coordinates:
 \begin{align}
-E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\f{k^4}{4(k_x^2+k_y^2)k_z^2}\,.
+E&=\f{1}{4\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\f{k^4}{(k_x^2+k_y^2)k_z^2}\,.
 \end{align}
+Something makes me think that $\csc^2(2\theta)$ should be absorbed into the definition of $\Sigma$, but I don't know how to show this.
+\section{}
+For a given macro of given cross-section and velocity, how much energy gets deposited into seismic waves that propagated unattenuated? A better question: as a function of the sensitivity of a seismometer, will the seismometers have measured the macro? Look at the lunar limits.
 \end{document}
