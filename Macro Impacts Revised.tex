@@ -332,13 +332,17 @@ E&=\f12\int_V\p{\rho\abs{u_t}^2+\mu\abs{\nabla\cdot u}^2}\,,\\
 &=\rho\int_V\abs{u_t}^2\,,\\
 &=\rho\beta^2\int_V\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}\p{k k'U(\vec k)\bar U(\vec k')}e^{-\I(\vec k\cdot\vec x-i\beta k t)}e^{\I(\vec k'\cdot\vec x-i\beta k' t)}\,,\\
 &=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{k^2\abs{U(\vec k)}^2}\,,\\
-&=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{\f{\Sigma_{zz}^2\sec^2\theta+\csc^2\theta(\Sigma_{yy}^2\csc^2\phi+\Sigma_{xx}^2\sec^2\phi)}{4\mu^2}}\,,\\
+&=\mu\int\f{\diff^3 k}{(2\pi)^3}\p{\f{\Sigma_{zz}^2\sec^2\theta+\csc^2\theta(\Sigma_{yy}^2\csc^2\phi+\Sigma_{xx}^2\sec^2\phi)}{4\mu^2}}\,.
 \end{align}
-Assuming axial symmetry, we have $\Sigma_{xx}=\Sigma\cos^2\theta$, $\Sigma_{yy}=\Sigma\sin^2\theta$, and $\Sigma_{zz}=-\Sigma$. Hence, 
+Assuming axial symmetry, we have $\Sigma_{xx}=\Sigma\cos^2\theta$, $\Sigma_{yy}=\Sigma\sin^2\theta$, and $\Sigma_{zz}=-\Sigma$. Note that this choice is justified since the full stress tensor is invariant under rotations about the $z$-axis. Hence, 
 \begin{align}
 E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\p{\f{\sec^2\theta+\csc^2\theta}{4\mu^2}}\,,\\
 &=\f{1}{\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\csc^2(2\theta)\,,\\
-&=\f{1}{\mu}\int\f{\diff k\diff\theta}{(2\pi)^2}\Sigma^2k^2\csc^2(2\theta)\sin\theta\,.
+&=\f{1}{\mu}\int\f{\diff k\diff\theta}{(2\pi)^2}\Sigma^2k^2\csc^2(2\theta)\sin\theta\,,\\
+&=\f{1}{4\mu}\int\f{\diff k\diff\theta}{(2\pi)^2}\Sigma^2k^2\csc(\theta)\sec^2(\theta)\,.
 \end{align}
-
+In cartesian coordinates:
+\begin{align}
+E&=\mu\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2k(k_x^2+k_y^2)^{3/2}\p{\f{1}{k_x^2}+\f{1}{k_y^2}}\,.
+\end{align}
 \end{document}
