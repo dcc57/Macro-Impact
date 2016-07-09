@@ -202,8 +202,9 @@ Using the upper bound for $\Delta r$ from earlier
 \end{align}
 Taking $\Delta r$ to be 0, we find
 \begin{align}
-\Xi&\leq\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
+\Xi&<\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
+Note the strict inequality: $\Delta r=0$ corresponds to $r_0=\infty$.
 \\\\
 %Reviewing a USGS document (Rock Failure and Earthquakes) suggests that $\bar p$ be set at $10^8$. To calculate $\Delta r$, notice that the Earth is initially displaced by $r_X$. The Earth will then collapse back into the hole due to ambient pressure at the speed of sound $\alpha$, yielding a time of collapse $r_X/\alpha$. The speed of the shockwave initially produced by the object is approximately the speed of the object itself. Hence $\Delta r/v_X=r_X/\alpha$. Thus $\Delta r\approx\f{v_X}{\alpha}r_X$. Thus
 %\begin{align}
@@ -365,4 +366,60 @@ E&=\f{1}{4\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\f{k^4}{(k_x^2+k_y^2)k_z^2}\,.
 Something makes me think that $\csc^2(2\theta)$ should be absorbed into the definition of $\Sigma$, but I don't know how to show this.
 \section{}
 For a given macro of given cross-section and velocity, how much energy gets deposited into seismic waves that propagated unattenuated? A better question: as a function of the sensitivity of a seismometer, will the seismometers have measured the macro? Look at the lunar limits.
+\pagebreak
+\section{P-Wave Vector Propagation}
+Observe, by Snell's law, we have that
+\begin{align}
+p=\f{r\sin\theta}{v}\,,
+\end{align}
+is constant along any fixed ray, and is given by the above form in a spherically symmetric velocity field. $\theta$ is the angle of incidence, $r$ is the distance from the origin, and $v$ is the velocity at radius $r$. Let $\sigma(s)$ be the parametrized curve followed by a p-wave. Then
+\begin{align}
+\cos\theta=\f{\hat r\cdot\dot\sigma(s)}{\|\sigma(s)\|}=\f{\sigma(s)\cdot\dot\sigma(s)}{\|\sigma(s)\|\|\dot\sigma(s)\|}\,.
+\end{align}
+From this we obtain
+\begin{align}
+\p{\f{pv}{r}}^2=1-\f{(\sigma\cdot\dot\sigma)^2}{(\|\sigma(s)\|\|\dot\sigma(s)\|)^2}\,,
+\end{align}
+If we denote the radial component as $r(s)$ and the angular component $\theta(s)$ we obtain the differential equation
+\begin{align}
+\p{\f{pv}{r}}^2=\f{r^2\dot \theta^2}{(\dot r^2+\dot\theta^2 r^2)}\,.
+\end{align}
+But observe, the velocity of the curve $\sigma$ is just the velocity in the medium, hence
+\begin{align}
+\p{\f{pv}{r}}^2=r^2\f{\dot \theta^2}{v^2}\,,
+\end{align}
+from which we obtain the equation for $\theta$,
+\begin{align}
+\dot \theta&=\f{p v^2}{r^2}
+\end{align}
+We now use the velocity definition to obtain an implicit equation for $r$. Observe
+\begin{align}
+v^2&=\dot r^2+\dot\theta^2r^2\,,\\
+&=\dot r^2+\f{p^2 v^4}{r^2}\,,
+\end{align}
+hence
+\begin{align}
+1&=\f{r\dot r}{\sqrt{v^2r^2-p^2v^4}}
+\end{align}
+This can be integrated directly, yielding
+\begin{align}
+s+C&=\int\f{r\diff r}{\sqrt{v^2r^2-p^2v^4}}\,.
+\end{align}
+In the case that $v$ is a power law, i.e.
+\begin{align}
+v(r)&=v_0\p{\f{r_0}{r}}^\alpha
+\end{align}
+we can directly integrate for integer $\alpha$, yielding
+\begin{align}
+s+C&=\f{r^{2\alpha}r_0^{-2\alpha}\sqrt{r^{-4\alpha}r_0^{2\alpha}v_0^2(r^{2+2\alpha}-p^2r_0^{2\alpha}v_0^2)}}{v_0^2(1+\alpha)}\,.
+\end{align}
+It is possible to invert this equation for any particular $\alpha$. One solution which holds for all $\alpha$ is
+\begin{align}
+r(s)&=r_0^{\f{\alpha}{1+\alpha}}v_0^{\f{1}{1+\alpha}}(p^2+(C+s)^2(1+\alpha)^2)^{\f{1}{2(1+\alpha)}}\,.
+\end{align}
+We thus obtain the following expression for $\theta$:
+\begin{align}
+\theta(s)&=\f{1}{1+\alpha}\arctan\ps{\f{1+\alpha}{p}(C+s)}+\theta_0
+\end{align}
+WOAH!
 \end{document}
