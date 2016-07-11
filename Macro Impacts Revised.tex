@@ -198,11 +198,11 @@ Thus, the suppression factor is
 \end{align}
 Using the upper bound for $\Delta r$ from earlier
 \begin{align}
-\Xi&\geq\p{\f{K^2}{\lambda+2\mu}}\p{\f{4\pi}{3\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
+\Xi&\geq\f{16}{9}\p{\f{K^2}{\lambda+2\mu}}\p{\f{\pi}{\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
 Taking $\Delta r$ to be 0, we find
 \begin{align}
-\Xi&<\p{\f{K^2}{\lambda+2\mu}}\p{\f{3\pi}{2\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
+\Xi&<\f{9}{4}\p{\f{K^2}{\lambda+2\mu}}\p{\f{\pi}{\bar p\lambda_0}}^2\abs{\td{E}{x}{}}\,.
 \end{align}
 Note the strict inequality: $\Delta r=0$ corresponds to $r_0=\infty$.
 \\\\
@@ -390,7 +390,7 @@ But observe, the velocity of the curve $\sigma$ is just the velocity in the medi
 \end{align}
 from which we obtain the equation for $\theta$,
 \begin{align}
-\dot \theta&=\f{p v^2}{r^2}
+\dot \theta&=\pm\f{p v^2}{r^2}
 \end{align}
 We now use the velocity definition to obtain an implicit equation for $r$. Observe
 \begin{align}
@@ -399,11 +399,11 @@ v^2&=\dot r^2+\dot\theta^2r^2\,,\\
 \end{align}
 hence
 \begin{align}
-1&=\f{r\dot r}{\sqrt{v^2r^2-p^2v^4}}
+1&=\pm\f{r\dot r}{\sqrt{v^2r^2-p^2v^4}}
 \end{align}
 This can be integrated directly, yielding
 \begin{align}
-s+C&=\int\f{r\diff r}{\sqrt{v^2r^2-p^2v^4}}\,.
+s+C&=\pm\int\f{r\diff r}{\sqrt{v^2r^2-p^2v^4}}\,.
 \end{align}
 In the case that $v$ is a power law, i.e.
 \begin{align}
@@ -415,11 +415,33 @@ s+C&=\f{r^{2\alpha}r_0^{-2\alpha}\sqrt{r^{-4\alpha}r_0^{2\alpha}v_0^2(r^{2+2\alp
 \end{align}
 It is possible to invert this equation for any particular $\alpha$. One solution which holds for all $\alpha$ is
 \begin{align}
-r(s)&=r_0^{\f{\alpha}{1+\alpha}}v_0^{\f{1}{1+\alpha}}(p^2+(C+s)^2(1+\alpha)^2)^{\f{1}{2(1+\alpha)}}\,.
+r(s,\alpha)&=r_0^{\f{\alpha}{1+\alpha}}v_0^{\f{1}{1+\alpha}}(p^2+(C+s)^2(1+\alpha)^2)^{\f{1}{2(1+\alpha)}}\,.
 \end{align}
 We thus obtain the following expression for $\theta$:
 \begin{align}
-\theta(s)&=\f{1}{1+\alpha}\arctan\ps{\f{1+\alpha}{p}(C+s)}+\theta_0
+\theta(s,\alpha)&=\f{1}{1+\alpha}\arctan\ps{\f{1+\alpha}{p}(C+s)}+\theta_0
 \end{align}
-WOAH!
+WOAH! We expect straight lines when $\alpha=0$. Let's check:
+\begin{align}
+r(s,0)&=v_0\sqrt{p^2+(C+s)^2}\,,\\
+\theta(s,0)&=\arctan\ps{\f{C+s}{p}}+\theta_0
+\end{align}
+Setting $\theta_0$ to zero reveals the equation for a vertical line. Thus, adding $\theta_0$ rotates the line, and $p$ sets the initial distance from the origin.
+\\\\
+Now we consider the realistic velocity distribution $v(r)=a^2-b^2r^2$. Proper application of mathematica to the above formulas reveals
+\begin{align}
+r(s)&=\f{a\sqrt{b^2-2be^{2ab(s+C)}+e^{4ab(s+C)}+4a^2b^4p^2}}{b\sqrt{b^2+2be^{2ab(s+C)}+e^{4ab(s+C)}+4a^2b^4p^2}}\,,\\
+\theta(s)&=\arctan\ps{\f{-b^2+e^{4ab(s+C)}+4a^2b^4p^2}{4ab^3p}}+\theta_0
+\end{align}
+Qualitatively, these appear to be arcs of circles which touch the boundary $r=\f ab$ at right angles. It would be nice to double check this. If that is the case, then this is an instance of rays tracing out geodesics in the Poincare disk.
+\pagebreak
+
+We now want to calculate the distribution of rays about the perimeter of a circle. In essence, we want to know $\diff\theta(R_{\te{earth}})$ as a function of $p$ and $\theta_0$. First we pick a point $p$ and direction $\psi$. we now parametrize all ray trajectories passing through this point by $\psi$. We now fix a $\psi$ and add to it $\delta\psi$, chosen small enough so that the two corresponding trajectories are close together. We then calculate $\delta\theta(R_{\te{earth}})$, the angular distance between the two rays as measured from the origin when they are at the radius of the earth.
+\\\\
+TO DO: Parametrize the rays through a point. Get the final parameter $s(R_{\te{earth}})$ as a function of the angle through the point. Then figure out how a small change in the initial angle changes the final angle. Get an approximate model for the velocity field through the earth.
+
+
+
+%\pagebreak
+%Meeting Agenda: Found bounds for $\Xi$. We need to map intensity to the surface - how? Do we make a generous over estimate again? If so, how should we approach it?
 \end{document}
