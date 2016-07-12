@@ -440,7 +440,16 @@ We now want to calculate the distribution of rays about the perimeter of a circl
 \\\\
 TO DO: Parametrize the rays through a point. Get the final parameter $s(R_{\te{earth}})$ as a function of the angle through the point. Then figure out how a small change in the initial angle changes the final angle. Get an approximate model for the velocity field through the earth.
 
+\section{Melt Zone}
+As derived in "A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
+\begin{align}
+(1+\frac{\rho_t u^2}{Y_t})\sqrt{K_t - \rho_t \alpha^2 u^2} = (1+\frac{\rho_t \alpha^2 u^2}{2G_t})\sqrt{K_t - \rho_t u^2}.
+\end{align}
+where $u$ is the velocity of the projectile (i.e. the macro), $\rho_t$, $K_t$, $G_t$ and $Y_t$ are the density, bulk modulus, sheer modulus, and flow stress of the target (i.e. earth or the moon) respectively.
 
+The connection between the energy of the projectile and the value $\alpha*R$ is given in the paper posted "Hypervelocity penetration modeling- momentum vs. energy and energy transfer mechanisms". A derivation is given for the decomposition of the energy of a projectile into kinetic, elastic and plastic terms in, for example, equations 32, 33, and 38.
+
+Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set u = v, and s = 0 to eliminate the "eroding" effect.
 
 %\pagebreak
 %Meeting Agenda: Found bounds for $\Xi$. We need to map intensity to the surface - how? Do we make a generous over estimate again? If so, how should we approach it?
