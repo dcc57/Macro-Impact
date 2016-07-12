@@ -433,7 +433,12 @@ Now we consider the realistic velocity distribution $v(r)=a^2-b^2r^2$. Proper ap
 r(s)&=\f{a\sqrt{b^2-2be^{2ab(s+C)}+e^{4ab(s+C)}+4a^2b^4p^2}}{b\sqrt{b^2+2be^{2ab(s+C)}+e^{4ab(s+C)}+4a^2b^4p^2}}\,,\\
 \theta(s)&=\arctan\ps{\f{-b^2+e^{4ab(s+C)}+4a^2b^4p^2}{4ab^3p}}+\theta_0
 \end{align}
-Qualitatively, these appear to be arcs of circles which touch the boundary $r=\f ab$ at right angles. It would be nice to double check this. If that is the case, then this is an instance of rays tracing out geodesics in the Poincare disk.
+These are arcs of circles which touch the boundary $r=\f ab$ at right angles. That is, the trajectory of rays is given by geodesics in the Poincare disk. This can be seen easily by inspection of the metric a modified Poincare Disk:
+\begin{align}
+\diff s^2&=\f{\sum_i\diff x_i^2}{\p{a^2-b^2\sum_i x_i^2}^2}\,,\\
+&=\f{\sum_i\diff x_i^2}{\p{a^2-b^2\sum_i x_i^2}^2}\,,\\
+&=\f1{v^2}\sum_i\diff x_i^2
+\end{align}
 \pagebreak
 
 We now want to calculate the distribution of rays about the perimeter of a circle. In essence, we want to know $\diff\theta(R_{\te{earth}})$ as a function of $p$ and $\theta_0$. First we pick a point $p$ and direction $\psi$. we now parametrize all ray trajectories passing through this point by $\psi$. We now fix a $\psi$ and add to it $\delta\psi$, chosen small enough so that the two corresponding trajectories are close together. We then calculate $\delta\theta(R_{\te{earth}})$, the angular distance between the two rays as measured from the origin when they are at the radius of the earth.
@@ -441,7 +446,7 @@ We now want to calculate the distribution of rays about the perimeter of a circl
 TO DO: Parametrize the rays through a point. Get the final parameter $s(R_{\te{earth}})$ as a function of the angle through the point. Then figure out how a small change in the initial angle changes the final angle. Get an approximate model for the velocity field through the earth.
 
 \section{Melt Zone}
-As derived in "A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
+As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
 \begin{align}
 (1+\frac{\rho_t u^2}{Y_t})\sqrt{K_t - \rho_t \alpha^2 u^2} = (1+\frac{\rho_t \alpha^2 u^2}{2G_t})\sqrt{K_t - \rho_t u^2}.
 \end{align}
@@ -449,7 +454,7 @@ where $u$ is the velocity of the projectile (i.e. the macro), $\rho_t$, $K_t$, $
 
 The connection between the energy of the projectile and the value $\alpha*R$ is given in the paper posted "Hypervelocity penetration modeling- momentum vs. energy and energy transfer mechanisms". A derivation is given for the decomposition of the energy of a projectile into kinetic, elastic and plastic terms in, for example, equations 32, 33, and 38.
 
-Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set u = v, and s = 0 to eliminate the "eroding" effect.
+Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set $u = v$, and $s = 0$ to eliminate the "eroding" effect.
 
 %\pagebreak
 %Meeting Agenda: Found bounds for $\Xi$. We need to map intensity to the surface - how? Do we make a generous over estimate again? If so, how should we approach it?
