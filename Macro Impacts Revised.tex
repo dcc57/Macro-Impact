@@ -439,13 +439,11 @@ These are arcs of circles which touch the boundary $r=\f ab$ at right angles. Th
 &=\f{\sum_i\diff x_i^2}{\p{a^2-b^2\sum_i x_i^2}^2}\,,\\
 &=\f1{v^2}\sum_i\diff x_i^2
 \end{align}
-It is then obvious that $b=0$ corresponds to straight lines. The importance of this observation is that $b\approx 10^{-7}\te{s}^{-1}$ and $a\approx 10\te{km s}^{-1}$, so the radius of the Poincare sphere corresponding to the trajectories of $p$-waves in earth is approximately $10^8\te{km}$, while the earth is of radius $10^3\te{km}$. Hence, the smallest radius of curvature of an arc will be roughly $10^{-5}\te{km}$. Thus, it is a reasonable first approximation to take the seismic waves to propagate in straight lines.
-\pagebreak
-
-We now want to calculate the distribution of rays about the perimeter of a circle. In essence, we want to know $\diff\theta(R_{\te{earth}})$ as a function of $p$ and $\theta_0$. First we pick a point $p$ and direction $\psi$. we now parametrize all ray trajectories passing through this point by $\psi$. We now fix a $\psi$ and add to it $\delta\psi$, chosen small enough so that the two corresponding trajectories are close together. We then calculate $\delta\theta(R_{\te{earth}})$, the angular distance between the two rays as measured from the origin when they are at the radius of the earth.
+It is then obvious that $b=0$ corresponds to straight lines. The importance of this observation is that $b^2\approx 10^{-7}\te{s}^{-1}$ and $a^2\approx 10\te{km s}^{-1}$, so the radius of the Poincare sphere corresponding to the trajectories of $p$-waves in earth is approximately $7\times10^3-1\times 10^4\te{km}$, while the earth is of radius $10^3\te{km}$. In particular, for the different layers of the earth, the radius of the layer's outer boundary and its corresponding Poincare sphere is 7.0 for the inner core, 2.0 for the outer core, and 1.8 for the mantle. Thus, it is reasonable to approximate the trajectories of $P$-waves in the inner core as straight lines, but necessary to treat those in the other layers as bending.
 \\\\
-TO DO: Parametrize the rays through a point. Get the final parameter $s(R_{\te{earth}})$ as a function of the angle through the point. Then figure out how a small change in the initial angle changes the final angle. Get an approximate model for the velocity field through the earth.
+It is clear that numerical methods will be necessary to get an answer. We will now consider a sequence of increasingly realistic models. I will begin typing up the first few tomorrow.
 
+\pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
 \begin{align}
