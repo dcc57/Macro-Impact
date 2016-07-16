@@ -455,6 +455,60 @@ The connection between the energy of the projectile and the value $\alpha*R$ is 
 
 Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set $u = v$, and $s = 0$ to eliminate the "eroding" effect.
 
-%\pagebreak
-%Meeting Agenda: Found bounds for $\Xi$. We need to map intensity to the surface - how? Do we make a generous over estimate again? If so, how should we approach it?
+
+\pagebreak
+\section{Realistic Model}
+Since I have realized that the curving of rays is non-negligible, Professor Tolley has suggested doing a realistic treatment of the problem. The displacement potential satisfies the inhomogeneous wave equation
+\begin{align}
+-\f{f}{\rho}&=v(r)^2\nabla^2\phi-\partial_t^2\phi\,,
+\end{align}
+where $v(r)=a^2-b^2r^2$. Note, $b$ is about 8 orders of magnitude smaller than a, so that the background varies slowly with respect to the frequency of the waves so the WKB approximation is appropriate. Denote 
+\begin{align}
+\hat L=v(r)^2\f{1}{r^2}\partial_r(r^2\partial_r)-\f{1}{r^2}(l(l+1))+\omega^2\,,
+\end{align}
+It is easy to see that $\hat L$ is Hermitian since it can be put in Sturm--Liouville form when stated as an eigenvalue problem
+\begin{align}
+-\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)+\f{r^2\omega^2-l(l+1)}{v(r)^2}}\phi=\lambda\phi\,.
+\end{align}
+Call the expression in the bracket on the left hand side $\hat L'$. We now impose finite boundary conditions, i.e. that the 0th and 1st derivatives of a solution vanish at $R_E$. Denote the eigenfunction corresponding to $\lambda$ as $\phi_\lambda$. Define the $L^2$ inner product
+\begin{align}
+\gen{f,g}=\int_0^{R_E}\diff r \f{v(r)^2}{r^2}\bar f(r)g(r)\,,
+\end{align}
+with respect to which $\hat L'$ is self-adjoint. We now employ the WKB ansatz (where $\delta\ll \f{a^2}{b^2R_E^2}$ *this is a guess - think about it!)
+\begin{align}
+\phi_\lambda(r)=\exp\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}(r)}\,,
+\end{align}
+and hence (note that $\delta$ is just an auxiliary variable that we will absorb into $S$ at the end of the calculation)
+\begin{align}
+\partial_r \phi_\lambda(r)&=\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}'(r)}\phi_\lambda(r)\,,\\
+&\sim\f1\delta S_{\lambda0}'(r)\phi_\lambda(r)\,,\\
+\partial_r^2\phi_\lambda(r)&=\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}''(r)}\phi_\lambda(r)+\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}'(r)}^2\phi_\lambda(r)\,,\\
+&\sim\f1\delta S_{\lambda0}''(r)\phi_\lambda(r)+\f1{\delta^2}S_{\lambda0}'^2(r)\phi_\lambda(r)+\f{2}{\delta}S_{\lambda0}'(r)S_{\lambda1}'(r)\phi_\lambda(r)\,.
+\end{align}
+Thus
+\begin{align}
+r^2\p{\f1\delta S_{\lambda0}''(r)+\f1{\delta^2}S_{\lambda0}'^2(r)+\f{2}{\delta}S_{\lambda0}'(r)S_{\lambda1}'(r)}+2r\f1\delta S_{\lambda0}'(r)=-\f{r^2(\lambda-\omega^2)+l(l+1)}{v(r)^2}\,.
+\end{align}
+As we take $\delta$ to zero, the dominant balance is
+\begin{align}
+r^2 S'^2_{\lambda 0}(r)=-\f{r^2(\lambda-\omega^2)+l(l+1)}{v(r)^2}\,,
+\end{align}
+from which we obtain
+\begin{align}
+S_{\lambda 0}(r)=C_0\pm\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}\,,
+\end{align}
+The first order contribution is then determined by
+\begin{align}
+S_{\lambda1}'(r)=-\f{1}{r}-\f{S_{\lambda0}''(r)}{2S_{\lambda0}'(r)}\,.
+\end{align}
+The solution is quite simple
+\begin{align}
+S_{\lambda1}(r)=C_1-\f14\ln\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}\,.
+\end{align}
+Hence, the eigenfunctions are, semiclassically
+\begin{align}
+\notag\phi_\lambda&=K_1\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}^{-1/4}e^{+\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}}\\
+&+K_2\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}^{-1/4}e^{-\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}}\,.
+\end{align}
+Now we demand that $\phi$
 \end{document}
