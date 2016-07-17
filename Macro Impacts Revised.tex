@@ -462,19 +462,65 @@ Since I have realized that the curving of rays is non-negligible, Professor Toll
 \begin{align}
 -\f{f}{\rho}&=v(r)^2\nabla^2\phi-\partial_t^2\phi\,,
 \end{align}
-where $v(r)=a^2-b^2r^2$. Note, $b$ is about 8 orders of magnitude smaller than a, so that the background varies slowly with respect to the frequency of the waves so the WKB approximation is appropriate. Denote 
+where $v(r)=a^2-b^2r^2$. Note, $b^2$ is several orders of magnitude smaller than $a^2$, so that the background varies slowly with respect to the frequency of the waves so the WKB approximation is appropriate. Denote 
 \begin{align}
-\hat L=v(r)^2\f{1}{r^2}\partial_r(r^2\partial_r)-\f{1}{r^2}(l(l+1))+\omega^2\,,
+\hat L=\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)-(l(l+1))}+\omega^2\,,
 \end{align}
 It is easy to see that $\hat L$ is Hermitian since it can be put in Sturm--Liouville form when stated as an eigenvalue problem
 \begin{align}
--\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)+\f{r^2\omega^2-l(l+1)}{v(r)^2}}\phi=\lambda\phi\,.
+-\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)+\p{\f{r^2}{v(r)^2}\omega^2-l(l+1)}}\phi=\lambda\phi\,.
 \end{align}
-Call the expression in the bracket on the left hand side $\hat L'$. We now impose finite boundary conditions, i.e. that the 0th and 1st derivatives of a solution vanish at $R_E$. Denote the eigenfunction corresponding to $\lambda$ as $\phi_\lambda$. Define the $L^2$ inner product
+Or, in another rearrangement:
 \begin{align}
-\gen{f,g}=\int_0^{R_E}\diff r \f{v(r)^2}{r^2}\bar f(r)g(r)\,,
+&\ps{\partial_r(r^2\partial_r)+\p{\lambda\f{r^2}{v(r)^2}+\ps{\f{r^2}{v(r)^2}\omega^2-l(l+1)}}}\phi=0\,,\\
+&(s(r)\phi'(r))'+\p{\lambda\rho(r)-q(r)}\phi(r)=0\,.
 \end{align}
-with respect to which $\hat L'$ is self-adjoint. We now employ the WKB ansatz (where $\delta\ll \f{a^2}{b^2R_E^2}$ *this is a guess - think about it!)
+where
+\begin{align}
+s(r)&=r^2\,,\\
+\rho(r)&=\f{r^2}{v(r)^2}\,,\\
+q(r)&=\f{r^2}{v(r)^2}\omega^2-l(l+1)\,.
+\end{align}
+$\rho$ is known as the weight function. To satisfy the Sturm--Liouville theorem, $s,\rho,q$ must be continuous on the interval $[0,\f ab]$, and $s,\rho$ positive-valued on $(0,\f ab)$. Clearly this is indeed the case. Two solutions $\phi_1$ and $\phi_2$ are orthogonal with respect to the Sturm--Liouville equation if
+\begin{align}
+\int_0^{\f ab}\diff r\rho(r)\phi_1(r)\phi_2(r)=0\,.
+\end{align}
+Two eigenfunctions $\phi_1$ and $\phi_2$ are orthogonal if the boundary conditions satisfy
+\begin{align}
+s(r)(\phi_1(r)\phi_2'(r)-\phi_1'(r)\phi_2(r))\vert_0^{\f ab}=0\,.
+\end{align}
+Since $s(0)=0$, we must only be concerned with the behavior of $\phi$ at $\f ab$. A brief check will verify that the eigenvectors go to 0 at $\f ab$ hence the our solutions are orthogonal with respect to $\rho$. Note that $s(0)\rho(0)=0$ hence the equation is singular, and our eigenvalues may be complex.
+\\\\
+Observe that
+\begin{align}
+\delta(\lambda-\lambda')=\int_0^{\f ab}\diff r\rho(r)\phi_{\lambda}(r)\phi_{\lambda'}(r)\,,
+\end{align}
+hence, since any function can be decomposed in terms of these eigenfunctions
+\begin{align}
+\delta(r-r')&=\int\diff\lambda f_{\lambda}\phi_{\lambda}(r)\,,\\
+\int\diff r\rho(r) \phi_{\lambda'}(r)\delta(r-r')&=\int\diff r \rho(r)\phi_{\lambda'}(r)\int\diff\lambda f_{\lambda}\phi_{\lambda}(r)\,,\\
+\rho(r')\phi_{\lambda'}(r')&=\int\diff\lambda f_\lambda\int\diff r\rho(r)\phi_{\lambda}(r)\phi_{\lambda'}(r)\,,\\
+\rho(r')\phi_{\lambda'}(r')&=\int\diff\lambda f_\lambda\delta(\lambda-\lambda')\,,\\
+\rho(r')\phi_{\lambda'}(r')&=f_{\lambda'}\,,\\
+\end{align}
+Hence
+\begin{align}
+\delta(r-r')=\int\diff\lambda\rho(r')\phi_\lambda(r')\phi_\lambda(r)\,.
+\end{align}
+\\\\
+Call
+\begin{align}
+u=\f{\sqrt{a^2b^2-\lambda-\omega^2}}{2ab}\,.
+\end{align}
+The exact solution to the eigenvalue problem is
+\begin{align}
+\f{v(r)^{\f{1+u}{2}}}{ab^2 r^{l+1}}\p{a C_1 2\te{F}1\ps{\f12u-1,\f12(1+u),\f12-l,\p{\f{b}{a}r}^2}+\I br\p{-\f{b}{a}r}^{2l} C_22\te{F}1\ps{1+l+\f12 u,\f12(1+u),\f32+l,\p{\f ba r}^2}}\,.
+\end{align}
+Regularity at the origin fixes $C_1=0$. The solution is then
+\begin{align}
+\phi_\lambda(r)=\I C\f{b^{2l-1}}{a^{2l+1}}r^lv(r)^{\f{1+u}{2}}\p{\,2\te{F}1\ps{1+l+\f12 u,\f12(1+u),\f32+l,\p{\f ba r}^2}}\,.
+\end{align}
+We now employ the WKB ansatz (where $\delta\ll \f{a^2}{b^2R_E^2}$ *this is a guess - think about it!)
 \begin{align}
 \phi_\lambda(r)=\exp\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}(r)}\,,
 \end{align}
@@ -487,28 +533,23 @@ and hence (note that $\delta$ is just an auxiliary variable that we will absorb 
 \end{align}
 Thus
 \begin{align}
-r^2\p{\f1\delta S_{\lambda0}''(r)+\f1{\delta^2}S_{\lambda0}'^2(r)+\f{2}{\delta}S_{\lambda0}'(r)S_{\lambda1}'(r)}+2r\f1\delta S_{\lambda0}'(r)=-\f{r^2(\lambda-\omega^2)+l(l+1)}{v(r)^2}\,.
+r^2\p{\f1\delta S_{\lambda0}''(r)+\f1{\delta^2}S_{\lambda0}'^2(r)+\f{2}{\delta}S_{\lambda0}'(r)S_{\lambda1}'(r)}+2r\f1\delta S_{\lambda0}'(r)=-\p{\f{r^2}{v(r)^2}(\lambda+\omega^2)-l(l+1)}\,.
 \end{align}
 As we take $\delta$ to zero, the dominant balance is
 \begin{align}
-r^2 S'^2_{\lambda 0}(r)=-\f{r^2(\lambda-\omega^2)+l(l+1)}{v(r)^2}\,,
-\end{align}
-from which we obtain
-\begin{align}
-S_{\lambda 0}(r)=C_0\pm\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}\,,
+S'_{\lambda 0}(r)=\I\delta\sqrt{\p{\f{(\lambda+\omega^2)}{v(r)^2}-\f{l(l+1)}{r^2}}}\,,
 \end{align}
 The first order contribution is then determined by
 \begin{align}
 S_{\lambda1}'(r)=-\f{1}{r}-\f{S_{\lambda0}''(r)}{2S_{\lambda0}'(r)}\,.
 \end{align}
-The solution is quite simple
+The WKB Approximation may not be necessary given that we have a relatively easy-to-write exact solution in terms of the hypergeometric 2F1 function. Moreover, we are not interested in the particle-like behavior of the waves - we are only interested in the energy density on a surface. Now, supposing we've properly normalized $\phi_\lambda$, we have the Green's function
 \begin{align}
-S_{\lambda1}(r)=C_1-\f14\ln\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}\,.
+G(r,r')=\int_{-\infty}^{\infty}\diff\omega\sum_{l=1}^{\infty}\sum_{m=-l}^l\int\diff\lambda\rho(r')\f{\bar \phi_{\lambda}(r)\phi_{\lambda}(r')}{\lambda+\I\epsilon}Y_{lm}(\theta,\phi)e^{\I m\phi}e^{\I\omega t}\,.
 \end{align}
-Hence, the eigenfunctions are, semiclassically
+In order to find $\mu$, 
+Now, we wish to consider the source proportional to $\delta(z-v_X t)=\delta(\theta)\delta(\phi)\delta(r-v_X t)$. The solution is then
 \begin{align}
-\notag\phi_\lambda&=K_1\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}^{-1/4}e^{+\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}}\\
-&+K_2\ps{\f{r^2\ps{l(l+1)+r^2(\lambda-\omega^2)}}{v(r)}}^{-1/4}e^{-\I\f{\sqrt{(b^2l(l+1)+a^2(\lambda-\omega^2))v(r)}}{a^2b}\te{AppellF1}\ps{\f12,-\f12,1,\f32,\f{(\lambda-\omega^2)v(r)}{b^2l(l+1)+a^2(\lambda-\omega^2)},\f{v(r)}{a^2}}}\,.
+\int_V\diff V'\int_{-\infty}^{\infty}\diff t' G(r,r')\delta(r'-v_X t')
 \end{align}
-Now we demand that $\phi$
 \end{document}
