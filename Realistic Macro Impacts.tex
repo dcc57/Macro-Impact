@@ -1,0 +1,136 @@
+\documentclass{article}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics, MnSymbol,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+\title{Realistic Macro Impacts}
+\author{David Cyncynates \\ dcc57@case.edu}
+\date{\today}
+
+\begin{document}
+\maketitle
+The velocity field in the Earth has the form $v(r)=a^2-b^2r^2$. The change in velocity occurs over several wavelengths of the oscillations we are concerned with, so a WKB approximation is appropriate if necessary. Since we are not concerned with the behavior of individual waves, it is not of analytic interest to pursue a semiclassical solution. We are most concerned with determining the Green's function of the wave equation so that we can consider a realistic source.
+
+Our wave equation is of the form
+\begin{align}
+-\f f\rho=v(r)^2\nabla^2\phi-\partial_t^2\phi=D\phi\,.
+\end{align}
+Our differential operator is the sum of two Hermitian operators, and is therefore Hermitian itself. Its eigenvalues are the sum of the eigenvalues of its components. The eigenvalue problem we are interested in
+\begin{align}
+0=D u+\lambda u
+\end{align}
+can be reduced to a problem in a single variable since any function can be written in terms of a radial part and a sum over spherical harmonics. Moreover, we may Fourier transform in time, yielding
+\begin{align}
+u(\vec x,t)&=\sum_{l=0}^{\infty}\sum_{m=-l}^l\int\f{\diff\omega}{2\pi}\tilde u_{lm}(r,\omega)Y_{lm}(\theta,\phi)e^{\I\omega t}\,.
+\end{align}
+Converting (2) into spherical harmonics, we have
+\begin{align}
+\tilde D&=v(r)^2\ps{\nabla^2_r-\f{l(l+1)}{r^2}}+\omega^2\,,\\
+&=\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)-l(l+1)}+\omega^2\,,
+\end{align}
+and hence
+\begin{align}
+0&=\f{v(r)^2}{r^2}\ps{\partial_r(r^2\partial_r)-l(l+1)}\tilde u+\omega^2\tilde u+\lambda\tilde u.
+\end{align}
+An equation of the Sturm--Liouville type has the form
+\begin{align}
+0&=(s(r)\phi'(r))'+\p{\lambda\rho(r)-q(r)}\phi(r)
+\end{align}
+where $\rho$ is known as the weight function, $s,\rho,q$ must be continuous on the interval $[0,\f ab]$, and $s,\rho$ positive-valued on $(0,\f ab)$. Rewriting $\tilde D$ in clearer form
+\begin{align}
+0&=(r^2\tilde u')'+\pc{\lambda\f{r^2}{v(r)^2}-\ps{l(l+1)-\f{r^2}{v(r)^2}\omega^2}}\tilde u\,,
+\end{align}
+where we see that $s(r)=r^2$, $\rho(r)=\f{r^2}{v(r)^2}$, and $q(r)=l(l+1)-\rho(r)\omega^2$. Hence $\tilde D$ is a Sturm-Liouville operator. For the eigenfunctions of $D$ to be orthogonal, we must satisfy the homogeneous boundary conditions
+\begin{align}
+s(r)(\phi_1(r)\phi_2'(r)-\phi_1'(r)\phi_2(r))\vert_0^{\f ab}=0\,.
+\end{align}
+Assuming we have chosen suitable eigenfunctions,
+\begin{align}
+\delta(\lambda-\lambda')=\int\diff r\rho(r)\tilde u(r,\lambda)\tilde u(r,\lambda')\,.
+\end{align}
+Note, the spectrum of $\tilde D$ is continuous since the boundary conditions above are automatically satisfied when chosen properly.
+\\\\
+Now, assuming completeness, we may write
+\begin{align}
+\delta(r-r')&=\int\diff \lambda f(\lambda)\tilde u(r,\lambda)\,,\\
+\rho(r')\bar{\tilde u}(r',\lambda')&=\int\diff r\rho(r) \bar{\tilde u}(r',\lambda')\int\diff \lambda f(\lambda)\tilde u(r,\lambda)\,,\\
+&=f(\lambda')\,.
+\end{align}
+Hence
+\begin{align}
+\delta(r-r')&=\int\diff \lambda \rho(r')\bar {\tilde u}(r',\lambda)\tilde u(r,\lambda)\,.
+\end{align}
+Now that we know how to write $\delta$ in terms of eigenfunctions of $\tilde D$, we write the full $\delta$-function
+\begin{align}
+\delta(r-r')\delta(\Omega-\Omega')\delta(t-t')&=\sum_{\abs{m}\leq l\in\Z}\int\f{\diff\omega}{2\pi}\diff \lambda \rho(r')\tilde {\bar u}_{lm}(r',\lambda)\tilde u_{lm}(r,\lambda)\bar Y_{lm}(\Omega')Y_{lm}(\Omega)e^{-\I\omega (t'-t')}\,,\\
+&=\sum\Delta
+\end{align}
+Applying $D$ to the right hand side yields
+\begin{align}
+D\sum\Delta=-\sum(\lambda+l(l+1)+\omega^2)\Delta
+\end{align}
+Hence the Green's function of the problem is
+\begin{align}
+G(x,x')=-\sum_{\abs{m}\leq l\in\Z}\int\f{\diff\omega}{2\pi}\diff \lambda \f{\rho(r')\tilde {\bar u}_{lm}(r',\lambda)\tilde u_{lm}(r,\lambda)\bar Y_{lm}(\Omega')Y_{lm}(\Omega)e^{-\I\omega (t'-t')}}{(\lambda+l(l+1)+\omega^2)}\,.
+\end{align}
+We now employ the WKB ansatz (where $\delta\ll \f{a^2}{b^2R_E^2}$ *this is a guess - think about it!)
+\begin{align}
+\phi_\lambda(r)=\exp\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}(r)}\,,
+\end{align}
+\end{document}
