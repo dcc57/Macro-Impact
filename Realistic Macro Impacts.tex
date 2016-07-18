@@ -65,6 +65,57 @@
 
 \begin{document}
 \maketitle
+\section{The Green's Function}
+This should be correct. We have the differential equation
+\begin{align}
+v(r)^2\nabla^2\phi-\partial_t^2\phi=-\f{f}{\rho}
+\end{align}
+We want to write $\phi$ as eigenfunctions of the linear differential operator on the LHS. Fourier transforming in time $\phi\to\tilde\phi$, we may write an eigenvalue problem
+\begin{align}
+v(r)^2\nabla^2\tilde\phi+\lambda\tilde\phi=0\,.
+\end{align}
+Multiplying by $\f{r^2}{v(r)^2\tilde\phi}$ and supposing $\tilde\phi=R(r)Y(\Omega)$, we have
+\begin{align}
+\f{\partial_r(r^2\partial_r R)}{R}+\lambda\f{r^2}{v(r)^2}+\f{r^2\nabla_\Omega Y}{Y}=0
+\end{align}
+It is clear that $\f{r^2\nabla_\Omega Y}{Y}$ depends only on $\Omega$ and that the remaining terms only depend on $r$, hence the equation is separable, and our ansatz is justified. The solutions $Y$ are just the spherical harmonics with eigenvalues $r^2\nabla_{\Omega}Y=-l(l+1)Y$, $l\in\N\cup\{0\}$. $R$ obeys a more complicated equation
+\begin{align}
+\partial_r(r^2\partial_r R)+\lambda\f{r^2}{v(r)^2}R-l(l+1)R=0
+\end{align}
+which is just a Sturm--Liouville problem for the appropriate boundary conditions at $r=0$ and $r=\f ab$. The weight function is $\rho=\f{r^2}{v(r)^2}$. Since this equation is in terms of a Sturm--Liouville operator, its eigenfunctions form an orthogonal set with respect to $\rho$, i.e.
+\begin{align}
+\delta(\lambda-\lambda')=\int\diff r\rho(r) \bar R_\lambda(r)R_{\lambda'}(r)\,.
+\end{align}
+Assuming completeness of the eigenfunctions, we may write
+\begin{align}
+\delta(r-r')=\int\diff\lambda\rho(r)\bar R_\lambda(r)R_\lambda(r')\,.
+\end{align}
+We may decompose any function in terms of $R$, $Y$, and $e^{\I\omega t}$ as
+\begin{align}
+f(r,\Omega,t)=\sum_{l=0}^\infty\sum_{m=-l}^l\int\diff\lambda\diff\omega F_{lm}(\lambda,\omega)R_{\lambda l}(r)Y_{lm}(\Omega)e^{\I\omega t}\,.
+\end{align}
+Notice
+\begin{align}
+\ps{v(r)^2\nabla^2-\partial_t^2}\ps{R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}}&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{\f{v(r)^2\nabla_r^2R}{R}+\f{v(r)^2\nabla_\Omega^2Y}{Y}+\omega^2}\,,\\
+&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{-\lambda+\f{v(r)^2}{r^2}l(l+1)-\f{v(r)^2}{r^2}l(l+1)+\omega^2}\,,\\
+&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{-\lambda+\omega^2}\,,\\
+\end{align}
+Thus, we see that
+\begin{align}
+G(\vec r,t;\vec r',t')=\rho(r)\sum_{l=0}^\infty\sum_{m=-l}^l\int\diff\lambda\diff\omega\f{\bar R_{\lambda l}(r)R_{\lambda l}(r')\bar Y_{lm}(\Omega)Y_{lm}(\Omega') e^{\I\omega(t-t')}}{\omega^2-\lambda-\I\epsilon}\,.
+\end{align}
+
+
+
+
+
+\section{The Source}
+We must find an appropriate body force potential $f$. As a practice problem, let's consider $f=\nabla g=-4\pi G\ps{M\delta(\vec r-\vec vt)+\delta\rho}$ as in the detection of a small black hole problem, where $\delta\rho=-\rho\nabla u$, where $u$ is the displacement field. Then the source term of the wave equation is
+\begin{align}
+-\f f\rho=\f{4\pi M G}{\rho}\delta(\vec r-\vec vt)-4\pi G\phi
+\end{align}
+Since $f$ has a dependent variable in it, we need to slightly modify our Green's function. The eigenvectors $\tilde u$ of $\tilde D$ will now satisfy
+\end{document}
 The velocity field in the Earth has the form $v(r)=a^2-b^2r^2$. The change in velocity occurs over several wavelengths of the oscillations we are concerned with, so a WKB approximation is appropriate if necessary. Since we are not concerned with the behavior of individual waves, it is not of analytic interest to pursue a semiclassical solution. We are most concerned with determining the Green's function of the wave equation so that we can consider a realistic source.
 
 Our wave equation is of the form
@@ -104,7 +155,7 @@ Assuming we have chosen suitable eigenfunctions,
 \begin{align}
 \delta(\lambda-\lambda')=\int\diff r\rho(r)\tilde u(r,\lambda)\tilde u(r,\lambda')\,.
 \end{align}
-Note, the spectrum of $\tilde D$ is continuous since the boundary conditions above are automatically satisfied when chosen properly.
+Note, the spectrum of $\tilde D$ is continuous since the boundary conditions above are automatically satisfied when chosen at the endpoints $0$ and $\f ab$.
 \\\\
 Now, assuming completeness, we may write
 \begin{align}
@@ -119,18 +170,27 @@ Hence
 Now that we know how to write $\delta$ in terms of eigenfunctions of $\tilde D$, we write the full $\delta$-function
 \begin{align}
 \delta(r-r')\delta(\Omega-\Omega')\delta(t-t')&=\sum_{\abs{m}\leq l\in\Z}\int\f{\diff\omega}{2\pi}\diff \lambda \rho(r')\tilde {\bar u}_{lm}(r',\lambda)\tilde u_{lm}(r,\lambda)\bar Y_{lm}(\Omega')Y_{lm}(\Omega)e^{-\I\omega (t'-t')}\,,\\
-&=\sum\Delta
+&=\sum\Delta\,.
 \end{align}
 Applying $D$ to the right hand side yields
 \begin{align}
-D\sum\Delta=-\sum(\lambda+l(l+1)+\omega^2)\Delta
+D\sum\Delta=-\sum(\lambda+l(l+1)+\omega^2)\Delta\,.
 \end{align}
 Hence the Green's function of the problem is
 \begin{align}
-G(x,x')=-\sum_{\abs{m}\leq l\in\Z}\int\f{\diff\omega}{2\pi}\diff \lambda \f{\rho(r')\tilde {\bar u}_{lm}(r',\lambda)\tilde u_{lm}(r,\lambda)\bar Y_{lm}(\Omega')Y_{lm}(\Omega)e^{-\I\omega (t'-t')}}{(\lambda+l(l+1)+\omega^2)}\,.
+G(x,x')=-\sum_{\abs{m}\leq l\in\Z}\int\f{\diff\omega}{2\pi}\diff \lambda \f{\rho(r')\tilde {\bar u}_{lm}(r',\lambda)\tilde u_{lm}(r,\lambda)\bar Y_{lm}(\Omega')Y_{lm}(\Omega)e^{-\I\omega (t-t')}}{\lambda-\I\epsilon}\,.
 \end{align}
 We now employ the WKB ansatz (where $\delta\ll \f{a^2}{b^2R_E^2}$ *this is a guess - think about it!)
 \begin{align}
 \phi_\lambda(r)=\exp\p{\f1\delta\sum_{n=0}^{\infty}\delta^nS_{\lambda n}(r)}\,,
 \end{align}
-\end{document}
+\section{Corrections!}
+\begin{align}
+0&=(r^2\tilde u')'+\pc{\lambda\f{r^2}{v(r)^2}-\ps{l(l+1)-\f{r^2}{v(r)^2}(\omega^2+4\pi G)}}\tilde u\,.
+\end{align}
+The solution is
+\begin{align}
+\phi&=4\pi M G\int\diff^4 x G(x,x')\f{\delta(\vec r-\vec vt)}{\rho}\,,\\
+&=4\pi M G\int\diff t G(\vec v t,t;\vec r',t')\f1{\rho}\,.
+\end{align}
+$\rho$ is a function of radius, but for the purposes of checking my work, I'll treat it as constant. We now calculate $G$ in the case of $b=0$. I will do this two ways: first to calculate it with $b\neq 0$, perhaps in WKB, and then take the limit $b\to 0$, and to calculate $G$ with $b=0$ from the outset.
