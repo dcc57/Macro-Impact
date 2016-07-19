@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     37441,       1124]
-NotebookOptionsPosition[     36430,       1086]
-NotebookOutlinePosition[     36785,       1102]
-CellTagsIndexPosition[     36742,       1099]
+NotebookDataLength[     37412,       1120]
+NotebookOptionsPosition[     36402,       1082]
+NotebookOutlinePosition[     36757,       1098]
+CellTagsIndexPosition[     36714,       1095]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -614,7 +614,8 @@ Cell[BoxData[
           SuperscriptBox["r", "2"]}], 
          SuperscriptBox["a", "2"]]}], "]"}]}]}], ")"}]}]}]], "Input",
  CellChangeTimes->{{3.6778712582681437`*^9, 3.67787130566415*^9}, 
-   3.677871743794167*^9, {3.677871792277581*^9, 3.677871795845018*^9}}],
+   3.677871743794167*^9, {3.677871792277581*^9, 3.677871795845018*^9}, {
+   3.6779381714049387`*^9, 3.6779381796173677`*^9}}],
 
 Cell[BoxData[
  RowBox[{"Clear", "[", 
@@ -655,28 +656,31 @@ Cell[BoxData[{
     RowBox[{"\[Lambda]", ",", 
      RowBox[{
       SuperscriptBox["a", "2"], 
-      SuperscriptBox["b", "2"]}], ",", "100"}], "}"}]}], "]"}]}], "Input",
+      SuperscriptBox["b", "2"]}], ",", "60"}], "}"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.677871254081204*^9, 3.677871255876829*^9}, {
   3.67787131499258*^9, 3.677871530955964*^9}, {3.677871576705296*^9, 
   3.67787158489014*^9}, {3.677871646807847*^9, 3.677871685454047*^9}, {
   3.6778717579639177`*^9, 3.677871906022542*^9}, {3.677872089583147*^9, 
   3.677872119381873*^9}, {3.677872682700034*^9, 3.677872919946107*^9}, {
-  3.677872958906045*^9, 3.677872966551548*^9}}],
+  3.677872958906045*^9, 3.677872966551548*^9}, {3.677891338522991*^9, 
+  3.677891427501198*^9}, {3.6778914584354353`*^9, 3.677891528447221*^9}, {
+  3.677891564776575*^9, 3.677891656693376*^9}, {3.67789168849193*^9, 
+  3.6778916955956182`*^9}, {3.677938191110279*^9, 3.677938261067981*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 82.82438144683839, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`\[Lambda]$$], 1, 100}}, Typeset`size$$ = {
+   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 60., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Lambda]$$], 1, 60}}, Typeset`size$$ = {
     360., {97., 101.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Lambda]$40529$$ = 0}, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Lambda]$82194$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`\[Lambda]$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$40529$$, 0]}, 
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$82194$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -687,9 +691,9 @@ Cell[BoxData[
 $CellContext`l, $CellContext`a, $CellContext`b, $CellContext`A, \
 $CellContext`B]], {$CellContext`r, 0, $CellContext`a/$CellContext`b}, 
         PlotPoints -> 30], 
-      "Specifications" :> {{$CellContext`\[Lambda]$$, 1, 100}}, 
+      "Specifications" :> {{$CellContext`\[Lambda]$$, 1, 60}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {154., 159.}},
+     ImageSizeCache->{405., {141., 146.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -699,8 +703,8 @@ $CellContext`B]], {$CellContext`r, 0, $CellContext`a/$CellContext`b},
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.6778728226932173`*^9, 3.677872912086844*^9}, {
-  3.67787294579058*^9, 3.677872967066061*^9}}]
+ CellChangeTimes->{{3.677891581704495*^9, 3.677891657288261*^9}, 
+   3.677891696342757*^9, {3.677938192384111*^9, 3.677938261462303*^9}}]
 }, Open  ]],
 
 Cell[BoxData[" "], "Input",
@@ -905,17 +909,11 @@ Cell[BoxData[{
    RowBox[{"Plot", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Re", "[", 
-        RowBox[{"RSmallb", "[", 
-         RowBox[{
-         "r", ",", "\[Lambda]", ",", "l", ",", "a", ",", "b", ",", "A", ",", 
-          "B"}], "]"}], "]"}], ",", 
-       RowBox[{"Re", "[", 
-        RowBox[{"R", "[", 
-         RowBox[{
-         "r", ",", "\[Lambda]", ",", "l", ",", "a", ",", "b", ",", "A", ",", 
-          "B"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"Re", "[", 
+       RowBox[{"R", "[", 
+        RowBox[{
+        "r", ",", "\[Lambda]", ",", "l", ",", "a", ",", "b", ",", "A", ",", 
+         "B"}], "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"r", ",", "0", ",", 
        FractionBox["a", "b"]}], "}"}], ",", 
@@ -931,33 +929,30 @@ Cell[BoxData[{
   3.6778717579639177`*^9, 3.677871906022542*^9}, {3.677872089583147*^9, 
   3.677872119381873*^9}, {3.6778722513785677`*^9, 3.6778722541542377`*^9}, {
   3.677872340086618*^9, 3.677872419651258*^9}, {3.6778725423504133`*^9, 
-  3.677872543277405*^9}, {3.6778726067510653`*^9, 3.677872607768852*^9}}],
+  3.677872543277405*^9}, {3.6778726067510653`*^9, 3.677872607768852*^9}, {
+  3.677938124769421*^9, 3.67793812555124*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 1.8262654275789356`, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 0.11, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`\[Lambda]$$], 0.010000000000000002`, 10}}, 
-    Typeset`size$$ = {360., {106., 110.}}, Typeset`update$$ = 0, 
+    Typeset`size$$ = {360., {100., 105.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Lambda]$11355$$ = 0}, 
+    True, $CellContext`\[Lambda]$75367$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Lambda]$$ = 0.010000000000000002`}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$11355$$, 0]}, 
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$75367$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> Plot[{
-         Re[
-          $CellContext`RSmallb[$CellContext`r, $CellContext`\[Lambda]$$, \
-$CellContext`l, $CellContext`a, $CellContext`b, $CellContext`A, \
-$CellContext`B]], 
          Re[
           $CellContext`R[$CellContext`r, $CellContext`\[Lambda]$$, \
 $CellContext`l, $CellContext`a, $CellContext`b, $CellContext`A, \
@@ -965,7 +960,7 @@ $CellContext`B]]}, {$CellContext`r, 0, $CellContext`a/$CellContext`b},
         PlotPoints -> 20], 
       "Specifications" :> {{$CellContext`\[Lambda]$$, 0.010000000000000002`, 
          10}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {163., 168.}},
+     ImageSizeCache->{405., {144., 149.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -977,7 +972,8 @@ $CellContext`B]]}, {$CellContext`r, 0, $CellContext`a/$CellContext`b},
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
   3.677872254876845*^9, {3.6778723600471773`*^9, 3.6778724224386*^9}, {
-   3.6778725339357033`*^9, 3.677872547532145*^9}, 3.677872608444504*^9}]
+   3.6778725339357033`*^9, 3.677872547532145*^9}, 3.677872608444504*^9, 
+   3.677938126272266*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1109,22 +1105,22 @@ Cell[CellGroupData[{
 Cell[4265, 134, 9340, 280, 466, "Input"],
 Cell[13608, 416, 3073, 97, 236, "Output"]
 }, Open  ]],
-Cell[16696, 516, 3243, 100, 283, InheritFromParent],
-Cell[19942, 618, 213, 5, 28, "Input"],
+Cell[16696, 516, 3297, 101, 283, InheritFromParent],
+Cell[19996, 619, 213, 5, 28, "Input"],
 Cell[CellGroupData[{
-Cell[20180, 627, 1418, 36, 177, "Input"],
-Cell[21601, 665, 1856, 37, 364, "Output"]
+Cell[20234, 628, 1659, 39, 177, "Input"],
+Cell[21896, 669, 1862, 37, 338, "Output"]
 }, Open  ]],
-Cell[23472, 705, 69, 1, 28, "Input"],
-Cell[23544, 708, 5482, 170, 397, "Input"],
-Cell[29029, 880, 213, 5, 28, "Input"],
+Cell[23773, 709, 69, 1, 28, "Input"],
+Cell[23845, 712, 5482, 170, 397, "Input"],
+Cell[29330, 884, 213, 5, 28, "Input"],
 Cell[CellGroupData[{
-Cell[29267, 889, 1768, 44, 177, "Input"],
-Cell[31038, 935, 2158, 44, 348, "Output"]
+Cell[29568, 893, 1601, 39, 177, "Input"],
+Cell[31172, 934, 1996, 41, 310, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33233, 984, 630, 17, 46, "Input"],
-Cell[33866, 1003, 2548, 80, 159, "Output"]
+Cell[33205, 980, 630, 17, 46, "Input"],
+Cell[33838, 999, 2548, 80, 159, "Output"]
 }, Open  ]]
 }
 ]

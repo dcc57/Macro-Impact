@@ -98,13 +98,13 @@ Notice
 \begin{align}
 \ps{v(r)^2\nabla^2-\partial_t^2}\ps{R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}}&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{\f{v(r)^2\nabla_r^2R}{R}+\f{v(r)^2\nabla_\Omega^2Y}{Y}+\omega^2}\,,\\
 &=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{-\lambda+\f{v(r)^2}{r^2}l(l+1)-\f{v(r)^2}{r^2}l(l+1)+\omega^2}\,,\\
-&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{-\lambda+\omega^2}\,,\\
+&=R_\lambda(r)Y_{lm}(\Omega)e^{\I\omega t}\ps{-\lambda+\omega^2}\,.
 \end{align}
 Thus, we see that
 \begin{align}
-G(\vec r,t;\vec r',t')=\rho(r)\sum_{l=0}^\infty\sum_{m=-l}^l\int\diff\lambda\diff\omega\f{\bar R_{\lambda l}(r)R_{\lambda l}(r')\bar Y_{lm}(\Omega)Y_{lm}(\Omega') e^{\I\omega(t-t')}}{\omega^2-\lambda-\I\epsilon}\,.
+G(\vec r,t;\vec r',t')=\rho(r)\sum_{l=0}^\infty\sum_{m=-l}^l\int_{a^2b^2}^{\infty}\diff\lambda\int_{-\infty}^\infty\diff\omega\f{\bar R_{\lambda l}(r)R_{\lambda l}(r')\bar Y_{lm}(\Omega)Y_{lm}(\Omega') e^{\I\omega(t-t')}}{\omega^2-\lambda-\I\epsilon}\,.
 \end{align}
-
+This may be incorrect because of the dependence of $R$ on $l$... However, we can probably formulate (4) as a S-L problem with eigenvalue $-l(l+1)$ instead, and we'll obtain a second orthogonality relation for $R$. This should mean that (11) is correct up to a weight function.
 
 
 
