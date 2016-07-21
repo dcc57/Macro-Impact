@@ -169,11 +169,11 @@ where $_q\te{F}_p$ is the generalized hypergeometric function. We now convert to
 \begin{align}
 P(\vec k)=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k^2\sin^2\theta}}_{x=a}^b\,,
 \end{align}
-We now expand the hypergeometric function to first order (the first order term is zero, so all that remains is the zeroth order term)
+We now expand the hypergeometric function to second order (the first order term is zero, so all that remains is the zeroth order term)
 \begin{align}
-P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k^2)\,,\\
-&=\ps{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k^2)\,,\\
-&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k^2)\,.
+P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k)\,,\\
+&=\ps{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
+&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k)\,.
 \end{align}
 From this, we find that the energy in the lowest modes is
 \begin{align}
@@ -485,7 +485,13 @@ It is clear that numerical methods will be necessary to get an answer. We will n
 
 \pagebreak
 \section{Numerical Methods}
-From symmetry, it is clear that it is enough to understand the behavior of rays from a point source to understand the propagation of rays in the whole sphere. Let $\vec p=(r,\theta)$ denote the position vector of our ray, whose initial coordinates are $\vec p(0)=(z,0)$. We also insist that the tangent vector of $\vec p$ be at an angle $\alpha$ from the z axis.
+From symmetry, it is clear that it is enough to understand the behavior of rays from a point source to understand the propagation of rays in the whole sphere. Let $\vec p=(r,\theta)$ denote the position vector of our ray, whose initial coordinates are $\vec p(0)=(x_0,0)$. We also insist that the tangent vector of $\vec p$ be at an angle $\alpha$ from the x axis. The parametrization in terms of these initial conditions is
+\begin{align}
+r(s)&=\f{a}{b}\sqrt{\f{a^2\p{e^{2abs}-1}^2+b^2\p{e^{2abs}+1}^2x_0^2+2(-1)^{s_1}ab\p{e^{4abs}-1}x_0\abs{\cos\alpha}}{a^2\p{e^{2abs}+1}^2+b^2\p{e^{2abs}-1}^2x_0^2+2(-1)^{s_1}ab\p{e^{4abs}-1}x_0\abs{\cos\alpha}}}\,,\\
+\notag\theta(s)&=\arccot\ps{\f{4(-1)^{s_2}abx_0(a^2-b^2x_0^2)\sin\alpha}{4a^2b^2(1+e^{4abs})x_0^2+4(-1)^{s_2}abe^{4abs}x_0(a^2+b^2x_0^2)\cos\alpha+(e^{4abs}-1)(a^4+b^4x_0^4+2a^2b^2x_0^2\cos(2\alpha))}}-\\
+&\hspace{1cm}-\arctan\ps{\f{(-1)^{s_2}(2abx_0+(-1)^{s_1}(a^2+b^2x_0^2)\cos\alpha)\csc\alpha}{a^2-b^2x_0^2}}
+\end{align}
+We now need to solve for
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
