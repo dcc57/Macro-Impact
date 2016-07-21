@@ -151,6 +151,46 @@ From this we obtain the fractional energy deposition into the unattenuated wavel
 \end{align}
 This approximation holds for $\lambda_0^2\gg\sigma_X$, which is appropriate for the case that $\lambda_0$ is on the order of kilometers and $\sigma_X$ is on the order of centimeters squared.
 \pagebreak
+\section{A General Pressure Wave}
+We now do the same calculation assuming that the pressure wave is of finite height, cylindrically symmetric, and of finite radial support. Moreover, we assume that the radial pressure distribution can be written as a taylor series. Write
+\begin{align}
+p=p_0f(r)\ps{\theta\p{z+\f h2}-\theta\p{z-\f h2}}
+\end{align}
+We may expand $f$ as
+\begin{align}
+f(r)&=\sum_{n=0}^\infty\f{f^{(n)}(r_0)}{n!}(r-r_0)^n\,,\\
+&=\sum_{n=0}^\infty\sum_{m=0}^n(-1)^{n-m}\binom{n}{m}\f{f^{(n)}(r_0)}{n!}r^{m}r_0^{n-m}\,.
+\end{align}
+We now Fourier transform
+\begin{align}
+P(\vec k)=\f{4\pi p_0}{k_z}\sin\p{\f{h k_z}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k_r^2}}_{x=a}^b\,,
+\end{align}
+where $_q\te{F}_p$ is the generalized hypergeometric function. We now convert to spherical coordinates in $k$-space, and write
+\begin{align}
+P(\vec k)=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k^2\sin^2\theta}}_{x=a}^b\,,
+\end{align}
+We now expand the hypergeometric function to first order (the first order term is zero, so all that remains is the zeroth order term)
+\begin{align}
+P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k^2)\,,\\
+&=\ps{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k^2)\,,\\
+&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k^2)\,.
+\end{align}
+From this, we find that the energy in the lowest modes is
+\begin{align}
+E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(a)-a^2f_1(b))^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}+\scr O(k_0^4)\,,\\
+&\approx_{h\gg k_0}\f{\lambda+2\mu}{K^2} \f{4 p_0^2h\pi^3(b^2 f_1(b)-a^2f_1(a))^2}{\lambda_0^2}\,.
+\end{align}
+Let's do some checks. First consider the basic cylinder pressure where $f=1$ on $[0,r_X]$. Then $f_1=\f12$, and we see that
+\begin{align}
+E&\approx\f{\lambda+2\mu}{K^2}\f{p_0^2h\pi^3r_X^4}{\lambda_0^2}\,,\\
+&=\f{\lambda+2\mu}{K^2}(p_0\sigma_X)^2\f{\pi h}{\lambda_0^2}\,,
+\end{align}
+which is exactly the result from before. Now consider $f(r)=\f{r-r_0}{\Delta r}$ on $[r_0,r_0+\Delta r]$. Then, taking the endpoint $r_0$ as the base of the Taylor series, $f_1(x)=\f{-r_0}{2\Delta r}+\f{x}{3\Delta r}$. Hence
+\begin{align}
+E&\approx\f{\lambda+2\mu}{K^2}\f{h p_0^2\pi^3\Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}
+\end{align}
+This is what we find out later! I'm legitimately surprised that I didn't make a mistake! Woo!
+\pagebreak
 \\
 It is wrong, however, to assume that the wave evolves linearly close to the source. Modes will be coupled to one another, and our expression (24) will only hold in a small neighborhood of the event. Effects such as heating and rock fracturing will cause the high frequency modes in the shock to rapidly attenuate. They are, however, difficult to quantify. It is not controversial to say that the energy of the shock after its non-linear evolution (when the overpressure exceeds the elastic limit of the Earth) will be less than its initial energy. It is also well known that the behavior of shockwaves for long time tends towards a sharp wave-front with a linearly decreasing tail. To produce an over-estimate of the detectible energy, we hypothesize an approximate pressure waveform and endow it with energy equivalent to that of the initial blast. Then, we calculate the energy per mode, and sum over only those modes whose frequency is in the regime that will not rapidly attenuate.
 \\\\
@@ -445,8 +485,7 @@ It is clear that numerical methods will be necessary to get an answer. We will n
 
 \pagebreak
 \section{Numerical Methods}
-From symmetry, it is clear that it is enough to understand the behavior of rays from a point source to understand the propagation of rays in the whole sphere. Let $\vec p=(r,\theta)$ denote the position vector of our ray, whose initial coordinates are $\vec p(0)=(z,0)$.
-
+From symmetry, it is clear that it is enough to understand the behavior of rays from a point source to understand the propagation of rays in the whole sphere. Let $\vec p=(r,\theta)$ denote the position vector of our ray, whose initial coordinates are $\vec p(0)=(z,0)$. We also insist that the tangent vector of $\vec p$ be at an angle $\alpha$ from the z axis.
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  20 JUL 2016 12:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  21 JUL 2016 00:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1654,70 +1654,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 151--158
-
+[2] [3]
+Overfull \hbox (36.38098pt too wide) in paragraph at lines 171--171
+[] 
  []
 
-[3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 206--220
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 241--250
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 241--250
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 241--250
+LaTeX Font Info:    Try loading font information for U+eus on input line 177.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+) [4]
+Underfull \hbox (badness 10000) in paragraph at lines 191--198
 
  []
 
 [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 270--274
+Underfull \hbox (badness 10000) in paragraph at lines 246--260
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--285
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Underfull \hbox (badness 10000) in paragraph at lines 281--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 339--342
-
- []
-
-[8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 428--432
+Underfull \hbox (badness 10000) in paragraph at lines 281--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--445
+Underfull \hbox (badness 10000) in paragraph at lines 281--290
 
  []
 
-[11] [12] [13] (./Macro Impacts Revised.aux) ) 
+[7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 310--314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 321--325
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 353--357
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 379--382
+
+ []
+
+[10] [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 468--472
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--485
+
+ []
+
+[13] [14] [15] (./Macro Impacts Revised.aux) ) 
 Here is how much of TeX's memory you used:
- 20676 strings out of 493117
- 429838 string characters out of 6135433
- 450152 words of memory out of 5000000
- 23810 multiletter control sequences out of 15000+600000
- 11879 words of font info for 49 fonts, out of 8000000 for 9000
+ 20689 strings out of 493117
+ 430088 string characters out of 6135433
+ 450150 words of memory out of 5000000
+ 23817 multiletter control sequences out of 15000+600000
+ 12479 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,14n,84p,10429b,202s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,17n,84p,10429b,202s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist
@@ -1731,11 +1739,12 @@ pe1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
 ublic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb>
-Output written on "Macro Impacts Revised.pdf" (13 pages, 180372 bytes).
+amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
+sfonts/euler/eusm10.pfb>
+Output written on "Macro Impacts Revised.pdf" (15 pages, 192959 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
