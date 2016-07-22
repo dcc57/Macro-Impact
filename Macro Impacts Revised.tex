@@ -172,7 +172,7 @@ P(\vec k)=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty
 We now expand the hypergeometric function to second order (the first order term is zero, so all that remains is the zeroth order term)
 \begin{align}
 P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k)\,,\\
-&=\ps{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
+&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\ps{x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
 &=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k)\,.
 \end{align}
 From this, we find that the energy in the lowest modes is
@@ -488,10 +488,25 @@ It is clear that numerical methods will be necessary to get an answer. We will n
 From symmetry, it is clear that it is enough to understand the behavior of rays from a point source to understand the propagation of rays in the whole sphere. Let $\vec p=(r,\theta)$ denote the position vector of our ray, whose initial coordinates are $\vec p(0)=(x_0,0)$. We also insist that the tangent vector of $\vec p$ be at an angle $\alpha$ from the x axis. The parametrization in terms of these initial conditions is
 \begin{align}
 r(s)&=\f{a}{b}\sqrt{\f{a^2\p{e^{2abs}-1}^2+b^2\p{e^{2abs}+1}^2x_0^2+2(-1)^{s_1}ab\p{e^{4abs}-1}x_0\abs{\cos\alpha}}{a^2\p{e^{2abs}+1}^2+b^2\p{e^{2abs}-1}^2x_0^2+2(-1)^{s_1}ab\p{e^{4abs}-1}x_0\abs{\cos\alpha}}}\,,\\
-\notag\theta(s)&=\arccot\ps{\f{4(-1)^{s_2}abx_0(a^2-b^2x_0^2)\sin\alpha}{4a^2b^2(1+e^{4abs})x_0^2+4(-1)^{s_2}abe^{4abs}x_0(a^2+b^2x_0^2)\cos\alpha+(e^{4abs}-1)(a^4+b^4x_0^4+2a^2b^2x_0^2\cos(2\alpha))}}-\\
+\notag\theta(s)&=\arccot\ps{\f{4(-1)^{s_2}abx_0(a^2-b^2x_0^2)\sin\alpha}{4a^2b^2(1+e^{4abs})x_0^2+4(-1)^{s_1}abe^{4abs}x_0(a^2+b^2x_0^2)\cos\alpha+(e^{4abs}-1)(a^4+b^4x_0^4+2a^2b^2x_0^2\cos(2\alpha))}}-\\
 &\hspace{1cm}-\arctan\ps{\f{(-1)^{s_2}(2abx_0+(-1)^{s_1}(a^2+b^2x_0^2)\cos\alpha)\csc\alpha}{a^2-b^2x_0^2}}
 \end{align}
-We now need to solve for
+Note that $s_1$ and $s_2$ change the quadrant of the ray propagation with respect to the starting position. We now need to solve for $s$ such that $r$ is some desired value at that point, call it $r_m$ (where we have chosen $m$ to stand for mantle).
+\\\\
+The time $s_m$ it takes to get to the radius $r_m$ is
+\begin{align}
+s_m=\f{1}{2ab}\ln\ps{\f{a^4-b^4 r_m^2 x_0^2+a^2b^2(r_m^2-x_0^2)+(-1)^{s_3} 2ab\sqrt{(r_m^2-x_0^2)(a^4-b^4 r_m^2x_0^2)+(a^2-b^2r_m^2)^2x_0^2\cos^2\alpha}}{(a^2-b^2r_m^2)(a^2+b^2x_0^2+2(-1)^{s_1}abx_0\cos\alpha)}}
+\end{align}
+We now want to compute the sine of the angle between the tangent vector to the curve and the surface normal at $s_m$. Observe
+\begin{align}
+T\cdot n&=\f{\dot r}{\sqrt{\dot r^2+r^2\dot\theta^2}}\,.
+\end{align}
+Hence
+\begin{align}
+\sin\phi&=\f{r\dot\theta}{\sqrt{\dot r^2+r^2\dot\theta^2}}\,.
+\end{align}
+We now write a theoretical program for computing the energy density on the surface of the earth. First, define a list of $M$ points from which we want to propagate rays. In our specific case, these will be evenly spaced points along a chord through the earth. Store the coordinates of these points. From each of these points, we will want to propagate some number $N$ of rays. These rays must have uniform angular separation. This is the question of tiling the sphere by arbitrarily small polygons. This is, of course, only possible for finitely many polygons on a given sphere. Thus, we need some other way of uniformly distributing points on a sphere. {http://neilsloane.com/packings/dim3/pack.3.130.txt} contains the coordinates of 130 points placed on a sphere such that their angular separation is minimized (18.5 degrees). If this isn't enough, there is a tiling on the same website with over 1000 points, but that would be absurd. The vectors given by the 130 points determine the plane of propagation (given by the span of the direction vector and the vector pointing from the origin) and the initial propagation angle $\alpha$ with respect to the vector pointing from the origin.
+
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
