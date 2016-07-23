@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     35321,        967]
-NotebookOptionsPosition[     34667,        941]
-NotebookOutlinePosition[     35023,        957]
-CellTagsIndexPosition[     34980,        954]
+NotebookDataLength[     39545,       1058]
+NotebookOptionsPosition[     38849,       1031]
+NotebookOutlinePosition[     39205,       1047]
+CellTagsIndexPosition[     39162,       1044]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -191,7 +191,7 @@ Cell[BoxData[
   RowBox[{"sm", "[", 
    RowBox[{
    "a_", ",", "b_", ",", "\[Alpha]_", ",", "x0_", ",", "s1_", ",", "s2_", ",",
-     "rm_"}], "]"}], ":=", 
+     "s3_", ",", "rm_"}], "]"}], ":=", 
   RowBox[{
    FractionBox["1", 
     RowBox[{"2", " ", "a", " ", "b"}]], 
@@ -210,8 +210,11 @@ Cell[BoxData[
         RowBox[{"(", 
          RowBox[{"rm", "-", "x0"}], ")"}], " ", 
         RowBox[{"(", 
-         RowBox[{"rm", "+", "x0"}], ")"}]}], "-", 
-       RowBox[{"2", " ", "a", " ", "b", " ", 
+         RowBox[{"rm", "+", "x0"}], ")"}]}], "+", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"-", "1"}], ")"}], "s3"], "2", " ", "a", " ", "b", " ", 
         RowBox[{"\[Sqrt]", 
          RowBox[{"(", 
           RowBox[{
@@ -265,7 +268,7 @@ Cell[BoxData[
    3.678202356786416*^9, 3.678202381706564*^9}, {3.678202821459383*^9, 
    3.6782028403293324`*^9}, {3.6782037116812983`*^9, 3.678203726190982*^9}, {
    3.678207212144314*^9, 3.678207237966214*^9}, {3.6782073048924713`*^9, 
-   3.678207305004355*^9}}],
+   3.678207305004355*^9}, {3.6782123884210567`*^9, 3.6782124002288446`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -275,7 +278,9 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"s1", "=", "2"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"s2", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"s2", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s3", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"rm", "=", "0.5"}], ";"}]}], "Input",
  CellChangeTimes->{{3.6781332506654053`*^9, 3.678133291740224*^9}, {
@@ -288,7 +293,8 @@ Cell[BoxData[{
    3.678202430499001*^9}, {3.678202706643031*^9, 3.678202714922556*^9}, {
    3.678203104471046*^9, 3.678203192759136*^9}, {3.67820715651169*^9, 
    3.6782071566458893`*^9}, {3.678207219645842*^9, 3.678207227451569*^9}, {
-   3.678207290658257*^9, 3.678207296516182*^9}}],
+   3.678207290658257*^9, 3.678207296516182*^9}, {3.678212423657648*^9, 
+   3.6782124449493237`*^9}, {3.678212999288198*^9, 3.6782130240771923`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -331,42 +337,88 @@ Cell[BoxData[
            RowBox[{"-", "a"}], "b"], ",", 
           FractionBox["a", "b"]}], "}"}]}]}], "]"}], ",", 
      RowBox[{"Graphics", "[", 
-      RowBox[{"Point", "[", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"r", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Point", "[", 
+         RowBox[{"{", 
+          RowBox[{
            RowBox[{
-            RowBox[{"sm", "[", 
+            RowBox[{"r", "[", 
              RowBox[{
-             "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2", 
-              ",", "rm"}], "]"}], ",", "a", ",", "b", ",", "\[Alpha]", ",", 
-            "x0", ",", "s1", ",", "s2"}], "]"}], 
-          RowBox[{"Cos", "[", 
-           RowBox[{"\[Theta]", "[", 
-            RowBox[{
-             RowBox[{"sm", "[", 
+              RowBox[{"sm", "[", 
+               RowBox[{
+               "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                "s2", ",", "s3", ",", "rm"}], "]"}], ",", "a", ",", "b", ",", 
+              "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], 
+            RowBox[{"Cos", "[", 
+             RowBox[{"\[Theta]", "[", 
               RowBox[{
-              "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2",
-                ",", "rm"}], "]"}], ",", "a", ",", "b", ",", "\[Alpha]", ",", 
-             "x0", ",", "s1", ",", "s2"}], "]"}], "]"}]}], ",", 
-         RowBox[{
-          RowBox[{"r", "[", 
+               RowBox[{"sm", "[", 
+                RowBox[{
+                "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                 "s2", ",", "s3", ",", "rm"}], "]"}], ",", "a", ",", "b", ",",
+                "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], "]"}]}],
+            ",", 
            RowBox[{
-            RowBox[{"sm", "[", 
+            RowBox[{"r", "[", 
              RowBox[{
-             "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2", 
-              ",", "rm"}], "]"}], ",", "a", ",", "b", ",", "\[Alpha]", ",", 
-            "x0", ",", "s1", ",", "s2"}], "]"}], 
-          RowBox[{"Sin", "[", 
-           RowBox[{"\[Theta]", "[", 
-            RowBox[{
-             RowBox[{"sm", "[", 
+              RowBox[{"sm", "[", 
+               RowBox[{
+               "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                "s2", ",", "s3", ",", "rm"}], "]"}], ",", "a", ",", "b", ",", 
+              "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], 
+            RowBox[{"Sin", "[", 
+             RowBox[{"\[Theta]", "[", 
               RowBox[{
-              "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2",
-                ",", "rm"}], "]"}], ",", "a", ",", "b", ",", "\[Alpha]", ",", 
-             "x0", ",", "s1", ",", "s2"}], "]"}], "]"}]}]}], "}"}], "]"}], 
-      "]"}]}], "]"}], ",", 
+               RowBox[{"sm", "[", 
+                RowBox[{
+                "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                 "s2", ",", "s3", ",", "rm"}], "]"}], ",", "a", ",", "b", ",",
+                "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], 
+             "]"}]}]}], "}"}], "]"}], ",", 
+        RowBox[{"Point", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"r", "[", 
+             RowBox[{
+              RowBox[{"sm", "[", 
+               RowBox[{
+               "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                "s2", ",", 
+                RowBox[{"s3", "+", "1"}], ",", "rm"}], "]"}], ",", "a", ",", 
+              "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], 
+            
+            RowBox[{"Cos", "[", 
+             RowBox[{"\[Theta]", "[", 
+              RowBox[{
+               RowBox[{"sm", "[", 
+                RowBox[{
+                "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                 "s2", ",", 
+                 RowBox[{"s3", "+", "1"}], ",", "rm"}], "]"}], ",", "a", ",", 
+               "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}],
+              "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"r", "[", 
+             RowBox[{
+              RowBox[{"sm", "[", 
+               RowBox[{
+               "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                "s2", ",", 
+                RowBox[{"s3", "+", "1"}], ",", "rm"}], "]"}], ",", "a", ",", 
+              "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}], 
+            
+            RowBox[{"Sin", "[", 
+             RowBox[{"\[Theta]", "[", 
+              RowBox[{
+               RowBox[{"sm", "[", 
+                RowBox[{
+                "a", ",", "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", 
+                 "s2", ",", 
+                 RowBox[{"s3", "+", "1"}], ",", "rm"}], "]"}], ",", "a", ",", 
+               "b", ",", "\[Alpha]", ",", "x0", ",", "s1", ",", "s2"}], "]"}],
+              "]"}]}]}], "}"}], "]"}]}], "}"}], "]"}]}], "]"}], ",", 
    RowBox[{"{", 
     RowBox[{"\[Alpha]", ",", "0", ",", 
      FractionBox["\[Pi]", "2"]}], "}"}], ",", 
@@ -379,25 +431,27 @@ Cell[BoxData[
   3.6782024533213654`*^9, 3.6782025473492117`*^9}, {3.67820267051544*^9, 
   3.678202686856621*^9}, {3.6782029008901176`*^9, 3.6782029693099422`*^9}, {
   3.6782030062953587`*^9, 3.6782030177323513`*^9}, {3.678203093445665*^9, 
-  3.67820309643641*^9}}],
+  3.67820309643641*^9}, {3.6782124129350243`*^9, 3.678212418406391*^9}, {
+  3.678212474522334*^9, 3.678212502225522*^9}, {3.678212538587097*^9, 
+  3.678212583911655*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`x0$$ = 0.362, $CellContext`\[Alpha]$$ = 
-    1.5707963267948966`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+   DynamicModuleBox[{$CellContext`x0$$ = 0.612, $CellContext`\[Alpha]$$ = 
+    0.6660176425610361, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`\[Alpha]$$], 0, Rational[1, 2] Pi}, {
       Hold[$CellContext`x0$$], 0, 1}}, Typeset`size$$ = {360., {175., 179.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$20339$$ = 0, $CellContext`x0$20340$$ = 0}, 
+    True, $CellContext`\[Alpha]$40945$$ = 0, $CellContext`x0$40946$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`x0$$ = 0, $CellContext`\[Alpha]$$ = 0}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$20339$$, 0], 
-        Hold[$CellContext`x0$$, $CellContext`x0$20340$$, 0]}, 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$40945$$, 0], 
+        Hold[$CellContext`x0$$, $CellContext`x0$40946$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -416,26 +470,57 @@ $CellContext`b, $CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, \
 $CellContext`s2]]}, {$CellContext`s, -10, 10}, 
          PlotRange -> {-$CellContext`a/$CellContext`b, \
 $CellContext`a/$CellContext`b}], 
-        Graphics[
-         Point[{$CellContext`r[
-             $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
-\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
-$CellContext`rm], $CellContext`a, $CellContext`b, $CellContext`\[Alpha]$$, \
-$CellContext`x0$$, $CellContext`s1, $CellContext`s2] Cos[
-             $CellContext`\[Theta][
+        Graphics[{
+          Point[{$CellContext`r[
               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
 \[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
-$CellContext`rm], $CellContext`a, $CellContext`b, $CellContext`\[Alpha]$$, \
-$CellContext`x0$$, $CellContext`s1, $CellContext`s2]], $CellContext`r[
-             $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+$CellContext`s3, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2] 
+            Cos[
+              $CellContext`\[Theta][
+               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
 \[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
-$CellContext`rm], $CellContext`a, $CellContext`b, $CellContext`\[Alpha]$$, \
-$CellContext`x0$$, $CellContext`s1, $CellContext`s2] Sin[
-             $CellContext`\[Theta][
+$CellContext`s3, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, \
+$CellContext`s2]], $CellContext`r[
               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
 \[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
-$CellContext`rm], $CellContext`a, $CellContext`b, $CellContext`\[Alpha]$$, \
-$CellContext`x0$$, $CellContext`s1, $CellContext`s2]]}]]], 
+$CellContext`s3, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2] 
+            Sin[
+              $CellContext`\[Theta][
+               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
+$CellContext`s3, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, \
+$CellContext`s2]]}], 
+          Point[{$CellContext`r[
+              $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
+$CellContext`s3 + 
+               1, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2] 
+            Cos[
+              $CellContext`\[Theta][
+               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
+$CellContext`s3 + 
+                1, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, \
+$CellContext`s2]], $CellContext`r[
+              $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
+$CellContext`s3 + 
+               1, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2] 
+            Sin[
+              $CellContext`\[Theta][
+               $CellContext`sm[$CellContext`a, $CellContext`b, $CellContext`\
+\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, $CellContext`s2, \
+$CellContext`s3 + 
+                1, $CellContext`rm], $CellContext`a, $CellContext`b, \
+$CellContext`\[Alpha]$$, $CellContext`x0$$, $CellContext`s1, \
+$CellContext`s2]]}]}]], 
       "Specifications" :> {{$CellContext`\[Alpha]$$, 0, Rational[1, 2] 
          Pi}, {$CellContext`x0$$, 0, 1}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
@@ -457,8 +542,13 @@ $CellContext`x0$$, $CellContext`s1, $CellContext`s2]]}]]],
    3.678202548315282*^9}, {3.6782026712841187`*^9, 3.678202709052402*^9}, 
    3.678202849708942*^9, {3.678202935084525*^9, 3.678202969622946*^9}, {
    3.678203008264718*^9, 3.678203019000355*^9}, 3.67820309696341*^9, 
-   3.678207136340148*^9, 3.6782072155854473`*^9}]
+   3.678207136340148*^9, 3.6782072155854473`*^9, 3.678211993750835*^9, 
+   3.6782124290446453`*^9, {3.678212487105007*^9, 3.678212503071492*^9}, {
+   3.6782125450096207`*^9, 3.678212584549748*^9}}]
 }, Open  ]],
+
+Cell[BoxData["q"], "Input",
+ CellChangeTimes->{3.678212533611463*^9}],
 
 Cell[CellGroupData[{
 
@@ -940,7 +1030,7 @@ Cell[BoxData[
   3.6782039999123583`*^9, 3.678204018677288*^9}}]
 },
 WindowSize->{882, 720},
-WindowMargins->{{Automatic, 147}, {Automatic, 0}},
+WindowMargins->{{236, Automatic}, {Automatic, 0}},
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
 StyleDefinitions->"Default.nb"
@@ -958,17 +1048,18 @@ CellTagsIndex->{}
 Notebook[{
 Cell[557, 20, 2334, 72, 74, "Input"],
 Cell[2894, 94, 3029, 92, 134, "Input"],
-Cell[5926, 188, 2823, 79, 180, "Input"],
-Cell[8752, 269, 1126, 21, 97, "Input"],
+Cell[5926, 188, 2977, 82, 180, "Input"],
+Cell[8906, 272, 1295, 24, 114, "Input"],
 Cell[CellGroupData[{
-Cell[9903, 294, 3480, 87, 206, "Input"],
-Cell[13386, 383, 4396, 76, 488, "Output"]
+Cell[10226, 300, 5595, 135, 308, "Input"],
+Cell[15824, 437, 6068, 109, 488, "Output"]
 }, Open  ]],
+Cell[21907, 549, 69, 1, 28, "Input"],
 Cell[CellGroupData[{
-Cell[17819, 464, 3098, 85, 162, "Input"],
-Cell[20920, 551, 10687, 289, 394, "Output"]
+Cell[22001, 554, 3098, 85, 162, "Input"],
+Cell[25102, 641, 10687, 289, 394, "Output"]
 }, Open  ]],
-Cell[31622, 843, 3041, 96, 118, "Input"]
+Cell[35804, 933, 3041, 96, 118, "Input"]
 }
 ]
 *)

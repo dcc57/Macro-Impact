@@ -519,7 +519,44 @@ We now write a theoretical program for computing the energy density on the surfa
 \end{enumerate}
 \end{enumerate}
 The first round of propagation will produce some rays that hit the surface and some which need to be propagated a second time. All those rays propagating in the second round of propagation will originate on the core-mantle boundary, and thus computation will be greatly simplified. Once we have stored the final polar coordinate, we must place these final coordinates properly on the sphere. This is done by two rotations. The first is the inverse of the rotation which took the initial propagation direction vector into the $xy$-plane. The second is the inverse of the rotation which took the position vector of the point source to the $x$-axis. I believe rotations of points is commutative, but I'm too lazy to check, so it's safest to just do these in the proper order.
-
+\pagebreak
+\section{The Procedure Made More Explicit}
+\begin{enumerate}
+\item We wish to consider a line source. First, determine the number $N$ of point sources with which we want to approximate the line.
+\item Next we determine the coordinates of these points. If the Earth has radius $R_E$, and the line is a distance $D$ from the center, then the length of the line intersecting the earth is $L=2\sqrt{R_E^2-D^2}$. we must space the points evenly, so each point will be $\f{L}{N}$ apart from one another. To maintain symmetry, we insist that $N$ be odd, and that one point exist in the plane of symmetry. The coordinate of the center point is $(x,y,z)=(0,D,0)$. The set of points is described as $P=\{(x,D,0):x=\f{L}{N}(n-\f{N-1}{2}),n=\{0,\dots,N\}\}$\,.
+\item Now that we have a set of points, we must describe the set of rays originating at those points. The website listed above has a nice set of optimally spaced points on spheres, so we will use that. We will import the coordinates of the points from a text document. In order to apply our methods, we need to rotate the ray into the $xy$-plane. Suppose we want to propagate the ray whose coordinates w.r.t the starting point are
+\begin{align}
+(x,y,z)=\p{\f{L}{N}\p{n_0-\f{N-1}{2}},D,0}\,.
+\end{align}
+in the direction $(a,b,c)$ (given by the text document). We need to take this to a point of the form $(x,0)$. It is clear that
+\begin{align}
+x_0=\sqrt{\f{L^2}{N^2}\p{n_0-\f{N-1}{2}}^2+D^2}
+\end{align}
+where the rotation is by the angle
+\begin{align}
+\alpha=\arctan\p{\f{L}{ND}\p{n_0-\f{N-1}{2}}}
+\end{align}
+and whose matrix is
+\begin{align}
+\mat{ccc}{\cos\alpha&0&\sin\alpha\\0&1&0\\-\sin\alpha&0&\cos\alpha}\,.
+\end{align}
+In this new frame, the initial coordinate of the ray is in the $xy$-plane. The direction of propagation, however, may not be. In this new frame, the ray propagates as
+\begin{align}
+\mat{c}{a'\\b'\\c'}=\mat{ccc}{\cos\alpha&0&\sin\alpha\\0&1&0\\-\sin\alpha&0&\cos\alpha}\mat{c}{a\\b\\c}
+\end{align}
+We now rotate so that the $z$ coordinate is zero, and we extract the angle $\alpha$. The angle we want to rotate by is
+\begin{align}
+\beta=\arctan\p{\f{c'}{b'}}\,,
+\end{align}
+and the rotation matrix is
+\begin{align}
+\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\,.
+\end{align}
+We now have a propagation direction in the $xy$-plane:
+\begin{align}
+\mat{c}{a''\\b''\\c''}=\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\mat{c}{a'\\b'\\c'}\,.
+\end{align}
+\end{enumerate}
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
