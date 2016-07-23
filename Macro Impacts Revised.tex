@@ -554,8 +554,28 @@ and the rotation matrix is
 \end{align}
 We now have a propagation direction in the $xy$-plane:
 \begin{align}
-\mat{c}{a''\\b''\\c''}=\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\mat{c}{a'\\b'\\c'}\,.
+\mat{c}{a''\\b''\\0}=\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\mat{c}{a'\\b'\\c'}\,.
 \end{align}
+From this we can write down the propagation angle
+\begin{align}
+\alpha=\arctan\p{\f{b''}{a''}}\,.
+\end{align}
+We can now use the work from above. 
+\item CHECK: Is $x_0>R_{\te{mantle}}$?
+\begin{enumerate}
+\item If yes, then CHECK: is $s_{\te{mantle}}$ real?
+\begin{enumerate}
+\item If yes, then compute $\theta(s_{\te{mantle}})$ and $\sin\phi(s_{\te{mantle}})$ from the formulas in the Numerical Methods section. We now have a new starting angle $\alpha=-\arcsin\phi(s_{\te{mantle}})$. This information is then saved along side the angles $\alpha$ and $\beta$ to be used in the next round of computation.
+\item If no, then compute $\theta(s_{\te{Earth}})$, the angle after the ray has propagated to the surface of the earth. This is the final data for this ray.
+\end{enumerate}
+\item If no, then CHECK: is $\phi(s_{\te{mantle}})$ less than $\phi_{\te{critical}}=\arcsin\p{\f{v_{\te{core}}}{v_{\te{mantle}}}}$?
+\begin{enumerate}
+\item If yes, then compute $\theta(s_{\te{mantle}})$ and the new starting angle $\alpha=\arcsin\p{\f{v_{\te{mantle}}}{v_{\te{core}}}\sin\phi(s_{\te{mantle}})}$, which will be used in the next round of computation.
+\item If no, then throw the point away, as it will be internally reflected forever.
+\end{enumerate}
+\end{enumerate}
+\item Now, all the remaining points have trajectories originating on the surface $r_{\te{mantle}}$ and will intersect the surface of the earth. Thus, all that is left to compute is $\theta(s_{\te{Earth}})$ for each of these points, making sure to keep track of all relevant angles from the previous round of computation (i.e. $\theta(s_{\te{mantle}})$).
+\item At this point, we have computed final angles for all rays in their respective frames of reference. What is left is to rotate these points back into the original frame. Since all of these coordinates have the same radius, it is only important to keep track of the angle.
 \end{enumerate}
 \pagebreak
 \section{Melt Zone}
