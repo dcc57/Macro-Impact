@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    147451,       3998]
-NotebookOptionsPosition[    146218,       3959]
-NotebookOutlinePosition[    146573,       3975]
-CellTagsIndexPosition[    146530,       3972]
+NotebookDataLength[    147374,       3993]
+NotebookOptionsPosition[    146184,       3956]
+NotebookOutlinePosition[    146539,       3972]
+CellTagsIndexPosition[    146496,       3969]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1865,8 +1865,6 @@ Cell[BoxData[
               RowBox[{"Cos", "[", 
                RowBox[{"2", " ", "\[Alpha]"}], "]"}]}]}], ")"}]}]}], ")"}], 
         "2"]}]}], ")"}]}], ")"}]}]], "Input"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Simplify", "[", 
@@ -3955,7 +3953,6 @@ Cell[BoxData[
                RowBox[{"2", " ", "\[Alpha]"}], "]"}]}]}], ")"}]}]}], ")"}], 
         "2"]}]}], ")"}]}], ")"}]}]], "Output",
  CellChangeTimes->{3.6782100358827953`*^9}]
-}, Open  ]]
 },
 WindowSize->{740, 720},
 WindowMargins->{{Automatic, 56}, {Automatic, 0}},
@@ -3984,7 +3981,7 @@ Cell[2562, 88, 460, 14, 40, "Output"]
 }, Open  ]],
 Cell[3037, 105, 581, 18, 61, "Input"],
 Cell[3621, 125, 2249, 69, 145, "Input"],
-Cell[5873, 196, 8243, 216, 474, InheritFromParent],
+Cell[5873, 196, 8243, 216, 474, "Input"],
 Cell[14119, 414, 3663, 105, 187, InheritFromParent],
 Cell[17785, 521, 2876, 87, 145, "Input"],
 Cell[20664, 610, 6834, 175, 255, InheritFromParent],
@@ -3996,13 +3993,10 @@ Cell[36185, 1033, 11577, 308, 536, InheritFromParent],
 Cell[47765, 1343, 8100, 225, 264, InheritFromParent],
 Cell[55868, 1570, 2450, 71, 180, "Input"],
 Cell[58321, 1643, 7985, 223, 264, "Input"],
-Cell[CellGroupData[{
-Cell[66331, 1870, 45982, 1181, 3438, InheritFromParent],
-Cell[112316, 3053, 33886, 903, 1757, "Output"]
-}, Open  ]]
+Cell[66309, 1868, 45982, 1181, 3438, InheritFromParent],
+Cell[112294, 3051, 33886, 903, 1757, "Output"]
 }
 ]
 *)
 
 (* End of internal cache information *)
-

@@ -523,49 +523,53 @@ The first round of propagation will produce some rays that hit the surface and s
 \section{The Procedure Made More Explicit}
 \begin{enumerate}
 \item We wish to consider a line source. First, determine the number $N$ of point sources with which we want to approximate the line.
-\item Next we determine the coordinates of these points. If the Earth has radius $R_E$, and the line is a distance $D$ from the center, then the length of the line intersecting the earth is $L=2\sqrt{R_E^2-D^2}$. we must space the points evenly, so each point will be $\f{L}{N}$ apart from one another. To maintain symmetry, we insist that $N$ be odd, and that one point exist in the plane of symmetry. The coordinate of the center point is $(x,y,z)=(0,D,0)$. The set of points is described as $P=\{(x,D,0):x=\f{L}{N}(n-\f{N-1}{2}),n=\{0,\dots,N\}\}$\,.
-\item Now that we have a set of points, we must describe the set of rays originating at those points. The website listed above has a nice set of optimally spaced points on spheres, so we will use that. We will import the coordinates of the points from a text document. In order to apply our methods, we need to rotate the ray into the $xy$-plane. Suppose we want to propagate the ray whose coordinates w.r.t the starting point are
+\item Next we determine the coordinates of these points. If the Earth has radius $R_E$, and the line is a distance $D$ from the center, then the length of the line intersecting the earth is $L=2\sqrt{R_E^2-D^2}$. we must space the points evenly, so each point will be $\f{L}{N}$ apart from one another. To maintain symmetry, we insist that $N$ be odd, and that one point exist in the plane of symmetry. The coordinate of the center point is $(x,y,z)=(0,D,0)$. The set of points is described as $P=\{(x,D,0):x=\f{L}{N}(n-\f{N-1}{2}),n=\{1,\dots,N\}\}$\,.
+\item Now that we have a set of points, we must describe the set of rays originating at those points. The website listed above has a nice set of optimally spaced points on spheres, so we will use that. We will import the coordinates of the points from a text document. In order to apply our methods, we need to rotate the ray into the $xy$-plane. Denote
 \begin{align}
-(x,y,z)=\p{\f{L}{N}\p{n_0-\f{N-1}{2}},D,0}\,.
+\ell(n)=\f{L}{N}\p{n-\f{N}{2}}
+\end{align}
+Suppose we want to propagate the ray whose coordinates w.r.t the starting point are
+\begin{align}
+(x,y,z)=\p{\ell(n),D,0}\,.
 \end{align}
 in the direction $(a,b,c)$ (given by the text document). We need to take this to a point of the form $(x,0)$. It is clear that
 \begin{align}
-x_0=\sqrt{\f{L^2}{N^2}\p{n_0-\f{N-1}{2}}^2+D^2}
+x_0=\sqrt{\ell(n)^2+D^2}
 \end{align}
 where the rotation is by the angle
 \begin{align}
-\alpha=\arctan\p{\f{L}{ND}\p{n_0-\f{N-1}{2}}}
+\alpha=\arctan2\p{D,\ell(n)}
 \end{align}
 and whose matrix is
 \begin{align}
-\mat{ccc}{\cos\alpha&0&\sin\alpha\\0&1&0\\-\sin\alpha&0&\cos\alpha}\,.
+\mat{ccc}{\cos\alpha&\sin\alpha&0\\-\sin\alpha&\cos\alpha&0\\0&0&1}\,.
 \end{align}
 In this new frame, the initial coordinate of the ray is in the $xy$-plane. The direction of propagation, however, may not be. In this new frame, the ray propagates as
 \begin{align}
-\mat{c}{a'\\b'\\c'}=\mat{ccc}{\cos\alpha&0&\sin\alpha\\0&1&0\\-\sin\alpha&0&\cos\alpha}\mat{c}{a\\b\\c}
+\mat{c}{a'\\b\\c'}=\mat{ccc}{\cos\alpha&\sin\alpha&0\\-\sin\alpha&\cos\alpha&0\\0&0&1}\mat{c}{a+\ell(n)\\b+D\\c}
 \end{align}
 We now rotate so that the $z$ coordinate is zero, and we extract the angle $\alpha$. The angle we want to rotate by is
 \begin{align}
-\beta=\arctan\p{\f{c'}{b'}}\,,
+\beta=\arctan2\p{c',b'}\,,
 \end{align}
 and the rotation matrix is
 \begin{align}
-\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\,.
+\mat{ccc}{1&0&0\\0&\cos\beta&\sin\beta\\0&-\sin\beta&\cos\beta}\,.
 \end{align}
 We now have a propagation direction in the $xy$-plane:
 \begin{align}
-\mat{c}{a''\\b''\\0}=\mat{ccc}{1&0&0\\0&\cos\beta&-\sin\beta\\0&\sin\beta&\cos\beta}\mat{c}{a'\\b'\\c'}\,.
+\mat{c}{a''\\b''\\0}=\mat{ccc}{1&0&0\\0&\cos\beta&\sin\beta\\0&-\sin\beta&\cos\beta}\mat{c}{a'\\b'\\c'}\,.
 \end{align}
 From this we can write down the propagation angle
 \begin{align}
-\alpha=\arctan\p{\f{b''}{a''}}\,.
+\alpha_{\te{ray}}=\arctan\p{\f{b''}{a''-x_0}}\,.
 \end{align}
 We can now use the work from above. 
 \item CHECK: Is $x_0>R_{\te{mantle}}$?
 \begin{enumerate}
-\item If yes, then CHECK: is $s_{\te{mantle}}$ real?
+\item If yes, then CHECK: is $s_{\te{mantle}}$ real and $s_{\te{mantle}}>s_{x_0}$? In these cases, we take $s_2=2$. The choice of $s_1=0$ or $1$ is determined by the value of $\alpha$. We assume that the propagation begins by heading towards positive $y$ (so we'll need to account for this for points whose $\alpha$ is in the other direction by taking $\alpha\to2\pi-\alpha$). If this is the case, where $\alpha=0$ corresponds to propagation towards positive $x$, for $\alpha\in[0,\f\pi2]$, we take $s_1=0$. For $\alpha\in[\f\pi2,\pi]$, we take $s_1=1$, and $\alpha\to\pi-\alpha$. In the case that $\alpha>\f\pi2$, there is the possibility that the ray hits the mantle. The point of intersection corresponds to $s_{\te{mantle}}$ with $s_3=1$.
 \begin{enumerate}
-\item If yes, then compute $\theta(s_{\te{mantle}})$ and $\sin\phi(s_{\te{mantle}})$ from the formulas in the Numerical Methods section. We now have a new starting angle $\alpha=-\arcsin\phi(s_{\te{mantle}})$. This information is then saved along side the angles $\alpha$ and $\beta$ to be used in the next round of computation.
+\item If yes compute $\theta(s_{\te{mantle}})$ and $\sin\phi(s_{\te{mantle}})$ from the formulas in the Numerical Methods section. We now have a new starting angle $\alpha=-\arcsin\phi(s_{\te{mantle}})$. This information is then saved along side the angles $\alpha$ and $\beta$ to be used in the next round of computation.
 \item If no, then compute $\theta(s_{\te{Earth}})$, the angle after the ray has propagated to the surface of the earth. This is the final data for this ray.
 \end{enumerate}
 \item If no, then CHECK: is $\phi(s_{\te{mantle}})$ less than $\phi_{\te{critical}}=\arcsin\p{\f{v_{\te{core}}}{v_{\te{mantle}}}}$?
@@ -575,8 +579,10 @@ We can now use the work from above.
 \end{enumerate}
 \end{enumerate}
 \item Now, all the remaining points have trajectories originating on the surface $r_{\te{mantle}}$ and will intersect the surface of the earth. Thus, all that is left to compute is $\theta(s_{\te{Earth}})$ for each of these points, making sure to keep track of all relevant angles from the previous round of computation (i.e. $\theta(s_{\te{mantle}})$).
-\item At this point, we have computed final angles for all rays in their respective frames of reference. What is left is to rotate these points back into the original frame. Since all of these coordinates have the same radius, it is only important to keep track of the angle.
+\item At this point, we have computed final angles for all rays in their respective frames of reference. What is left is to rotate these points back into the original frame. Since all of these coordinates have the same radius, it is only important to keep track of the angles.
 \end{enumerate}
+\pagebreak
+\section{Code}
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
