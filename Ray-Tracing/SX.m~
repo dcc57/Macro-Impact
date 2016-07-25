@@ -1,0 +1,8 @@
+function output = SX(a,b,x0,AlphaRay,s1,s2,s3)
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
+
+Log(1 - (8*((-1)^(s1))*a*b*x0*(a^2 + (b^2)*(x0^2)) cos(AlphaRay))/(a^4 + 4*(a^2)*(b^2)*(x0^2) + (b^4)*(x0^4) + 2 a*b*x0*(2 ((-1)^(s1))*(a^2 +(b^2)(x0^2))*cos(AlphaRay) + 
+      a*b*x0*cos(2*AlphaRay))))/(4*a*b)
+end
+
