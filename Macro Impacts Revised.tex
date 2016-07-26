@@ -163,16 +163,16 @@ f(r)&=\sum_{n=0}^\infty\f{f^{(n)}(r_0)}{n!}(r-r_0)^n\,,\\
 \end{align}
 We now Fourier transform
 \begin{align}
-P(\vec k)=\f{4\pi p_0}{k_z}\sin\p{\f{h k_z}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k_r^2}}_{x=a}^b\,,
+P(\vec k)=\f{4\pi p_0}{k_z}\sin\p{\f{h k_z}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k_r^2}}_{x=a}^b\,,
 \end{align}
 where $_q\te{F}_p$ is the generalized hypergeometric function. We now convert to spherical coordinates in $k$-space, and write
 \begin{align}
-P(\vec k)=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k^2\sin^2\theta}}_{x=a}^b\,,
+P(\vec k)=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}\,_q\te{F}_p\p{\pc{1+\f m2},\pc{1,2+\f m2},-\f14 x^2 k^2\sin^2\theta}}_{x=a}^b\,,
 \end{align}
 We now expand the hypergeometric function to second order (the first order term is zero, so all that remains is the zeroth order term)
 \begin{align}
-P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k)\,,\\
-&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\ps{x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
+P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}\ps{x^{2+m}}_{x=a}^b+\scr O(k)\,,\\
+&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\ps{x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
 &=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k)\,.
 \end{align}
 From this, we find that the energy in the lowest modes is
