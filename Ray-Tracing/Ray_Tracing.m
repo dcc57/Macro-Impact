@@ -19,8 +19,8 @@ SecondPhase=[];
 %end
 RE = 6371; %input('What is the radius of the earth? (meters) ');
 D = 3000; %input('What is the distance of closest approach of the macro to the center? (meters) ');
-N = 40; %input('How many points along this line should we consider? ') + 1;
-M = 40; %input('How many rays will each point emit? ');
+N = 100; %input('How many points along this line should we consider? ') + 1;
+M = 100; %input('How many rays will each point emit? ');
 Rmantle = 3480; %input('What is the radius of the mantle? (meters) ');
 ac = 11.1502; %sqrt(input('Inside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is a^2? '));
 bc = 2.69692*(10^(-7)); %sqrt(input('Inside the core, assuming that the velcoity field has the form a^2-b^2*r^2, what is b^2? '));
@@ -133,9 +133,9 @@ end
 %Now we need to convert this into a pretty picture. This section is slow,
 %and could use some work...
 figure
-scatter3(ImpactPositionList(:,1),ImpactPositionList(:,2),ImpactPositionList(:,3))
-PolarDensity = 50;
-AzimuthalDensity = 50;
+scatter3(ImpactPositionList(:,1),ImpactPositionList(:,2),ImpactPositionList(:,3),'.')
+PolarDensity = 60;
+AzimuthalDensity = 60;
 NumberOfSamplePoints = (PolarDensity) * (AzimuthalDensity - 1);
 SampleAngle = pi/30;
 PointsToBeColored = zeros(AzimuthalDensity * PolarDensity,3);
@@ -166,4 +166,3 @@ for i = 1 : NumberOfSamplePoints
 end
 figure
 scatter3(CartPointsToBeColored(:,1),CartPointsToBeColored(:,2),CartPointsToBeColored(:,3),200,log(NumberOfRaysIncidentInDisk(:)),'filled')
-mesh(CartPointsToBeColored(:,1),CartPointsToBeColored(:,2),log(NumberOfRaysIncidentInDisk(:)))
