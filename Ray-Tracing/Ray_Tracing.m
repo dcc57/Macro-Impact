@@ -17,15 +17,15 @@ SecondPhase=[];
 %        counter = counter + 1;
 %    end
 %end
-RE = 6; %input('What is the radius of the earth? (meters) ');
-D = 2; %input('What is the distance of closest approach of the macro to the center? (meters) ');
-N = 400; %input('How many points along this line should we consider? ') + 1;
-M = 100; %input('How many rays will each point emit? ');
-Rmantle = 2.5; %input('What is the radius of the mantle? (meters) ');
-ac = 1; %sqrt(input('Inside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is a^2? '));
-bc = .1; %sqrt(input('Inside the core, assuming that the velcoity field has the form a^2-b^2*r^2, what is b^2? '));
-am = 1; %sqrt(input('Outside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is a^2? '));
-bm = .01; %sqrt(input('Outside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is b^2? '));
+RE = 6371; %input('What is the radius of the earth? (meters) ');
+D = 3000; %input('What is the distance of closest approach of the macro to the center? (meters) ');
+N = 40; %input('How many points along this line should we consider? ') + 1;
+M = 40; %input('How many rays will each point emit? ');
+Rmantle = 3480; %input('What is the radius of the mantle? (meters) ');
+ac = 11.1502; %sqrt(input('Inside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is a^2? '));
+bc = 2.69692*(10^(-7)); %sqrt(input('Inside the core, assuming that the velcoity field has the form a^2-b^2*r^2, what is b^2? '));
+am = 15.4938; %sqrt(input('Outside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is a^2? '));
+bm = 1.40336*(10^(-7)); %sqrt(input('Outside the core, assuming that the velocity field has the form a^2-b^2*r^2, what is b^2? '));
 RayDirectionVectors = zeros(M,N,3);
 for n = 1 : N
     for m = 1 : M
@@ -39,7 +39,7 @@ vm = (am^2)-(bm^2)*(Rmantle)^2;
 vc = (ac^2)-(bc^2)*(Rmantle)^2;
 CriticalAngle = asin(vc/vm);
 %M = LengthofPointmatrix/3; %The number of rays propagating from each point
-AnglesOfIncidence = zeros(M,N); %Angles of Incidence
+LaunchAngles = zeros(M,N); %Angles of Incidence
 AngleAtCoreMantleBoundary = zeros(M,N); %Angular displacement for rays incident on the core-mantle boundary
 AngleAtSurface=zeros(M,N); %Angular displacement for rays incident on the surface of the earth
 HitCore = zeros(M,N); %Do again?
@@ -69,7 +69,7 @@ for n=1:N-1
                 AngleAtSurface(m,n) = theta(Searth,am,bm,AlphaRay,x0,0,0,0);
                 HitSurface(m,n) = 1;
             else %The ray reflects off the mantle
-                AnglesOfIncidence(m,n) = 2*pi - asin(GOD(Smantle,am,bm,AlphaRay,x0,0,0,1));
+                LaunchAngles(m,n) = 2*pi - asin(GOD(Smantle,am,bm,AlphaRay,x0,0,0,1));
                 AngleAtCoreMantleBoundary(m,n) = theta(Smantle,am,bm,AlphaRay,x0,0,0,1);
                 HitCore(m,n) = 1;
             end
@@ -83,7 +83,7 @@ for n=1:N-1
             god = GOD(Smantle,ac,bc,AlphaRay,x0,0,0,0);
             angleofincidence = asin(god);
             if CriticalAngle > angleofincidence
-                AnglesOfIncidence(m,n) = asin((vm/vc)*god);
+                LaunchAngles(m,n) = asin((vm/vc)*god);
                 AngleAtCoreMantleBoundary(m,n) = theta(Smantle,ac,bc,AlphaRay,x0,0,0,0);
                 HitCore(m,n) = 1;
             end
@@ -92,7 +92,7 @@ for n=1:N-1
             god = GOD(Smantle,ac,bc,AlphaRay,x0,1,0,0);
             angleofincidence = asin(god);
             if CriticalAngle > angleofincidence
-                AnglesOfIncidence(m,n) = asin((vm/vc)*god);
+                LaunchAngles(m,n) = asin((vm/vc)*god);
                 AngleAtCoreMantleBoundary(m,n) = theta(Smantle,ac,bc,AlphaRay,x0,1,0,0);
                 HitCore(m,n) = 1;
             end
@@ -102,30 +102,68 @@ end
 for n = 1 : N - 1
     for m = 1 : M
         if HitCore(m,n) == 1 %note that the angle of departure is always between 0 and pi/2
-            Searth = SR(RE,am,bm,Rmantle,AnglesOfIncidence(m,n),1,0,0);
-            AngleAtSurface(m,n) = theta(Searth,am,bm,AnglesOfIncidence(m,n),Rmantle,1,0,0)+AngleAtCoreMantleBoundary(m,n);
+            Searth = SR(RE,am,bm,Rmantle,LaunchAngles(m,n),1,0,0);
+            AngleAtSurface(m,n) = theta(Searth,am,bm,LaunchAngles(m,n),Rmantle,1,0,0)+AngleAtCoreMantleBoundary(m,n);
             HitSurface(m,n) = 1;
         end
     end
 end
-j = 0;
+NumberOfImpacts = 0;
 for n = 1 : N - 1
     for m = 1 : M
         if HitSurface(m,n) == 1
-            j = j + 1;
+            NumberOfImpacts = NumberOfImpacts + 1;
             ImpactPositionBeforeRotation = [cos(AngleAtSurface(m,n));sin(AngleAtSurface(m,n));0];
             RotBackBeta = [1,0,0;0,cos(BetaList(m,n)),-sin(BetaList(m,n));0,sin(BetaList(m,n)),cos(BetaList(m,n))];
             ImpactPositionAfterFirstRotation = RotBackBeta * ImpactPositionBeforeRotation;
             RotBackAlpha = [cos(AlphaList(n)),-sin(AlphaList(n)),0;sin(AlphaList(n)),cos(AlphaList(n)),0;0,0,1];
             ImpactPosition = RotBackAlpha * ImpactPositionAfterFirstRotation;
             for i = 1 : 3
-                ImpactPositionList(j,i) = ImpactPosition(i);
+                ImpactPositionList(NumberOfImpacts,i) = ImpactPosition(i);
             end
         end
     end
 end
-ImpactPositionList = ImpactPositionList(1:j , : );
-%Now we need to convert this into a pretty picture.
-figure
-scatter3(ImpactPositionList(:,1),ImpactPositionList(:,2),ImpactPositionList(:,3),'.')
+ImpactPositionList = ImpactPositionList(1:NumberOfImpacts , : );
+for k = 1 : NumberOfImpacts
+    [TH,PH,R]=cart2sph(ImpactPositionList(k,1),ImpactPositionList(k,2),ImpactPositionList(k,3));   
+    ImpactPositionListPolar(k,:) = [TH,PH,R];
+end
 
+%Now we need to convert this into a pretty picture. This section is slow,
+%and could use some work...
+figure
+scatter3(ImpactPositionList(:,1),ImpactPositionList(:,2),ImpactPositionList(:,3))
+PolarDensity = 50;
+AzimuthalDensity = 50;
+NumberOfSamplePoints = (PolarDensity) * (AzimuthalDensity - 1);
+SampleAngle = pi/30;
+PointsToBeColored = zeros(AzimuthalDensity * PolarDensity,3);
+CartPointsToBeColored = zeros((AzimuthalDensity - 1) * PolarDensity,3);
+RotatedPositionList = zeros(NumberOfImpacts,3);
+NumberOfRaysIncidentInDisk = zeros(NumberOfSamplePoints,1);
+k = 0;
+for i = 1 : AzimuthalDensity - 1
+    for j = 1 : PolarDensity
+        k = k + 1;
+        PointsToBeColored(k,:) = [((pi)/(AzimuthalDensity - 1)) * i ,((2*pi)/(PolarDensity))* j, 1];
+        [x,y,z] = sph2cart(PointsToBeColored(k,1),PointsToBeColored(k,2),PointsToBeColored(k,3));
+        CartPointsToBeColored(k,:) = [x,y,z];
+    end
+end
+for i = 1 : NumberOfSamplePoints
+    PHI = atan2((sqrt((CartPointsToBeColored(i,1))^2+(CartPointsToBeColored(i,2))^2)),(CartPointsToBeColored(i,3)));
+    for m = 1 : NumberOfImpacts
+        RotatedPositionList(m,:) = T(-CartPointsToBeColored(i,2),CartPointsToBeColored(i,1),0,-PHI)*transpose(ImpactPositionList(m,:));
+    end
+    for n = 1 : NumberOfImpacts
+        phi = atan2((sqrt((RotatedPositionList(n,1))^2+(RotatedPositionList(n,2))^2)),(RotatedPositionList(n,3)));
+        RotatedPositionListPolar(:) = [Th,Ph,R];
+        if abs(phi) <= SampleAngle
+            NumberOfRaysIncidentInDisk(i,1) = NumberOfRaysIncidentInDisk(i,1) + 1;
+        end
+    end
+end
+figure
+scatter3(CartPointsToBeColored(:,1),CartPointsToBeColored(:,2),CartPointsToBeColored(:,3),200,log(NumberOfRaysIncidentInDisk(:)),'filled')
+mesh(CartPointsToBeColored(:,1),CartPointsToBeColored(:,2),log(NumberOfRaysIncidentInDisk(:)))
