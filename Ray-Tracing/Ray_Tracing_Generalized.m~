@@ -1,0 +1,109 @@
+clear
+
+a = [11.2633,10.6835,15.4938].^(1/2); %first entry corresponds to the core
+b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %first entry corresponds to the core
+WeaknessOfNeglectedRays = 10^(-1); %input('What fraction of the initial ray energy must a ray contain to not be thrown out? ');
+
+D = 1000;
+Radii = [0,1221,3480,6371];
+AbsoluteCutoff = 1;
+
+Layers = length(Radii);
+
+vBoundaries = zeros(Layers-2,2); %v(:,1) corresponds to the inner velocity on the :th layer, and v(:,2) corresponds to the outer velocity on the :th layer
+ReflectionCoefficients = zeros(Layers - 1,2); %these correspond to 4 functions of the angle of incidence
+TransmissionCoefficients = zeros(Layers - 1,2); %these correspond to 4 functions of the angle of incidence
+for i = 1 : Layers - 2
+    vBoundaries(i,1) = (a(i)^2)-(b(i)^2)*(Radii(i+1))^2; %inner
+    vBoundaries(i,2) = (a(i+1)^2)-(b(i+1)^2)*(Radii(i+1))^2; %outer
+end
+
+%GENERATING THE RANDOM POINTS ON A SPHERE
+
+M = 10;
+N = 12;
+Th = rand(M,N).*(2*pi);
+Ph = asin((rand(M,N).*2.-1));
+I = 1:M;
+J = 1:N;
+RandSph = zeros(M,N,3);
+RandSph(:,:,1) = Th(:,:);
+RandSph(:,:,2) = Ph(:,:);
+RandSph(I,J,3) = 1;
+[RandX,RandY,RandZ] = sph2cart(RandSph(I,J,1),RandSph(I,J,2),RandSph(I,J,3));
+
+%PREPARING THE INITIAL CONDITIONS FOR THE RAYS
+
+L = 2*((((Radii(Layers))^2)-((D)^2))^0.5);
+l = (I-((M+1)/2)).*(L/(M+1));
+RayArray = zeros(M,N,2^(AbsoluteCutoff - 1),3); % = (point M, ray N, daughter P, (x,AlphaRay,Amplitude))
+Alpha = atan2(D,transpose(l));
+x0 = transpose(repmat(X0(L,(M+1),I,D), [N,1]));
+for i = 1 : M
+    RotMatrixAlpha = [cos(Alpha(i)),sin(Alpha(i)),0;-sin(Alpha(i)),cos(Alpha(i)),0;0,0,1];
+    for j = 1 : N
+        RotRand = RotMatrixAlpha*[RandX(i,j)+l(i);RandY(i,j)+D;RandZ(i,j)];
+        Beta(i,j) = atan2(RotRand(3),RotRand(2));
+        RotMatrixBeta = [1,0,0;0,cos(Beta(i,j)),sin(Beta(i,j));0,-sin(Beta(i,j)),cos(Beta(i,j))];
+        Vec = RotMatrixBeta*RotRand;
+        AlphaRay(i,j) = atan2(Vec(2),Vec(1) - x0(i,j));
+    end
+end
+RayArrayx0 = zeros(M,N,2^(AbsoluteCutoff));
+RayArrayAlpha = zeros(M,N,2^(AbsoluteCutoff));
+RayArrayAmp = zeros(M,N,2^(AbsoluteCutoff));
+RayArrayAngDisp = zeros(M,N,2^(AbsoluteCutoff));
+
+RayArrayx0(:,:,1) = x0(:,:);
+RayArrayx0(:,:,2:2^(AbsoluteCutoff)) = Radii(Layers) + 1;
+RayArrayAlpha(:,:,1) = AlphaRay(:,:);
+RayArrayAmp(:,:,1) = 1;
+RayArrayAngDisp(:,:,1) = Beta;
+
+%PROPAGATION
+
+LeftRays = zeros(M,N,2^(AbsoluteCutoff),1);
+RightRays = zeros(M,N,2^(AbsoluteCutoff),1);
+LayerRays = zeros(M,N,2^(AbsoluteCutoff),Layers - 1);
+
+for Iter = 1 : AbsoluteCutoff
+    for LayerId = 1 : Layers - 1
+        LIdOutward = ( RayArrayAlpha(:,:,:) < pi / 2 ) & (Radii(LayerId) <= RayArrayx0(:,:,:) & RayArrayx0(:,:,:) < Radii(LayerId + 1));
+        LIdInward = ( RayArrayAlpha(:,:,:) >= pi / 2 ) & (Radii(LayerId) <= RayArrayx0(:,:,:) & RayArrayx0(:,:,:) < Radii(LayerId + 1));
+        %OUTWARD BOUND RAYS
+        SOutward = SR(Radii(LayerId + 1),a(LayerId),b(LayerId),RayArrayx0(LIdOutward),RayArrayAlpha(LIdOutward),0,0,0);
+        %REFRACTED OUTWARD BOUND RAYS
+        sinAngleOfIncidence = GOD(SOutward,a(LayerId),b(LayerId),RayArrayAlpha(LIdOutward),RayArrayx0(LIdOutward),0,0,0);
+        RayArrayAlpha(LIdOutward) = asin((vBoundaries(LayerId,2)/(vBoundaries(LayerId,1))*sinAngleOfIncidence));
+        RayArrayx0(LIdOutward) = Radii(LayerId + 1);
+        RayArrayAngDisp(LIdOutward) = RayArrayAngDisp(LIdOutward) + theta(SOutward,a(LayerId),b(LayerId),RayArrayAlpha(LIdOutward),RayArrayx0(LIdOutward),0,0,0);
+        RayArrayAmp(LIdOutward) = 0.5;
+
+        %REFLECTED OUTWARD BOUND RAYS
+        LIdOutward = circshift(LIdOutward,[0,0, 2^(Iter - 1)]);
+        RayArrayAlpha(LIdOutward) = 2*pi - asin(sinAngleOfIncidence);
+        RayArrayx0(LIdOutward) = Radii(LayerId + 1);
+        RayArrayAngDisp(LIdOutward) = RayArrayAngDisp(LIdOutward) + theta(SOutward,a(LayerId),b(LayerId),RayArrayAlpha(LIdOutward),RayArrayx0(LIdOutward),0,0,0);
+        RayArrayAmp(LIdOutward) = 0.5;
+        if LayerId > 1
+            %Inward Hit Check
+            SInward = SR(Radii(LayerId),a(LayerId),b(LayerId),RayArrayx0(LIdInward), pi - RayArrayAlpha(LIdInward),0,0,1);
+        end
+    end
+end
+
+%    LeftRays = ( RayArray(:,:,1 : 2^(Iteration - 1),2) > pi / 2 );
+%    RightRays = ( RayArray(:,:,1 : 2^(Iteration - 1),2) <= pi / 2 );
+%    RayArray(LeftRays) = pi - RayArray(LeftRays);
+%    
+%    for LayerCounter = 1 : Layers - 1;
+%        LayerRays(:,:,1 : 2^(Iteration - 1),LayerCounter) = ( and( RayArray(:,:,1 : 2^(Iteration - 1),1) > Radii(LayerCounter), RayArray(:,:,1 : 2^(Iteration - 1),1) < Radii(LayerCounter + 1) ) );
+%    end
+%    for LayerCounter = 1 : Layers - 1;
+%        %Rightward
+%        RightLayerRays = LayerRays(:,:,1 : 2^(Iteration-1),LayerCounter).*RightRays;
+%        x0 = RayArray(:,:,1 : 2^(Iteration - 1),1).* RightLayerRays;
+%        AlphaRay = RayArray(:,:,1 : 2^(Iteration - 1),2).* RightLayerRays;
+%        SR(Radii(LayerCounter + 1),a(LayerCounter),b(LayerCounter),x0,AlphaRay,0,0,0).*RightLayerRays
+%        %Leftward
+%    end
