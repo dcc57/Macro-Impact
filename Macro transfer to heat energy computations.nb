@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19093,        548]
-NotebookOptionsPosition[     17318,        482]
-NotebookOutlinePosition[     17699,        499]
-CellTagsIndexPosition[     17656,        496]
+NotebookDataLength[     19311,        551]
+NotebookOptionsPosition[     17535,        485]
+NotebookOutlinePosition[     17916,        502]
+CellTagsIndexPosition[     17873,        499]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -147,7 +147,9 @@ then assume -- in this case -- that all plastic strain is transfered to heat. \
  Thus, we can use eq. (46) of \[OpenCurlyDoubleQuote]Localization of strain \
 and the melting wave in high-speed penetration\[CloseCurlyDoubleQuote] to \
 find the temperature that the material impacted by the macro will be raised \
-to.  We use the (approximate) parameters of steel.\
+to.  We use the (approximate) parameters of steel (note that here and below, \
+we assume these parameters are independent of temperature which is a large \
+assumption -- particularly for the viscosity factor \[Mu]).\
 \>", "Text",
  CellChangeTimes->{{3.678742905130864*^9, 3.678742910848624*^9}, {
    3.6787437076485653`*^9, 3.678743954441066*^9}, {3.678754938716708*^9, 
@@ -157,7 +159,8 @@ to.  We use the (approximate) parameters of steel.\
    3.678758849432672*^9, {3.678759019282655*^9, 3.678759053069923*^9}, {
    3.6787590879966803`*^9, 3.678759242328371*^9}, {3.678759309321459*^9, 
    3.678759322727832*^9}, {3.678759636414694*^9, 3.678759709047542*^9}, {
-   3.678759825119275*^9, 3.678759847613208*^9}}],
+   3.678759825119275*^9, 3.678759847613208*^9}, {3.6787659027862186`*^9, 
+   3.678765948127646*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -514,41 +517,41 @@ Cell[4697, 131, 130, 3, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[4864, 139, 86, 1, 64, "Section"],
-Cell[4953, 142, 1178, 17, 106, "Text"],
-Cell[6134, 161, 990, 29, 103, "Input"],
+Cell[4953, 142, 1395, 20, 125, "Text"],
+Cell[6351, 164, 990, 29, 103, "Input"],
 Cell[CellGroupData[{
-Cell[7149, 194, 588, 14, 28, "Input"],
-Cell[7740, 210, 196, 3, 32, "Output"]
+Cell[7366, 197, 588, 14, 28, "Input"],
+Cell[7957, 213, 196, 3, 32, "Output"]
 }, Open  ]],
-Cell[7951, 216, 432, 9, 87, "Text"],
+Cell[8168, 219, 432, 9, 87, "Text"],
 Cell[CellGroupData[{
-Cell[8408, 229, 1199, 33, 63, "Input"],
-Cell[9610, 264, 192, 3, 32, "Output"]
+Cell[8625, 232, 1199, 33, 63, "Input"],
+Cell[9827, 267, 192, 3, 32, "Output"]
 }, Open  ]],
-Cell[9817, 270, 224, 5, 30, "Text"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[10078, 280, 110, 1, 64, "Section"],
-Cell[10191, 283, 1169, 20, 182, "Text"],
-Cell[CellGroupData[{
-Cell[11385, 307, 493, 15, 28, "Input"],
-Cell[11881, 324, 187, 4, 52, "Output"]
+Cell[10034, 273, 224, 5, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12105, 333, 902, 26, 68, "Input"],
-Cell[13010, 361, 1592, 42, 212, "Output"]
-}, Open  ]],
-Cell[14617, 406, 180, 2, 30, "Text"],
+Cell[10295, 283, 110, 1, 64, "Section"],
+Cell[10408, 286, 1169, 20, 182, "Text"],
 Cell[CellGroupData[{
-Cell[14822, 412, 618, 17, 28, "Input"],
-Cell[15443, 431, 141, 2, 32, "Output"]
+Cell[11602, 310, 493, 15, 28, "Input"],
+Cell[12098, 327, 187, 4, 52, "Output"]
 }, Open  ]],
-Cell[15599, 436, 265, 6, 68, "Text"],
 Cell[CellGroupData[{
-Cell[15889, 446, 511, 14, 28, "Input"],
-Cell[16403, 462, 91, 1, 32, "Output"]
+Cell[12322, 336, 902, 26, 68, "Input"],
+Cell[13227, 364, 1592, 42, 212, "Output"]
 }, Open  ]],
-Cell[16509, 466, 793, 13, 144, "Text"]
+Cell[14834, 409, 180, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[15039, 415, 618, 17, 28, "Input"],
+Cell[15660, 434, 141, 2, 32, "Output"]
+}, Open  ]],
+Cell[15816, 439, 265, 6, 68, "Text"],
+Cell[CellGroupData[{
+Cell[16106, 449, 511, 14, 28, "Input"],
+Cell[16620, 465, 91, 1, 32, "Output"]
+}, Open  ]],
+Cell[16726, 469, 793, 13, 144, "Text"]
 }, Open  ]]
 }
 ]
