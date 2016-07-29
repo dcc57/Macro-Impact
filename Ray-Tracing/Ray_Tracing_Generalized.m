@@ -6,7 +6,7 @@ a = [11.2633,10.6835,15.4938].^(1/2); %first entry corresponds to the core
 b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %first entry corresponds to the core
 WeaknessOfNeglectedRays = 10^(-1); %input('What fraction of the initial ray energy must a ray contain to not be thrown out? ');
 
-D = 1500;
+D = 6370;
 Radii = [0,1221,3480,6371];
 AbsoluteCutoff = 4;
 
@@ -23,10 +23,12 @@ end
 vBoundaries(Layers - 1,1) = (a(Layers - 1)^2)-(b(Layers - 1)^2)*(Radii(Layers))^2;
 vBoundaries(Layers - 1,2) = 0.34042; %Air
 
+rhoBoundaries = [];
+
 %GENERATING THE RANDOM POINTS ON A SPHERE
 
 M = 1;
-N = 100000;
+N = 10000;
 Th = rand(M,N).*(2*pi);
 Ph = asin((rand(M,N).*2.-1));
 I = 1:M;
@@ -192,4 +194,4 @@ Yfinal = sin(PlaneAng).*Xrote +cos(PlaneAng).*Yrote;
 Zfinal = Zrote;
 figure
 axis equal
-scatter3(Xfinal,Yfinal,Zfinal,'.')
+scatter3(Xfinal,Yfinal,Zfinal,1,Amp)
