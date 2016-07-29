@@ -11,15 +11,21 @@ NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
 <<<<<<< HEAD
+<<<<<<< HEAD
 NotebookDataLength[     22280,        650]
 NotebookOptionsPosition[     20242,        575]
 NotebookOutlinePosition[     20623,        592]
 CellTagsIndexPosition[     20580,        589]
 =======
+=======
+>>>>>>> origin/master
 NotebookDataLength[     19311,        551]
 NotebookOptionsPosition[     17535,        485]
 NotebookOutlinePosition[     17916,        502]
 CellTagsIndexPosition[     17873,        499]
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 WindowFrame->Normal*)
 
@@ -618,8 +624,13 @@ Cell[4697, 131, 130, 3, 30, "Text"]
 Cell[CellGroupData[{
 Cell[4864, 139, 86, 1, 64, "Section"],
 <<<<<<< HEAD
+<<<<<<< HEAD
 Cell[4953, 142, 1178, 17, 87, "Text"],
 Cell[6134, 161, 990, 29, 103, "Input"],
+=======
+Cell[4953, 142, 1395, 20, 125, "Text"],
+Cell[6351, 164, 990, 29, 103, "Input"],
+>>>>>>> origin/master
 =======
 Cell[4953, 142, 1395, 20, 125, "Text"],
 Cell[6351, 164, 990, 29, 103, "Input"],
@@ -631,8 +642,13 @@ Cell[7957, 213, 196, 3, 32, "Output"]
 Cell[8168, 219, 432, 9, 87, "Text"],
 Cell[CellGroupData[{
 <<<<<<< HEAD
+<<<<<<< HEAD
 Cell[8408, 229, 1199, 33, 46, "Input"],
 Cell[9610, 264, 192, 3, 32, "Output"]
+=======
+Cell[8625, 232, 1199, 33, 63, "Input"],
+Cell[9827, 267, 192, 3, 32, "Output"]
+>>>>>>> origin/master
 =======
 Cell[8625, 232, 1199, 33, 63, "Input"],
 Cell[9827, 267, 192, 3, 32, "Output"]
@@ -641,6 +657,7 @@ Cell[9827, 267, 192, 3, 32, "Output"]
 Cell[10034, 273, 224, 5, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
+<<<<<<< HEAD
 <<<<<<< HEAD
 Cell[10078, 280, 110, 1, 64, "Section"],
 Cell[10191, 283, 1974, 46, 194, "Text"],
@@ -681,6 +698,15 @@ Cell[19327, 555, 91, 1, 32, "Output"]
 }, Open  ]],
 Cell[19433, 559, 793, 13, 106, "Text"]
 =======
+=======
+Cell[10295, 283, 110, 1, 64, "Section"],
+Cell[10408, 286, 1169, 20, 182, "Text"],
+Cell[CellGroupData[{
+Cell[11602, 310, 493, 15, 28, "Input"],
+Cell[12098, 327, 187, 4, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+>>>>>>> origin/master
 Cell[12322, 336, 902, 26, 68, "Input"],
 Cell[13227, 364, 1592, 42, 212, "Output"]
 }, Open  ]],
@@ -695,6 +721,9 @@ Cell[16106, 449, 511, 14, 28, "Input"],
 Cell[16620, 465, 91, 1, 32, "Output"]
 }, Open  ]],
 Cell[16726, 469, 793, 13, 144, "Text"]
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 }, Open  ]]
 }
