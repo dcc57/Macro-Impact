@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     25861,        756]
-NotebookOptionsPosition[     23548,        672]
-NotebookOutlinePosition[     23901,        688]
-CellTagsIndexPosition[     23858,        685]
+NotebookDataLength[     22481,        647]
+NotebookOptionsPosition[     20433,        572]
+NotebookOutlinePosition[     20787,        588]
+CellTagsIndexPosition[     20744,        585]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -402,32 +402,6 @@ Cell[BoxData[
      RowBox[{"(", 
       RowBox[{"1.8", "*", 
        RowBox[{"10", "^", 
-        RowBox[{"-", "6"}]}]}], ")"}], "^", "2"}], "/", "4.8"}], ")"}], 
-  RowBox[{"(", 
-   RowBox[{"\[Rho]", "/", 
-    RowBox[{"(", 
-     RowBox[{"4", "\[Mu]"}], ")"}]}], ")"}]}]], "Input",
- CellChangeTimes->{{3.678743896626788*^9, 3.67874390166294*^9}, {
-  3.6787569508153553`*^9, 3.678756964508185*^9}, {3.678757281475532*^9, 
-  3.678757306382077*^9}}],
-
-Cell[BoxData[
- FractionBox[
-  RowBox[{"1.6875`*^-13", " ", "\[Rho]"}], "\[Mu]"]], "Output",
- CellChangeTimes->{{3.6787569607564373`*^9, 3.6787569648873997`*^9}, 
-   3.678757308233251*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"(", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"(", 
-      RowBox[{"1.8", "*", 
-       RowBox[{"10", "^", 
         RowBox[{"-", "6"}]}]}], ")"}], "^", "2"}], "/", "48"}], ")"}], 
   RowBox[{"(", 
    RowBox[{"\[Rho]", "/", 
@@ -443,85 +417,6 @@ Cell[BoxData[
  CellChangeTimes->{{3.6787569607564373`*^9, 3.6787569648873997`*^9}, 
    3.678757308233251*^9, 3.678768357301464*^9}]
 }, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"heatEnergyapprox3", "=", 
-  RowBox[{"Assuming", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"\[Rho]", ">", "0"}], ",", 
-      RowBox[{"\[Mu]", ">", "0"}]}], "}"}], ",", 
-    RowBox[{"\[Pi]", "*", "h", "*", 
-     RowBox[{"Integrate", "[", 
-      RowBox[{
-       RowBox[{"\[Mu]", 
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{"v", "*", 
-           RowBox[{"(", 
-            RowBox[{"1", "-", 
-             RowBox[{"Erf", "[", "\[Eta]", "]"}]}], ")"}]}], ")"}], "^", 
-         "2"}]}], ",", 
-       RowBox[{"{", 
-        RowBox[{"\[Eta]", ",", "0", ",", 
-         FractionBox[
-          RowBox[{"1.6875`*^-13", " ", "\[Rho]"}], "\[Mu]"]}], "}"}]}], 
-      "]"}]}]}], "]"}]}]], "Input",
- CellChangeTimes->{{3.678757320532014*^9, 3.678757356436985*^9}, {
-  3.67875742722997*^9, 3.678757486008876*^9}, {3.678757529854127*^9, 
-  3.678757543941177*^9}, {3.678768378986817*^9, 3.678768384048011*^9}}],
-
-Cell[BoxData[
- RowBox[{"h", " ", "\[Pi]", " ", 
-  SuperscriptBox["v", "2"], " ", "\[Mu]", " ", 
-  RowBox[{"(", 
-   RowBox[{"1.1283791670955126`", "\[VeryThinSpace]", "-", 
-    RowBox[{"1.1283791670955126`", " ", 
-     SuperscriptBox["\[ExponentialE]", 
-      RowBox[{"-", 
-       FractionBox[
-        RowBox[{"2.8476562499999995`*^-26", " ", 
-         SuperscriptBox["\[Rho]", "2"]}], 
-        SuperscriptBox["\[Mu]", "2"]]}]]}], "+", 
-    FractionBox[
-     RowBox[{"1.6874999999999996`*^-13", " ", "\[Rho]"}], "\[Mu]"], "+", 
-    RowBox[{
-     RowBox[{"(", 
-      RowBox[{
-       RowBox[{"1.1283791670955126`", " ", 
-        SuperscriptBox["\[ExponentialE]", 
-         RowBox[{"-", 
-          FractionBox[
-           RowBox[{"2.8476562499999995`*^-26", " ", 
-            SuperscriptBox["\[Rho]", "2"]}], 
-           SuperscriptBox["\[Mu]", "2"]]}]]}], "-", 
-       FractionBox[
-        RowBox[{"3.374999999999999`*^-13", " ", "\[Rho]"}], "\[Mu]"]}], ")"}],
-      " ", 
-     RowBox[{"Erf", "[", 
-      FractionBox[
-       RowBox[{"1.6875`*^-13", " ", "\[Rho]"}], "\[Mu]"], "]"}]}], "+", 
-    FractionBox[
-     RowBox[{"1.6874999999999996`*^-13", " ", "\[Rho]", " ", 
-      SuperscriptBox[
-       RowBox[{"Erf", "[", 
-        FractionBox[
-         RowBox[{"1.6875`*^-13", " ", "\[Rho]"}], "\[Mu]"], "]"}], "2"]}], 
-     "\[Mu]"], "-", 
-    RowBox[{"0.7978845608028654`", " ", 
-     RowBox[{"Erf", "[", 
-      FractionBox[
-       RowBox[{"2.3864853865045976`*^-13", " ", "\[Rho]"}], "\[Mu]"], 
-      "]"}]}]}], ")"}]}]], "Output",
- CellChangeTimes->{3.678757490579712*^9, 3.678757547749776*^9}]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"k", "=", "1.6875`*^-14"}], ";"}]], "Input"],
 
 Cell[CellGroupData[{
 
@@ -590,7 +485,8 @@ Cell[BoxData[
    ")"}]}]], "Output",
  CellChangeTimes->{
   3.678757490579712*^9, 3.678757547749776*^9, {3.67876839754393*^9, 
-   3.678768460679418*^9}, {3.678768496954749*^9, 3.678768525801304*^9}}]
+   3.678768460679418*^9}, {3.678768496954749*^9, 3.678768525801304*^9}, 
+   3.678803195364821*^9}]
 }, Open  ]],
 
 Cell["Using the parameters for steel (approximate):", "Text",
@@ -614,23 +510,27 @@ Cell[BoxData[
       RowBox[{"10", "^", "7"}]}]}], ",", 
     RowBox[{"v", "\[Rule]", " ", 
      RowBox[{"2.5", "*", 
-      RowBox[{"10", "^", "6"}]}]}]}], "}"}]}]], "Input",
+      RowBox[{"10", "^", "6"}]}]}], ",", " ", 
+    RowBox[{"k", "\[Rule]", " ", "1.6875`*^-14"}]}], "}"}]}]], "Input",
  CellChangeTimes->{{3.678757564754126*^9, 3.678757595316139*^9}, {
-  3.6787577877971478`*^9, 3.678757857728681*^9}}],
+  3.6787577877971478`*^9, 3.678757857728681*^9}, {3.678803059759276*^9, 
+  3.678803067379077*^9}, {3.678803230766891*^9, 3.6788032313775387`*^9}}],
 
 Cell[BoxData["3.1808625388312016`*^10"], "Output",
- CellChangeTimes->{3.678768577825872*^9}]
+ CellChangeTimes->{
+  3.678768577825872*^9, {3.678803072983075*^9, 3.678803086209505*^9}, {
+   3.6788032126720753`*^9, 3.678803235733132*^9}}]
 }, Open  ]],
 
 Cell["\<\
-Note that the above is of the same order of magnitude as 0.5th approximation. \
-(with the correction, it\[CloseCurlyQuote]s 1 order of magnitude less).
+Note that the above is one order of of magnitude less than the 0.5th \
+approximation.
 
 Now, using parameters for rock (approximate):\
 \>", "Text",
  CellChangeTimes->{{3.6787586178338003`*^9, 3.678758629113385*^9}, {
   3.678759385473233*^9, 3.678759429331903*^9}, {3.678768567185313*^9, 
-  3.6787685763515997`*^9}}],
+  3.6787685763515997`*^9}, {3.678803326610814*^9, 3.678803337237297*^9}}],
 
 Cell[CellGroupData[{
 
@@ -670,7 +570,7 @@ material to a plasma state.
   3.6787594381697073`*^9, 3.6787595093561277`*^9}}]
 }, Open  ]]
 },
-WindowSize->{808, 720},
+WindowSize->{808, 1002},
 WindowMargins->{{Automatic, 69}, {Automatic, 0}},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
 2014)",
@@ -730,33 +630,24 @@ Cell[CellGroupData[{
 Cell[12374, 348, 110, 1, 64, "Section"],
 Cell[12487, 351, 1887, 41, 194, "Text"],
 Cell[CellGroupData[{
-Cell[14399, 396, 493, 15, 28, "Input"],
-Cell[14895, 413, 187, 4, 52, "Output"]
+Cell[14399, 396, 516, 15, 28, "Input"],
+Cell[14918, 413, 221, 4, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15119, 422, 516, 15, 28, "Input"],
-Cell[15638, 439, 221, 4, 52, "Output"]
+Cell[15176, 422, 983, 27, 68, "Input"],
+Cell[16162, 451, 1218, 37, 100, "Output"]
 }, Open  ]],
+Cell[17395, 491, 180, 2, 30, "Text"],
 Cell[CellGroupData[{
-Cell[15896, 448, 948, 26, 68, "Input"],
-Cell[16847, 476, 1592, 42, 212, "Output"]
+Cell[17600, 497, 777, 19, 46, "Input"],
+Cell[18380, 518, 193, 3, 32, "Output"]
 }, Open  ]],
-Cell[18454, 521, 78, 2, 28, "Input"],
+Cell[18588, 524, 370, 8, 68, "Text"],
 Cell[CellGroupData[{
-Cell[18557, 527, 983, 27, 68, "Input"],
-Cell[19543, 556, 1192, 36, 100, "Output"]
+Cell[18983, 536, 511, 14, 28, "Input"],
+Cell[19497, 552, 112, 1, 32, "Output"]
 }, Open  ]],
-Cell[20750, 595, 180, 2, 30, "Text"],
-Cell[CellGroupData[{
-Cell[20955, 601, 618, 17, 28, "Input"],
-Cell[21576, 620, 92, 1, 32, "Output"]
-}, Open  ]],
-Cell[21683, 624, 390, 8, 87, "Text"],
-Cell[CellGroupData[{
-Cell[22098, 636, 511, 14, 28, "Input"],
-Cell[22612, 652, 112, 1, 32, "Output"]
-}, Open  ]],
-Cell[22739, 656, 793, 13, 144, "Text"]
+Cell[19624, 556, 793, 13, 144, "Text"]
 }, Open  ]]
 }
 ]
