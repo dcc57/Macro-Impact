@@ -1,0 +1,8 @@
+function output = TransmissionCoefficient(LayerId,sinTheta,v1,v2)
+%The fluid in which the wave arrives is labeled 1, and the output
+%   Detailed explanation goes here
+
+    output = 
+
+end
+

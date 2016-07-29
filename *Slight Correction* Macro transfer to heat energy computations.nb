@@ -3,24 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 10.0' *)
+(* CreatedBy='Mathematica 10.4' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-<<<<<<< HEAD
-NotebookDataLength[     22280,        650]
-NotebookOptionsPosition[     20242,        575]
-NotebookOutlinePosition[     20623,        592]
-CellTagsIndexPosition[     20580,        589]
-=======
-NotebookDataLength[     19311,        551]
-NotebookOptionsPosition[     17535,        485]
-NotebookOutlinePosition[     17916,        502]
-CellTagsIndexPosition[     17873,        499]
->>>>>>> origin/master
+NotebookDataLength[     23353,        683]
+NotebookOptionsPosition[     21339,        609]
+NotebookOutlinePosition[     21692,        625]
+CellTagsIndexPosition[     21649,        622]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -154,9 +147,7 @@ then assume -- in this case -- that all plastic strain is transfered to heat. \
  Thus, we can use eq. (46) of \[OpenCurlyDoubleQuote]Localization of strain \
 and the melting wave in high-speed penetration\[CloseCurlyDoubleQuote] to \
 find the temperature that the material impacted by the macro will be raised \
-to.  We use the (approximate) parameters of steel (note that here and below, \
-we assume these parameters are independent of temperature which is a large \
-assumption -- particularly for the viscosity factor \[Mu]).\
+to.  We use the (approximate) parameters of steel.\
 \>", "Text",
  CellChangeTimes->{{3.678742905130864*^9, 3.678742910848624*^9}, {
    3.6787437076485653`*^9, 3.678743954441066*^9}, {3.678754938716708*^9, 
@@ -166,8 +157,7 @@ assumption -- particularly for the viscosity factor \[Mu]).\
    3.678758849432672*^9, {3.678759019282655*^9, 3.678759053069923*^9}, {
    3.6787590879966803`*^9, 3.678759242328371*^9}, {3.678759309321459*^9, 
    3.678759322727832*^9}, {3.678759636414694*^9, 3.678759709047542*^9}, {
-   3.678759825119275*^9, 3.678759847613208*^9}, {3.6787659027862186`*^9, 
-   3.678765948127646*^9}}],
+   3.678759825119275*^9, 3.678759847613208*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -501,10 +491,43 @@ Cell[BoxData[
   3.678757543941177*^9}, {3.678768378986817*^9, 3.678768418078672*^9}, {
   3.678768457535355*^9, 3.678768508853231*^9}}],
 
-Cell[BoxData["0.`"], "Output",
+Cell[BoxData[
+ RowBox[{"h", " ", "\[Pi]", " ", 
+  SuperscriptBox["v", "2"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"2", " ", "\[Mu]"}], 
+     SqrtBox["\[Pi]"]], "-", 
+    RowBox[{
+     SqrtBox[
+      FractionBox["2", "\[Pi]"]], " ", "\[Mu]", " ", 
+     RowBox[{"Erf", "[", 
+      FractionBox[
+       RowBox[{
+        SqrtBox["2"], " ", "k", " ", "\[Rho]"}], "\[Mu]"], "]"}]}], "-", 
+    FractionBox[
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["k", "2"], " ", 
+          SuperscriptBox["\[Rho]", "2"]}], 
+         SuperscriptBox["\[Mu]", "2"]]}]], " ", "\[Mu]", " ", 
+      RowBox[{"Erfc", "[", 
+       FractionBox[
+        RowBox[{"k", " ", "\[Rho]"}], "\[Mu]"], "]"}]}], 
+     SqrtBox["\[Pi]"]], "+", 
+    RowBox[{"k", " ", "\[Rho]", " ", 
+     SuperscriptBox[
+      RowBox[{"Erfc", "[", 
+       FractionBox[
+        RowBox[{"k", " ", "\[Rho]"}], "\[Mu]"], "]"}], "2"]}]}], 
+   ")"}]}]], "Output",
  CellChangeTimes->{
   3.678757490579712*^9, 3.678757547749776*^9, {3.67876839754393*^9, 
-   3.678768460679418*^9}, {3.678768496954749*^9, 3.678768499025453*^9}}]
+   3.678768460679418*^9}, {3.678768496954749*^9, 3.678768525801304*^9}}]
 }, Open  ]],
 
 Cell["Using the parameters for steel (approximate):", "Text",
@@ -532,18 +555,19 @@ Cell[BoxData[
  CellChangeTimes->{{3.678757564754126*^9, 3.678757595316139*^9}, {
   3.6787577877971478`*^9, 3.678757857728681*^9}}],
 
-Cell[BoxData["3.180862079228201`*^11"], "Output",
- CellChangeTimes->{{3.678757796735478*^9, 3.678757825570874*^9}, 
-   3.678757858806595*^9}]
+Cell[BoxData["3.1808625388312016`*^10"], "Output",
+ CellChangeTimes->{3.678768577825872*^9}]
 }, Open  ]],
 
 Cell["\<\
-Note that the above is of the same order of magnitude as 0.5th approximation.
+Note that the above is of the same order of magnitude as 0.5th approximation. \
+(with the correction, it\[CloseCurlyQuote]s 1 order of magnitude less).
 
 Now, using parameters for rock (approximate):\
 \>", "Text",
  CellChangeTimes->{{3.6787586178338003`*^9, 3.678758629113385*^9}, {
-  3.678759385473233*^9, 3.678759429331903*^9}}],
+  3.678759385473233*^9, 3.678759429331903*^9}, {3.678768567185313*^9, 
+  3.6787685763515997`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -563,8 +587,8 @@ Cell[BoxData[
       RowBox[{"10", "^", "6"}]}]}]}], "}"}]}]], "Input",
  CellChangeTimes->{{3.678757868878683*^9, 3.678757886112392*^9}}],
 
-Cell[BoxData["9.940195486571432`*^10"], "Output",
- CellChangeTimes->{3.678757886724546*^9}]
+Cell[BoxData["9.940189788200985`*^9"], "Output",
+ CellChangeTimes->{3.678757886724546*^9, 3.678768587928255*^9}]
 }, Open  ]],
 
 Cell["\<\
@@ -583,9 +607,8 @@ material to a plasma state.
   3.6787594381697073`*^9, 3.6787595093561277`*^9}}]
 }, Open  ]]
 },
-WindowToolbars->"EditBar",
-WindowSize->{1010, 764},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowSize->{808, 720},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
 FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 11, \
 2016)",
 StyleDefinitions->"Default.nb"
@@ -602,10 +625,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 150, 4, 64, "Section"],
+Cell[580, 22, 150, 4, 99, "Section"],
 Cell[733, 28, 699, 11, 49, "Text"],
 Cell[CellGroupData[{
-Cell[1457, 43, 1307, 34, 46, "Input"],
+Cell[1457, 43, 1307, 34, 63, "Input"],
 Cell[2767, 79, 135, 2, 28, "Output"]
 }, Open  ]],
 Cell[2917, 84, 225, 3, 30, "Text"],
@@ -617,31 +640,20 @@ Cell[4697, 131, 130, 3, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[4864, 139, 86, 1, 64, "Section"],
-<<<<<<< HEAD
-Cell[4953, 142, 1178, 17, 87, "Text"],
+Cell[4953, 142, 1178, 17, 106, "Text"],
 Cell[6134, 161, 990, 29, 103, "Input"],
-=======
-Cell[4953, 142, 1395, 20, 125, "Text"],
-Cell[6351, 164, 990, 29, 103, "Input"],
->>>>>>> origin/master
 Cell[CellGroupData[{
-Cell[7366, 197, 588, 14, 28, "Input"],
-Cell[7957, 213, 196, 3, 32, "Output"]
+Cell[7149, 194, 588, 14, 28, "Input"],
+Cell[7740, 210, 196, 3, 32, "Output"]
 }, Open  ]],
-Cell[8168, 219, 432, 9, 87, "Text"],
+Cell[7951, 216, 432, 9, 87, "Text"],
 Cell[CellGroupData[{
-<<<<<<< HEAD
 Cell[8408, 229, 1199, 33, 46, "Input"],
 Cell[9610, 264, 192, 3, 32, "Output"]
-=======
-Cell[8625, 232, 1199, 33, 63, "Input"],
-Cell[9827, 267, 192, 3, 32, "Output"]
->>>>>>> origin/master
 }, Open  ]],
-Cell[10034, 273, 224, 5, 30, "Text"]
+Cell[9817, 270, 224, 5, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-<<<<<<< HEAD
 Cell[10078, 280, 110, 1, 64, "Section"],
 Cell[10191, 283, 1974, 46, 194, "Text"],
 Cell[CellGroupData[{
@@ -653,51 +665,29 @@ Cell[12910, 359, 516, 15, 28, "Input"],
 Cell[13429, 376, 221, 4, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13687, 385, 948, 26, 50, "Input"],
-Cell[14638, 413, 1592, 42, 148, "Output"]
-=======
-Cell[10295, 283, 110, 1, 64, "Section"],
-Cell[10408, 286, 1169, 20, 182, "Text"],
-Cell[CellGroupData[{
-Cell[11602, 310, 493, 15, 28, "Input"],
-Cell[12098, 327, 187, 4, 52, "Output"]
->>>>>>> origin/master
+Cell[13687, 385, 948, 26, 68, "Input"],
+Cell[14638, 413, 1592, 42, 212, "Output"]
 }, Open  ]],
 Cell[16245, 458, 78, 2, 28, "Input"],
 Cell[CellGroupData[{
-<<<<<<< HEAD
-Cell[16348, 464, 983, 27, 50, "Input"],
-Cell[17334, 493, 192, 3, 28, "Output"]
+Cell[16348, 464, 983, 27, 68, "Input"],
+Cell[17334, 493, 1192, 36, 100, "Output"]
 }, Open  ]],
-Cell[17541, 499, 180, 2, 30, "Text"],
+Cell[18541, 532, 180, 2, 30, "Text"],
 Cell[CellGroupData[{
-Cell[17746, 505, 618, 17, 28, "Input"],
-Cell[18367, 524, 141, 2, 32, "Output"]
+Cell[18746, 538, 618, 17, 28, "Input"],
+Cell[19367, 557, 92, 1, 32, "Output"]
 }, Open  ]],
-Cell[18523, 529, 265, 6, 68, "Text"],
+Cell[19474, 561, 390, 8, 87, "Text"],
 Cell[CellGroupData[{
-Cell[18813, 539, 511, 14, 28, "Input"],
-Cell[19327, 555, 91, 1, 32, "Output"]
+Cell[19889, 573, 511, 14, 28, "Input"],
+Cell[20403, 589, 112, 1, 32, "Output"]
 }, Open  ]],
-Cell[19433, 559, 793, 13, 106, "Text"]
-=======
-Cell[12322, 336, 902, 26, 68, "Input"],
-Cell[13227, 364, 1592, 42, 212, "Output"]
-}, Open  ]],
-Cell[14834, 409, 180, 2, 30, "Text"],
-Cell[CellGroupData[{
-Cell[15039, 415, 618, 17, 28, "Input"],
-Cell[15660, 434, 141, 2, 32, "Output"]
-}, Open  ]],
-Cell[15816, 439, 265, 6, 68, "Text"],
-Cell[CellGroupData[{
-Cell[16106, 449, 511, 14, 28, "Input"],
-Cell[16620, 465, 91, 1, 32, "Output"]
-}, Open  ]],
-Cell[16726, 469, 793, 13, 144, "Text"]
->>>>>>> origin/master
+Cell[20530, 593, 793, 13, 144, "Text"]
 }, Open  ]]
 }
 ]
 *)
+
+(* End of internal cache information *)
 
