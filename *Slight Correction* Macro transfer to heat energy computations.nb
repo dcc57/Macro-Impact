@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     22481,        647]
-NotebookOptionsPosition[     20433,        572]
-NotebookOutlinePosition[     20787,        588]
-CellTagsIndexPosition[     20744,        585]
+NotebookDataLength[     22512,        648]
+NotebookOptionsPosition[     20464,        573]
+NotebookOutlinePosition[     20818,        589]
+CellTagsIndexPosition[     20775,        586]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -380,17 +380,18 @@ over the time the macro travels through earth which is roughly ",
   FontWeight->"Plain"],
  ", and integrate over the volume directly impacted by the macro, which we \
 take to be the cylinder \[Pi]*h*r^2. \n\nHence, the limits of integration are \
-0 < t \[LessEqual] 4.8 s, and 0 \[LessEqual] x \[LessEqual] 1.8*10^-6 (taking \
+0 < t \[LessEqual] 48 s, and 0 \[LessEqual] x \[LessEqual] 1.8*10^-6 (taking \
 the macro radius to be 1.8*10^-6 for instance). So, we need to find the \
 equivalent limits of integration in terms of \[Eta]."
 }], "Text",
  CellChangeTimes->{{3.678755380171364*^9, 3.678755397481677*^9}, {
-  3.6787564164403267`*^9, 3.6787564720414267`*^9}, {3.6787571517947083`*^9, 
-  3.678757274962788*^9}, {3.678757374856369*^9, 3.678757412076785*^9}, {
-  3.678758481553069*^9, 3.67875858031618*^9}, {3.6787588385301867`*^9, 
-  3.678758859490149*^9}, {3.6787599109658213`*^9, 3.678759974983419*^9}, {
-  3.678767992432179*^9, 3.6787679978286457`*^9}, {3.6787680468847427`*^9, 
-  3.6787682425327883`*^9}, {3.678802879495268*^9, 3.6788029057368317`*^9}}],
+   3.6787564164403267`*^9, 3.6787564720414267`*^9}, {3.6787571517947083`*^9, 
+   3.678757274962788*^9}, {3.678757374856369*^9, 3.678757412076785*^9}, {
+   3.678758481553069*^9, 3.67875858031618*^9}, {3.6787588385301867`*^9, 
+   3.678758859490149*^9}, {3.6787599109658213`*^9, 3.678759974983419*^9}, {
+   3.678767992432179*^9, 3.6787679978286457`*^9}, {3.6787680468847427`*^9, 
+   3.6787682425327883`*^9}, {3.678802879495268*^9, 3.6788029057368317`*^9}, 
+   3.678804030438846*^9}],
 
 Cell[CellGroupData[{
 
@@ -628,26 +629,26 @@ Cell[12113, 338, 224, 5, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[12374, 348, 110, 1, 64, "Section"],
-Cell[12487, 351, 1887, 41, 194, "Text"],
+Cell[12487, 351, 1918, 42, 194, "Text"],
 Cell[CellGroupData[{
-Cell[14399, 396, 516, 15, 28, "Input"],
-Cell[14918, 413, 221, 4, 52, "Output"]
+Cell[14430, 397, 516, 15, 28, "Input"],
+Cell[14949, 414, 221, 4, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15176, 422, 983, 27, 68, "Input"],
-Cell[16162, 451, 1218, 37, 100, "Output"]
+Cell[15207, 423, 983, 27, 68, "Input"],
+Cell[16193, 452, 1218, 37, 100, "Output"]
 }, Open  ]],
-Cell[17395, 491, 180, 2, 30, "Text"],
+Cell[17426, 492, 180, 2, 30, "Text"],
 Cell[CellGroupData[{
-Cell[17600, 497, 777, 19, 46, "Input"],
-Cell[18380, 518, 193, 3, 32, "Output"]
+Cell[17631, 498, 777, 19, 46, "Input"],
+Cell[18411, 519, 193, 3, 32, "Output"]
 }, Open  ]],
-Cell[18588, 524, 370, 8, 68, "Text"],
+Cell[18619, 525, 370, 8, 68, "Text"],
 Cell[CellGroupData[{
-Cell[18983, 536, 511, 14, 28, "Input"],
-Cell[19497, 552, 112, 1, 32, "Output"]
+Cell[19014, 537, 511, 14, 28, "Input"],
+Cell[19528, 553, 112, 1, 32, "Output"]
 }, Open  ]],
-Cell[19624, 556, 793, 13, 144, "Text"]
+Cell[19655, 557, 793, 13, 144, "Text"]
 }, Open  ]]
 }
 ]
