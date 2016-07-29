@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23353,        683]
-NotebookOptionsPosition[     21339,        609]
-NotebookOutlinePosition[     21692,        625]
-CellTagsIndexPosition[     21649,        622]
+NotebookDataLength[     25861,        756]
+NotebookOptionsPosition[     23548,        672]
+NotebookOutlinePosition[     23901,        688]
+CellTagsIndexPosition[     23858,        685]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -82,6 +82,41 @@ Cell[BoxData["977160.978972569`"], "Output",
   3.678759886619103*^9}]
 }, Open  ]],
 
+Cell["Note that the amount of energy required to melt the steel is", "Text",
+ CellChangeTimes->{{3.678802039203063*^9, 3.678802091228221*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"L", "*", 
+   RowBox[{"(", 
+    RowBox[{"\[Rho]", "*", "Pi", "*", 
+     RowBox[{"r", "^", "2"}], "*", "h"}], ")"}]}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"L", "\[Rule]", " ", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "5"}]}]}], ",", 
+    RowBox[{"h", "\[Rule]", " ", 
+     RowBox[{"1.2", "*", 
+      RowBox[{"10", "^", "7"}]}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", " ", 
+     RowBox[{"8", "*", 
+      RowBox[{"10", "^", "3"}]}]}], ",", 
+    RowBox[{"r", "\[Rule]", " ", 
+     RowBox[{"1.8", "*", 
+      RowBox[{"10", "^", 
+       RowBox[{"-", "6"}]}]}]}], ",", 
+    RowBox[{"hc", "\[Rule]", " ", "500"}], ",", " ", 
+    RowBox[{"\[Theta]1", "\[Rule]", " ", "300"}], ",", 
+    RowBox[{"\[Theta]2", "\[Rule]", " ", "1800"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.678802066287793*^9, 3.678802066580452*^9}}],
+
+Cell[BoxData["244290.24474314228`"], "Output",
+ CellChangeTimes->{3.678802067164465*^9}]
+}, Open  ]],
+
 Cell["For parameters akin to those of rock we find:", "Text",
  CellChangeTimes->{{3.67875772033147*^9, 3.6787577264760303`*^9}, {
   3.67875863785963*^9, 3.678758640146118*^9}, {3.678759620621917*^9, 
@@ -129,10 +164,43 @@ Cell[BoxData["366588.0485176778`"], "Output",
    3.678759891668356*^9}]
 }, Open  ]],
 
+Cell["Note that the amount of energy to melt the rock is", "Text",
+ CellChangeTimes->{{3.678802113795076*^9, 3.67880212557507*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"L", "*", 
+   RowBox[{"(", 
+    RowBox[{"\[Rho]", "*", "Pi", "*", 
+     RowBox[{"r", "^", "2"}], "*", "h"}], ")"}]}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"L", "\[Rule]", " ", "500"}], ",", 
+    RowBox[{"h", "\[Rule]", " ", 
+     RowBox[{"1.2", "*", 
+      RowBox[{"10", "^", "7"}]}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", " ", "2500"}], ",", 
+    RowBox[{"r", "\[Rule]", " ", 
+     RowBox[{"1.8", "*", 
+      RowBox[{"10", "^", 
+       RowBox[{"-", "6"}]}]}]}], ",", 
+    RowBox[{"hc", "\[Rule]", " ", "1000"}], ",", " ", 
+    RowBox[{"\[Theta]1", "\[Rule]", " ", "300"}], ",", 
+    RowBox[{"\[Theta]2", "\[Rule]", " ", "1500"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6788021349596977`*^9, 3.6788021352665663`*^9}}],
+
+Cell[BoxData["152.6814029644639`"], "Output",
+ CellChangeTimes->{3.6788021355790987`*^9}]
+}, Open  ]],
+
 Cell["\<\
-Notice that the values for steel are larger than those for rock.\
+The huge disparity in the energy cost to melt steel vs. rock is due to the \
+significantly different values of L -- the latent heat of melting for steel \
+vs. rock.\
 \>", "Text",
- CellChangeTimes->{3.678759649340859*^9}]
+ CellChangeTimes->{{3.678802153231662*^9, 3.678802235105558*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -287,11 +355,7 @@ of strain and the melting wave in high-speed penetration\
 \[CloseCurlyDoubleQuote] that proports to give the heat production of the \
 work of shear viscosity stresses in the vicinity of the impactor.  \n\nWe \
 need to find the limits of integration; conceptually, we want to integrate \
-over the time the macro travels through earth which is ~4.8s, and integrate \
-over the volume directly impacted by the macro, which we take to be the \
-cylinder \[Pi]*h*r^2.  ",
- StyleBox["Actually, it\[CloseCurlyQuote]s about 48 seconds: ",
-  FontWeight->"Bold"],
+over the time the macro travels through earth which is roughly ",
  Cell[BoxData[
   FormBox[
    RowBox[{
@@ -313,13 +377,12 @@ cylinder \[Pi]*h*r^2.  ",
        FractionBox["4", "100"], "1200", " ", "s"}], "=", 
       RowBox[{"48", " ", "s"}]}],
      FontWeight->"Bold"]}], TraditionalForm]],
-  FormatType->"TraditionalForm"],
- StyleBox[".",
-  FontWeight->"Bold"],
- "\n\nHence, the limits of integration are 0 < t \[LessEqual] 4.8 s, and 0 \
-\[LessEqual] x \[LessEqual] 1.8*10^-6 (taking the macro radius to be \
-1.8*10^-6 for instance). So, we need to find the equivalent limits of \
-integration in terms of \[Eta]."
+  FontWeight->"Plain"],
+ ", and integrate over the volume directly impacted by the macro, which we \
+take to be the cylinder \[Pi]*h*r^2. \n\nHence, the limits of integration are \
+0 < t \[LessEqual] 4.8 s, and 0 \[LessEqual] x \[LessEqual] 1.8*10^-6 (taking \
+the macro radius to be 1.8*10^-6 for instance). So, we need to find the \
+equivalent limits of integration in terms of \[Eta]."
 }], "Text",
  CellChangeTimes->{{3.678755380171364*^9, 3.678755397481677*^9}, {
   3.6787564164403267`*^9, 3.6787564720414267`*^9}, {3.6787571517947083`*^9, 
@@ -327,7 +390,7 @@ integration in terms of \[Eta]."
   3.678758481553069*^9, 3.67875858031618*^9}, {3.6787588385301867`*^9, 
   3.678758859490149*^9}, {3.6787599109658213`*^9, 3.678759974983419*^9}, {
   3.678767992432179*^9, 3.6787679978286457`*^9}, {3.6787680468847427`*^9, 
-  3.6787682425327883`*^9}}],
+  3.6787682425327883`*^9}, {3.678802879495268*^9, 3.6788029057368317`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -608,9 +671,9 @@ material to a plasma state.
 }, Open  ]]
 },
 WindowSize->{808, 720},
-WindowMargins->{{4, Automatic}, {Automatic, 4}},
-FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 11, \
-2016)",
+WindowMargins->{{Automatic, 69}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -631,63 +694,72 @@ Cell[CellGroupData[{
 Cell[1457, 43, 1307, 34, 63, "Input"],
 Cell[2767, 79, 135, 2, 28, "Output"]
 }, Open  ]],
-Cell[2917, 84, 225, 3, 30, "Text"],
+Cell[2917, 84, 142, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[3167, 91, 1299, 32, 46, "Input"],
-Cell[4469, 125, 213, 3, 28, "Output"]
+Cell[3084, 89, 868, 24, 46, "Input"],
+Cell[3955, 115, 88, 1, 28, "Output"]
 }, Open  ]],
-Cell[4697, 131, 130, 3, 30, "Text"]
-}, Open  ]],
+Cell[4058, 119, 225, 3, 30, "Text"],
 Cell[CellGroupData[{
-Cell[4864, 139, 86, 1, 64, "Section"],
-Cell[4953, 142, 1178, 17, 106, "Text"],
-Cell[6134, 161, 990, 29, 103, "Input"],
-Cell[CellGroupData[{
-Cell[7149, 194, 588, 14, 28, "Input"],
-Cell[7740, 210, 196, 3, 32, "Output"]
+Cell[4308, 126, 1299, 32, 46, "Input"],
+Cell[5610, 160, 213, 3, 28, "Output"]
 }, Open  ]],
-Cell[7951, 216, 432, 9, 87, "Text"],
+Cell[5838, 166, 131, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[8408, 229, 1199, 33, 46, "Input"],
-Cell[9610, 264, 192, 3, 32, "Output"]
+Cell[5994, 171, 768, 20, 46, "Input"],
+Cell[6765, 193, 89, 1, 28, "Output"]
 }, Open  ]],
-Cell[9817, 270, 224, 5, 30, "Text"]
+Cell[6869, 197, 254, 5, 49, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10078, 280, 110, 1, 64, "Section"],
-Cell[10191, 283, 1974, 46, 194, "Text"],
+Cell[7160, 207, 86, 1, 64, "Section"],
+Cell[7249, 210, 1178, 17, 106, "Text"],
+Cell[8430, 229, 990, 29, 103, "Input"],
 Cell[CellGroupData[{
-Cell[12190, 333, 493, 15, 28, "Input"],
-Cell[12686, 350, 187, 4, 52, "Output"]
+Cell[9445, 262, 588, 14, 28, "Input"],
+Cell[10036, 278, 196, 3, 32, "Output"]
+}, Open  ]],
+Cell[10247, 284, 432, 9, 87, "Text"],
+Cell[CellGroupData[{
+Cell[10704, 297, 1199, 33, 63, "Input"],
+Cell[11906, 332, 192, 3, 32, "Output"]
+}, Open  ]],
+Cell[12113, 338, 224, 5, 30, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12910, 359, 516, 15, 28, "Input"],
-Cell[13429, 376, 221, 4, 52, "Output"]
+Cell[12374, 348, 110, 1, 64, "Section"],
+Cell[12487, 351, 1887, 41, 194, "Text"],
+Cell[CellGroupData[{
+Cell[14399, 396, 493, 15, 28, "Input"],
+Cell[14895, 413, 187, 4, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13687, 385, 948, 26, 68, "Input"],
-Cell[14638, 413, 1592, 42, 212, "Output"]
+Cell[15119, 422, 516, 15, 28, "Input"],
+Cell[15638, 439, 221, 4, 52, "Output"]
 }, Open  ]],
-Cell[16245, 458, 78, 2, 28, "Input"],
 Cell[CellGroupData[{
-Cell[16348, 464, 983, 27, 68, "Input"],
-Cell[17334, 493, 1192, 36, 100, "Output"]
+Cell[15896, 448, 948, 26, 68, "Input"],
+Cell[16847, 476, 1592, 42, 212, "Output"]
 }, Open  ]],
-Cell[18541, 532, 180, 2, 30, "Text"],
+Cell[18454, 521, 78, 2, 28, "Input"],
 Cell[CellGroupData[{
-Cell[18746, 538, 618, 17, 28, "Input"],
-Cell[19367, 557, 92, 1, 32, "Output"]
+Cell[18557, 527, 983, 27, 68, "Input"],
+Cell[19543, 556, 1192, 36, 100, "Output"]
 }, Open  ]],
-Cell[19474, 561, 390, 8, 87, "Text"],
+Cell[20750, 595, 180, 2, 30, "Text"],
 Cell[CellGroupData[{
-Cell[19889, 573, 511, 14, 28, "Input"],
-Cell[20403, 589, 112, 1, 32, "Output"]
+Cell[20955, 601, 618, 17, 28, "Input"],
+Cell[21576, 620, 92, 1, 32, "Output"]
 }, Open  ]],
-Cell[20530, 593, 793, 13, 144, "Text"]
+Cell[21683, 624, 390, 8, 87, "Text"],
+Cell[CellGroupData[{
+Cell[22098, 636, 511, 14, 28, "Input"],
+Cell[22612, 652, 112, 1, 32, "Output"]
+}, Open  ]],
+Cell[22739, 656, 793, 13, 144, "Text"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-
