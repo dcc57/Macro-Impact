@@ -6,9 +6,9 @@ a = [11.2633,10.6835,15.4938].^(1/2); %first entry corresponds to the core
 b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %first entry corresponds to the core
 WeaknessOfNeglectedRays = 10^(-1); %input('What fraction of the initial ray energy must a ray contain to not be thrown out? ');
 
-D = 300;
+D = 2000;
 Radii = [0,1221,3480,6371];
-AbsoluteCutoff = 1;
+AbsoluteCutoff = 5;
 
 Layers = length(Radii);
 
@@ -23,10 +23,12 @@ end
 vBoundaries(Layers - 1,1) = (a(Layers - 1)^2)-(b(Layers - 1)^2)*(Radii(Layers))^2;
 vBoundaries(Layers - 1,2) = 0.34042; %Air
 
+rhoBoundaries = [];
+
 %GENERATING THE RANDOM POINTS ON A SPHERE
 
-M = 100;
-N = 100;
+M = 12;
+N = 10;
 Th = rand(M,N).*(2*pi);
 Ph = asin((rand(M,N).*2.-1));
 I = 1:M;
@@ -61,7 +63,7 @@ RayArrayAngDisp = zeros(M,N,2^(AbsoluteCutoff));
 RayArrayAlpha = zeros(M,N,2^(AbsoluteCutoff));
 
 RayArrayx0(:,:,1) = x0(:,:);
-RayArrayx0(:,:,2:2^(AbsoluteCutoff)) = Radii(Layers) + 1;
+RayArrayx0(:,:,2:2^(AbsoluteCutoff)) = NaN;
 RayArrayAlpha(:,:,1) = AlphaRay(:,:);
 RayArrayAmp(:,:,1) = 1;
 RayArrayPlaneAngle = repmat(Alpha,[1,N,2^(AbsoluteCutoff)]);
@@ -89,6 +91,21 @@ for Iter = 1 : AbsoluteCutoff
             LIdInward = ( RayArrayAlpha(:,:,:) >= pi / 2 ) & ( Radii(LayerId) == RayArrayx0(:,:,:) ) & (~LIdInward);
         end
         
+            SOutward100 = SR(Radii(LayerId + 1),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,1,0,0);
+            SOutward000 = SR(Radii(LayerId + 1),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,0,0,0);
+            SOutward001 = SR(Radii(LayerId + 1),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,0,0,1);
+            SInward100 = SR(Radii(LayerId),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,1,0,0);
+            SInward000 = SR(Radii(LayerId),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,0,0,0);
+            SInward001 = SR(Radii(LayerId),a(LayerId),b(LayerId),RayArrayx0,RayArrayAlpha,0,0,1);
+            sinAngleOfIncidenceOutward100 = GOD(SOutward,a(LayerId),b(LayerId),RayArrayAlpha,RayArrayx0(LIdOutward),1,0,0);
+            sinAngleOfIncidenceOutward000 = 
+            sinAngleOfIncidenceOutward001 = 
+            sinAngleOfIncidenceInward100 = 
+            sinAngleOfIncidenceInward000 = 
+            sinAngleOfIncidenceInward001 = 
+            LIdTIR000 = 
+            LIdTIR001 = 
+            
         %OUTWARD BOUND RAYS
         
             SOutward = SR(Radii(LayerId + 1),a(LayerId),b(LayerId),RayArrayx0(LIdOutward),RayArrayAlpha(LIdOutward),1,0,0);
@@ -99,12 +116,12 @@ for Iter = 1 : AbsoluteCutoff
         Theta = theta(SOutward,a(LayerId),b(LayerId),RayArrayAlpha(LIdOutward),RayArrayx0(LIdOutward),1,0,0);
         if LayerId == Layers - 1
             IntensityArrayAngDisp(LIdOutward) = RayArrayAngDisp(LIdOutward) + Theta;
-            IntensityArrayAmp(LIdOutward) = TransmissionCoefficient(sinAngleOfIncidence);
+            IntensityArrayAmp(LIdOutward) = 1 ;%TransmissionCoefficient(sinAngleOfIncidence);
         else
             RayArrayAngDisp(LIdOutward) = RayArrayAngDisp(LIdOutward) + Theta;
             RayArrayAlpha(LIdOutward) = asin((vBoundaries(LayerId,2)/(vBoundaries(LayerId,1))).*sinAngleOfIncidence);
             RayArrayx0(LIdOutward) = Radii(LayerId + 1);
-            RayArrayAmp(LIdOutward) = TransmissionCoefficient(sinAngleOfIncidence);
+            RayArrayAmp(LIdOutward) = 1 ;%TransmissionCoefficient(sinAngleOfIncidence);
         end
 
         %REFLECTED OUTWARD BOUND RAYS
@@ -113,7 +130,7 @@ for Iter = 1 : AbsoluteCutoff
             RayArrayAlpha(LIdOutwardPrime) = pi - asin(sinAngleOfIncidence);
             RayArrayx0(LIdOutwardPrime) = Radii(LayerId + 1);
             RayArrayAngDisp(LIdOutwardPrime) = RayArrayAngDisp(LIdOutward) + Theta;
-            RayArrayAmp(LIdOutwardPrime) = ReflectionCoefficient(sinAngleOfIncidence);
+            RayArrayAmp(LIdOutwardPrime) = 1; %ReflectionCoefficient(sinAngleOfIncidence);
             
         %POTENTIALLY INWARD BOUND RAYS
         
@@ -130,12 +147,12 @@ for Iter = 1 : AbsoluteCutoff
             Thetaprime = theta(SInwardMiss(LIdInwardMiss),a(LayerId),b(LayerId), pi - RayArrayAlpha(LIdInwardMiss),RayArrayx0(LIdInwardMiss),0,0,0);
             if LayerId == Layers - 1
                 IntensityArrayAngDisp(LIdInwardMiss) = RayArrayAngDisp(LIdInwardMiss) + Thetaprime;
-                IntensityArrayAmp(LIdInwardMiss) = TransmissionCoefficient(sinAngleOfIncidence);
+                IntensityArrayAmp(LIdInwardMiss) = 1; %TransmissionCoefficient(sinAngleOfIncidence);
             else
                 RayArrayAngDisp(LIdInwardMiss) = RayArrayAngDisp(LIdInwardMiss) + Thetaprime;
                 RayArrayAlpha(LIdInwardMiss) = asin((vBoundaries(LayerId,2)/(vBoundaries(LayerId,1))).*sinAngleOfIncidence);
                 RayArrayx0(LIdInwardMiss) = Radii(LayerId + 1);
-                RayArrayAmp(LIdInwardMiss) = TransmissionCoefficient(sinAngleOfIncidence);
+                RayArrayAmp(LIdInwardMiss) = 1; %TransmissionCoefficient(sinAngleOfIncidence);
             end
 
             %REFLECTED OUTWARD BOUND RAYS
@@ -144,7 +161,7 @@ for Iter = 1 : AbsoluteCutoff
                 RayArrayAlpha(LIdInwardMissPrime) = pi - asin(sinAngleOfIncidence);
                 RayArrayx0(LIdInwardMissPrime) = Radii(LayerId + 1);
                 RayArrayAngDisp(LIdInwardMissPrime) = RayArrayAngDisp(LIdInwardMissPrime) + Thetaprime;
-                RayArrayAmp(LIdInwardMissPrime) = ReflectionCoefficient(sinAngleOfIncidence);
+                RayArrayAmp(LIdInwardMissPrime) = 1; %ReflectionCoefficient(sinAngleOfIncidence);
                 
         %RAYS THAT HIT THE INNER LAYER
         
@@ -156,7 +173,7 @@ for Iter = 1 : AbsoluteCutoff
                     RayArrayAlpha(LIdInwardHit) = asin(((vBoundaries(LayerId,1)/(vBoundaries(LayerId,2))).*sinAngleOfIncidence));
                     RayArrayx0(LIdInwardHit) = Radii(LayerId);
                     RayArrayAngDisp(LIdInwardHit) = RayArrayAngDisp(LIdInwardHit) + Thetaprimeprime;
-                    RayArrayAmp(LIdInwardHit) = TransmissionCoefficient(sinAngleOfIncidence);
+                    RayArrayAmp(LIdInwardHit) = 1; %TransmissionCoefficient(sinAngleOfIncidence);
 
                 %REFLECTED INWARD BOUND RAYS
                 
@@ -164,28 +181,26 @@ for Iter = 1 : AbsoluteCutoff
                     RayArrayAlpha(LIdInwardHitPrime) = 2*pi - asin(sinAngleOfIncidence); %FIGURE OUT WHAT TO DO HERE!!!
                     RayArrayx0(LIdInwardHitPrime) = Radii(LayerId);
                     RayArrayAngDisp(LIdInwardHitPrime) = RayArrayAngDisp(LIdInwardHitPrime) + Thetaprimeprime;
-                    RayArrayAmp(LIdInwardHitPrime) = ReflectionCoefficient(sinAngleOfIncidence);
+                    RayArrayAmp(LIdInwardHitPrime) = 1; %ReflectionCoefficient(sinAngleOfIncidence);
                 end
         %DELETING TOTALLY INTERNALLY REFLECTED RAYS (We assume that the
         %critical angle is small enough that totally internally reflected
         %rays have no chance to hit an inner shell).
         TIR = abs(imag(RayArrayAlpha)) > 0.000000000000001;
-        RayArrayAlpha(TIR) = 0;
-        RayArrayx0(TIR) = 0;
-        RayArrayAmp(TIR) = 0;
-        RayArrayAngDisp(TIR) = 0;
-        IntensityArrayAngDisp(TIR) = 0;
-        IntensityArrayAmp(TIR) = 0;
+        RayArrayAlpha(TIR) = NaN;
+        RayArrayx0(TIR) = NaN;
+        RayArrayAmp(TIR) = NaN;
+        RayArrayAngDisp(TIR) = NaN;
+        IntensityArrayAngDisp(TIR) = NaN;
+        IntensityArrayAmp(TIR) = NaN;
     end
 end
 
-Amp = IntensityArrayAmp;
+Amp = IntensityArrayAmp(IntensityArrayAmp > 0);
 AngDisp = IntensityArrayAngDisp(IntensityArrayAmp > 0);
 PlaneAng = RayArrayPlaneAngle(IntensityArrayAmp > 0);
 RayAng = RayArrayRayAngle(IntensityArrayAmp > 0);
 [X,Y,Z] = sph2cart(AngDisp,0,1);
-%[Xrote;Yrote;Zrote] = [1,0,0;0,cos(BetaList(m,n)),-sin(BetaList(m,n));0,sin(BetaList(m,n)),cos(BetaList(m,n))][X,Y,Z]
-%[Xfinal;Yfinal;Zfinal] = [cos(AlphaList(n)),-sin(AlphaList(n)),0;sin(AlphaList(n)),cos(AlphaList(n)),0;0,0,1][Xrote,Yrote,Zrote];
 Xrote = X;
 Yrote = cos(RayAng).*Y - sin(RayAng).*Z;
 Zrote = sin(RayAng).*Y + cos(RayAng).*Z;
@@ -193,4 +208,5 @@ Xfinal = cos(PlaneAng).*Xrote -sin(PlaneAng).*Yrote;
 Yfinal = sin(PlaneAng).*Xrote +cos(PlaneAng).*Yrote;
 Zfinal = Zrote;
 figure
+axis equal
 scatter3(Xfinal,Yfinal,Zfinal,'.')

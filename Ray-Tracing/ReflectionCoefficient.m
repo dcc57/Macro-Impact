@@ -4,7 +4,7 @@ function R = ReflectionCoefficient(LayerId,sinTheta,v1,v2,rho1,rho2)
     m = rho2./rho1;
     n = v1./v2;
     Theta = asin(sinTheta);
-    R = abs((m.*cos(Theta)-n.*(1-(n.^(-2)).*(sin(Theta)).^(2)).^(1/2)./(m.*cos(Theta)+n.*(1-(n.^(-2)).*(sin(Theta)).^(2)).^(1/2)));
+    R = abs((m.*cos(Theta)-n.*(1-(n.^(-2)).*(sin(Theta)).^(2)).^(1/2)./(m.*cos(Theta)+n.*(1-(n.^(-2)).*(sin(Theta)).^(2)).^(1/2))));
     
 end
 
