@@ -6,9 +6,9 @@ a = [11.2633,10.6835,15.4938].^(1/2); %first entry corresponds to the core
 b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %first entry corresponds to the core
 WeaknessOfNeglectedRays = 10^(-1); %input('What fraction of the initial ray energy must a ray contain to not be thrown out? ');
 
-D = 3000;
+D = 0;
 Radii = [0,1221,3480,6371];
-AbsoluteCutoff = 5;
+AbsoluteCutoff = 4;
 
 Layers = length(Radii);
 
@@ -27,8 +27,8 @@ rhoBoundaries = [];
 
 %GENERATING THE RANDOM POINTS ON A SPHERE
 
-M = 1200;
-N = 100;
+M = 1;
+N = 10000;
 Th = rand(M,N).*(2*pi);
 Ph = asin((rand(M,N).*2.-1));
 I = 1:M;
@@ -147,12 +147,13 @@ for Iter = 1 : AbsoluteCutoff
                 RayArrayx0(LIdInwardMissPrime) = Radii(LayerId + 1);
                 RayArrayAngDisp(LIdInwardMissPrime) = RayArrayAngDisp(LIdInwardMiss) + Thetaprime;
                 RayArrayAmp(LIdInwardMissPrime) = 1; %ReflectionCoefficient(sinAngleOfIncidence);
-                
+        
         %RAYS THAT HIT THE INNER LAYER
         
                 %REFRACTED INWARD BOUND RAYS
                 
                 if LayerId > 1
+                    
                     sinAngleOfIncidence = GOD(SInwardHit(LIdInwardHit),a(LayerId),b(LayerId),pi - RayArrayAlpha(LIdInwardHit),RayArrayx0(LIdInwardHit),0,0,1);
                     Thetaprimeprime = theta(SInwardHit(LIdInwardHit),a(LayerId),b(LayerId), pi - RayArrayAlpha(LIdInwardHit),RayArrayx0(LIdInwardHit),0,0,1);
                     RayArrayAlpha(LIdInwardHit) = asin(((vBoundaries(LayerId,1)/(vBoundaries(LayerId,2))).*sinAngleOfIncidence));
