@@ -599,6 +599,19 @@ A &= A(t_0)e^{\int_{t_0}^t\diff t'\f{K}{Q(r(t'))}}\,.
 \end{align}
 We can do the above integral numerically, and perhaps analytically (in the case that we can reasonably write $Q$ as a simple smooth function of $r$). Next we must determine roughly what $Q$ looks like. In the literature, $Q$ is written $Q_p$ when in reference to $p$-waves. *Relevant paper on my phone*
 \pagebreak
+\section{Maximum Detectible Surface Area}
+\indent
+
+The model above produces a set of positions on a sphere along with their associated times of impact and relative amplitudes at particular frequencies. The detectable energy from any given ray is the energy that is deposited in the frequencies detectable to a seismometer. According to Wikipedia, some seismometers can measure frequencies from 500 Hz to 0.00118 Hz. The lunar seismometers are considerably less sensitive, and have useful range 0.004 Hz to 2 Hz according to Wikipedia. There seems to be a total of 12 lunar seismometers.
+
+Along with the use of the HEALPy package, we will be able to create a map on the sphere of maximum intensity for every distance $D$ of closest approach of a macro. The average detectable surface area of a macro impact is then a weighted average of these detectable surface areas for specific $D$. How do we weight the different $D$'s?
+
+Suppose now that the macros impact the earth from all directions with equal likelihood. Consider any one of these macros. It sees a line, and it has equal likelihood of being any distance away from the origin. Now, since each point on the line exists as part of a circular cross-section, the associated distance has weight $2\pi R_{\te{Earth}}$. That's it! Hence, if $A_D$ is a finite set of detectible area measurements over $D = \{D_i:D_i\in[0,R_\te{Earth}],i\in\{1,\dots,N\}\}$. Assuming $D_i - D_{i+1}$ is fixed for all $i$, and that $D_N\approx R_{\te{Earth}}$ and $D_1 \approx 0$, then $A=\f{\sum_i A_{D_i}D_i}{\sum_i D_i}$ is the average detectable surface area. In the continuous case, this turns into the obvious integral.
+
+Observe that this means that the events closest to the boundary of the earth are weighted the heaviest. These are also the events which deposit the least energy.
+
+
+\pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
 \begin{align}
