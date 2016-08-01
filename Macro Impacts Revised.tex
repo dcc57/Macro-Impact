@@ -583,6 +583,21 @@ We can now use the work from above.
 \end{enumerate}
 \pagebreak
 \section{Code}
+The actual code that I've implemented is quite a bit more general than that described above. The general procedure uses the same ideas, but considers both reflection and transmission, as well as an arbitrary amount of layers. The code works by an iterative process, which propagates each ray to the layer next in its trajectory, using the groundwork I've laid out in mathematica. I will elaborate further if necessary.
+\pagebreak
+\section{Quality Factor}
+Since we've determined that it is desirable to model anelastic attenuation, I've determined a method by which we can calculate it without reference to the specific trajectory of the ray. Observe, if $A(t)$ is the amplitude of a ray at a given time, we can relate it its future amplitude for small time by the following relation
+\begin{align}
+A(t+\delta t) = A(t)e^{K\f{t}{Q(r(t))}}\,.
+\end{align}
+It makes sense to write $Q(r(t))$, since I've already derived the expression $r(t)$ for a given set of initial parameters. Hence, as part of the above algorithm, it will not require additional code to implement the quality factor. Now, we form a derivative
+\begin{align}
+\f{A(t+\delta t)- A(t)}{\delta t} &= A(t)\f{e^{K\f{\delta t}{Q(r(t))}}-1}{\delta t}\,,\\
+\td{A}{t}{}&= A(t)\lim_{\delta t\to 0}\f{e^{K\f{\delta t}{Q(r(t))}}-1}{\delta t}\,,\\
+\f{1}{A}\td{A}{t}{}&= \f{K}{Q(r(t))}\,,\\
+A &= A(t_0)e^{\int_{t_0}^t\diff t'\f{K}{Q(r(t'))}}\,.
+\end{align}
+We can do the above integral numerically, and perhaps analytically (in the case that we can reasonably write $Q$ as a simple smooth function of $r$).
 \pagebreak
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
