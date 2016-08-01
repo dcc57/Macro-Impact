@@ -1,4 +1,4 @@
-function T = TransmissionCoefficient(LayerId,sinTheta,AlphaRay,v1,v2,rho1,rho2)
+function T = TransmissionCoefficient(LayerId,TempAmp,sinTheta,AlphaRay,v1,v2,rho1,rho2)
 %The fluid in which the wave arrives is labeled 1
 %   Detailed explanation goes here
     
@@ -10,9 +10,9 @@ function T = TransmissionCoefficient(LayerId,sinTheta,AlphaRay,v1,v2,rho1,rho2)
     Thigh = Tpre > 1;
     Tlow = Tpre < 0;
     Tmid = (true(size(Tpre)) & (~ Thigh)) & (~ Tlow);
-    T(Thigh) = 1;
+    T(Thigh) = TempAmp(Thigh);
     T(Tlow) = 0;
-    T(Tmid) = Tpre(Tmid);
+    T(Tmid) = Tpre(Tmid).*TempAmp(Tmid);
     
 end
 

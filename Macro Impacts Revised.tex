@@ -588,16 +588,19 @@ The actual code that I've implemented is quite a bit more general than that desc
 \section{Quality Factor}
 Since we've determined that it is desirable to model anelastic attenuation, I've determined a method by which we can calculate it without reference to the specific trajectory of the ray. Observe, if $A(t)$ is the amplitude of a ray at a given time, we can relate it its future amplitude for small time by the following relation
 \begin{align}
-A(t+\delta t) = A(t)e^{K\f{\delta t}{Q(r(t)}}\,.
+A(t+\delta t) = A(t)e^{K\f{\delta t}{Q(r(t))}}\,.
 \end{align}
 It makes sense to write $Q(r(t))$, since I've already derived the expression $r(t)$ for a given set of initial parameters. Hence, as part of the above algorithm, it will not require additional code to implement the quality factor. Now, we form a derivative
 \begin{align}
 \f{A(t+\delta t)- A(t)}{\delta t} &= A(t)\f{e^{K\f{\delta t}{Q(r(t))}}-1}{\delta t}\,,\\
 \td{A}{t}{}&= A(t)\lim_{\delta t\to 0}\f{e^{K\f{\delta t}{Q(r(t))}}-1}{\delta t}\,,\\
+\td{A}{t}{}&= A(t)e^{-K\f{t}{Q(r(t))}}\lim_{\delta t\to 0}\f{e^{K\f{t +\delta t}{Q(r(t))}}-{e^{K\f{t}{Q(r(t))}}}}{\delta t}\,,\\
 \f{1}{A}\td{A}{t}{}&= \f{K}{Q(r(t))}\,,\\
 A &= A(t_0)e^{\int_{t_0}^t\diff t'\f{K}{Q(r(t'))}}\,.
 \end{align}
 We can do the above integral numerically, and perhaps analytically (in the case that we can reasonably write $Q$ as a simple smooth function of $r$). Next we must determine roughly what $Q$ looks like. In the literature, $Q$ is written $Q_p$ when in reference to $p$-waves. *Relevant paper on my phone*
+\\\\
+We begin with an amplitude $A(k,t)$, a function of amplitude and wave number, gotten from the Fourier decomposition of the source. Since the source depends on the wave vector, it is important to use spherical coordinates in phase space. It may be reasonable to just use the first order terms in $k$ since the lunar seismometers measure from  0.004 Hz to 2 Hz. However, second and third order terms may be desirable, given that signifiant portions of the measurable range lie at order unity. These are gotten by selectively truncating the hypergeometric series in section 2.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
@@ -606,7 +609,11 @@ The model above produces a set of positions on a sphere along with their associa
 
 Along with the use of the HEALPy package, we will be able to create a map on the sphere of maximum intensity for every distance $D$ of closest approach of a macro. The average detectable surface area of a macro impact is then a weighted average of these detectable surface areas for specific $D$. How do we weight the different $D$'s?
 
-Suppose now that the macros impact the earth from all directions with equal likelihood. Consider any one of these macros. It sees a line, and it has equal likelihood of being any distance away from the origin. Now, since each point on the line exists as part of a circular cross-section, the associated distance has weight $2\pi R_{\te{Earth}}$. That's it! Hence, if $A_D$ is a finite set of detectible area measurements over $D = \{D_i:D_i\in[0,R_\te{Earth}],i\in\{1,\dots,N\}\}$. Assuming $D_i - D_{i+1}$ is fixed for all $i$, and that $D_N\approx R_{\te{Earth}}$ and $D_1 \approx 0$, then $A=\f{\sum_i A_{D_i}D_i}{\sum_i D_i}$ is the average detectable surface area. In the continuous case, this turns into the obvious integral.
+Suppose now that the macros impact the earth from all directions with equal likelihood. Consider any one of these macros. It sees a line, and it has equal likelihood of being any distance away from the origin. Now, since each point on the line exists as part of a circular cross-section, the associated distance has weight $2\pi R_{\te{Earth}}$. That's it! Hence, if $A_D$ is a finite set of detectible area measurements over $D = \{D_i:D_i\in[0,R_\te{Earth}],i\in\{1,\dots,N\}\}$. Assuming $D_i - D_{i+1}$ is fixed for all $i$, and that $D_N\approx R_{\te{Earth}}$ and $D_1 \approx 0$, then 
+\begin{align}
+A=\f{\sum_i A_{D_i}D_i}{\sum_i D_i}\,,
+\end{align}
+is the average detectable surface area. In the continuous case, this turns into the obvious integral.
 
 Observe that this means that the events closest to the boundary of the earth are weighted the heaviest. These are also the events which deposit the least energy.
 
