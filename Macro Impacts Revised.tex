@@ -613,10 +613,10 @@ For the region $r \in [380\te{km},1709.1\te{km}]$ the velocity is given by $a^2 
 \\\\
 Unfortunately for my computer, this means that we must break down the moon into four separate layers simply because of the discontinuity of the velocity field. The other component of the model that requires additional iteration is the quality factor $Q_p$ whose value is piecewise constant as a function of $r$. There are 5 regions. Unfortunately, none of these regions share their boundaries with those of the velocity field. Therefore we have a total of 8 regions. Therefore, the algorithm must be run 16 times if we are to get propagation from one side of the moon to the other. That's quite a bit...
 \\\\
-To keep track of the quality factor, we need to be able to pointwise multiply $e^{-\f{k}{2Q}t}$ by $A(k)$. The problem is that Matlab doesn't really do functions... Well... Suppose we start with an amplitude $A(0,k)$, and that the ray propagates through a region of quality factor $Q_1$ for time $\Delta t_1$. Then the amplitude after the propagation is $A(\Delta t_1, k)=A(0,k)F_1 e^{-\f{k}{2Q_1}\Delta t_1}$, where $F_1$ is a transmission or reflection coefficient, which is not a function of $k$. Now, suppose it propagates through another region with quality factor $Q_2$ for $\Delta t_2$. Then we have $A(\Delta t_1 + \Delta t_2, k)=A(0,k)F_1F_2 e^{-\f{k}{2}\p{\f{\Delta t_1}{Q_1}+\f{\Delta t_2}{Q_2}}}$. That's straight forward enough. Therefore, to understand what happens to a general ray's amplitude, we only need to know two things:
+To keep track of the quality factor, we need to be able to pointwise multiply $e^{-\f{vk}{2Q}t}$ by $A(k)$. The problem is that Matlab doesn't really do functions... Well... Suppose we start with an amplitude $A(0,k)$, and that the ray propagates through a region of quality factor $Q_1$ for time $\Delta t_1$. Then the amplitude after the propagation is $A(\Delta t_1, k)=A(0,k)F_1 e^{-\f{kv}{2Q_1}\Delta t_1}$, where $F_1$ is a transmission or reflection coefficient, which is not a function of $k$. Now, suppose it propagates through another region with quality factor $Q_2$ for $\Delta t_2$. Then we have $A(\Delta t_1 + \Delta t_2, k)=A(0,k)F_1F_2 e^{-\f{k}{2}\p{\f{\Delta t_1v_1}{Q_1}+\f{\Delta t_2v_2}{Q_2}}}$. We take $v_i$ to be the average velocity in a given region. This is a fine approximation since the velocity doesn't vary much within the moon. That's straight forward enough. Therefore, to understand what happens to a general ray's amplitude, we only need to know two things:
 \begin{align}
 F &= \prod_i F_i\,,\\
-\f{T}{Q} &= \sum_i\f{\Delta t_i}{Q_i}\,.
+\f{T}{Q} &= \sum_i\f{\Delta t_i v_i}{Q_i}\,.
 \end{align}
 Now, after the algorithm has been run, and we want to know how much energy is left in a particular ray with initial amplitude distribution $A(k)$, we calculate the energy associated to $\tilde A(k) = A(k)Fe^{-\f{k}{2}\f{T}{Q}}$. That's not hard. Moreover, we only want to obtain the total detectible energy i.e. the energy of those modes in the the frequency range $[0.004,2]\te{Hz}$. This translates to the wave number range $[0.025,12.6]$ (since we use the velocity near the surface for measurement, which is $1\te{km\,s}^{-1}$).
 \\\\
@@ -671,7 +671,7 @@ E_m = \f{\lambda_m + 2\mu_m}{K_m^2} l p_0(m)^2\int r\diff r f(r)^2
 \end{align}
 We can now fix $p_0(m)$,
 \begin{align}
-p_0(m)^2 = \f{ K_m^2\rho_m}{\lambda_m + 2\mu_m}\f{2l^2\sigma_Xv_X^2}{\int r\diff r f(r)^2}\,.
+p_0(m)^2 = \f{ K_m^2}{\lambda_m + 2\mu_m}\f{2\rho_m\sigma_Xv_X^2}{\int r\diff r f(r)^2}\,.
 \end{align}
 In order to evaluate the effect of the anelastic attenuation we need the spectrum of a ray, and how that relates to the energy of the ray. Note, if each of the $M$ segments has $E_m$ energy, and each segment spawns $N$ rays, then each ray has $E_m/N$ energy.
 \\\\
@@ -686,31 +686,35 @@ where $P(\vec k)$ is given in section 2. The quantities out front are that of th
 The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
 \begin{align}
 \f{E_m'}{N} &= \f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
-\notag &=\f{Q}{NT^2}F_{m,n}^2e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
-&\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}\rho_m2l^2\sigma_Xv_X^2\,.
+\notag &=\f{Q}{NT^2}e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
+&\times (b^2f_1(b)-a^2f_1(a))^2\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2p_0(m)^2\,,\\
+\notag &=\f{Q}{NT^2}e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
+&\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}F_{m,n}^2 2\rho_m\sigma_Xv_X^2\,.
 \end{align}
 $A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = f\times (b^2-a^2)$. If $f$ is the triangle from section 2, then $A = \f16\Delta r(3r_0 + 2\Delta r)$. When $T$ is zero, we get the result from section 2, which goes approximately as $k_0^2$. A quick plot of $E_m'$ shows that it goes as $k_0^2$ for small $k_0$ but asymptotes to a constant value (more precisely, it goes as the expression in section 2). This constant value is achieved slower for larger $Q$ (or smaller $T$). In essence, this shows how the higher frequency terms stop contributing, and the small $k$ terms dominate. Note that $Q$ is on the order of $10^2$ or $10^3$, while $T$ is likely on the order of $10^3$ (seconds).
 \\\\
 In the case that $\f{T}{Q}\gg 1$, then $k_0\to\infty$ is close to the actual value. In this case, the limit is just
 \begin{align}
-E_m'\leq F_{m,n}^24 l p_0^2 \f{Q^2}{T^2} \arctan\ps{l\f{Q}{T}} A\rho_m2l^2\sigma_Xv_X^2\,.
+E_m' =  4 l  \f{Q^2}{T^2} \arctan\ps{l\f{Q}{T}} F_{m,n}^2 A2\rho_m\sigma_Xv_X^2\,.
 \end{align}
 Unfortunately, this approximation does not hold for rays originating near the surface (which always exist for our line source), since $Q_p$ near the surface is large and $T$ is small. In this case, we can use the expression from section 1. But when our computers are super fast, why approximate?
 \\\\
-Now, for a ray that immediately hits the surface, its energy must be the same as when it started. This corresponds to $T = \to 0$, and
+How do we remove $A$ from this equation?
+\\\\
+Now, for a ray that immediately hits the surface, its energy must be the same as when it started. This corresponds to $T = \to 0$ and $F_{m,n} = 1$
 \begin{align}
-E_m = 4l E_mAF_{m,n}^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}
+E_m = 4\p{-2k_0+k_0\cos(l k_0)+\f{\sin(h k_0)}{l}+l k_0^2\te{Si}(l k_0)} A \td{E}{x}{}(m)\,.
 \end{align}
-where we've taken $l\rho_m\sigma_Xv_X^2=E_m$.
+Hence
 \begin{align}
- \p{4lF_{m,n}^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}}^{-1}=  A
+A = \f{l}{4} \p{-2k_0+k_0\cos(l k_0)+\f{\sin(h k_0)}{l}+l k_0^2\te{Si}(l k_0)}^{-1}\,.
 \end{align}
-These units are way wrong. Gonna fix tomorrow.
+This is, really, an upper bound to what $A$ can be, since $A$ really depends on $m$. When we fix $A$, we lose information about how the frequencies are distributed, and we, in some sense, assume that all the energy from the explosion is initially concentrated in the lower frequencies. This is good for an upper estimate of the energy felt by seismometers. Note, for bigger $k_0$, $E_m$ experiences a faster drop-off as $T$ gets big.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
 
-The model above produces a set of positions on a sphere along with their associated times of impact and relative amplitudes at particular frequencies. The detectable energy from any given ray is the energy that is deposited in the frequencies detectable to a seismometer. According to Wikipedia, some seismometers can measure frequencies from 500 Hz to 0.00118 Hz. The lunar seismometers are considerably less sensitive, and have useful range 0.004 Hz to 2 Hz according to Wikipedia. There seems to be a total of 12 lunar seismometers.
+The model above produces a set of positions on a sphere along with their associated times of impact and relative amplitudes at particular frequencies. The detectable energy from any given ray is the energy that is depositied in the frequencies detectable to a seismometer. According to Wikipedia, some seismometers can measure frequencies from 500 Hz to 0.00118 Hz. The lunar seismometers are considerably less sensitive, and have useful range 0.004 Hz to 2 Hz according to Wikipedia. There seems to be a total of 12 lunar seismometers.
 
 Along with the use of the HEALPy package, we will be able to create a map on the sphere of maximum intensity for every distance $D$ of closest approach of a macro. The average detectable surface area of a macro impact is then a weighted average of these detectable surface areas for specific $D$. How do we weight the different $D$'s?
 
