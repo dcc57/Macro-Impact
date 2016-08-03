@@ -685,11 +685,27 @@ where $P(\vec k)$ is given in section 2. The quantities out front are that of th
 \end{align}
 The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
 \begin{align}
-\f{E_m'}{N} &= \f{p_0^2}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
+\f{E_m'}{N} &= \f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
 \notag &=\f{Q}{NT^2}F_{m,n}^2e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
 &\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}\rho_m2l^2\sigma_Xv_X^2\,.
 \end{align}
-$A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = f\times (b^2-a^2)$. If $f$ is the triangle from section 2, then $A = \f16\Delta r(3r_0 + 2\Delta r)$. When $T$ is zero, we get the result from section 2, which goes approximately as $k_0^2$. A quick plot of $E_m'$ shows that it goes as $k_0^2$ for small $k_0$ but asymptotes to a constant value. This constant value is achieved slower for larger $Q$ (or smaller $T$). In essence, this shows how the higher frequency terms stop contributing, and the small $k$ terms dominate.
+$A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = f\times (b^2-a^2)$. If $f$ is the triangle from section 2, then $A = \f16\Delta r(3r_0 + 2\Delta r)$. When $T$ is zero, we get the result from section 2, which goes approximately as $k_0^2$. A quick plot of $E_m'$ shows that it goes as $k_0^2$ for small $k_0$ but asymptotes to a constant value (more precisely, it goes as the expression in section 2). This constant value is achieved slower for larger $Q$ (or smaller $T$). In essence, this shows how the higher frequency terms stop contributing, and the small $k$ terms dominate. Note that $Q$ is on the order of $10^2$ or $10^3$, while $T$ is likely on the order of $10^3$ (seconds).
+\\\\
+In the case that $\f{T}{Q}\gg 1$, then $k_0\to\infty$ is close to the actual value. In this case, the limit is just
+\begin{align}
+E_m'\leq F_{m,n}^24 l p_0^2 \f{Q^2}{T^2} \arctan\ps{l\f{Q}{T}} A\rho_m2l^2\sigma_Xv_X^2\,.
+\end{align}
+Unfortunately, this approximation does not hold for rays originating near the surface (which always exist for our line source), since $Q_p$ near the surface is large and $T$ is small. In this case, we can use the expression from section 1. But when our computers are super fast, why approximate?
+\\\\
+Now, for a ray that immediately hits the surface, its energy must be the same as when it started. This corresponds to $T = \to 0$, and
+\begin{align}
+E_m = 4l E_mAF_{m,n}^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}
+\end{align}
+where we've taken $l\rho_m\sigma_Xv_X^2=E_m$.
+\begin{align}
+ \p{4lF_{m,n}^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}}^{-1}=  A
+\end{align}
+These units are way wrong. Gonna fix tomorrow.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
