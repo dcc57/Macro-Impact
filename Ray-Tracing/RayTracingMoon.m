@@ -205,9 +205,6 @@ for i = 1 : ACO
             end
             RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
             RayArrayTime(TempIdPrime) = TempTime + SOutward100(TempId) - SXOutward(TempId);
-            
-        %[nnz(SOutward100(TempId) - SXOutward(TempId) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
         
@@ -215,9 +212,6 @@ for i = 1 : ACO
             RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceOutward100(TempIdTIR));
             RayArrayx0(TempIdTIR) = Radii(j + 1);
             RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SOutward100(TempIdTIR) - SXOutward(TempIdTIR);
-            
-        %[nnz(SOutward100(TempIdTIR) - SXOutward(TempIdTIR) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
         
         end
         

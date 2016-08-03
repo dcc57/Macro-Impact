@@ -175,7 +175,7 @@ P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\inft
 &=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\ps{x^2\underbrace{\sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(r_0)}{n!}\f{(-r_0)^{n-m}}{2+m}x^{m}}_{f_1(x)}}_{x=a}^b+\scr O(k)\,,\\
 &=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))+\scr O(k)\,.
 \end{align}
-From this, we find that the energy in the lowest modes is
+From this, we find that the energy to leading order is
 \begin{align}
 E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(a)-a^2f_1(b))^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}+\scr O(k_0^4)\,,\\
 &\approx_{h\gg k_0}\f{\lambda+2\mu}{K^2} \f{4 p_0^2h\pi^3(b^2 f_1(b)-a^2f_1(a))^2}{\lambda_0^2}\,.
@@ -404,8 +404,6 @@ In cartesian coordinates:
 E&=\f{1}{4\mu}\int\f{\diff^3 k}{(2\pi)^3}\Sigma^2\f{k^4}{(k_x^2+k_y^2)k_z^2}\,.
 \end{align}
 Something makes me think that $\csc^2(2\theta)$ should be absorbed into the definition of $\Sigma$, but I don't know how to show this.
-\section{}
-For a given macro of given cross-section and velocity, how much energy gets deposited into seismic waves that propagated unattenuated? A better question: as a function of the sensitivity of a seismometer, will the seismometers have measured the macro? Look at the lunar limits.
 \pagebreak
 \section{P-Wave Vector Propagation}
 Observe, by Snell's law, we have that
@@ -601,6 +599,97 @@ A &= A(t_0)e^{\int_{t_0}^t\diff t'\f{K}{Q(r(t'))}}\,.
 We can do the above integral numerically, and perhaps analytically (in the case that we can reasonably write $Q$ as a simple smooth function of $r$). Next we must determine roughly what $Q$ looks like. In the literature, $Q$ is written $Q_p$ when in reference to $p$-waves. *Relevant paper on my phone*
 \\\\
 We begin with an amplitude $A(k,t)$, a function of amplitude and wave number, gotten from the Fourier decomposition of the source. Since the source depends on the wave vector, it is important to use spherical coordinates in phase space. It may be reasonable to just use the first order terms in $k$ since the lunar seismometers measure from  0.004 Hz to 2 Hz. However, second and third order terms may be desirable, given that signifiant portions of the measurable range lie at order unity. These are gotten by selectively truncating the hypergeometric series in section 2.
+\\\\
+According to ``Seismic viscoelastic attenuation,''
+\begin{align}
+Q_p = \f94 Q_s\,,
+\end{align}
+for a Poisson solid ($v_p =\sqrt3v_s$) which is close enough for our purposes.
+\\\\
+On the moon, the very preliminary model has $Q_p$ as a piecewise constant function. Therefore, we can do away with the complication of path dependence, and simply break the moon into layers corresponding to these regions.
+\pagebreak
+\section{Specifics of the Moon Model}
+For the region $r \in [380\te{km},1709.1\te{km}]$ the velocity is given by $a^2 - b^2 r^2$ where $a^2 = 8.26955$ and $b^2 = 2.47697\times 10^{-7}$. The velocity in the core is not well known, but because it is small, our calculation will be minimally affected by it, so we extrapolate from the mantle. In the last 28km, the VPREMOON indicates that for $r\in [1709.1,1725.1]$ the velocity is $5.50\te{km\,s}^{-1}$, for $r\in[1725.1,1736.1]$ the velocity is $3.20\te{km\,s}^{-1}$, and for $r\in[1736.1,1737.1]$ the velocity is $1.00\te{km\,s}^{-1}$.
+\\\\
+Unfortunately for my computer, this means that we must break down the moon into four separate layers simply because of the discontinuity of the velocity field. The other component of the model that requires additional iteration is the quality factor $Q_p$ whose value is piecewise constant as a function of $r$. There are 5 regions. Unfortunately, none of these regions share their boundaries with those of the velocity field. Therefore we have a total of 8 regions. Therefore, the algorithm must be run 16 times if we are to get propagation from one side of the moon to the other. That's quite a bit...
+\\\\
+To keep track of the quality factor, we need to be able to pointwise multiply $e^{-\f{k}{2Q}t}$ by $A(k)$. The problem is that Matlab doesn't really do functions... Well... Suppose we start with an amplitude $A(0,k)$, and that the ray propagates through a region of quality factor $Q_1$ for time $\Delta t_1$. Then the amplitude after the propagation is $A(\Delta t_1, k)=A(0,k)F_1 e^{-\f{k}{2Q_1}\Delta t_1}$, where $F_1$ is a transmission or reflection coefficient, which is not a function of $k$. Now, suppose it propagates through another region with quality factor $Q_2$ for $\Delta t_2$. Then we have $A(\Delta t_1 + \Delta t_2, k)=A(0,k)F_1F_2 e^{-\f{k}{2}\p{\f{\Delta t_1}{Q_1}+\f{\Delta t_2}{Q_2}}}$. That's straight forward enough. Therefore, to understand what happens to a general ray's amplitude, we only need to know two things:
+\begin{align}
+F &= \prod_i F_i\,,\\
+\f{T}{Q} &= \sum_i\f{\Delta t_i}{Q_i}\,.
+\end{align}
+Now, after the algorithm has been run, and we want to know how much energy is left in a particular ray with initial amplitude distribution $A(k)$, we calculate the energy associated to $\tilde A(k) = A(k)Fe^{-\f{k}{2}\f{T}{Q}}$. That's not hard. Moreover, we only want to obtain the total detectible energy i.e. the energy of those modes in the the frequency range $[0.004,2]\te{Hz}$. This translates to the wave number range $[0.025,12.6]$ (since we use the velocity near the surface for measurement, which is $1\te{km\,s}^{-1}$).
+\\\\
+The notion of ray tracing is based in the Eikonal approximation, where a wave evolves in a coherent fashion. Each ray can be thought of as containing $1/N$ the total amount of energy, where $N$ is the total number of rays (in the program this is just $N\times M$). Thus, the energy of an individual ray will be multiplied by $N^{-1}$.
+
+
+Now, assuming we've got a pressure wave of the form (that I describe in section 2)
+\begin{align}
+P(\vec k)=\f{4\pi p_0}{\sqrt{N}k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))
+\end{align}
+After attenuation, the form of the wave is
+\begin{align}
+\tilde P(\vec k) = P(\vec k)Fe^{-\f{k}{2}\f{T}{Q}}\,.
+\end{align}
+Observe that truncating the hypergeometric function at leading order is an overestimate for all $k$ and $\theta$ (since $F:[0,\infty)\to[0,1]$), so using my approximation is fine. The energy of a ray is not really a well defined quantity since a ray itself is somewhat of an infinitesimal wave packet, and is somewhat analogous to a test particle etc. One way, however, to extract a usable quantity is to think of a ray as representing one $N$th of the whole wave, and to simply calculate its energy as though it exists throughout the whole space. A complication arises from the $r$ dependence of $\rho$ and $\lambda + 2\mu$. Because we are only really interested in orders of magnitude, it's fairly reasonable to take $\rho$ and $\lambda + 2\mu$ as their weighted averages, i.e.
+\begin{align}
+\bar\rho = \f{3}{R_{\te{Moon}}^3}\int r^2\diff r\rho(r)
+\end{align}
+and
+\begin{align}
+\overline{\lambda + 2\mu} =  \f{3}{R_{\te{Moon}}^3}\int r^2\diff r\p{\lambda(r) + 2\mu(r)}\,.
+\end{align}
+\pagebreak
+\section{Inhomogeneous}
+Given that we are only looking for numerical results, let's consider the inhomogeneous Moon. The energy deposition is
+\begin{align}
+\td{E}{x}{} = \rho(r)\sigma_X v_X^2\,.
+\end{align}
+Now, the total energy deposition of a macro is
+\begin{align}
+E =2\sigma_X v_X^2 \int_0^{R_{\te{Moon}}}\diff r\rho(r)\,.
+\end{align}
+$\rho = a-b(x-c)^2$ where $a=3.446$, $b = 5\times 10^{-8}$ and $c = 70$, ($\rho$ is given in $\te{kg\,cm}^{-1}$), except for $r<380\te{km}$ where $\rho =5.171\te{kg\,cm}^{-1}$.
+\\\\
+Now, if we're interested in the energy allocated to each ray, let $M$ be the number of points on the source line from which rays will propagate, and let $N$ be the number of rays from each point. The energy in the slice (of length $l$) corresponding to some point $m$ is then
+\begin{align}
+E_m = 2\sigma_X v_X^2\int_{x_0(m)- l/2}^{x_0(m) + l/2}\diff r\rho(r)\,.
+\end{align}
+Since $\rho$ is approximately constant over the interval $x_0(m)$, it is reasonable to write
+\begin{align}
+E_m = 2\sigma_Xv_X^2 l\rho(x_0(m))\,.
+\end{align}
+This above expression will be used in the program.
+\\\\
+Now, in the neighborhood of the point, the moon is approximately homogeneous, and so the machinery from earlier works. We consider a pressure source of the form
+\begin{align}
+p=p_0f(r)\ps{\theta\p{z+\f l2}-\theta\p{z-\f l2}}
+\end{align}
+where we've aligned our axes with the trajectory of the macro. Since $l$ is not necessarily large with respect to $\lambda_0$, we have to use the full expression from section 2. The energy of this pressure source is
+\begin{align}
+E_m = \f{\lambda_m + 2\mu_m}{K_m^2} l p_0(m)^2\int r\diff r f(r)^2
+\end{align}
+We can now fix $p_0(m)$,
+\begin{align}
+p_0(m)^2 = \f{ K_m^2\rho_m}{\lambda_m + 2\mu_m}\f{2l^2\sigma_Xv_X^2}{\int r\diff r f(r)^2}\,.
+\end{align}
+In order to evaluate the effect of the anelastic attenuation we need the spectrum of a ray, and how that relates to the energy of the ray. Note, if each of the $M$ segments has $E_m$ energy, and each segment spawns $N$ rays, then each ray has $E_m/N$ energy.
+\\\\
+The energy of a ray is
+\begin{align}
+\f{E_m}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2
+\end{align}
+where $P(\vec k)$ is given in section 2. The quantities out front are that of the neighborhood of the segment since the pressure wave is initially localized in space. Since we are only concerned with the measurable energy the integral is only taken over $[0.025,12.6]$. Then, after anelastic attenuation and refraction/reflection
+\begin{align}
+\f{E_m'}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}
+\end{align}
+The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation. Thus
+\begin{align}
+\f{E_m'}{N} &= \f{p_0^2}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
+\notag &=\f{Q}{NT^2}F_{m,n}^2e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
+&\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}\rho_m2l^2\sigma_Xv_X^2\,.
+\end{align}
+$A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = 1$.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
@@ -617,8 +706,13 @@ is the average detectable surface area. In the continuous case, this turns into 
 
 Observe that this means that the events closest to the boundary of the earth are weighted the heaviest. These are also the events which deposit the least energy.
 
-
 \pagebreak
+\section{Thermal Source}
+A simple model for seismic wave generation via macro impact is that a cylinder is heated uniformly. Since we are interested in an upper bound to seismic energy generation, it is reasonable to find the optimal volume (i.e. radius) and temperature for maximal thermal expansion and minimal energy lost to heating. Since the energy lost to heating corresponds to the energy lost in melting, the second requirement is equivalent to minimizing volume... 
+
+\end{document}
+
+
 \section{Melt Zone}
 As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
 \begin{align}
@@ -629,6 +723,6 @@ where $u$ is the velocity of the projectile (i.e. the macro), $\rho_t$, $K_t$, $
 The connection between the energy of the projectile and the value $\alpha*R$ is given in the paper posted "Hypervelocity penetration modeling- momentum vs. energy and energy transfer mechanisms". A derivation is given for the decomposition of the energy of a projectile into kinetic, elastic and plastic terms in, for example, equations 32, 33, and 38.
 
 Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set $u = v$, and $s = 0$ to eliminate the "eroding" effect.
-\end{document}
+
 
 What is the area per year covered by these non-linear zones as a function of macro mass, volume etc (contour plot).

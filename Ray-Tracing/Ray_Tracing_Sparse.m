@@ -73,17 +73,16 @@ RandX = RandXrote;
 RandY = cos(Beta).*RandYrote + sin(Beta).*RandZrote;
 RandZ = -sin(Beta).*RandYrote + cos(Beta).*RandZrote;
 
-RayArrayx0 = zeros(M,N,2^(ACO));
-RayArrayAmp = zeros(M,N,2^(ACO));
-RayArrayAngDisp = zeros(M,N,2^(ACO));
-RayArrayAlpha = zeros(M,N,2^(ACO));
-RayArrayTime = zeros(M,N,2^(ACO));
+RayArrayx0 = sparse(M,N,2^(ACO));
+RayArrayAmp = sparse(M,N,2^(ACO));
+RayArrayAngDisp = sparse(M,N,2^(ACO));
+RayArrayAlpha = sparse(M,N,2^(ACO));
+RayArrayTime = sparse(M,N,2^(ACO));
 
 %ASSIGNMENT OF INITIAL CONDITIONS
 %%{
-RayArrayAlpha(:,:,1) = atan2(RandY,RandX - x0);
-RayArrayx0(:,:,1) = x0(:,:);
-RayArrayx0(:,:,2:2^(ACO)) = NaN;
+RayArrayAlpha(:,:,1) = sparse(atan2(RandY,RandX - x0));
+RayArrayx0(:,:,1) = sparse(x0(:,:));
 RayArrayAmp(:,:,1) = 1;
 RayArrayPlaneAngle = repmat(Alpha,[1,1,2^(ACO + 1)]);
 RayArrayRayAngle = repmat(Beta,[1,1,2^(ACO + 1)]);
@@ -99,34 +98,32 @@ RayArrayRayAngle = repmat(Beta,[1,1,2^(ACO + 1)]);
 %}
 %END TESTING
 
-OutArrayAngDisp = zeros(M,N,2^(ACO + 1));
-OutArrayAmp = zeros(M,N,2^(ACO + 1));
-OutArrayTime = zeros(M,N,2^(ACO + 1));
+OutArrayAngDisp = sparse(M,N,2^(ACO + 1));
+OutArrayAmp = sparse(M,N,2^(ACO + 1));
+OutArrayTime = sparse(M,N,2^(ACO + 1));
 
-SOutward100 = zeros(M,N,2^(ACO));
-SInward000 = zeros(M,N,2^(ACO));
-SInward001 = zeros(M,N,2^(ACO));
-sinAngleOfIncidenceOutward100 = zeros(M,N,2^(ACO));
-sinAngleOfIncidenceInward000 = zeros(M,N,2^(ACO));
-sinAngleOfIncidenceInward001 = zeros(M,N,2^(ACO));
-TIROutward100 = false(M,N,2^(ACO));
-TIRInward000 = false(M,N,2^(ACO));
-TIRInward001 = false(M,N,2^(ACO));
-ThetaOutward100 = zeros(M,N,2^(ACO));
-ThetaInward000 = zeros(M,N,2^(ACO));
-ThetaInward001 = zeros(M,N,2^(ACO));
-SXOutward = zeros(M,N,2^(ACO));
-SXInward = zeros(M,N,2^(ACO));
+SOutward100 = sparse(M,N,2^(ACO));
+SInward000 = sparse(M,N,2^(ACO));
+SInward001 = sparse(M,N,2^(ACO));
+sinAngleOfIncidenceOutward100 = sparse(M,N,2^(ACO));
+sinAngleOfIncidenceInward000 = sparse(M,N,2^(ACO));
+sinAngleOfIncidenceInward001 = sparse(M,N,2^(ACO));
+TIROutward100 = logical(sparse(M,N,2^(ACO)));
+TIRInward000 = logical(sparse(M,N,2^(ACO)));
+TIRInward001 = logical(sparse(M,N,2^(ACO)));
+ThetaOutward100 = sparse(M,N,2^(ACO));
+ThetaInward000 = sparse(M,N,2^(ACO));
+ThetaInward001 = sparse(M,N,2^(ACO));
+SXOutward = sparse(M,N,2^(ACO));
+SXInward = sparse(M,N,2^(ACO));
 
 %PROPAGATION
 
-LIdOutward = false(M,N,2^(ACO));
-LIdInward = false(M,N,2^(ACO));
+LIdOutward = logical(sparse(M,N,2^(ACO)));
+LIdInward = logical(sparse(M,N,2^(ACO)));
 
-LIdInwardHit = false(M,N,2^(ACO));
-LIdInwardMiss = false(M,N,2^(ACO));
-
-sx = zeros(M,N);
+LIdInwardHit = logical(sparse(M,N,2^(ACO)));
+LIdInwardMiss = logical(sparse(M,N,2^(ACO)));
 
 
 for i = 1 : ACO
@@ -205,9 +202,6 @@ for i = 1 : ACO
             end
             RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
             RayArrayTime(TempIdPrime) = TempTime + SOutward100(TempId) - SXOutward(TempId);
-            
-        %[nnz(SOutward100(TempId) - SXOutward(TempId) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
         
@@ -215,9 +209,6 @@ for i = 1 : ACO
             RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceOutward100(TempIdTIR));
             RayArrayx0(TempIdTIR) = Radii(j + 1);
             RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SOutward100(TempIdTIR) - SXOutward(TempIdTIR);
-            
-        %[nnz(SOutward100(TempIdTIR) - SXOutward(TempIdTIR) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
         
         end
         

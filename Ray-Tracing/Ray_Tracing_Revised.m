@@ -75,6 +75,7 @@ RandZ = -sin(Beta).*RandYrote + cos(Beta).*RandZrote;
 
 RayArrayx0 = zeros(M,N,2^(ACO));
 RayArrayAmp = zeros(M,N,2^(ACO));
+RayArraySup = zeros(M,N,2^(ACO));
 RayArrayAngDisp = zeros(M,N,2^(ACO));
 RayArrayAlpha = zeros(M,N,2^(ACO));
 RayArrayTime = zeros(M,N,2^(ACO));
@@ -205,9 +206,6 @@ for i = 1 : ACO
             end
             RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
             RayArrayTime(TempIdPrime) = TempTime + SOutward100(TempId) - SXOutward(TempId);
-            
-        %[nnz(SOutward100(TempId) - SXOutward(TempId) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
         
@@ -215,9 +213,6 @@ for i = 1 : ACO
             RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceOutward100(TempIdTIR));
             RayArrayx0(TempIdTIR) = Radii(j + 1);
             RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SOutward100(TempIdTIR) - SXOutward(TempIdTIR);
-            
-        %[nnz(SOutward100(TempIdTIR) - SXOutward(TempIdTIR) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
         
         end
         
@@ -262,18 +257,12 @@ for i = 1 : ACO
         RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceInward000(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
         RayArrayTime(TempIdPrime) = TempTime + SInward000(TempId) - SXInward(TempId);
         
-        %[nnz(SInward000(TempId) - SXInward(TempId) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
-        
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
         
         RayArrayAngDisp(TempIdTIR) = RayArrayAngDisp(TempIdTIR) + ThetaInward000(TempIdTIR);
         RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceInward000(TempIdTIR));
         RayArrayx0(TempIdTIR) = Radii(j + 1);
         RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SInward000(TempIdTIR) - SXInward(TempIdTIR);
-        
-        %[nnz(SInward000(TempIdTIR) - SXInward(TempIdTIR) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
         
         %RAYS THAT HIT THE INNER LAYER
 
@@ -303,18 +292,12 @@ for i = 1 : ACO
                 RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceInward001(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
                 RayArrayTime(TempIdPrime) = TempTime + SInward001(TempId) - SXInward(TempId);
                 
-                %[nnz(SInward001(TempId) - SXInward(TempId) < -0.000000000000002),i,j]
-                %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
-                
             %TOTALLY REFLECTED INWARD BOUND RAYS
             
                 RayArrayx0(TempIdTIR) = Radii(j);
                 RayArrayAlpha(TempIdTIR) = asin(sinAngleOfIncidenceInward001(TempIdTIR));
                 RayArrayAngDisp(TempIdTIR) = RayArrayAngDisp(TempIdTIR) + ThetaInward001(TempIdTIR);
                 RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SInward001(TempIdTIR) - SXInward(TempIdTIR);
-                
-                %[nnz(SInward001(TempIdTIR) - SXInward(TempIdTIR) < -0.000000000000002),i,j]
-                %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
                 
             end
     end

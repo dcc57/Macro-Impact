@@ -9,17 +9,21 @@ format long
 M = 1; %NUMBER OF POINTS ON THE LINE
 N = 5000; %NUMBER OF RAYS FROM EACH POINT
 
-a = [11.2633,10.6835,15.4938].^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE
-b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD
+a = [8.26955,8.26955,8.26955,8.26955,8.26955,5.5,3.2,1.0].^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE
+b = [2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD
 
 D = 6370; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER
-Radii = [0,1221,3480,6371]; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES
+Radii = [0,961.7,1231.7,1461.7,1671.7,1709.1,1725.1,1736.1,1737.1]; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES
 ACO = 8; %IT TAKES 5 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE EARTH
 
-%Q = ; %THE QUALITY FACTOR AS A FUNCTION OF FREQUENCY, TIME, AND SO ON... TBD
+Q = [675,1125,3375,9000,6750,6750,6750,6750]; %THE QUALITY FACTOR AS A FUNCTION OF FREQUENCY, TIME, AND SO ON... TBD
 %A = ; %THE AMPLITUDE OF THE WAVE AS A FUNCTION OF FREQUENCY
 
-rhoBoundaries = [ 12.76, 12.17; 9.90, 5.57; 1.02, 1.25*(10^(-3))].*(10^12); %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE OUTER DENSITY
+rhoBoundaries = [   3.406       ,   3.406               ;...
+                    3.379       ,   3.379               ;...
+                    3.350       ,   3.350               ;...
+                    3.318       ,   3.318               ;...
+                    2.762       ,   2.762].*(10^12); %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE OUTER DENSITY
 
 %END INPUTS
 
@@ -205,9 +209,6 @@ for i = 1 : ACO
             end
             RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
             RayArrayTime(TempIdPrime) = TempTime + SOutward100(TempId) - SXOutward(TempId);
-            
-        %[nnz(SOutward100(TempId) - SXOutward(TempId) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempId) < -0.000000000000002)]
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
         
@@ -215,9 +216,6 @@ for i = 1 : ACO
             RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceOutward100(TempIdTIR));
             RayArrayx0(TempIdTIR) = Radii(j + 1);
             RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SOutward100(TempIdTIR) - SXOutward(TempIdTIR);
-            
-        %[nnz(SOutward100(TempIdTIR) - SXOutward(TempIdTIR) < -0.000000000000002),i,j]
-        %[nnz(RayArrayTime(TempIdTIR) < -0.000000000000002)]
         
         end
         
