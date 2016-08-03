@@ -683,13 +683,13 @@ where $P(\vec k)$ is given in section 2. The quantities out front are that of th
 \begin{align}
 \f{E_m'}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}
 \end{align}
-The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation. Thus
+The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
 \begin{align}
 \f{E_m'}{N} &= \f{p_0^2}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
 \notag &=\f{Q}{NT^2}F_{m,n}^2e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
 &\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}\rho_m2l^2\sigma_Xv_X^2\,.
 \end{align}
-$A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = 1$.
+$A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = f\times (b^2-a^2)$. If $f$ is the triangle from section 2, then $A = \f16\Delta r(3r_0 + 2\Delta r)$.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
