@@ -681,21 +681,23 @@ The energy of a ray is
 \end{align}
 where $P(\vec k)$ is given in section 2. The quantities out front are that of the neighborhood of the segment since the pressure wave is initially localized in space. Since we are only concerned with the measurable energy the integral is only taken over $[0.025,12.6]$. Then, after anelastic attenuation and refraction/reflection
 \begin{align}
-\f{E_m'}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}
+\f{E_m'}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}
 \end{align}
-The approximation (32) holds when $lk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
+Because $Q_{m,n}$ and $T_{m,n}$ take into account the material properties along the path of the ray, the coefficients out front, which are those of the origin of the ray, act as a normalization, so that in the case of no refraction/reflection and anelastic attenuation the energy is that of the ray at the start of its journey.
+\\\\
+The approximation (32) holds when $bk_0\ll 2$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
 \begin{align}
-\f{E_m'}{N} &= \f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
+\f{E_m'}{N} &= \f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
 \notag &=\f{Q}{NT^2}e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
-&\times (b^2f_1(b)-a^2f_1(a))^2\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2p_0(m)^2\,,\\
+&\times (b^2f_1(b)-a^2f_1(a))^2\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}p_0(m)^2\,,\\
 \notag &=\f{Q}{NT^2}e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
-&\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}F_{m,n}^2 2\rho_m\sigma_Xv_X^2\,.
+&\times \underbrace{\f{(b^2f_1(b)-a^2f_1(a))^2}{\int r\diff r f(r)^2}}_{A}F_{m,n} 2\rho_m\sigma_Xv_X^2\,.
 \end{align}
 $A$ is a constant which characterizes the explosion for small $k$. In the case that $f$ is constant, $A = f\times (b^2-a^2)$. If $f$ is the triangle from section 2, then $A = \f16\Delta r(3r_0 + 2\Delta r)$. When $T$ is zero, we get the result from section 2, which goes approximately as $k_0^2$. A quick plot of $E_m'$ shows that it goes as $k_0^2$ for small $k_0$ but asymptotes to a constant value (more precisely, it goes as the expression in section 2). This constant value is achieved slower for larger $Q$ (or smaller $T$). In essence, this shows how the higher frequency terms stop contributing, and the small $k$ terms dominate. Note that $Q$ is on the order of $10^2$ or $10^3$, while $T$ is likely on the order of $10^3$ (seconds).
 \\\\
 In the case that $\f{T}{Q}\gg 1$, then $k_0\to\infty$ is close to the actual value. In this case, the limit is just
 \begin{align}
-E_m' =  4 l  \f{Q^2}{T^2} \arctan\ps{l\f{Q}{T}} F_{m,n}^2 A2\rho_m\sigma_Xv_X^2\,.
+E_m' =  4 l  \f{Q^2}{T^2} \arctan\ps{l\f{Q}{T}} F_{m,n} A2\rho_m\sigma_Xv_X^2\,.
 \end{align}
 Unfortunately, this approximation does not hold for rays originating near the surface (which always exist for our line source), since $Q_p$ near the surface is large and $T$ is small. In this case, we can use the expression from section 1. But when our computers are super fast, why approximate?
 \\\\
@@ -712,6 +714,21 @@ A = \f{l}{4} \p{-2k_0+k_0\cos(l k_0)+\f{\sin(h k_0)}{l}+l k_0^2\te{Si}(l k_0)}^{
 Clearly, a seismometer will not detect all the energy from a macro impact, since it only detects a certain range of frequencies. Thus, by fixing $A$ as we have, we are insisting that the energy of the impact be concentrated at lower $k$. We are assuming that all the energy from the explosion is initially concentrated in the lower frequencies below $k_0$, and that it is distributed according to the leading order expression inside the integral of (172). This is good for an upper estimate of the energy felt by seismometers. Note, for bigger $k_0$, $E_m'$ experiences a faster drop-off as $T$ gets big. The choice of $k_0$ is then very important, since it fixes the rate of attenuation. As long as $k_0 l<1$, this will be an overestimate. 
 \\\\
 One potential flaw with this model is that it DOES over-estimate the effect of anelastic attenuation on the shorter of the long modes, due to the nature of the approximation to the hypergeometric function I used.
+\\\\
+POSSIBLE REASONING: This computation is justified in itself, since $b$, even after non-linear evolution, is at most on the order of 10s to 100s of meters - and based on the size of the plastic zone potentially millimeters, $k_0 = 12\te{km}^{-1}$ times $b$ is at most $10^{-1}\ll 2$ so the leading order term in the Hypergeometric series dominates.
+\\\\
+AHA! $k_0$ should be the LOWER frequency i.e. $0.012\te{km}^{-1}$, since any lower would mean it is undetectable, but any higher and we could be over-estimating the amount of attenuation!!!! HAHA!
+\pagebreak
+\section{New Calculation}
+Instead of the hypergeometric function, whose form is unnecessarily linked to the profile of the pressure wave, suppose the pressure wave has the Fourier transform
+\begin{align}
+\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}F(b k\sin\theta)
+\end{align}
+and write
+\begin{align}
+F^2 = \sum_{i = 0}^\infty G_i \times (bk\sin\theta)^i\,.
+\end{align}
+The term $e^{-k\f{Q}{T}}$ tells us at what point we can stop the integral.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
