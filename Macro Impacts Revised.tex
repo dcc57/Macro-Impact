@@ -683,7 +683,7 @@ where $P(\vec k)$ is given in section 2. The quantities out front are that of th
 \begin{align}
 \f{E_m'}{N}=\f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{P_m(\vec k)}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}
 \end{align}
-The approximation (32) holds when $bk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
+The approximation (32) holds when $lk_0\ll 1$, and is always an overestimate. Since we know $b$ is on the order of meters, this is, in fact, a good approximation ($k_0$ is of order millimeters). Thus
 \begin{align}
 \f{E_m'}{N} &= \f{1}{N}\f{\lambda_m+2\mu_m}{K_m^2}F_{m,n}^2\int\f{\diff^3 k}{(2\pi)^3}\abs{\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))}^2e^{-k\f{T_{m,n}}{Q_{m,n}}}\,,\\
 \notag &=\f{Q}{NT^2}e^{-\f{k_0^2T}{Q}}\ps{4T(1-\cos(l k_0)) + \I e^{\f{k_0 T}{Q}} l Q\p{2\te{Ei}\ps{-\I l \notag k_0-\f{k_0 T}{Q}} - 2\te{Ei}\ps{\I l k_0 - \f{k_0 T}{Q}} + \right.\right.\\&\left.\left.+\ln\ps{-\f{Q}{\I l Q+T}}+\ln\notag \ps{-\f{\I l Q + T}{Q}} + 2\ln\ps{\I l - \f{T}{Q}}} - 4 l(Q + k_0 T)\te{Si}\ps{l k_0}}\times\\
@@ -709,7 +709,9 @@ Hence
 \begin{align}
 A = \f{l}{4} \p{-2k_0+k_0\cos(l k_0)+\f{\sin(h k_0)}{l}+l k_0^2\te{Si}(l k_0)}^{-1}\,.
 \end{align}
-Clearly, a seismometer will not detect all the energy from a macro impact, since it only detects a certain range of frequencies. Thus, by fixing $A$ as we have, we are insisting that the energy of the impact is concentrated at lower $k$. We are assuming that all the energy from the explosion is initially concentrated in the lower frequencies below $k_0$, and that it is distributed according to the leading order expression inside the integral of (172). This is good for an upper estimate of the energy felt by seismometers. Note, for bigger $k_0$, $E_m'$ experiences a faster drop-off as $T$ gets big. The choice of $k_0$ is then very important, since it fixes the rate of attenuation.
+Clearly, a seismometer will not detect all the energy from a macro impact, since it only detects a certain range of frequencies. Thus, by fixing $A$ as we have, we are insisting that the energy of the impact be concentrated at lower $k$. We are assuming that all the energy from the explosion is initially concentrated in the lower frequencies below $k_0$, and that it is distributed according to the leading order expression inside the integral of (172). This is good for an upper estimate of the energy felt by seismometers. Note, for bigger $k_0$, $E_m'$ experiences a faster drop-off as $T$ gets big. The choice of $k_0$ is then very important, since it fixes the rate of attenuation. As long as $k_0 l<1$, this will be an overestimate. 
+\\\\
+One potential flaw with this model is that it DOES over-estimate the effect of anelastic attenuation on the shorter of the long modes, due to the nature of the approximation to the hypergeometric function I used.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent

@@ -26,6 +26,8 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
                     2.762       ,   2.762               ;...
                     2.762       ,   2.600               ].*(10^15); %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE OUTER DENSITY
 
+AverageVelocities = []; %THE AVERAGE VELOCITY IN EACH REGION FOR USE IN CALCULATING ANELASTIC ATTENUATION
+                
 %END INPUTS
 
 
