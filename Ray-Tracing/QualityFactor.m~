@@ -3,3 +3,4 @@ function output = QualityFactor(LayerId,DeltaTime,vBoundaries,Q,Suppression)
 %   Detailed explanation goes here
 output = Suppression + ((vBoundaries(LayerId).*DeltaTime)./Q(LayerId));
 end
+

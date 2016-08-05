@@ -1,8 +1,11 @@
 function T = TransmissionCoefficient(LayerId,TempAmp,sinTheta,AlphaRay,v1,v2,rho1,rho2)
 %The fluid in which the wave arrives is labeled 1
 %   Detailed explanation goes here
-    
-    Theta1 = AlphaRay;
+    Theta1 = zeros(size(AlphaRay));
+    Id = AlphaRay < pi / 2;
+    Idp = AlphaRay >= pi / 2;
+    Theta1(Id) = AlphaRay(Id);
+    Theta1(Idp) = pi - AlphaRay(Idp);
     Theta2 = asin(sinTheta);
     Z1 = rho1.* v1;
     Z2 = rho2.* v2;

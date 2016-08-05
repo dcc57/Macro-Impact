@@ -5,53 +5,21 @@ format long
 
 
 %INPUTS
-D = 1000; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER
-ACO = 9; %IT TAKES 16 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE MOON
 
-vX = 250000; %m/s
-sigmaX = 10^(-7)*10^(-4);%kg/m^3
-f0 = 0.004;
+M = 1; %NUMBER OF POINTS ON THE LINE
+N = 5000; %NUMBER OF RAYS FROM EACH POINT
 
-M = 10; %NUMBER OF POINTS ON THE LINE
-N = 10; %NUMBER OF RAYS FROM EACH POINT
-%{
-%APPROXIMATION TO OUTER LAYERS
-a = [8.26955,8.26955,8.26955,8.26955,145.46].^(1/2);
-b = [2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),0.0000478823].^(1/2);
-Radii = [0,961.7,1231.7,1461.7,1671.7,1737.1];
-AverageV = [8.15502,7.96714,7.81709,7.65888,6.19979];
-Q = [675,1125,3375,9000,6750];
-rhoBoundaries = [   3.406       ,   3.406               ;...
-                    3.379       ,   3.379               ;...
-                    3.350       ,   3.350               ;...
-                    3.318       ,   3.318               ;...
-                    2.762       ,   0.000               ].*(10^15);
-%}
-%%{
-%VPREMOON MODEL
-a = [8.26955,8.26955,8.26955,8.26955,8.26955,5.5,3.2,1.0].^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE
-b = [2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD
+a = [11.2633,10.6835,15.4938].^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE
+b = [1.55946*10^(-7),2.11853*10^(-7),1.40336*10^(-7)].^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD
 
-Radii = [0,961.7,1231.7,1461.7,1671.7,1709.1,1725.1,1736.1,1737.1]; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES
+D = 6370; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER
+Radii = [0,1221,3480,6371]; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES
+ACO = 5; %IT TAKES 5 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE EARTH
 
-Q = [675,1125,3375,9000,6750,6750,6750,6750]; %THE QUALITY FACTOR IN THE DIFFERENT REGIONS
+%Q = ; %THE QUALITY FACTOR AS A FUNCTION OF FREQUENCY, TIME, AND SO ON... TBD
+%A = ; %THE AMPLITUDE OF THE WAVE AS A FUNCTION OF FREQUENCY
 
-AverageV = [8.15502,7.96714,7.81709,7.65888,7.56174,5.5,3.2,1.0]; %THE AVERAGE VELOCITY IN EACH OF THESE REGIONS
-
-rhoBoundaries = [   3.406       ,   3.406               ;...
-                    3.379       ,   3.379               ;...
-                    3.350       ,   3.350               ;...
-                    3.318       ,   3.318               ;...
-                    2.762       ,   2.762               ;...
-                    2.762       ,   2.762               ;...
-                    2.762       ,   2.600               ;...
-                    2.600       ,   0.000               ].*(10^15);
-                    %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE OUTER DENSITY
-%}
-
-c = 3.446; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2
-d = 5*10^(-8); %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS
-e = 70; %NOTE THE DIFFERENCE IN UNITS! e is in kilometers, while c is in kg*cm^(-3) and d is in kg*cm^(-3)*km^(-1)
+rhoBoundaries = [ 12.76, 12.17; 9.90, 5.57; 1.02, 1.25*(10^(-3))].*(10^12); %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE OUTER DENSITY
 
 %END INPUTS
 
@@ -107,7 +75,7 @@ RandZ = -sin(Beta).*RandYrote + cos(Beta).*RandZrote;
 
 RayArrayx0 = zeros(M,N,2^(ACO));
 RayArrayAmp = zeros(M,N,2^(ACO));
-RayArraySup = zeros(M,N,2^(ACO));
+%RayArraySup = zeros(M,N,2^(ACO));
 RayArrayAngDisp = zeros(M,N,2^(ACO));
 RayArrayAlpha = zeros(M,N,2^(ACO));
 RayArrayTime = zeros(M,N,2^(ACO));
@@ -121,9 +89,9 @@ RayArrayAmp(:,:,1) = 1;
 RayArrayPlaneAngle = repmat(Alpha,[1,1,2^(ACO + 1)]);
 RayArrayRayAngle = repmat(Beta,[1,1,2^(ACO + 1)]);
 
-Density = c - d.*((RayArrayx0(:,:,1) - e).^2);
+%Density = c - d.*((RayArrayx0(:,:,1) - e).^2);
 
-RayArrayDensity = repmat(Density,[1,1,2^(ACO + 1)]);
+%RayArrayDensity = repmat(Density,[1,1,2^(ACO + 1)]);
 
 %}
 %TESTING
@@ -141,7 +109,7 @@ RayArrayDensity = repmat(Density,[1,1,2^(ACO + 1)]);
 
 OutArrayAngDisp = zeros(M,N,2^(ACO + 1));
 OutArrayAmp = zeros(M,N,2^(ACO + 1));
-OutArraySup = zeros(M,N,2^(ACO + 1));
+%OutArraySup = zeros(M,N,2^(ACO + 1));
 OutArrayTime = zeros(M,N,2^(ACO + 1));
 
 SOutward100 = zeros(M,N,2^(ACO));
@@ -223,7 +191,7 @@ for i = 1 : ACO
             TempDisp = RayArrayAngDisp(TempId);
             TempTime = RayArrayTime(TempId);
             TempAmp = RayArrayAmp(TempId);
-            TempSup = RayArraySup(TempId);
+            %TempSup = RayArraySup(TempId);
         
             RayArrayAngDisp(TempId) = TempDisp + ThetaOutward100(TempId);
             RayArrayAlpha(TempId) = asin((vBoundaries(j,2)/(vBoundaries(j,1))).*sinAngleOfIncidenceOutward100(TempId));
@@ -233,7 +201,7 @@ for i = 1 : ACO
                 RayArrayx0(TempId) = Radii(j + 2);
             end
             RayArrayAmp(TempId) = TransmissionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-            RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+            %RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
             RayArrayTime(TempId) = TempTime + SOutward100(TempId) - SXOutward(TempId);
         
         %REFLECTED OUTWARD BOUND RAYS
@@ -246,7 +214,7 @@ for i = 1 : ACO
                 RayArrayx0(TempIdPrime) = Radii(j + 2);
             end
             RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceOutward100(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-            RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+            %RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
             RayArrayTime(TempIdPrime) = TempTime + SOutward100(TempId) - SXOutward(TempId);
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
@@ -254,7 +222,7 @@ for i = 1 : ACO
             RayArrayAngDisp(TempIdTIR) = RayArrayAngDisp(TempIdTIR) + ThetaOutward100(TempIdTIR);
             RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceOutward100(TempIdTIR));
             RayArrayx0(TempIdTIR) = Radii(j + 1);
-            RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
+            %RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
             RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SOutward100(TempIdTIR) - SXOutward(TempIdTIR);
         
         end
@@ -284,13 +252,13 @@ for i = 1 : ACO
         TempDisp = RayArrayAngDisp(TempId);
         TempTime = RayArrayTime(TempId);
         TempAmp = RayArrayAmp(TempId);
-        TempSup = RayArraySup(TempId);
+        %TempSup = RayArraySup(TempId);
         
         RayArrayAngDisp(TempId) = TempDisp + ThetaInward000(TempId);
         RayArrayAlpha(TempId) = asin((vBoundaries(j,2)/(vBoundaries(j,1))).*sinAngleOfIncidenceInward000(TempId));
         RayArrayx0(TempId) = Radii(j + 1);
         RayArrayAmp(TempId) = TransmissionCoefficient(j,TempAmp,sinAngleOfIncidenceInward000(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-        RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+        %RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
         RayArrayTime(TempId) = TempTime + SInward000(TempId) - SXInward(TempId);
         
         %REFLECTED OUTWARD BOUND RAYS (These are the rays which can bounce
@@ -300,7 +268,7 @@ for i = 1 : ACO
         RayArrayAlpha(TempIdPrime) = pi - asin(sinAngleOfIncidenceInward000(TempId));
         RayArrayx0(TempIdPrime) = Radii(j + 1);
         RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceInward000(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-        RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+        %RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
         RayArrayTime(TempIdPrime) = TempTime + SInward000(TempId) - SXInward(TempId);
         
         %TOTALLY REFLECTED OUTWARD BOUND RAYS
@@ -308,7 +276,7 @@ for i = 1 : ACO
         RayArrayAngDisp(TempIdTIR) = RayArrayAngDisp(TempIdTIR) + ThetaInward000(TempIdTIR);
         RayArrayAlpha(TempIdTIR) = pi - asin(sinAngleOfIncidenceInward000(TempIdTIR));
         RayArrayx0(TempIdTIR) = Radii(j + 1);
-        RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
+        %RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
         RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SInward000(TempIdTIR) - SXInward(TempIdTIR);
         
         %RAYS THAT HIT THE INNER LAYER
@@ -324,7 +292,7 @@ for i = 1 : ACO
                 TempDisp = RayArrayAngDisp(TempId);
                 TempTime = RayArrayTime(TempId);
                 TempAmp = RayArrayAmp(TempId);
-                TempSup = RayArraySup(TempId);
+                %TempSup = RayArraySup(TempId);
                 
                 if i == 1
                     RayArrayAlpha(TempId) = pi - asin(((vBoundaries(j - 1,1)/(vBoundaries(j - 1,2))).*sinAngleOfIncidenceInward001(TempId)));
@@ -334,7 +302,7 @@ for i = 1 : ACO
                 RayArrayx0(TempId) = Radii(j);
                 RayArrayAngDisp(TempId) = TempDisp + ThetaInward001(TempId);
                 RayArrayAmp(TempId) = TransmissionCoefficient(j,TempAmp,sinAngleOfIncidenceInward001(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-                RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+                %RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
                 RayArrayTime(TempId) = TempTime + SInward001(TempId) - SXInward(TempId);
                 
             %REFLECTED INWARD BOUND RAYS
@@ -343,7 +311,7 @@ for i = 1 : ACO
                 RayArrayx0(TempIdPrime) = Radii(j);
                 RayArrayAngDisp(TempIdPrime) = TempDisp + ThetaInward001(TempId);
                 RayArrayAmp(TempIdPrime) = ReflectionCoefficient(j,TempAmp,sinAngleOfIncidenceInward001(TempId),RayArrayAlpha(TempId),vBoundaries(j,1),vBoundaries(j,2),rhoBoundaries(j,1),rhoBoundaries(j,2));
-                RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
+                %RayArraySup(TempIdPrime) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
                 RayArrayTime(TempIdPrime) = TempTime + SInward001(TempId) - SXInward(TempId);
                 
             %TOTALLY REFLECTED INWARD BOUND RAYS
@@ -351,7 +319,7 @@ for i = 1 : ACO
                 RayArrayx0(TempIdTIR) = Radii(j);
                 RayArrayAlpha(TempIdTIR) = asin(sinAngleOfIncidenceInward001(TempIdTIR));
                 RayArrayAngDisp(TempIdTIR) = RayArrayAngDisp(TempIdTIR) + ThetaInward001(TempIdTIR);
-                RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
+                %RayArraySup(TempIdTIR) = QualityFactor(j,SOutward100(TempIdTIR) - SXOutward(TempIdTIR),AverageV,Q,RayArraySup(TempIdTIR));
                 RayArrayTime(TempIdTIR) = RayArrayTime(TempIdTIR) + SInward001(TempIdTIR) - SXInward(TempIdTIR);
                 
             end
@@ -362,16 +330,16 @@ for i = 1 : ACO
 
     OutArrayAngDisp(IdSurfacePrime) = RayArrayAngDisp(IdSurface);
     OutArrayAmp(IdSurfacePrime) = RayArrayAmp(IdSurface);
-    OutArraySup(IdSurfacePrime) = RayArraySup(IdSurface);
+    %OutArraySup(IdSurfacePrime) = RayArraySup(IdSurface);
     OutArrayTime(IdSurfacePrime) = RayArrayTime(IdSurface);
     
 end
 
-OutEnergy = (OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0).*exp(-pi .* f0.*OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0)).*RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0).*(10^6).*(L./M)).*(vX.^2).*sigmaX./N;
-OutAng = OutArrayAngDisp(OutArrayTime > 0 & OutArrayAmp > 0);
-OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
-OutRay = RayArrayRayAngle(OutArrayTime > 0 & OutArrayAmp > 0);
-OutPla = RayArrayPlaneAngle(OutArrayTime > 0 & OutArrayAmp > 0);
+%OutPropToEnergy = (OutArrayAmp(OutArrayTime > 0).*exp(OutArraySup(OutArrayTime > 0)).*RayArrayDensity(OutArrayTime > 0).*L)./M;
+OutAng = OutArrayAngDisp(OutArrayTime > 0);
+OutTim = OutArrayTime(OutArrayTime > 0);
+OutRay = RayArrayRayAngle(OutArrayTime > 0);
+OutPla = RayArrayPlaneAngle(OutArrayTime > 0);
 
 [X,Y,Z] = sph2cart(OutAng,0,1);
 Xrote = X;
@@ -380,17 +348,13 @@ Zrote = sin(OutRay).*Y + cos(OutRay).*Z;
 Xfinal = cos(OutPla).*Xrote - sin(OutPla).*Yrote;
 Yfinal = sin(OutPla).*Xrote + cos(OutPla).*Yrote;
 Zfinal = Zrote;
-%{
+%%{
 figure
-t0 = 5*10^2;
-tf = 6*10^3;
+t0 = 1.5*10^3;
+tf = 2*10^3;
 scatter3(Xfinal(t0 < OutTim & OutTim < tf),Yfinal(t0 < OutTim & OutTim < tf),Zfinal(t0 < OutTim & OutTim < tf),'.')
 %}
-%%{
-%figure
-%scatter3(Xfinal,Yfinal,Zfinal,1,OutEnergy)
-cat(1,Xfinal,
-fid=fopen('Points.txt','w');
-fprintf(fid,'%0.10e,%0.10e,%0.10e,%0.10e,%0.10e',Xfinal,Yfinal,Zfinal,OutTim,OutEnergy);
-fclose(fid);
+%{
+figure
+scatter3(Xfinal,Yfinal,Zfinal,'.')
 %}

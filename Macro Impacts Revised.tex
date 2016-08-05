@@ -182,14 +182,23 @@ E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(a)-a^2f_1(b))^2\p{-2k_0+
 \end{align}
 Let's do some checks. First consider the basic cylinder pressure where $f=1$ on $[0,r_X]$. Then $f_1=\f12$, and we see that
 \begin{align}
-E&\approx\f{\lambda+2\mu}{K^2}\f{p_0^2h\pi^3r_X^4}{\lambda_0^2}\,,\\
+E_{\te{propagated}}&\approx\f{\lambda+2\mu}{K^2}\f{p_0^2h\pi^3r_X^4}{\lambda_0^2}\,,\\
 &=\f{\lambda+2\mu}{K^2}(p_0\sigma_X)^2\f{\pi h}{\lambda_0^2}\,,
 \end{align}
 which is exactly the result from before. Now consider $f(r)=\f{r-r_0}{\Delta r}$ on $[r_0,r_0+\Delta r]$. Then, taking the endpoint $r_0$ as the base of the Taylor series, $f_1(x)=\f{-r_0}{2\Delta r}+\f{x}{3\Delta r}$. Hence
 \begin{align}
-E&\approx\f{\lambda+2\mu}{K^2}\f{h p_0^2\pi^3\Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}
+E_{\te{propagated}}&\approx\f{\lambda+2\mu}{K^2}\f{h p_0^2\pi^3\Delta r^2(3r_0+2\Delta r)^2}{9\lambda_0^2}
 \end{align}
 This is what we find out later! I'm legitimately surprised that I didn't make a mistake! Woo!
+\\\\
+The total energy of this general pressure wave is
+\begin{align}
+E_{\te{total}} = 2\pi p_0^2h\f{\lambda+2\mu}{K^2}\int_0^\infty r\diff r f(r)^2\,.
+\end{align}
+Hence, in general
+\begin{align}
+\Xi = \f{2\pi^2}{\lambda_0^2}\f{(b^2 f_1(b)-a^2f_1(a))^2}{\int_0^\infty r\diff r f(r)^2}
+\end{align}
 \pagebreak
 \\
 It is wrong, however, to assume that the wave evolves linearly close to the source. Modes will be coupled to one another, and our expression (24) will only hold in a small neighborhood of the event. Effects such as heating and rock fracturing will cause the high frequency modes in the shock to rapidly attenuate. They are, however, difficult to quantify. It is not controversial to say that the energy of the shock after its non-linear evolution (when the overpressure exceeds the elastic limit of the Earth) will be less than its initial energy. It is also well known that the behavior of shockwaves for long time tends towards a sharp wave-front with a linearly decreasing tail. To produce an over-estimate of the detectible energy, we hypothesize an approximate pressure waveform and endow it with energy equivalent to that of the initial blast. Then, we calculate the energy per mode, and sum over only those modes whose frequency is in the regime that will not rapidly attenuate.
@@ -718,6 +727,19 @@ One potential flaw with this model is that it DOES over-estimate the effect of a
 POSSIBLE REASONING: This computation is justified in itself, since $b$, even after non-linear evolution, is at most on the order of 10s to 100s of meters - and based on the size of the plastic zone potentially millimeters, $k_0 = 12\te{km}^{-1}$ times $b$ is at most $10^{-1}\ll 2$ so the leading order term in the Hypergeometric series dominates.
 \\\\
 AHA! $k_0$ should be the LOWER frequency i.e. $0.012\te{km}^{-1}$, since any lower would mean it is undetectable, but any higher and we could be over-estimating the amount of attenuation!!!! HAHA!
+\pagebreak
+\section{A Good Method of Overestimation}
+Forget about the hypergeometric. Take the $f$ source to be of the optimal form to produce seismic waves that will reach the detector, i.e. take $f= A\delta(k-k_0)$ where $k_0$ is the lowest frequency of response of the moon seismometers. In this case, the total energy of the ray just goes as $e^{-k_0\f{T_{m,n}}{Q_{m,n}}}$. According to http://nssdc.gsfc.nasa.gov/nmc/experimentDisplay.do?id=1971-008C-04, the lowest useful range of any of the lunar seismometers (some had higher) was $0.004\te{Hz}$. The velocity of p-waves near the surface is $1\te{km\,s}^{-1}$, and so this corresponds to $k_0 = 2\pi\times 0.004\te{km}^{-1}$. However, another useful quantity may be the peak response, which is $0.45\te{Hz}$. I'll run the model with both of these quantities.
+\pagebreak
+\section{What Counts as Detectable?}
+The most sensitive of the moon seismometers could measure $0.008\te{mgal}=8\times 10^{-8}\te{m\,s}^{-2}$. Their mass is approximately $10\te{kg}$, and they are sensitive to displacements down to $0.3\times 10^{-9}\te{m}$. If in a HEALPix pixel, the energy density is $\epsilon$, the energy on the seismometer is given by the surface area the seismometer occupies. It's radius is $11.5\te{cm}$. Call the radius $r_s$, the displacement sensitivity $D$, the mass of the seismometer $M$, and the acceleration sensitivity $A$. Then the seismometer will sense $\epsilon$ such that
+\begin{align}
+\epsilon\f{\pi r_s^2}{MD} \geq A
+\end{align}
+i.e.
+\begin{align}
+\epsilon \geq 6\times 10^{-9} \te{J\,km}^{-2}\,.
+\end{align}
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
