@@ -1,0 +1,358 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12142,        350]
+NotebookOptionsPosition[     11616,        327]
+NotebookOutlinePosition[     11970,        343]
+CellTagsIndexPosition[     11927,        340]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f1", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"-", "r0"}], 
+    RowBox[{"2", "\[CapitalDelta]r"}]], "+", 
+   FractionBox["x", 
+    RowBox[{"3", "\[CapitalDelta]r"}]]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f1", "[", 
+    RowBox[{"r0", "+", "\[CapitalDelta]r"}], "]"}], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"r0", "+", "\[CapitalDelta]r"}], ")"}], "2"]}], "-", 
+  RowBox[{
+   RowBox[{"f1", "[", "r0", "]"}], 
+   SuperscriptBox["r0", "2"]}]}]}], "Input",
+ CellChangeTimes->{{3.679421295583041*^9, 3.679421345115859*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{
+   FractionBox[
+    SuperscriptBox["r0", "3"], 
+    RowBox[{"6", " ", "\[CapitalDelta]r"}]], "+", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"r0", "+", "\[CapitalDelta]r"}], ")"}], "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["r0", 
+        RowBox[{"2", " ", "\[CapitalDelta]r"}]]}], "+", 
+      FractionBox[
+       RowBox[{"r0", "+", "\[CapitalDelta]r"}], 
+       RowBox[{"3", " ", "\[CapitalDelta]r"}]]}], ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.679421347548719*^9, 3.679421350243793*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "6"], " ", "\[CapitalDelta]r", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"3", " ", "r0"}], "+", 
+    RowBox[{"2", " ", "\[CapitalDelta]r"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6794213505430937`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Energy", "[", 
+   RowBox[{
+   "\[Rho]_", ",", "\[Sigma]x_", ",", "vx_", ",", "\[CapitalDelta]r_", ",", 
+    "r0_", ",", "h_", ",", "Q_", ",", "T_", ",", "k0_", ",", "k1_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"3", "\[Pi]"}]], 
+   FractionBox[
+    RowBox[{"\[Rho]", " ", "\[Sigma]x", " ", 
+     SuperscriptBox["vx", "2"], "\[CapitalDelta]r", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"3", " ", "r0"}], "+", 
+        RowBox[{"2", " ", "\[CapitalDelta]r"}]}], ")"}], "2"]}], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"4", " ", "r0"}], " ", "+", " ", 
+      RowBox[{"3", "\[CapitalDelta]r"}]}], ")"}]], 
+   FractionBox["1", 
+    SuperscriptBox["T", "2"]], 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"k0", "+", "k1"}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"\[ImaginaryI]", " ", "h", " ", "Q"}], "+", "T"}], ")"}]}], 
+      "Q"]}]], "  ", "Q", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", "h", " ", "k0"}], "+", 
+           FractionBox[
+            RowBox[{"k0", " ", "T"}], "Q"]}]], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "h", " ", 
+             RowBox[{"(", 
+              RowBox[{"k0", "+", "k1"}], ")"}]}], "+", 
+            FractionBox[
+             RowBox[{"k0", " ", "T"}], "Q"]}]]}], "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", "h", " ", 
+            RowBox[{"(", 
+             RowBox[{"k0", "+", 
+              RowBox[{"2", " ", "k1"}]}], ")"}]}], "+", 
+           FractionBox[
+            RowBox[{"k0", " ", "T"}], "Q"]}]], "-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", "h", " ", "k1"}], "+", 
+           FractionBox[
+            RowBox[{"k1", " ", "T"}], "Q"]}]], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "h", " ", 
+             RowBox[{"(", 
+              RowBox[{"k0", "+", "k1"}], ")"}]}], "+", 
+            FractionBox[
+             RowBox[{"k1", " ", "T"}], "Q"]}]]}], "-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", "h", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", "k0"}], "+", "k1"}], ")"}]}], "+", 
+           FractionBox[
+            RowBox[{"k1", " ", "T"}], "Q"]}]]}], ")"}]}], " ", "T"}], "-", 
+     RowBox[{"\[ImaginaryI]", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"k0", "+", "k1"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", "h", " ", "Q"}], "+", "T"}], ")"}]}],
+         "Q"]], " ", "h", " ", "Q", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"ExpIntegralEi", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "\[ImaginaryI]"}], " ", "h", " ", "k0"}], "-", 
+          FractionBox[
+           RowBox[{"k0", " ", "T"}], "Q"]}], "]"}], "-", 
+        RowBox[{"ExpIntegralEi", "[", 
+         RowBox[{
+          RowBox[{"\[ImaginaryI]", " ", "h", " ", "k0"}], "-", 
+          FractionBox[
+           RowBox[{"k0", " ", "T"}], "Q"]}], "]"}], "-", 
+        RowBox[{"ExpIntegralEi", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "\[ImaginaryI]"}], " ", "h", " ", "k1"}], "-", 
+          FractionBox[
+           RowBox[{"k1", " ", "T"}], "Q"]}], "]"}], "+", 
+        RowBox[{"ExpIntegralEi", "[", 
+         RowBox[{
+          RowBox[{"\[ImaginaryI]", " ", "h", " ", "k1"}], "-", 
+          FractionBox[
+           RowBox[{"k1", " ", "T"}], "Q"]}], "]"}]}], ")"}]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"\[ImaginaryI]", " ", "h", " ", 
+        RowBox[{"(", 
+         RowBox[{"k0", "+", "k1"}], ")"}]}]], " ", "h", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"k1", " ", "T"}], "Q"]], " ", 
+         RowBox[{"(", 
+          RowBox[{"Q", "+", 
+           RowBox[{"k0", " ", "T"}]}], ")"}], " ", 
+         RowBox[{"SinIntegral", "[", 
+          RowBox[{"h", " ", "k0"}], "]"}]}], "-", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"k0", " ", "T"}], "Q"]], " ", 
+         RowBox[{"(", 
+          RowBox[{"Q", "+", 
+           RowBox[{"k1", " ", "T"}]}], ")"}], " ", 
+         RowBox[{"SinIntegral", "[", 
+          RowBox[{"h", " ", "k1"}], "]"}]}]}], ")"}]}]}], ")"}]}]}]], "Input",\
+
+ CellChangeTimes->{{3.67942244206322*^9, 3.679422512483553*^9}, {
+   3.679423058331574*^9, 3.679423110632132*^9}, 3.679423625226754*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Q", " ", "=", " ", "5000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]", " ", "=", " ", 
+   RowBox[{"3.3", " ", "*", " ", 
+    SuperscriptBox["10", "6"], "*", 
+    SuperscriptBox["10", "9"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Sigma]x", " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox["10", 
+     RowBox[{"-", "7"}]], "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "4"}]], "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vx", " ", "=", " ", "250"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k0", " ", "=", " ", 
+   FractionBox["1", "2"]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"k1", " ", "=", " ", "250"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Re", "[", 
+      RowBox[{"Energy", "[", 
+       RowBox[{
+       "\[Rho]", ",", "\[Sigma]x", ",", "vx", ",", "\[CapitalDelta]r", ",", 
+        "r0", ",", "h", ",", "Q", ",", "T", ",", "k0", ",", "k1"}], "]"}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"T", ",", "0", ",", "100"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalDelta]r", ",", "0", ",", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r0", ",", "0", ",", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"h", ",", "0", ",", "10"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.679423119447947*^9, 3.679423160498446*^9}, {
+  3.679423194810747*^9, 3.679423426712255*^9}, {3.679423480719651*^9, 
+  3.6794234895820513`*^9}, {3.679423645416092*^9, 3.679423646342587*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{Parallel`h$$ = 10., Parallel`r0$$ = 0.001, 
+    Parallel`\[CapitalDelta]r$$ = 0.001, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[Parallel`\[CapitalDelta]r$$], 0, 
+      Rational[1, 1000]}, {
+      Hold[Parallel`r0$$], 0, 
+      Rational[1, 1000]}, {
+      Hold[Parallel`h$$], 0, 10}}, Typeset`size$$ = {360., {109., 114.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Parallel`\[CapitalDelta]r$156172$$ = 0, Parallel`r0$156173$$ = 0, 
+    Parallel`h$156174$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {
+       Parallel`h$$ = 0, Parallel`r0$$ = 0, Parallel`\[CapitalDelta]r$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[
+        Parallel`\[CapitalDelta]r$$, Parallel`\[CapitalDelta]r$156172$$, 0], 
+        Hold[Parallel`r0$$, Parallel`r0$156173$$, 0], 
+        Hold[Parallel`h$$, Parallel`h$156174$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        Re[
+         Parallel`Energy[
+         Parallel`\[Rho], Parallel`\[Sigma]x, Parallel`vx, 
+          Parallel`\[CapitalDelta]r$$, Parallel`r0$$, Parallel`h$$, 
+          Parallel`Q, Parallel`T, Parallel`k0, Parallel`k1]], {
+        Parallel`T, 0, 100}], 
+      "Specifications" :> {{Parallel`\[CapitalDelta]r$$, 0, 
+         Rational[1, 1000]}, {Parallel`r0$$, 0, 
+         Rational[1, 1000]}, {Parallel`h$$, 0, 10}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {181., 186.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6794233302842283`*^9, 3.679423335849998*^9}, {
+  3.679423366902341*^9, 3.679423427160183*^9}, {3.679423482942203*^9, 
+  3.679423489901971*^9}, {3.6794236279534397`*^9, 3.679423646674221*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 724},
+WindowMargins->{{Automatic, 38}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 11, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 622, 19, 71, "Input"],
+Cell[CellGroupData[{
+Cell[1205, 43, 618, 18, 51, InheritFromParent],
+Cell[1826, 63, 253, 7, 48, "Output"]
+}, Open  ]],
+Cell[2094, 73, 5142, 142, 275, "Input"],
+Cell[CellGroupData[{
+Cell[7261, 219, 1800, 50, 200, "Input"],
+Cell[9064, 271, 2536, 53, 418, "Output"]
+}, Open  ]]
+}
+]
+*)
+

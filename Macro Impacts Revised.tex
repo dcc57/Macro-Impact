@@ -177,7 +177,7 @@ P(\vec k)&=\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\sum_{n=0}^\inft
 \end{align}
 From this, we find that the energy to leading order is
 \begin{align}
-E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(a)-a^2f_1(b))^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}+\scr O(k_0^4)\,,\\
+E_{\te{propagated}}&=\f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(b)-a^2f_1(a))^2\p{-2k_0+k_0\cos(h k_0)+\f{\sin(h k_0)}{h}+h k_0^2\te{Si}(h k_0)}+\scr O(k_0^4)\,,\\
 &\approx_{h\gg k_0}\f{\lambda+2\mu}{K^2} \f{4 p_0^2h\pi^3(b^2 f_1(b)-a^2f_1(a))^2}{\lambda_0^2}\,.
 \end{align}
 Let's do some checks. First consider the basic cylinder pressure where $f=1$ on $[0,r_X]$. Then $f_1=\f12$, and we see that
@@ -730,6 +730,60 @@ AHA! $k_0$ should be the LOWER frequency i.e. $0.012\te{km}^{-1}$, since any low
 \pagebreak
 \section{A Good Method of Overestimation}
 Forget about the hypergeometric. Take the $f$ source to be of the optimal form to produce seismic waves that will reach the detector, i.e. take $f= A\delta(k-k_0)$ where $k_0$ is the lowest frequency of response of the moon seismometers. In this case, the total energy of the ray just goes as $e^{-k_0\f{T_{m,n}}{Q_{m,n}}}$. According to http://nssdc.gsfc.nasa.gov/nmc/experimentDisplay.do?id=1971-008C-04, the lowest useful range of any of the lunar seismometers (some had higher) was $0.004\te{Hz}$. The velocity of p-waves near the surface is $1\te{km\,s}^{-1}$, and so this corresponds to $k_0 = 2\pi\times 0.004\te{km}^{-1}$. However, another useful quantity may be the peak response, which is $0.45\te{Hz}$. I'll run the model with both of these quantities.
+\\\\
+Unfortunately, the above overestimate is too much of an overestimate. It is likely the best line of thinking to use the guessed wave-form. In this case, we have
+\begin{align}
+P(\vec k) = \f{4\pi p_0}{k\cos\theta}\sin\p{\f{h}{2}k\cos\theta}
+\end{align}
+We may just want to do numerical integration. The problem is that these integrals oscillate rather quickly... Another idea is to simply drop all terms that are suppressed by some cutoff factor.
+\pagebreak
+\section{Better Estimate}
+The frequency distribution of the rays is to first order $\f{kb}{2}\ll 1$
+\begin{align}
+P(\vec k) = \f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))
+\end{align}
+Indeed, since $b$ is on the order of $1\te{m}$, and the frequencies measurable to the lunar seismometers are at most $2\te{Hz}$, we have that $\f{bk}{2}\approx 10^{-3}\ll 1$. Now, the attenuated energy in this part of the spectrum goes as
+\begin{align}
+\f{\lambda+2\mu}{K^2}\int\f{\diff^3k}{2\pi}P(\vec k)^2e^{-k\f{T}{Q}}
+\end{align}
+The energy in the range $[k_0,k_1]$ where $\f{k_1 b}{2}\ll 1$. is then
+\begin{align}
+\notag E_{\te{attenuated}} =&\f{\lambda + 2\mu}{K^2}2p_0^2(b^2 f_1(b) - a^2 f_1(a))^2 \f{1}{T^2}e^{-\f{(k_0+k_1)(\I h Q+T)}{Q}} Q\p{-\p{e^{\I h k_0+\f{k_0T}{Q}} \notag -2e^{\I h(k_0+k_1)+\f{k_0 T}{Q}} \right.\right.\\&\left.\left.+ e^{\I h(k_0 + 2k_1) + \f{k_0 T}{Q}} - e^{\I h k_1 \notag + \f{k_1 T}{Q}} + 2 e^{\I h(k_0 + k_1) + \f{k_1 T}{Q}} - e^{\I h(2k_0 + k_1)+\f{k_1 T}{Q}}}T \right.\\&\left.- \I \notag e^{\f{(k_0+k_1)(\I h Q + T)}{Q}}h Q\p{\te{Ei}\ps{-\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{-\I h k_1 - \f{k_1 T}{Q}} + \te{Ei}\ps{\I h k_1 - \f{k_1 T}{Q}}   } \right.\\&\left.+ 2e^{\I h(k_0+k_1)} h \p{e^{\f{k_1 T}{Q}}(Q + k_0 T)\te{Si}\ps{h k_0} - e^{\f{k_0 T}{Q}}(Q + k_1 T)\te{Si}\ps{h k_1}}}\,.
+\end{align}
+We know that the energy in this range before attenuation is
+\begin{align}
+E_{\te{detectable}} = \f{\lambda+2\mu}{K^2}2p_0^2(b^2f_1(b)-a^2f_1(a))^2\ps{-2k+k\cos(h k)+\f{\sin(h k)}{h}+h k^2\te{Si}(h k)}_{k=k_0}^{k_1}
+\end{align}
+What is the measurable attenuated energy in terms of the total deposited energy?
+\begin{align}
+E_{\te{total}} = 2\pi p_0^2h\f{\lambda+2\mu}{K^2}\int_0^\infty r\diff r f(r)^2\,.
+\end{align}
+We need to pick a function $f$. A shock wave tends to be a right triangle, so let's pick the triangle from before. We then get
+\begin{align}
+E_{\te{total}}=\f{\lambda+2\mu}{K^2}\f16 p_0^2 \pi\Delta r h(4 r_0+3\Delta r)\,,
+\end{align}
+and
+\begin{align}
+f_1(x)=\f{-r_0}{2\Delta r}+\f{x}{3\Delta r}\,.
+\end{align}
+Hence, for $b = r_0+\Delta r$ and $a = r_0$, we have
+\begin{align}
+b^2 f_1(b)-a^2f_1(a) = \f16\Delta r(3r_0+2\Delta r)\,.
+\end{align}
+The initial energy deposition is
+\begin{align}
+E = \rho\sigma_Xv_X^2h\,.
+\end{align}
+Thus
+\begin{align}
+2p_0^2\f{\lambda+2\mu}{K^2} =  \f{12}{\pi}\f{\rho\sigma_Xv_X^2}{\Delta r (4r_0+3\Delta r)}\,.
+\end{align}
+Hence
+\begin{align}
+\notag E_{\te{attenuated}} =&\f{1}{3\pi}\f{\rho\sigma_Xv_X^2}{\Delta r (4r_0+3\Delta r)}\ps{ \Delta r(3r_0+2\Delta r)}^2 \f{1}{T^2}e^{-\f{(k_0+k_1)(\I h Q+T)}{Q}} Q\p{-\p{e^{\I h k_0+\f{k_0T}{Q}} \notag -2e^{\I h(k_0+k_1)+\f{k_0 T}{Q}} \right.\right.\\&\left.\left.+ e^{\I h(k_0 + 2k_1) + \f{k_0 T}{Q}} - e^{\I h k_1 \notag + \f{k_1 T}{Q}} + 2 e^{\I h(k_0 + k_1) + \f{k_1 T}{Q}} - e^{\I h(2k_0 + k_1)+\f{k_1 T}{Q}}}T \right.\\&\left.- \I \notag e^{\f{(k_0+k_1)(\I h Q + T)}{Q}}h Q\p{\te{Ei}\ps{-\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{-\I h k_1 - \f{k_1 T}{Q}} + \te{Ei}\ps{\I h k_1 - \f{k_1 T}{Q}}   } \right.\\&\left.+ 2e^{\I h(k_0+k_1)} h \p{e^{\f{k_1 T}{Q}}(Q + k_0 T)\te{Si}\ps{h k_0} - e^{\f{k_0 T}{Q}}(Q + k_1 T)\te{Si}\ps{h k_1}}}\,,\\
+=&\f{1}{3\pi}\f{\rho\sigma_Xv_X^2\Delta r}{(4r_0+3\Delta r)}\ps{(3r_0+2\Delta r)}^2 \f{1}{T^2}e^{-\f{(k_0+k_1)(\I h Q+T)}{Q}} Q\p{-\p{e^{\I h k_0+\f{k_0T}{Q}} \notag -2e^{\I h(k_0+k_1)+\f{k_0 T}{Q}} \right.\right.\\&\left.\left.+ e^{\I h(k_0 + 2k_1) + \f{k_0 T}{Q}} - e^{\I h k_1 \notag + \f{k_1 T}{Q}} + 2 e^{\I h(k_0 + k_1) + \f{k_1 T}{Q}} - e^{\I h(2k_0 + k_1)+\f{k_1 T}{Q}}}T \right.\\&\left.- \I \notag e^{\f{(k_0+k_1)(\I h Q + T)}{Q}}h Q\p{\te{Ei}\ps{-\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{\I h k_0 - \f{k_0 T}{Q}} - \te{Ei}\ps{-\I h k_1 - \f{k_1 T}{Q}} + \te{Ei}\ps{\I h k_1 - \f{k_1 T}{Q}}   } \right.\\&\left.+ 2e^{\I h(k_0+k_1)} h \p{e^{\f{k_1 T}{Q}}(Q + k_0 T)\te{Si}\ps{h k_0} - e^{\f{k_0 T}{Q}}(Q + k_1 T)\te{Si}\ps{h k_1}}}\,.
+\end{align}
+Note, the bigger $r_0$ and $\Delta r$ are, the bigger $E_{\te{attenuated}}$ will be. A very generous over estimate is to say that $\Delta r = r_0 = 1\te{m}$. Another way to do this is as we did earlier, by starting the propagation once the wave has reached a certain pressure $\bar p \approx 10^8\te{Pa}$.
 \pagebreak
 \section{What Counts as Detectable?}
 The most sensitive of the moon seismometers could measure $0.008\te{mgal}=8\times 10^{-8}\te{m\,s}^{-2}$. Their mass is approximately $10\te{kg}$, and they are sensitive to displacements down to $0.3\times 10^{-9}\te{m}$. If in a HEALPix pixel, the energy density is $\epsilon$, the energy on the seismometer is given by the surface area the seismometer occupies. It's radius is $11.5\te{cm}$. Call the radius $r_s$, the displacement sensitivity $D$, the mass of the seismometer $M$, and the acceleration sensitivity $A$. Then the seismometer will sense $\epsilon$ such that
