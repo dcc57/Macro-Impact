@@ -798,6 +798,25 @@ i.e.
 \begin{align}
 \epsilon \geq 6\times 10^{-15} \te{J\,m}^{-2}\,.
 \end{align}
+This is probably wrong. They can measure a displacement of $3\times 10^{-10}\te{m}$. We can calculate the displacement due to a seismic $p$-wave. Suppose $P$ is the Fourier transform of the pressure wave. Then the displacement field's Fourier transform is 
+\begin{align}
+U(\vec k) =\I\f{P(\vec k)}{K}\f{\vec k}{k^2}\,. 
+\end{align}
+The displacement is then... I FORGOT AN $\omega t$!!! I'll redo later tonight
+\begin{align}
+u &= \int\f{\diff^3 k}{(2\pi)^3}\I\f{P(\vec k)}{K}\f{\vec k}{k^2}e^{\I \vec k\cdot\vec x - \I\omega t}\,,\\
+&=\f{1}{K}\int\f{\diff^3 k}{(2\pi)^3}\I\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))\f{\vec k}{k^2}e^{\I \vec k\cdot\vec x}\,,\\
+&=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^2}\f{k^2\sin\theta}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\f{\hat k}{k}e^{\I (kx\cos\varphi)}\,,\\
+&=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^2}\tan\theta\sin\p{\f{h k\cos\theta}{2}}\hat k e^{\I (kx\cos\varphi)}\,,\\
+&=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta\diff\phi}{(2\pi)^2}\ps{\f{2h\cos\theta-2e^{\I k_0 x\cos\varphi}\p{h\cos\theta\cos\p{\f{h}{2}k_0\cos\theta} - 2\I x\cos\varphi\sin\p{\f{h}{2}k_0\cos\theta}}}{h^2\cos^2\theta-4x^2\cos^2\varphi}}\,,\\
+&=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta}{2\pi}\ps{\f{2h-2e^{\I k_0 x\cos\theta}\p{h\cos\p{\f{h}{2}k_0\cos\theta} - 2\I x\sin\p{\f{h}{2}k_0\cos\theta}}}{(h^2-4x^2)\cos\theta}}\,.
+\end{align}
+By proper choice of coordinates, we can insist that $\varphi = \theta$. Moreover, we know that $u$ is real, and hence we can write
+\begin{align}
+u &=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta}{2\pi}\ps{\f{-2\I\p{h\sin\p{k_0 x\cos\theta}\cos\p{\f{h}{2}k_0\cos\theta} - 2 x\cos\p{k_0 x\cos\theta}\sin\p{\f{h}{2}k_0\cos\theta}}}{(h^2-4x^2)\cos\theta}}\,,\\
+&=4 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta}{2\pi}\ps{\f{\p{h\sin\p{k_0 x\cos\theta}\cos\p{\f{h}{2}k_0\cos\theta} - 2 x\cos\p{k_0 x\cos\theta}\sin\p{\f{h}{2}k_0\cos\theta}}}{(h^2-4x^2)\cos\theta}}\,,\\
+&=k_0\f{p_0}{2}\f{(b^2f_1(b)-a^2f_1(a))}{K}\p{_p\te{F}_q\ps{\pc{\f12},\pc{1,\f32},-\p{\f{k_0(h+2x)}{4}}^2} -_p\te{F}_q\ps{\pc{\f12},\pc{1,\f32},-\p{\f{k_0(h-2x)}{4}}^2}}
+\end{align}
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
