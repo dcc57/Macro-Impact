@@ -817,11 +817,35 @@ u &=\I2 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta}{2\pi}\ps{\f{-2\I\p{h\
 &=4 p_0\f{(b^2f_1(b)-a^2f_1(a))}{K}\int\f{\diff\theta}{2\pi}\ps{\f{\p{h\sin\p{k_0 x\cos\theta}\cos\p{\f{h}{2}k_0\cos\theta} - 2 x\cos\p{k_0 x\cos\theta}\sin\p{\f{h}{2}k_0\cos\theta}}}{(h^2-4x^2)\cos\theta}}\,,\\
 &=k_0\f{p_0}{2}\f{(b^2f_1(b)-a^2f_1(a))}{K}\p{_p\te{F}_q\ps{\pc{\f12},\pc{1,\f32},-\p{\f{k_0(h+2x)}{4}}^2} -_p\te{F}_q\ps{\pc{\f12},\pc{1,\f32},-\p{\f{k_0(h-2x)}{4}}^2}}
 \end{align}
+
+CORRECTION
+\\\\
+Note that we want to know the amplitude as a function of cylindrical $r$, hence choose $k\cdot x = k r \sin\theta$, since they should be aligned when $\theta$ is $\pi/2$. That integral doesn't seem to work, but the displacement as a function of $z$ is
+\begin{align}
+u &= \int\f{\diff^3 k}{(2\pi)^3}\I\f{P(\vec k)}{K}\f{\vec k}{k^2}e^{\I \vec k\cdot\vec x - \I\omega t}\,,\\
+&=\f{1}{K}\int\f{\diff^3 k}{(2\pi)^3}\I\f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}(b^2f_1(b)-a^2f_1(a))\f{\vec k}{k^2}e^{\I \vec k\cdot\vec x - \I k v t}\,,\\
+&=\f{\I4\pi p_0}{K}(b^2f_1(b)-a^2f_1(a))\int\f{\diff^3 k}{(2\pi)^3}\f{1}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}\f{\vec k}{k^2}e^{\I k(z\cos\theta -  v t)}\,,\\
+&=\f{\I2 p_0}{K}(b^2f_1(b)-a^2f_1(a))\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^2}\tan\theta\sin\p{\f{h k\cos\theta}{2}}e^{\I k(z\cos\theta -  v t)}\hat k\,,\\
+\end{align}
+Note, then that $u\cdot\vec  = \abs{u}z\cos\theta$ and that
+\begin{align}
+\abs{u}&=\f{\I2 p_0}{K}(b^2f_1(b)-a^2f_1(a))\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^2}\tan\theta\sin\p{\f{h k\cos\theta}{2}}e^{\I k(r\cos\theta -  v t)}\,,\\
+\end{align}
+A priori we know that only the complex part of the integral survives, and we are left with
+\begin{align}
+\notag\abs{u} =& \f{ p_0}{K}(b^2f_1(b)-a^2f_1(a))\f{1}{tv}\ps{-2\cos(k_0 tv)\p{\te{Si}\ps{\f12 k_0(h - 2z)} + \te{Si}\ps{\f12 k_0(h + 2z)}}\right.\\&\left. + \te{Si} \ps{\f12 k_0(h+2z-2tv)}+ \te{Si}\ps{\f12 k_0(h-2z+2tv)}+\te{Si}\ps{\f12 k_0(h+2z+2tv)}+\te{Si}\ps{\f12 k_0(h-2z-2tv)}}
+\end{align}
+Note that $r$ is the cylindrical coordinate. Taking $z = vt$, we get the maximum amplitude of the propagating displacement wave. For large $t$, the stuff in the square bracket tends to $2\te{Si}\ps{h k_0/2}$. The convergence is quite rapid. Note, the cosine term dominates the behavior of the background in response to the source, and the independent sine integral terms dominate the propagation of the wave.
+\pagebreak
+\section{BEST ESTIMATE THIS TIME!}
+\begin{align}
+\epsilon A = \f12M_{\te{seismometer}}v_p^2D_{\te{displacement sensitivity}}
+\end{align}
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
 
-The model above produces a set of positions on a sphere along with their associated times of impact and relative amplitudes at particular frequencies. The detectable energy from any given ray is the energy that is depositied in the frequencies detectable to a seismometer. According to Wikipedia, some seismometers can measure frequencies from 500 Hz to 0.00118 Hz. The lunar seismometers are considerably less sensitive, and have useful range 0.004 Hz to 2 Hz according to Wikipedia. There seems to be a total of 12 lunar seismometers.
+The model above produces a set of positions on a sphere along with their associated times of impact and relative amplitudes at particular frequencies. The detectable energy from any given ray is the energy that is deposited in the frequencies detectable to a seismometer. According to Wikipedia, some seismometers can measure frequencies from 500 Hz to 0.00118 Hz. The lunar seismometers are considerably less sensitive, and have useful range 0.004 Hz to 2 Hz according to Wikipedia. There seems to be a total of 12 lunar seismometers.
 
 Along with the use of the HEALPy package, we will be able to create a map on the sphere of maximum intensity for every distance $D$ of closest approach of a macro. The average detectable surface area of a macro impact is then a weighted average of these detectable surface areas for specific $D$. How do we weight the different $D$'s?
 
