@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  11 AUG 2016 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  11 AUG 2016 14:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1832,12 +1832,12 @@ Overfull \hbox (2.8248pt too wide) in paragraph at lines 837--837
 [] 
  []
 
-[29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 882--886
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 876--880
 
  []
 
-[31] [32] [33] [34] [35] (./Macro Impacts Revised.aux) ) 
+[30] [31] [32] [33] [34] (./Macro Impacts Revised.aux) ) 
 Here is how much of TeX's memory you used:
  22427 strings out of 493014
  464484 string characters out of 6133351
@@ -1863,10 +1863,10 @@ s/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
 pe1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Macro Impacts Revised.pdf" (35 pages, 284412 bytes).
+Output written on "Macro Impacts Revised.pdf" (34 pages, 282987 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
+ 181 PDF objects out of 1000 (max. 8388607)
+ 127 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
