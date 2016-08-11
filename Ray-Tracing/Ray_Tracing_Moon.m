@@ -13,7 +13,7 @@ sigmaX = (10^(-7))*(10^(-4))*(10^(-6));%kg/km^3
 flow = 0.004;%1/s %LOWEST DETECTABLE FREQUENCY
 fhigh = 2;%1/s %HIGHEST DETECTABLE FREQUENCY
 favg = 1.5;%1/s %WEIGHTED AVERAGE FREQUENCY (Where the energy is)
-TotalDensityAverage = 3.3*10^15; %THE AVERAGE DENSITY THROUGHOUT THE WHOLE MOON
+TotalDensityAverage = 3.3*10^12; %THE AVERAGE DENSITY THROUGHOUT THE WHOLE MOON
 pbar = 10^8*10^3;%HOOKIAN PRESSURE kg/(km*s^2)
 vs = 4.4 * 10^3;%AVERAGE SHEAR WAVE VELOCITY THROUGHOUT THE WHOLE MOON
 vp = 7.6 * 10^3;%AVERAGE PRESSURE WAVE VELOCITY THROUGHOUT THE WHOLE MOON
@@ -58,8 +58,8 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
                     %OUTER DENSITY kg/km^3
 %}
 
-c = 3.446 * 10^15; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/km^3
-d = 5*(10^(-8)) * 10^15; %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS d=kg/km^5
+c = 3.446 * 10^12; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/km^3
+d = 5*(10^(-8)) * 10^12; %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS d=kg/km^5
 e = 70; %NOTE THE DIFFERENCE IN UNITS! km
 
 %END INPUTS
@@ -382,8 +382,9 @@ for i = 1 : ACO
     OutArrayTime(IdSurfacePrime) = RayArrayTime(IdSurface);
     
 end
-
-OutEnergy = Xi.*(OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0).*exp(-pi .* favg.*OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0)).*RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0).*(L./M)).*(vX.^2).*sigmaX./N;
+Eray = Xi.*(RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*L.*(vX.^2).*sigmaX./(M*N);
+QT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
+F = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
 OutAng = OutArrayAngDisp(OutArrayTime > 0 & OutArrayAmp > 0);
 OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
 OutRay = RayArrayRayAngle(OutArrayTime > 0 & OutArrayAmp > 0);

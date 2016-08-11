@@ -837,10 +837,80 @@ A priori we know that only the complex part of the integral survives, and we are
 \end{align}
 Note that $r$ is the cylindrical coordinate. Taking $z = vt$, we get the maximum amplitude of the propagating displacement wave. For large $t$, the stuff in the square bracket tends to $2\te{Si}\ps{h k_0/2}$. The convergence is quite rapid. Note, the cosine term dominates the behavior of the background in response to the source, and the independent sine integral terms dominate the propagation of the wave.
 \pagebreak
-\section{BEST ESTIMATE THIS TIME!}
+\section{Prof. Starkman's Estimate}
 \begin{align}
-\epsilon A = \f12M_{\te{seismometer}}v_p^2D_{\te{displacement sensitivity}}
+d_{\te{threshold}} > \frac{1}{f} \sqrt{ \frac{E_{\te{ray}}}{\rho v \Delta T A_{\te{pix}}}}
 \end{align}
+This estimate works in the case that the wave only contains one frequency. 
+\pagebreak
+\section{Another Estimate}
+Suppose that we have the energy in the frequencies less than $f$ is
+\begin{align}
+E = Cf^2\,.
+\end{align}
+This means that each frequency contributes energy proportional to itself, i.e.
+\begin{align}
+E(f) = 2 Cf
+\end{align}
+This frequency is then attenuated
+\begin{align}
+E(f) =  2 C_1 f e^{- C_2 f}
+\end{align}
+and so the energy in the spectrum below $f$ is
+\begin{align}
+E = \f{2 C_1(1-e^{-C_2 f}(1+C_2 f))}{C_2^2}
+\end{align}
+To see this more formally, observe that if the energy below frequency $f$ is
+\begin{align}
+E=C_1f^2\,,
+\end{align}
+then the energy in the interval $[f,f+\delta]$ is
+\begin{align}
+\delta E = E(f+\delta)-E(f)
+\end{align}
+This energy is then approximately attenuated as though all the energy were at frequency $f$, i.e.
+\begin{align}
+\delta E = e^{-C_2f}(E(f+\delta)-E(f))\,.
+\end{align}
+Hence the total attenuated energy is
+\begin{align}
+E = \sum_f\delta Ee^{-C_2f} = \sum_f\delta e^{-C_2f}\f{(E(f+\delta)-E(f))}{\delta}\,.
+\end{align}
+Taking the limit as $\delta\to 0$ then leads to
+\begin{align}
+E = \int_0^f\diff f' \td{E(f')}{f'}{}e^{-C_2f}\,.
+\end{align}
+Now that we have attenuated $E$ as a function of $f$, we try to determine displacement. This is possible because we know how the energy is distributed as a function of $f$.
+\\\\
+Suppose we have a displacement wave at wavenumber $k$ and energy $E$. We can, in particular, write the wave in the form
+\begin{align}
+u_f = A_fe^{-i(\vec k\cdot \vec x - k v t)}\,.
+\end{align}
+Then the energy is
+\begin{align}
+E(f+\delta)-E(f) &= \rho\int\diff^3 x \abs{\partial_t A_fe^{-\I(\vec k\cdot \vec x - k v t)}}^2\,,\\
+&= \rho\int\diff^3 x \abs{\I k v A_fe^{-\I(\vec k\cdot \vec x - k v t)}}^2\,,\\
+&= \rho\int\diff^3 x  k^2 v^2 A_f^2\,,\\
+&= \rho V  k^2 v^2 A_f^2\,,\\
+&= \rho V  (2\pi)^2 f^2 A_f^2\,.
+\end{align}
+\begin{align}
+A^2 = \lim_{\delta\to 0}\sum_f (A_f^2) &= \lim_{\delta\to 0}\sum_f \f{E(f+\delta)-E(f)}{f^2}\p{\rho V  (2\pi)^2}^{-1}\,,\\
+&=\f{1}{\rho V  (2\pi)^2} \int \f{\diff E}{f^2}\,,\\
+&=\f{1}{\rho V  (2\pi)^2} \int \f{\diff f}{f^2}\td{E}{f}{}\,,
+\end{align}
+so,
+\begin{align}
+A = \sqrt{\f{1}{\rho V  (2\pi)^2} \int \f{\diff f}{f^2}\td{E}{f}{}}\,.
+\end{align}
+In our case,
+\begin{align}
+A &= \sqrt{\f{1}{\rho V  (2\pi)^2} \int_0^f \diff f' C_1 e^{-C_2 f'}}\,,\\
+&= \sqrt{\f{1}{\rho V  (2\pi)^2}C_1(1- e^{-C_2 f})}\,,\\
+&= \f{1}{f}\sqrt{\f{E_{ray}}{\rho V  (2\pi)^2}(1- e^{-C_2 f})}\,,\\
+&= \f{1}{2\pi f}\sqrt{\f{E_{ray}}{\rho A_{\te{ray}}\Delta T v_p}(1- e^{-C_2 f})}\,,
+\end{align}
+which coincides with Prof. Starkman's estimate for $C_2 = 0$.
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
