@@ -5,21 +5,21 @@ format long
 
 
 %INPUTS
-D = 1000; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER km
+D = 1200; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER km
 ACO = 9; %IT TAKES 16 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE MOON
 
 vX = 250; %km/s
-sigmaX = (10^(-7))*(10^(-4))*(10^(-6));%kg/km^3
-flow = 0.004;%1/s %LOWEST DETECTABLE FREQUENCY
+sigmaX = (10^(-11))*(10^(-4))*(10^(-6));%kg/km^3
+%flow = 0.004;%1/s %LOWEST DETECTABLE FREQUENCY
 fhigh = 2;%1/s %HIGHEST DETECTABLE FREQUENCY
-favg = 1.5;%1/s %WEIGHTED AVERAGE FREQUENCY (Where the energy is)
+%favg = 1.5;%1/s %WEIGHTED AVERAGE FREQUENCY (Where the energy is)
 TotalDensityAverage = 3.3*10^12; %THE AVERAGE DENSITY THROUGHOUT THE WHOLE MOON
 pbar = 10^8*10^3;%HOOKIAN PRESSURE kg/(km*s^2)
 vs = 4.4 * 10^3;%AVERAGE SHEAR WAVE VELOCITY THROUGHOUT THE WHOLE MOON
 vp = 7.6 * 10^3;%AVERAGE PRESSURE WAVE VELOCITY THROUGHOUT THE WHOLE MOON
 
-M = 20; %NUMBER OF POINTS ON THE LINE
-N = 10; %NUMBER OF RAYS FROM EACH POINT
+M = 100; %NUMBER OF POINTS ON THE LINE
+N = 20; %NUMBER OF RAYS FROM EACH POINT
 %{
 %APPROXIMATION TO OUTER LAYERS
 a = [8.26955,8.26955,8.26955,8.26955,145.46].^(1/2);
@@ -382,9 +382,9 @@ for i = 1 : ACO
     OutArrayTime(IdSurfacePrime) = RayArrayTime(IdSurface);
     
 end
-Eray = Xi.*(RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*L.*(vX.^2).*sigmaX./(M*N);
-QT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
 F = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
+OutEnergy = F.*Xi.*(RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*sigmaX.*(vX.^2).*L./(M*N);
+OutvTQ= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
 OutAng = OutArrayAngDisp(OutArrayTime > 0 & OutArrayAmp > 0);
 OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
 OutRay = RayArrayRayAngle(OutArrayTime > 0 & OutArrayAmp > 0);
@@ -406,6 +406,6 @@ scatter3(Xfinal(t0 < OutTim & OutTim < tf),Yfinal(t0 < OutTim & OutTim < tf),Zfi
 %%{
 %figure
 %scatter3(Xfinal,Yfinal,Zfinal,1,OutEnergy)
-output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,OutEnergy .* 10^(6)); %(the 10^(6)) is to convert to J from kg km^2/s^2
+output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,OutEnergy .* 10^(6),OutvTQ); %(the 10^(6)) is to convert to J from kg km^2/s^2
 save Points.mat output
 %}

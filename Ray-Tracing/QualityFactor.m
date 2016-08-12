@@ -1,5 +1,5 @@
-function output = QualityFactor(LayerId,DeltaTime,vBoundaries,Q,Suppression)
+function output = QualityFactor(LayerId,DeltaTime,AverageV,Q,Suppression)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
-output = Suppression + ((vBoundaries(LayerId).*DeltaTime)./Q(LayerId));
+output = Suppression + ((AverageV(LayerId).*DeltaTime)./Q(LayerId));
 end
