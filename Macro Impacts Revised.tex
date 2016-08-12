@@ -893,18 +893,99 @@ A^2 = \lim_{\delta\to 0}\sum_f (A_f^2) &= \lim_{\delta\to 0}\sum_f \f{E(f+\delta
 &=\f{1}{\rho V  (2\pi)^2} \int \f{\diff E}{f^2}\,,\\
 &=\f{1}{\rho V  (2\pi)^2} \int \f{\diff f}{f^2}\td{E}{f}{}\,,
 \end{align}
+OR?
+\begin{align}
+A = \lim_{\delta\to 0}\sum_f (A_f) &= \lim_{\delta\to 0}\sum_f\sqrt{ \f{E(f+\delta)-E(f)}{f^2}\p{\rho V  (2\pi)^2}^{-1}}\,,\\
+&=\f{1}{\sqrt{\rho V}  2\pi} \int \f{\diff \sqrt{E}}{f}\,,\\
+&=\f{1}{\sqrt{\rho V}  2\pi} \int \f{\diff f}{f}\td{\sqrt{E}}{f}{}\,.
+\end{align}
 so,
 \begin{align}
 A = \sqrt{\f{1}{\rho V  (2\pi)^2} \int \f{\diff f}{f^2}\td{E}{f}{}}\,.
 \end{align}
 In our case,
 \begin{align}
-A &= \sqrt{\f{1}{\rho V  (2\pi)^2} \int_0^f \diff f' C_1 e^{-C_2 f'}}\,,\\
-&= \sqrt{\f{1}{\rho V  (2\pi)^2}C_1(1- e^{-C_2 f})}\,,\\
-&= \f{1}{f}\sqrt{\f{E_{ray}}{\rho V  (2\pi)^2}(1- e^{-C_2 f})}\,,\\
-&= \f{1}{2\pi f}\sqrt{\f{E_{ray}}{\rho A_{\te{ray}}\Delta T v_p}(1- e^{-C_2 f})}\,,
+A &= \sqrt{\f{1}{\rho V  (2\pi)^2} \int_{f_0}^{f_1} \diff f' \f{C_1 e^{-C_2 f'}}{f}}\,,\\
+&= \sqrt{\f{1}{\rho V  (2\pi)^2}C_1\p{\te{Ei}\ps{-C_2f_1}-\te{Ei}\ps{-C_2f_0}}}\,,\\
+&= \f{1}{f}\sqrt{\f{E_{ray}}{\rho V  (2\pi)^2}\p{\te{Ei}\ps{-C_2f_1}-\te{Ei}\ps{-C_2f_0}}}\,,\\
+&= \f{1}{2\pi f}\sqrt{\f{E_{ray}}{\rho A_{\te{ray}}\Delta T v_p}\p{\te{Ei}\ps{-C_2f_1}-\te{Ei}\ps{-C_2f_0}}}\,,
 \end{align}
 which coincides with Prof. Starkman's estimate for $C_2 = 0$.
+\pagebreak
+\section{Revised Estimate}
+Suppose we have the displacement field
+\begin{align}
+u &= \int\f{\diff^3 k}{(2\pi)^3}U(\vec k)e^{-\I(\vec k\cdot x-k v_p t)}\,.
+\end{align}
+Since we want the maximum displacement, we set $t=0$. In the case that $U$ doesn't depend on $\vec k$, we have
+\begin{align}
+u &=\int\f{\diff^3 k}{(2\pi)^3}U(k)e^{-\I(\vec k\cdot x)}\,,\\
+&=\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^3}k^2\sin\theta U( k)e^{-\I k r \cos\phi}\,,\\
+&=\int\f{\diff k}{(2\pi)^2}k^2U( k) J_0(k r)\,.
+\end{align}
+When$kr\ll 1$, we have
+\begin{align}
+u&\approx \int\f{\diff k}{(2\pi)^2}k^2U(k)\,.
+\end{align}
+Then
+\begin{align}
+\partial_t u =\I v_p\int\f{\diff^3 k}{(2\pi)^3}kU(\vec k)e^{-\I(\vec k\cdot \vec x-k v_p t)}\,,
+\end{align}
+and
+\begin{align}
+\abs{\partial_t u}^2 = v_p^2\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')e^{-\I(\vec k'\cdot \vec x-k' v_p t)}e^{-\I(\vec k\cdot \vec x-k v_p t)}
+\end{align}
+Thus
+\begin{align}
+E = \rho\int\diff^3 x (\partial_t u)^2 &= v_p^2\rho\int\diff^3 x\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')e^{\I(\vec k'\cdot \vec x-k' v_p t)}e^{-\I(\vec k\cdot \vec x-k v_p t)}\,,\\
+&=v_p^2\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')\rho\int\diff^3 xe^{\I(\vec k'\cdot \vec x-k' v_p t)}e^{-\I(\vec k\cdot \vec x-k v_p t)}\,,\\
+&=v_p^2\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')\rho\int\diff^3 xe^{\I((\vec k'-\vec k)\cdot \vec x-(k'-k) v_p t)}\,,\\
+&=v_p^2\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')\rho \delta(\vec k-\vec k')e^{\I(k-k') v_p t}\,,\\
+&=v_p^2\int\f{\diff^3 k}{(2\pi)^3}\int\f{\diff^3 k'}{(2\pi)^3}kk'U(\vec k)\bar U(\vec k')\rho \delta(\vec k-\vec k')\,,\\
+&=\rho v_p^2\int\f{\diff^3 k}{(2\pi)^3}k^2\abs{U(\vec k)}^2\,.
+\end{align}
+Assuming $U$ has no $\hat k$ dependence
+\begin{align}
+E&=2\rho v_p^2\int_{0}^{\infty}\f{\diff k}{(2\pi)^2}k^4\abs{U(k)}^2\,.
+\end{align}
+Define
+\begin{align}
+E_k &=2\rho v_p^2\int_{0}^{k}\f{\diff k'}{(2\pi)^2}k'^4\abs{U(k')}^2\,.
+\end{align}
+Then
+\begin{align}
+\td{E_k}{k}{} =\f{2\rho v_p^2}{(2\pi)^2}k^4\abs{U(k)}^2
+\end{align}
+Hence
+\begin{align}
+\abs{U(k)} = \f{2\pi}{\sqrt{2\rho v_p^2}}\f{1}{k^2}\sqrt{\td{E_k}{k}{}}\,.
+\end{align}
+Whence
+\begin{align}
+U = \int_0^\infty \f{\diff k}{(2\pi)^2} k^2\abs{U(k)} = \f{1}{2\pi\sqrt{2\rho v_p^2}}\int_0^\infty\diff k\sqrt{\td{E_k}{k}{}}\,.
+\end{align}
+In our case, when we want to only consider modes up to some $k_0$, we have
+\begin{align}
+U_k =  \f{1}{2\pi\sqrt{2\rho v_p^2}}\int_0^k\diff k'\sqrt{\td{E_k'}{k'}{}}
+\end{align}
+For us, before attenuation we have
+\begin{align}
+E_k = C_1 k^2\,,
+\end{align}
+so before attenuation we have
+\begin{align}
+\td{E_k'}{k'}{} = 2 C_1 k'\,,
+\end{align}
+and after attenuation
+\begin{align}
+\td{E_k'}{k'}{} = 2 C_1 k'e^{-k v_p\f{T}{Q}}\,,
+\end{align}
+whence
+\begin{align}
+U_k &=  \f{\sqrt{C_1}}{2\pi\sqrt{\rho v_p^2}}\int_0^k\diff k' \sqrt{k'}e^{-\f{k v_p}{2}\f{T}{Q}}\,,\\
+&=\f{\sqrt{E_{\te{ray}}}}{2\pi k\sqrt{\rho v_p^2}}\int_0^k\diff k' \sqrt{k'}e^{-\f{k v_p}{2}\f{T}{Q}}\,,\\
+&=\f{1}{2\pi kv_p}\sqrt{\f{E_{\te{ray}}}{\rho}}\f{Q}{v_p T}\p{\sqrt{2\pi}\sqrt{ \f{Q}{v_p T}}\te{Erf}\ps{\sqrt{\f{k v_p T}{2 Q}}} -2\sqrt{k} e^{-\f{k v_p T}{2 Q}}}\,,\\
+\end{align}
 \pagebreak
 \section{Maximum Detectible Surface Area}
 \indent
