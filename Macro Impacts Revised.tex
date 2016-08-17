@@ -915,11 +915,11 @@ which coincides with Prof. Starkman's estimate for $C_2 = 0$.
 \section{Revised Estimate}
 Suppose we have the displacement field
 \begin{align}
-u &= \int\f{\diff^3 k}{(2\pi)^3}U(\vec k)e^{-\I(\vec k\cdot x-k v_p t)}\,.
+u &= \int\f{\diff^3 k}{(2\pi)^3}U(\vec k)e^{-\I(\vec k\cdot \vec x-k v_p t)}\,.
 \end{align}
-Since we want the maximum displacement, we set $t=0$. In the case that $U$ doesn't depend on $\vec k$, we have
+Since we want the maximum displacement, we set $t=0$. In the case that $U$ doesn't depend on $\hat k$, we have
 \begin{align}
-u &=\int\f{\diff^3 k}{(2\pi)^3}U(k)e^{-\I(\vec k\cdot x)}\,,\\
+u &=\int\f{\diff^3 k}{(2\pi)^3}U(k)e^{-\I(\vec k\cdot \vec x)}\,,\\
 &=\int\f{\diff k\diff\theta\diff\phi}{(2\pi)^3}k^2\sin\theta U( k)e^{-\I k r \cos\phi}\,,\\
 &=\int\f{\diff k}{(2\pi)^2}k^2U( k) J_0(k r)\,.
 \end{align}
@@ -988,6 +988,102 @@ u &\leq \f{\sqrt{C_1}}{2\pi\sqrt{\rho v_p^2}}\int_0^k\diff k' \sqrt{k'}e^{-\f{k 
 \end{align}
 This equation tells us the maximum displacement within the healpix pixel. Note that this is not a function of the area of the pixel. This is reasonable because the energy distribution is not a function of our partition of the sphere.
 \pagebreak
+\section{Fourier Series}
+We take the Fourier series in time along the direction of the pulse
+\begin{align}
+u =\f{1}{2\pi L} \sum_{k = 0}^{N} U(k) e^{-2\pi \I \f{L k}{N}(x -v_p t)}
+\end{align}
+Then
+\begin{align}
+\partial_t u = \f{\I v_p}{(2\pi L)^2} \sum_{k = 0}^{N} k U(k) e^{-2\pi \I \f{L k}{N}(x -v_p t)}\,.
+\end{align}
+Thus
+\begin{align}
+E &= A_{\te{ray}}\rho \int_0^L\diff x\abs{\partial_t u}^2\,,\\
+&= A_{\te{ray}}\rho \int_0^L\diff x\f{v_p^2}{(2\pi L)^2} \sum_{k,k' = 0}^{N} k k' U(k)\bar U(k') e^{-2\pi \I \f{L (k-k')}{N}(x -v_p t)}\,,\\
+&= A_{\te{ray}}\rho \f{v_p^2}{(2\pi L)^2} \sum_{k,k' = 0}^{N} k k' U(k)\bar U(k') \int_0^L\diff x e^{-2\pi \I \f{L (k-k')}{N}(x -v_p t)}\,,\\
+&= A_{\te{ray}}\rho \f{v_p^2}{(2\pi L)^2} \sum_{k,k' = 0}^{N} k k' U(k)\bar U(k') 2\pi L\delta_{k k'}e^{2\pi \I \f{L (k-k')}{N}(v_p t)}\,,\\
+&= A_{\te{ray}}\rho \f{v_p^2}{2\pi L} \sum_{k= 0}^{N} k^2 \abs{U(k)}^2\,.
+\end{align}
+Define
+\begin{align}
+E_k =  A_{\te{ray}}\rho \f{v_p^2}{2\pi L} k^2 \abs{U(k)}^2\,.
+\end{align}
+What is $E_k$? Using the general cylindrically symmetric source from before, we know $E_k= C_1 \f{k^2}{(2\pi L)^2}$. Solving for $\abs{U}$, we have
+\begin{align}
+\abs{U(k)} = \sqrt{\f{2\pi L}{v_p^2 A_{\te{ray}}\rho}\f{E_k}{ k^2}}
+\end{align}
+In our case, we have
+\begin{align}
+\abs{U(k)} = \sqrt{\f{C_1}{2\pi L v_p^2 A_{\te{ray}}\rho}}\,.
+\end{align}
+This is just a constant, so $U(k)$ is a pure phase, which comes out of the sum, so
+\begin{align}
+\abs{u} =\f{1}{2\pi L}\sqrt{\f{C_1}{2\pi L v_p^2 A_{\te{ray}}\rho}} \sum_{k = 0}^{N} \cos\p{2\pi\f{L k}{N}(x -v_p t)}
+\end{align}
+\pagebreak
+\\
+Hm, something's fishy... What about this:
+\begin{align}
+u(\vec x,t) =\int\f{\diff k}{2\pi}\, U(k)\chi_{A_{\te{ray}}} e^{-\I k(x -v_p t)}\,.
+\end{align}
+The part of $u$ that detectors will pick up is
+\begin{align}
+u(\vec x,t) =\int_0^k\f{\diff k'}{2\pi}\, U(k')\chi_{A_{\te{ray}}} e^{-\I k'(x -v_p t)}\,.
+\end{align}
+We approximate in the $x$ direction
+\begin{align}
+u(x,t) &\leq \int_0^k\f{\diff k'}{2\pi}\, \abs{U(k')}\,.
+\end{align}
+Now, we make use of the orthogonality of the basis functions to eliminate the spatial integral as above. Denote the width of the pulse as $L$.
+\begin{align}
+E &=\rho\int\diff^3 x\abs{\partial_t u}^2\,,\\
+&=\rho v_p^2\int\diff^3 x\chi_{A_{\te{ray}}}\int\f{\diff k}{2\pi}\int\f{\diff k'}{2\pi}k k'U(k)\bar U(k') e^{-\I (k-k')(x -v_p t)}\,,\\
+&=\rho v_p^2 A_{\te{ray}}\int\diff x\int\f{\diff k}{2\pi}\int\f{\diff k'}{2\pi}k k'U(k)\bar U(k') e^{-\I (k-k')(x -v_p t)}\,,\\
+&=\rho v_p^2 A_{\te{ray}}\int\f{\diff k}{2\pi}\int \diff k'k k'U(k)\bar U(k') \delta(k-k')e^{\I (k-k')v_p t}\,,\\
+&=\rho v_p^2 A_{\te{ray}}\int\f{\diff k}{2\pi}k^2\abs{U(k)}^2\,.
+\end{align}
+We denote, as before,
+\begin{align}
+E_k = \rho v_p^2 A_{\te{ray}}\int_0^k\f{\diff k}{2\pi}k^2\abs{U(k)}^2\,,
+\end{align}
+so
+\begin{align}
+\td{E_k}{k}{} =\f{\rho v_p^2 A_{\te{ray}}k^2}{2\pi}\abs{U(k)}^2\,.
+\end{align}
+Thus
+\begin{align}
+\abs{U(k)} = \sqrt{\f{2\pi}{\rho v_p^2 A_{\te{ray}}}}\f{1}{k}\sqrt{\td{E_k}{k}{}}\,,
+\end{align}
+and so
+\begin{align}
+u(x,t) \leq \sqrt{\f{1}{2\pi \rho v_p^2 A_{\te{ray}}}}\int_0^k\f{\diff k'}{k'}\sqrt{\td{E_k'}{k'}{}}\,.
+\end{align}
+Hence, in our case, where
+\begin{align}
+\td{E_k}{k}{} = 2C_1 k e^{-C_2 k}\,.
+\end{align}
+we have
+\begin{align}
+u(x,t) \leq \sqrt{\f{2}{\rho v_p^2 A_{\te{ray}}}}\sqrt{\f{C_1}{C_2}}\te{Erf}\ps{\sqrt{\f12 C_2 k}}
+\end{align}
+We can write
+\begin{align}
+C_1 = \f{E_\te{ray}}{k^2}\,,
+\end{align}
+hence
+\begin{align}
+u(x,t) \leq \sqrt{\f{2}{\rho v_p^2 A_{\te{ray}}}}\sqrt{\f{E_\te{ray}}{C_2}}\f1k\te{Erf}\ps{\sqrt{\f12 C_2 k}}\,.
+\end{align}
+Now, suppose that the time width of the wave is $\Delta T$. This corresponds to the minimum angular frequency associated to the wave. 
+\begin{align}
+\Delta T \geq \f{2\pi}{\omega} = \f{2\pi}{v_p k}\,.
+\end{align}
+Thus
+\begin{align}
+k \geq\f{2\pi}{v_p\Delta T}\,.
+\end{align}
+\pagebreak
 \section{Double Thought Out}
 Thanks to Josh for a very useful conversation in helping to deduce what follows:
 \\\\
@@ -1029,22 +1125,81 @@ Observe that this means that the events closest to the boundary of the earth are
 
 \pagebreak
 \section{Thermal Source}
-A simple model for seismic wave generation via macro impact is that a cylinder is heated uniformly. Since we are interested in an upper bound to seismic energy generation, it is reasonable to find the optimal volume (i.e. radius) and temperature for maximal thermal expansion and minimal energy lost to heating. Since the energy lost to heating corresponds to the energy lost in melting, the second requirement is equivalent to minimizing volume... 
-\pagebreak
-\section{Melt Zone}
-As derived in ''A time dependent model for long-rod penetration" the plastic zone (i.e. the melt zone) around an impacting projectile is given by $\alpha*R$, where $\alpha$ is given by 
+As relayed in an email to Josh, observe that the thermal source is
 \begin{align}
-(1+\frac{\rho_t u^2}{Y_t})\sqrt{K_t - \rho_t \alpha^2 u^2} = (1+\frac{\rho_t \alpha^2 u^2}{2G_t})\sqrt{K_t - \rho_t u^2}.
+T = \f{v_0^2}{c_p}\theta(r_X-r)\,,
 \end{align}
-where $u$ is the velocity of the projectile (i.e. the macro), $\rho_t$, $K_t$, $G_t$ and $Y_t$ are the density, bulk modulus, sheer modulus, and flow stress of the target (i.e. earth or the moon) respectively.
-
-The connection between the energy of the projectile and the value $\alpha*R$ is given in the paper posted "Hypervelocity penetration modeling- momentum vs. energy and energy transfer mechanisms". A derivation is given for the decomposition of the energy of a projectile into kinetic, elastic and plastic terms in, for example, equations 32, 33, and 38.
-
-Note that the results in the section "Penetration" in this paper "Hypervelocity penetration..." are for eroding rods -- but macro doesn't erode.  If we decided to use equation 39 and the resulting equations which partition the energy of the impact into kinetic, elastic and plastic energy terms of the target (i.e. earth or moon), we'd set $u = v$, and $s = 0$ to eliminate the "eroding" effect.
-
+where $c_p$ is the specific heat capacity of the material. The equation governing the evolution of the temperature field in 2 dimensions is, with no driving term,
+\begin{align}
+\partial_t T - \alpha\nabla^2 T = 0
+\end{align}
+where $\alpha$ is known as the thermal diffusivity, and $\alpha=\f{k}{c_p\rho}$. In cylindrical coordinates and for $T = T(r)$, we have
+\begin{align}
+\partial_t T - \alpha\nabla_r T = 0
+\end{align}
+We now Fourier transform in $r$ and $\phi$, yielding
+\begin{align}
+\partial_t\tilde T =-\alpha k_r^2 \tilde T\,,
+\end{align}
+where
+\begin{align}
+\tilde T = 2\pi \int_0^\infty r \diff r  T J_0(k_r r)\,.
+\end{align}
+Now, we integrate
+\begin{align}
+\tilde T = C_1e^{-\alpha k_r^2 t}
+\end{align}
+Now, to determine $C_1$, we set $T = \f{v_0^2}{c_p}\theta(r_X-r)$ at $t = 0$. Observe, this initial condition corresponds to the transformed statement
+\begin{align}
+\tilde T(0) = \f{r_X}{k_r}J_1(k_r r_X)\,.
+\end{align}
+This fixes $C_1$. We now inverse transform and obtain
+\begin{align}
+T &= \int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}\f{r_X}{k_r}J_1(k_r r_X) J_0(k_r r)\,,\\
+&=r_X\int_0^\infty \diff k_r e^{-\alpha k_r^2 t} J_1(k_r r_X) J_0(k_r r)\,.
+\end{align}
+We'll have to do this integral numerically. However, we are interested in solving for $r(t)$ such that $T(r(t),t) = T_{\te{melt}}$. We then want to find $\dot r$. Denote this special $r(t)$ as $r_\te{melt}$. Then
+\begin{align}
+\f{T_\te{melt}}{r_X} = \int_0^\infty \diff k_r e^{-\alpha k_r^2 t} J_1(k_r r_X) J_0(k_r r_\te{melt})
+\end{align}
+and
+\begin{align}
+0&=\int_0^\infty \diff k_r \ps{e^{-\alpha k_r^2 t} J_1(k_r r_X) \p{-k_r\dot r_\te{melt}}J_1(k_r r_\te{melt}) +  \p{-\alpha k_r^2}e^{-\alpha k_r^2 t} J_1(k_r r_X)J_0(k_r r_\te{melt})}\,,\\
+0&=\int_0^\infty k_r \diff k_r e^{-\alpha k_r^2 t} J_1(k_r r_X) \ps{\p{\dot r_\te{melt}}J_1(k_r r_\te{melt}) +  \p{\alpha k_r}J_0(k_r r_\te{melt})}\,.
+\end{align}
+\pagebreak\\
+Eh... None of this is producing useful results, i.e. those we can use to solve for $r_\te{melt}$. Let's consider a delta source i.e.
+\begin{align}
+T = \f{v_0^2}{c_p}r_X\delta(r)\,.
+\end{align}
+Then
+\begin{align}
+C_1 =2\pi \f{v_0^2}{c_p}r_x
+\end{align}
+Thus,
+\begin{align}
+T &= \int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)2\pi \f{v_0^2}{c_p}r_x\,,\\
+&=\f{r_X v_0^2}{2 c_p t \alpha} e^{-\f{r^2}{4t\alpha}}\,.
+\end{align}
+Setting $T = T_\te{melt}$, we have
+\begin{align}
+r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{r_X v_0^2}{2 c_p t \alpha T_\te{melt}}}}\,.
+\end{align}
+where we've taken the positive branch, since we only care about the melt radius increasing. Then
+\begin{align}
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}}\f{\ln\p{\f{r_Xv_0^2}{2 c_p t\alpha T}} - 1}{\sqrt{\ln\p{\f{r_Xv_0^2}{2 c_p t\alpha T}}}}\,.
+\end{align}
+For our parameters, it is a good approximation to take
+\begin{align}
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}\ln\p{\f{r_Xv_0^2}{2 c_p\alpha T}}}\,.
+\end{align}
+Thus, the time at which the velocity of the melt front is that of the speed of sound is
+\begin{align}
+t_{\te{fast}} = \f{\alpha}{v_p^2}\ln\p{\f{r_Xv_0^2}{2 c_p\alpha T_\te{melt}}}
+\end{align}
+at a radius, which is a good approximation in our case, of
+\begin{align}
+r_\te{fast melt} =  2\f{\alpha}{v_p}\ln\ps{\f{r_X v_0^2}{2 c_p \alpha T_\te{melt}}}
+\end{align}
+which is on the order of micrometers to tenths of micrometers for our case.
 \end{document}
-
-
-
-
-What is the area per year covered by these non-linear zones as a function of macro mass, volume etc (contour plot).
