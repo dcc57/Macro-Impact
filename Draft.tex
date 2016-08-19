@@ -1,0 +1,226 @@
+\documentclass[prd,reprint,10pt,tightenlines]{revtex4-1}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+
+\begin{document}
+
+\title{New seismological constraints on the available parameter space of macroscopic dark matter}
+\author{David Cyncynates \\ dcc57@case.edu}
+\date{\today}
+\begin{abstract}
+Recent limits have been proposed constraining the available parameter space of macroscopic dark matter (Macros). Previous limits were based on the energy deposition of Macros being akin to that of a nuclear bomb. Our estimates take into account the effect of seismometer sensitivity and energy distribution across frequencies, anelastic attenuation, geometric effects due to internal anisotropy of the Earth or Moon, as well as energy loss due to melting. We produce new constraints on the Macro parameter space based on the total lunar seismic event rate.
+\end{abstract}
+\maketitle
+\section{Introduction}
+
+\section{The Seismic Source}
+\subsection{The Melt Wave}
+The section of parameter space we are interested in contains Macros whose cross sectional area is small enough that the act of the macro penetrating the Moon does not significantly contribute to the seismic signal. That is to say, a small enough amount of moon is displaced that the energy lost due to this displacement is negligible compared to the total energy deposition. When this scenario holds, the energy deposited by the Macro can be treated as being used to heat up a column of cross sectional area $\sigma_X$ and length $\ell$.
+
+We immediately see that this corresponds to a temperature distribution
+\begin{align}
+T(r,0) = \f{v_X^2}{c_p}\theta(r_X-r)\,.
+\end{align}
+It is reasonable to approximate this by a $\delta$ source of the form
+\begin{align}
+T(r,0) = \f{v_X^2}{c_p}r_X\delta(r)\,.
+\end{align}
+The diffusion equation then provides that the radius of the melt front is
+\begin{align}
+r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{r_X v_0^2}{2 c_p t \alpha T_\te{melt}}}}\,,
+\end{align}
+where $\alpha$ is the thermal diffusivity. 
+\subsection{Seismic Wave Generation}
+The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be felt at detectors. Assuming the Macro's velocity is insignificantly changed by its encounter with the Moon, we should expect it to source a pressure of the form
+\begin{align}
+p = p_0 f(r)\chi_{(r,z)\in [a,b]\times [-\f \ell 2,\f \ell 2]}\,,
+\end{align}
+where $f$ is an analytic function whose range is a subset of $[-1,1]$, and $p_0$ is the maximum pressure of the source. Moreover, after a short time, the pressure should still be of this form, since the anisotropy of the Moon is significant only on very large scales.
+
+The seismometers on the moon have a net useful range (the union of all useful ranges of all seismometers) of $0.004-20\text{\,Hz}$ and are sensitive to displacements as small as $0.3\text{\,nm}$. The energy measured by seismometers is a subset of that in the net useful range.
+
+The Fourier transform of $p$ to leading order in $kb$ is
+\begin{align}
+P = \f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}F+\scr O(k^0)\,,
+\end{align}
+where $\theta,\phi$ are the momentum space polar angles, $F = b^2f_1(b)-a^2f_1(a)$ and
+\begin{align}
+f_1(x) = \sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(x_0)}{n!}\f{(-x_0)^{n-m}}{2+m}x^{m}\,,
+\end{align}
+for some $x_0\in[a,b]$. The energy of a seismic $p$-wave is
+\begin{align}
+E = \int\diff^3 x\p{ \rho\abs{\partial_t u}^2+(\lambda+2\mu)\abs{\nabla u}^2}\,,
+\end{align}
+where $u$ is the displacement field, $\rho,\lambda,\mu$ are the density and Lam\`e coefficients respectively. For $p$-waves, $p = -K\nabla\cdot u$ where $K$ is the bulk modulus. Define $\kappa = (\lambda + 2\mu)/K^2$ Fourier transforming, we find that $U = \I P\vec k/K k^2$ and hence
+\begin{align}
+E =\kappa\int\f{\diff^3 k}{(2\pi)^3}\abs{P}^2\,.
+\end{align}
+Since a seismometer can only detect lower frequency modes, the detectible energy is given by 
+\begin{align}
+E_k = \kappa\int_0^k\f{\diff k'\diff\theta}{(2\pi)^2}k'^2\sin\theta\abs{P}^2\,.
+\end{align}
+Substituting in our $P$, we find that
+\begin{align}
+\notag E_k&=\kappa 2p_0^2F^2\ell k^2\\\notag&\times\p{\f{\sin(\ell k)+k\ell(\cos(\ell k)-2)}{\ell^2 k^2}+\te{Si}(\ell k)}+\scr O(k^4)\,.
+\end{align}
+When $\ell k>1$ it is a good approximation to take
+\begin{align}
+E_k&=\kappa \pi\ell p_0^2F^2 k^2:=C_1 k^2\,.
+\end{align}
+
+Although the pressure initial conditions are fixed by the fast behavior of the melt wave, linear elasticity may not be appropriate for the pressures involved. As the pressure wave propagates, it will be geometrically attenuated until the pressure differential is within the linear regime. Given that the Macro travels at super-sonic speeds, it will generate a shock wave. Often these shock waves have pressure profiles resembling a right triangle i.e. $f = \p{r - r_0}/\Delta r$ where $a = r_0$ and $b = r_0 + \Delta r$. This shape is also chosen for its simplicity. In this case $f_1(x) = \p{2 x-3r_0}/6\Delta r$, and hence
+\begin{align}
+E_k = \kappa \f{\Delta r^2(3r_0+2\Delta r)^2}{36} \pi\ell p_0^2k^2\,.
+\end{align}
+The total energy of the pressure wave is
+\begin{align}
+E \notag&= 2\pi p_0^2\ell\kappa\int_a^b r\diff r f(r)^2\,,\\
+&=\kappa\f{p_0^2}{6}\pi\Delta r \ell(4r_0 + 3\Delta r)\,.
+\end{align}
+The Macro deposits energy
+\begin{align}
+E_\te{initial} = \abs{\td{E}{x}{}}\ell = \rho\sigma_X v_X^2\ell\,,
+\end{align}
+and loses some energy due to melting. Thus, the pressure waves have initial energy
+\begin{align}
+E_\te{propagated} \notag&= E_\te{initial} - E_\te{melt}\,,\\
+&= \p{\rho\sigma_X v_X^2 - \epsilon_\te{melt}}\ell:=\epsilon\ell\,.
+\end{align}
+A very unrealistic assumption is that no energy is lost during the non-linear evolution. Nonetheless, it will produce a generous over-estimate of the energy in the linear regime. We thus set $E = E_\te{propagated}$ and obtain an expression for $r_0$
+\begin{align}
+r_0 = \f{K^2}{\lambda+2\mu}\f{3\epsilon}{2\pi p_0^2\Delta r}-\f{3\Delta r}{4}\,.
+\end{align}
+$r_0$ demarcates the end of the non-linear regime. As the length of the pulse tends to zero, the non-linear regime extends without bound. We require $p_0\leq 10^8\te{\,Pa}$, corresponding to an order of magnitude below the elastic limit of granite. A lower bound on $r_0$ is 0, corresponding to entirely linear behavior. This, in turn, imposes an upper bound on the pulse width
+\begin{align}
+\Delta r\leq\sqrt{\f{2\kappa \p{\rho\sigma_X v_X^2 - \epsilon_\te{melt}}}{\pi p_0^2}}\,.
+\end{align}
+We now form $\Xi:=E_k/E_\te{propagated}$ representing the fraction of deposited energy detectable to seismometers
+\begin{align}
+\Xi = k^2\f{\p{\pi p_0^2\Delta r^2-18\kappa \epsilon}^2}{576 \pi p_0^2 \kappa \epsilon}\,.
+\end{align}
+When $\Delta r$ is restricted to its physical range, $\Xi$ is a monotonic decreasing function in $\Delta r$. Thus
+\begin{align}
+\f{4}{9}\f{\kappa}{\pi p_0^2} \epsilon k^2\leq \Xi <\f{9}{16}\f{\kappa}{\pi p_0^2}\epsilon k^2\,.
+\end{align}
+It is important to remember that these expressions only hold for $k(r_0+\Delta r)\ll 1$, however they will always provide an over-estimate of the fraction of detectable energy.
+
+\section{Seismic Wave Propagation}
+The velocity of $p$-waves as a function of radius within the Earth and Moon (and presumably other spherical rocky celestial bodies) is of the form $v = a^2 - b^2 r^2$. Using Snell's law, we obtain the differential equations for the trajectory of $p$-wave rays within such bodies
+\begin{align}
+v^2 \notag&= \dot r^2 + \f{p_\te{ray}^2 v^4}{r^2}\,,\\
+0 &=\dot\theta\pm\f{p_\te{ray} v^2}{r^2}\,.
+\end{align}
+where $r$ is the radial coordinate of the ray, $\theta$ is the polar angle of the ray measured from the center of the body, and $p_\te{ray}$ is the ray constant, whose value is fixed along a ray trajectory. These equations can be integrated. In the case that $v = a^2 - b^2 r^2$, we obtain for some constants $q$ and $\theta_0$.
+\begin{align}
+\notag&r(t) = \f{a\sqrt{(qe^{2abt}-b)^2 + 4a^2b^4 p_\te{ray}}}{b\sqrt{(qe^{2abt}+b)^2 + 4a^2b^4 p_\te{ray}}}\,,\\
+&\tan(\theta(t) - \theta_0) = \f{(qe^{2abt}-b)(qe^{2abt}+b)}{4ab^3p_\te{ray}}+abp_\te{ray}\,.
+\end{align}
+\textit{A priori} these are geodesics on the Poincar\'e disc of radius $\f ab$ based on the form of $v$. 
+
+The Earth and Moon are stratified. At each boundary, a ray will be reflected and transmitted. We assume that the reflection and transmission coefficients are frequency independent for simplicity. 
+
+The last effect to account for is anelastic attenuation, which does depend on frequency. Anelastic attenuation is characterized by the quality factor $Q$, which is, in general, dependent on $r$. For a given mode, the ratio of final to initial amplitude is
+\begin{align}
+\exp\ps{-k \int_{t_0}^t\diff t'\f{v(r(t))}{2Q(r(t))}}:=\exp\ps{-k \te{Att}}\,.
+\end{align}
+The VPREMOON model provides piecewise constant data for $Q$, so it is reasonable to subdivide the moon further into strata of different $Q$. For propagation within a given layer $i$, the factor $\te{Att}$ is given by $\Delta t_i v_i/Q_i$, where we take $v_i$ to be the average velocity within a given strata. For the case of the Earth and Moon, this is a good approximation since $v$ doesn't change much within a given layer of constant $Q$. Thus, the amplitude of a ray can be computed by knowing the two numbers
+\begin{align}
+\te{Ref} \notag&= \prod_i\te{Ref}_i\,,\\
+\te{Att} &=\sum_i\f{\Delta t_i v_i}{Q_i}\,,
+\end{align}
+where $\te{Ref}_i$ are the reflection or transmission coefficients of boundary $i$ on which the ray is incident.
+
+\section{Seismic Wave Detection}
+The seismometers on the Moon are sensitive to displacements as small as $0.3\te{\,nm}$. We calculate the displacement due to each ray, and describe how they add. Consider a $p$-wave traveling towards positive $x$ and of compact support $S$ in the plane normal to to its motion. Denote $A =\int_S\diff y\diff z$ The displacement field is
+\begin{align}
+u(\vec x,t) &= \chi_{\R\times S}\int\f{\diff k}{2\pi}U(k)e^{-\I k(x-v_p t)}\,,\\
+\abs{u(\vec x,t)}&\leq\chi_{\R\times S}\int\f{\diff k}{2\pi}\abs{U(k)}\,,
+\end{align}
+and the energy is
+\begin{align}
+E = \rho v_p^2 A\int\f{\diff k}{2\pi}k^2\abs{U(k)}^2\,.
+\end{align}
+As before, we denote
+\begin{align}
+E_k = \rho v_p^2 A\int_0^k\f{\diff k'}{2\pi}k'^2\abs{U(k')}^2\,.
+\end{align}
+It follows that
+\begin{align}
+\abs{U(k)} = \sqrt{\f{2\pi}{\rho v_p^2 A}}\f1k\sqrt{\td{E_k}{k}{}}\,,
+\end{align}
+and from the estimate above
+\begin{align}
+\abs{u(\vec x,t)}\leq(2\pi\rho v_p^2 A)^{-1/2}\int_0^k\f{\diff k'}{k'}\sqrt{\td{E_{k'}}{k'}{}}\,.
+\end{align}
+In our case $\Xi E=E_k = C_1 k^2$ before attenuation. After anelastic attenuation, $E_k' =\te{Ref}\,2C_1 k e^{-\te{Att}}$
+\begin{align}
+\abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
+\end{align}
+Using the upper bound on $\Xi$ for the triangle wave, we have
+\begin{align}
+\abs{u(\vec x,t)}\leq \f{3}{4}\sqrt{\f{2\kappa \epsilon^2 \ell}{\rho p_0^2 v_p^2 \pi A  }}\sqrt{\f{\te{Ref}}{\te{Att}}}\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
+\end{align}
+\section{Simulation}
+
+\section{Results}
+
+\section{Conclusion}
+\end{document}
