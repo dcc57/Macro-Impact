@@ -1186,12 +1186,13 @@ Then, taking the Fourier transform of this initial condition over r and $\phi$ f
 \begin{align}
 C_1 =  2\pi \f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_{0}^{\infty}\delta(r)e^{2\pi i k r} dr = 2\pi\f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\,,
 \end{align}
-where the factor of $2 \pi$ comes from the $\phi$ integral.
+where the factor of $2 \pi$ comes from the $\phi$ integral (notice this factor in $C_1$ cancels against the factor in $\tilde{T}$ -- David, is this is correc?).
 $T$ in real space is given by inverting the Fourier transform:
 \begin{align}
-T(r,t) &=\frac{1}{\p{2\pi}^2} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{4\pi^2}{4\pi^2}\f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
+T(r,t) &=\frac{1}{\p{2\pi}^2} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{1}{4\pi^2}\f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
 &=\f{\abs{\frac{dE}{dx}}}{2 \rho \sigma_x c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,.
 \end{align}
+(If the third equation is valid up to some factors of $2\pi$, then the rest is valid  but needs to be fixed to include these factors properly).
 Setting $T = T_\te{melt}$, we have
 \begin{align}
 r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{\abs{\frac{dE}{dx}}}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}}\,.
