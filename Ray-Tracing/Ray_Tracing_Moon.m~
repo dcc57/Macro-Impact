@@ -5,20 +5,18 @@ format long
 
 
 %INPUTS
-D = 1000; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER km
+D = 0; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER km
 ACO = 9; %IT TAKES 16 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE MOON
 
-vX = 250; %km/s
-sigmaX = (10^(-7))*(10^(-4))*(10^(-6));%kg/km^3
-flow = 0.004;%1/s %LOWEST DETECTABLE FREQUENCY
-fhigh = 2;%1/s %HIGHEST DETECTABLE FREQUENCY
-favg = 1.5;%1/s %WEIGHTED AVERAGE FREQUENCY (Where the energy is)
-TotalDensityAverage = 3.3*10^12; %THE AVERAGE DENSITY THROUGHOUT THE WHOLE MOON
-pbar = 10^8*10^3;%HOOKIAN PRESSURE kg/(km*s^2)
-vs = 4.4 * 10^3;%AVERAGE SHEAR WAVE VELOCITY THROUGHOUT THE WHOLE MOON
-vp = 7.6 * 10^3;%AVERAGE PRESSURE WAVE VELOCITY THROUGHOUT THE WHOLE MOON
+vX = 2.5 * 10^5; %m/s
+sigmaX = (10^(-7)) * (10^(-4));% m^2
+fhigh = 20;%1/s %HIGHEST DETECTABLE FREQUENCY
+TotalDensityAverage = 3.3*10^3; %THE AVERAGE DENSITY THROUGHOUT THE WHOLE MOON
+pbar = 10^8;%HOOKIAN PRESSURE kg/(m*s^2)
+vs = 4.4 * 10^3;%AVERAGE SHEAR WAVE VELOCITY THROUGHOUT THE WHOLE MOON m/s
+vp = 7.6 * 10^3;%AVERAGE PRESSURE WAVE VELOCITY THROUGHOUT THE WHOLE MOON m/s
 
-M = 20; %NUMBER OF POINTS ON THE LINE
+M = 10; %NUMBER OF POINTS ON THE LINE
 N = 10; %NUMBER OF RAYS FROM EACH POINT
 %{
 %APPROXIMATION TO OUTER LAYERS
@@ -35,14 +33,14 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
 %}
 %%{
 %VPREMOON MODEL
-a = [8.26955,8.26955,8.26955,8.26955,8.26955,5.5,3.2,1.0].^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE km/s
-b = [2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD 1/(s*km)
+a = ([8.26955,8.26955,8.26955,8.26955,8.26955,5.5,3.2,1.0].*10^3).^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE km/s
+b = ([2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].*10^(-3)).^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD 1/(s*km)
 
-Radii = [0,961.7,1231.7,1461.7,1671.7,1709.1,1725.1,1736.1,1737.1]; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES km
+Radii = [0,961.7,1231.7,1461.7,1671.7,1709.1,1725.1,1736.1,1737.1].*10^3; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES km
 
-Q = [675,1125,3375,9000,6750,6750,6750,6750]; %THE QUALITY FACTOR IN THE DIFFERENT REGIONS
+Q = [675,1125,3375,9000,6750,6750,6750,6750].*10^3; %THE QUALITY FACTOR IN THE DIFFERENT REGIONS
 
-AverageV = [8.15502,7.96714,7.81709,7.65888,7.56174,5.5,3.2,1.0]; %THE AVERAGE VELOCITY IN EACH OF THESE REGIONS km/s
+AverageV = [8.15502,7.96714,7.81709,7.65888,7.56174,5.5,3.2,1.0].*10^3; %THE AVERAGE VELOCITY IN EACH OF THESE REGIONS km/s
 
 rhoBoundaries = [   3.406       ,   3.406               ;...
                     3.379       ,   3.379               ;...
@@ -51,20 +49,18 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
                     2.762       ,   2.762               ;...
                     2.762       ,   2.762               ;...
                     2.762       ,   2.600               ;...
-                    2.600       ,   0.000               ].*(10^15);
+                    2.600       ,   0.000               ].*(10^3);
                     %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS
                     %BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO
                     %THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE
                     %OUTER DENSITY kg/km^3
 %}
 
-c = 3.446 * 10^12; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/km^3
-d = 5*(10^(-8)) * 10^12; %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS d=kg/km^5
-e = 70; %NOTE THE DIFFERENCE IN UNITS! km
+c = 3.446 * 10^3; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/m^3
+d = 5*(10^(-8)) * 10^(-3); %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS d=kg/m^5
+e = 70.*10^3; %NOTE THE DIFFERENCE IN UNITS! m
 
 %END INPUTS
-
-
 
 
 
@@ -75,9 +71,11 @@ e = 70; %NOTE THE DIFFERENCE IN UNITS! km
 mu = (vs^2)*TotalDensityAverage;
 lambda = ((vp^2) - 2*(vs)^2) * TotalDensityAverage;
 BulkMod = lambda + (2/3)*mu;
-lambda1 = vp/fhigh;
+k1 = fhigh/(2 * pi * vp);
+kappa = (lambda + 2 * mu) (BulkMod^2);
+epsilon = TotalDensityAverage * sigmaX * vX^2;
 
-Xi = (9/4)*(BulkMod^2)*(pi^2)*TotalDensityAverage*sigmaX*(vX^2)/((lambda + 2*mu)*(pbar*lambda1)^2);
+Xi = (9 * kappa * epsilon * k1^2)/(16 * pi * pbar^2);
 
 Layers = length(Radii);
 
@@ -382,12 +380,12 @@ for i = 1 : ACO
     OutArrayTime(IdSurfacePrime) = RayArrayTime(IdSurface);
     
 end
-Eray = Xi.*(RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*sigmaX.*(vX.^2).*L./(M*N);
-QT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
-F = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
-OutEnergy = F
-OutAng = OutArrayAngDisp(OutArrayTime > 0 & OutArrayAmp > 0);
+REF = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
+InitialEnergy = (RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*sigmaX.*(vX.^2).*L./(M*N);
+ATT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
 OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
+
+OutAng = OutArrayAngDisp(OutArrayTime > 0 & OutArrayAmp > 0);
 OutRay = RayArrayRayAngle(OutArrayTime > 0 & OutArrayAmp > 0);
 OutPla = RayArrayPlaneAngle(OutArrayTime > 0 & OutArrayAmp > 0);
 
@@ -407,6 +405,6 @@ scatter3(Xfinal(t0 < OutTim & OutTim < tf),Yfinal(t0 < OutTim & OutTim < tf),Zfi
 %%{
 %figure
 %scatter3(Xfinal,Yfinal,Zfinal,1,OutEnergy)
-output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,OutEnergy .* 10^(6)); %(the 10^(6)) is to convert to J from kg km^2/s^2
+output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,InitialEnergy,REF,ATT); %(the 10^(6)) is to convert to J from kg km^2/s^2
 save Points.mat output
 %}
