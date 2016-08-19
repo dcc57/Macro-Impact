@@ -1128,7 +1128,6 @@ Thus,
 T &= \int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)2\pi \f{v_0^2}{c_p}r_x\,,\\
 &=\f{r_X v_0^2}{2 c_p t \alpha} e^{-\f{r^2}{4t\alpha}}\,.
 \end{align}
-(David, what happened to the factor of $2\pi$?)
 Setting $T = T_\te{melt}$, we have
 \begin{align}
 r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{r_X v_0^2}{2 c_p t \alpha T_\te{melt}}}}\,.
@@ -1190,10 +1189,9 @@ C_1 =  2\pi \f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_{0}^{\infty}\delta(r)
 where the factor of $2 \pi$ comes from the $\phi$ integral.
 $T$ in real space is given by inverting the Fourier transform:
 \begin{align}
-T(r,t) &= \int_0^\infty k_r \diff{k_r}\tilde{T} = 4\pi^2\f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
+T(r,t) &=\frac{1}{\p{2\pi}^2} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{4\pi^2}{4\pi^2}\f{\abs{\frac{dE}{dx}}}{\rho \sigma_x c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
 &=\f{\abs{\frac{dE}{dx}}}{2 \rho \sigma_x c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,.
 \end{align}
-(I'm not sure about the last equality given that I'm still a bit unclear about the factors of $2\pi$ for the inverse transform as noted above after eq. (300) It would seem there are factors from $C_1$ and $\tilde{T}$.  However, the rest of what follows holds, up to some factors of $2\pi$ that hopefully we can clarify).
 Setting $T = T_\te{melt}$, we have
 \begin{align}
 r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{\abs{\frac{dE}{dx}}}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}}\,.
