@@ -85,7 +85,7 @@ T(r,0) = \f{v_X^2}{c_p}r_X\delta(r)\,.
 \end{align}
 The diffusion equation then provides that the radius of the melt front is
 \begin{align}
-r_\te{melt}= \sqrt{4t\alpha\ln\ps{\f{r_X v_0^2}{2 c_p t \alpha T_\te{melt}}}}\,,
+r_\te{melt}= \sqrt{4t\alpha\ln\ps{\f{r_X v_X^2}{2 c_p t \alpha T_\te{melt}}}}\,,
 \end{align}
 where $\alpha$ is the thermal diffusivity. 
 \subsection{Seismic Wave Generation}
@@ -160,7 +160,7 @@ When $\Delta r$ is restricted to its physical range, $\Xi$ is a monotonic decrea
 \begin{align}
 \f{4}{9}\f{\kappa\epsilon k^2}{\pi  p_0^2} \leq \Xi <\f{9}{16}\f{\kappa\epsilon k^2}{\pi  p_0^2}\,.
 \end{align}
-It is important to remember that these expressions only hold for $k(r_0+\Delta r)\ll 1$, however they will always provide an over-estimate of the fraction of detectable energy. 
+It is important to remember that these expressions only hold for $k(r_0+\Delta r)\ll 1$, however they will always provide an over-estimate of the fraction of detectable energy. Moreover, this condition holds for a wide variety of reasonable parameters.
 
 \section{Seismic Wave Propagation}
 The velocity of $p$-waves as a function of radius within the Earth and Moon (and presumably other spherical rocky celestial bodies) is of the form $v = a^2 - b^2 r^2$. Using Snell's law, we obtain the differential equations for the trajectory of $p$-wave rays within such bodies
@@ -170,8 +170,8 @@ v^2 \notag&= \dot r^2 + \f{p_\te{ray}^2 v^4}{r^2}\,,\\
 \end{align}
 where $r$ is the radial coordinate of the ray, $\theta$ is the polar angle of the ray measured from the center of the body, and $p_\te{ray}$ is the ray constant, whose value is fixed along a ray trajectory. These equations can be integrated. In the case that $v = a^2 - b^2 r^2$, we obtain for some constants $q$ and $\theta_0$.
 \begin{align}
-\notag&r(t) = \f{a\sqrt{(qe^{2abt}-b)^2 + 4a^2b^4 p_\te{ray}}}{b\sqrt{(qe^{2abt}+b)^2 + 4a^2b^4 p_\te{ray}}}\,,\\
-&\tan(\theta(t) - \theta_0) = \f{(qe^{2abt}-b)(qe^{2abt}+b)}{4ab^3p_\te{ray}}+abp_\te{ray}\,.
+\notag&r(t) = \f{a\sqrt{(q^2e^{2abt}-b)^2 + 4a^2b^4 p_\te{ray}}}{b\sqrt{(qe^{2abt}+b)^2 + 4a^2b^4 p_\te{ray}}}\,,\\
+&\tan(\theta(t) - \theta_0) = \f{qe^{4abt}-b^2}{4ab^3p_\te{ray}}+abp_\te{ray}\,.
 \end{align}
 \textit{A priori} these are geodesics on the Poincar\'e disc of radius $\f ab$ based on the form of $v$. 
 
@@ -192,7 +192,7 @@ where $\te{Ref}_i$ are the reflection or transmission coefficients of boundary $
 The seismometers on the Moon are sensitive to displacements as small as $0.3\te{\,nm}$. We calculate the displacement due to each ray, and describe how they add. Consider a $p$-wave traveling towards positive $x$ and of compact support $S$ in the plane normal to to its motion. Denote $A =\int_S\diff y\diff z$ The displacement field is
 \begin{align}
 u(\vec x,t) &= \chi_{\R\times S}\int\f{\diff k}{2\pi}U(k)e^{-\I k(x-v_p t)}\,,\\
-\abs{u(\vec x,t)}&\leq\chi_{\R\times S}\int\f{\diff k}{2\pi}\abs{U(k)}\,,
+\abs{u(\vec x,t)}&\leq\int\f{\diff k}{2\pi}\abs{U(k)}\,,
 \end{align}
 and the energy is
 \begin{align}
@@ -214,12 +214,33 @@ In our case $\Xi E= C_1 k^2$ before attenuation. After anelastic attenuation, $E
 \begin{align}
 \abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
 \end{align}
-Using the upper bound on $\Xi$ for the triangle wave, we have
-\begin{align}
-\abs{u(\vec x,t)}\leq \f{3}{4}\sqrt{\f2\pi\f{\kappa \epsilon^2 \ell}{\rho p_0^2 v_p^2 A  }}\sqrt{\f{\te{Ref}}{\te{Att}}}\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
-\end{align}
 \section{Simulation}
+The simulation is broken down into two natural parts: data generation and data analysis. The data generation consists of propagating a large number of rays to approximate a line source of $p$-waves and tracking the positions and energies at which they contact the surface of the moon. The data analysis makes use of HEALPix to approximate the energy density on the sphere and then makes use of section IV to measure displacements.
+\subsection{Data Generation}
+To generate the data, we consider a Macro trajectory which passes a distance $D$ from the center of the moon. This trajectory has a length $L$. Along this trajectory, we consider a set of $M$ points, from each of which we shoot $N$ rays, each endowed with $E_m = \rho(r_{m})\sigma_Xv_X^2 L/(MN)$ energy, where $m\in\{1,\dots,M\}$ labels the point. Because of the spherical symmetry, each ray is confined to a subspace of two dimensions. We use the trajectories in section III to propagate the rays. Since the moon is stratified, we must halt the propagation at the boundary of each layer and reflect/transmit rays. During a ray's propagation through a given stratum $\Delta t_i$ is recorded and added to $\Delta t$, $\te{ATT}_i$ is recorded and added to $\te{ATT}$, and $\te{REF}_i$ is recorded at the boundary and is multiplied by $\te{REF}$. Each time a ray makes contact with the surface of the Moon, its position, $\te{ATT}$, $\te{REF}$, $\Delta t$, and $E_m$ are recorded. The final data is a table of these values corresponding to each ray intersection with the surface. We iterate 16 times since it takes 16 iterations for a ray to pass entirely through the VPREMOON model stratification.
+\subsection{Data Analysis}
+We now convert the position data to HEALPix coordinates for a given $n_\te{side}$. Define $A_\te{pix} = 4\pi R_\te{moon}^2/12\times 2^{n_{\te{side}}}$, the area of a HEALPix pixel. The time it takes a ray to cross a HEALPix pixel can be estimated $t_\te{crossing}^2 = A_\te{pix}/\pi v_p^2$. Rays that contact a pixel within $t_\te{crossing}$ of one another are considered to add constructively. Since the integral in section IV is unreasonable to do for more than one ray, we make use of Minkowski's inequality and obtain an upper bound on displacement by simply adding the displacements from each ray. We suppose that each ray distributes its energy evenly over the area of the HEALPix pixel, and thus set $A = A_\te{pix}$. This is a good approximation when $N$ is the same as the number of HEALPix pixels. 
 
+Using (29) we compute an upper bound for the displacement within a given HEALPix pixel, and compare that to the sensitivity of the lunar seismometers. If the displacement is less than the sensitivity then the pixel is marked undetectable and is otherwise marked detectable. The number of detectable pixels is divided by the total number of pixels to obtain the fraction $\scr F_D$ of the lunar surface which could plausibly register a signal. 
+
+This procedure is repeated for 17 values of $D$ spaced evenly by $100\,\te{km}$. The average fraction of detectable surface area is then
+\begin{align}
+\scr F = \sum_D\f{\scr F_D D}{D}\,.
+\end{align}
+If there are $n$ lunar seismometers, suppose each occupies its own HEALPix pixel. Then $\scr N = n/12\times 2^{n_\te{side}}$ is the fraction of the moon which could potentially measure a signal. The likelihood of detection is then
+\begin{align}
+\scr P = 1-(1-\scr F)(1-\scr N)\,.
+\end{align}
+If $\scr M$ Macros impact the moon, the likelihood of any of them being detected is
+\begin{align}
+{\cal P} = 1-(1-\scr P)^\scr{M} = 1-\ps{(1-\scr F)(1-\scr N)}^\scr M\,.
+\end{align}
+
+If the energy of a ray from every point along the line hitting a single pixel (with no reflection, refraction, or attenuation) is less than the displacement threshold, there is no chance of detection and no need to run the simulation. (If two rays from the same point on the line source hit the same pixel as $n_\te{side}\to\infty$, then they must be the same ray).
+\begin{align}
+u\leq\sqrt{\f{\Xi E}{\pi^2\rho k v_p^2 R_\te{Moon}^2}}
+\end{align}
+This is independent of the choice of partition. For the triangle wave, we need not test $\sigma_X\leq10^{-9}\te{m}^2$ (I WILL VERIFY THIS).
 \section{Results}
 
 \section{Conclusion}

@@ -53,7 +53,7 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
                     %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS
                     %BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO
                     %THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE
-                    %OUTER DENSITY kg/km^3
+                    %OUTER DENSITY kg/m^3
 %}
 
 c = 3.446 * 10^3; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/m^3
@@ -396,15 +396,6 @@ Zrote = sin(OutRay).*Y + cos(OutRay).*Z;
 Xfinal = cos(OutPla).*Xrote - sin(OutPla).*Yrote;
 Yfinal = sin(OutPla).*Xrote + cos(OutPla).*Yrote;
 Zfinal = Zrote;
-%{
-figure
-t0 = 5*10^2;
-tf = 6*10^3;
-scatter3(Xfinal(t0 < OutTim & OutTim < tf),Yfinal(t0 < OutTim & OutTim < tf),Zfinal(t0 < OutTim & OutTim < tf),'.')
-%}
-%%{
-%figure
-%scatter3(Xfinal,Yfinal,Zfinal,1,OutEnergy)
-output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,InitialEnergy,REF,ATT); %(the 10^(6)) is to convert to J from kg km^2/s^2
+
+output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,InitialEnergy,REF,ATT);
 save Points.mat output
-%}

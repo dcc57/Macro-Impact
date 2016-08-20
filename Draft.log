@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  19 AUG 2016 18:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  20 AUG 2016 02:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1724,13 +1724,18 @@ Overfull \hbox (2.82428pt too wide) in paragraph at lines 123--123
 [] 
  []
 
-[2]
+[2] [3]
+Underfull \hbox (badness 1062) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 co-or-di-nates for a given $\OML/cmm/m/it/10 n[]$\OT1/cmr/m/n/1
+0 . De-fine $\OML/cmm/m/it/10 A[] \OT1/cmr/m/n/10 =
+ []
+
 No file Draft.bbl.
-[3] (./Draft.aux) ) 
+[4] (./Draft.aux) ) 
 Here is how much of TeX's memory you used:
  24355 strings out of 493014
  489630 string characters out of 6133351
- 513636 words of memory out of 5000000
+ 514635 words of memory out of 5000000
  27540 multiletter control sequences out of 15000+600000
  8337 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1750,11 +1755,13 @@ usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></us
 r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
 local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/l
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr
-/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Draft.pdf (3 pages, 182805 bytes).
+/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></us
+r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on Draft.pdf (4 pages, 198518 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
