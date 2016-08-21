@@ -168,7 +168,7 @@ The velocity of $p$-waves as a function of radius within the Earth and Moon (and
 v^2 \notag&= \dot r^2 + \f{p_\te{ray}^2 v^4}{r^2}\,,\\
 0 &=\dot\theta\pm\f{p_\te{ray} v^2}{r^2}\,.
 \end{align}
-where $r$ is the radial coordinate of the ray, $\theta$ is the polar angle of the ray measured from the center of the body, and $p_\te{ray}$ is the ray constant, whose value is fixed along a ray trajectory. These equations can be integrated. In the case that $v = a^2 - b^2 r^2$, we obtain for some constants $q$ and $\theta_0$.
+where $r$ is the radial coordinate of the ray, $\theta$ is the polar angle of the ray measured from the center of the body, and $p_\te{ray}$ is the ray parameter, whose value is fixed along a ray trajectory. These equations can be integrated. In the case that $v = a^2 - b^2 r^2$, we obtain for some constants $q$ and $\theta_0$.
 \begin{align}
 \notag&r(t) = \f{a\sqrt{(q^2e^{2abt}-b)^2 + 4a^2b^4 p_\te{ray}}}{b\sqrt{(qe^{2abt}+b)^2 + 4a^2b^4 p_\te{ray}}}\,,\\
 &\tan(\theta(t) - \theta_0) = \f{qe^{4abt}-b^2}{4ab^3p_\te{ray}}+abp_\te{ray}\,.
@@ -227,13 +227,9 @@ This procedure is repeated for 17 values of $D$ spaced evenly by $100\,\te{km}$.
 \begin{align}
 \scr F = \sum_D\f{\scr F_D D}{D}\,.
 \end{align}
-If there are $n$ lunar seismometers, suppose each occupies its own HEALPix pixel. Then $\scr N = n/12\times 2^{n_\te{side}}$ is the fraction of the moon which could potentially measure a signal. The likelihood of detection is then
+If there are $n$ lunar seismometers, suppose each occupies its own HEALPix pixel. Then $\scr N = n/12\times 2^{n_\te{side}}$ is the fraction of the moon which could potentially measure a signal. If $\scr M$ Macros impact the moon, the likelihood of any of them being detected is
 \begin{align}
-\scr P = 1-(1-\scr F)(1-\scr N)\,.
-\end{align}
-If $\scr M$ Macros impact the moon, the likelihood of any of them being detected is
-\begin{align}
-{\cal P} = 1-(1-\scr P)^\scr{M} = 1-\ps{(1-\scr F)(1-\scr N)}^\scr M\,.
+\scr P = 1-\ps{(1-\scr F)(1-\scr N)}^\scr M\,.
 \end{align}
 
 If the energy of a ray from every point along the line hitting a single pixel (with no reflection, refraction, or attenuation) is less than the displacement threshold, there is no chance of detection and no need to run the simulation. (If two rays from the same point on the line source hit the same pixel as $n_\te{side}\to\infty$, then they must be the same ray).

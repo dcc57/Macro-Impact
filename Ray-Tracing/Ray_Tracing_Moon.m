@@ -381,7 +381,7 @@ for i = 1 : ACO
     
 end
 REF = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
-InitialEnergy = (RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*sigmaX.*(vX.^2).*L./(M*N);
+Source = (RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0)).*L/(M*N);
 ATT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
 OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
 
@@ -397,5 +397,5 @@ Xfinal = cos(OutPla).*Xrote - sin(OutPla).*Yrote;
 Yfinal = sin(OutPla).*Xrote + cos(OutPla).*Yrote;
 Zfinal = Zrote;
 
-output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,InitialEnergy,REF,ATT);
+output = cat(2,Xfinal,Yfinal,Zfinal,OutTim,Source,REF,ATT);
 save Points.mat output
