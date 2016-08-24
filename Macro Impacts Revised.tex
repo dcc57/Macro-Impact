@@ -1202,7 +1202,7 @@ where we've taken the positive branch of the square root, since we only care abo
 \begin{align}
 \dot r_\te{melt} &=\sqrt{\f{\alpha}{t}}\f{\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}} - 1}{\sqrt{\ln\p{\f{\abs{\frac{dE}{dx}} r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}}\,.
 \end{align}
-Since, for the parameters at hand, $\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}$ is at least of order 10 $>>$ 1, it is a reasonable approximation to take
+Since, for the parameters at hand, $\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}$ is at least of order $10 \gg 1$ it is a reasonable approximation to take
 \begin{align}
 \dot r_\te{melt} &=\sqrt{\f{\alpha}{t}\ln\p{\frac{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}\,.
 \end{align}
@@ -1215,12 +1215,21 @@ Plugging in $t_{\te{fast}}$ to $r_\te{melt}$, which is a solid approximation for
 r_\te{fast melt} =  \frac{2\alpha}{v_p}\sqrt{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}}\ln\ps{\p{\frac{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}\frac{1}{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}}
 }}}\,.
 \end{align}
-Notice that this has the form of $\sqrt{W(x)\ln\p{{\frac{x}{W(x)}}}}$, which gives $\sqrt{W(x)^2}$ by the identity $\ln\p{{\frac{x}{W(x)}}} = W(x)$ which holds when $x \geq -1/e$ which is true for the parameters at hand.  Thus, we have,
+Notice that this has the form of $\sqrt{W(x)\ln\p{{\frac{x}{W(x)}}}}$, which gives $\sqrt{W(x)^2}$ by the identity $\ln\p{{\frac{x}{W(x)}}} = W(x)$ which holds when $x \geq -1/e$r which is true for the parameters at hand.  Thus, we have,
 \begin{align}
 r_\te{fast melt} =\frac{2\alpha}{v_p}W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}} = \frac{2\alpha}{v_p}W\p{\frac{r_{X}v_{X} v_p^2}{2 c_p \alpha^2 T_\te{melt}}}.
 \end{align}
-which is on the order of micrometers to tenths of micrometers for most marco radii which, for $r_X > 10^-8$ results in $r_\te{fast melt} < r_X$ which is something of a problem.
+This expression for $r_\te{fast melt}$ is highly sensitive to $\alpha$ and $v_p$ and relatively insensitive to the macro's parameters.
 
-This either suggests that much of the melting occurs once the temperature field is expanding slower than the speed of sound, and that the expansion speed of the melt zone slows down very quickly or that the material parameters -- especially $\alpha$ -- are far from constant (or may not even be well defined) in our case. 
+It gives results on the order of micrometers to tenths of micrometers for most marco radii which, for $r_X > 10^-8$ results in $r_\te{fast melt} < r_X$ which is a bit of a problem.
+
+It is likely that either much of the melting occurs once the temperature field's expansion is slower than the speed of sound and this slow-down occurs very quickly, or that the material parameters -- especially $\alpha$ and $c_p$ -- are far from constant (or may not even be well defined) in our case.
+
+As attempt to establish a lower bound for the energy that is unequivocally dissipated that relies on fewer parameters of the impacted material, consider the energy required to vaporize a cylinder of material (with parameters akin to rock) with radius equal to the macro and length h equal to the diameter of the moon, which is given by
+\begin{align}
+Q_\te{sublimate} = (L_\te{melt} + L_\te{vaporization})\rho \pi h(r_X)^2,
+\end{align}
+
+As an example, for $r_X \propto 10^{-6}$, this gives $Q \propto 10^2 J$ which is quite small, and for $r_X < 10^{-9}$ this gives results that are less than 1 J.
 
 \end{document}
