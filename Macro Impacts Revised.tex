@@ -1180,42 +1180,42 @@ Now, we integrate $\partial_t\tilde T =-\alpha k_r^2 \tilde T\,$ and find that
 
 Consider the initial condition of a delta source along the z-axis in cylindrical coordinates:
 \begin{align}
-T(r,0) = \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_x c_p}\delta(r),
+T(r,0) = \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\delta(r),
 \end{align}
 Taking the Fourier transform of this initial condition over r and $\phi$ fixes $C_1$ as 
 \begin{align}
-C_1 =  2\pi \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_x c_p}\int_{0}^{\infty}\delta(r)e^{i k r} dr = 2\pi\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_x c_p}\,,
+C_1 =  2\pi \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_{0}^{\infty}\delta(r)e^{i k r} dr = 2\pi\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\,,
 \end{align}
 where the factor of $2 \pi$ comes from the $\phi$ integral.
 $T$ in real space is given by inverting the Fourier transform:
 \begin{align}
-T(r,t) &=\frac{1}{\p{2\pi}} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{2\pi}{2\pi}\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_x c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
-&=\f{\abs{\frac{dE}{dx}r_X}}{2 \rho \sigma_x c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,.
+T(r,t) &=\frac{1}{\p{2\pi}} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{2\pi}{2\pi}\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
+&=\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,.
 \end{align}
 Setting $T = T_\te{melt}$, we have
 \begin{align}
-r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}}\,.
+r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}\,.
 \end{align}
 where we've taken the positive branch of the square root, since we only care about the melt radius increasing. Then taking the derivative w.r.t to time gives
 \begin{align}
-\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}}\f{\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}} - 1}{\sqrt{\ln\p{\f{\abs{\frac{dE}{dx}} r_X}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}}}\,.
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}}\f{\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}} - 1}{\sqrt{\ln\p{\f{\abs{\frac{dE}{dx}} r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}}\,.
 \end{align}
-Since, for the parameters at hand, $\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}$ is at least of order 10 $>>$ 1, it is a reasonable approximation to take
+Since, for the parameters at hand, $\ln\p{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}$ is at least of order 10 $>>$ 1, it is a reasonable approximation to take
 \begin{align}
-\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}\ln\p{\frac{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_x c_p \alpha T_\te{melt} t}}}\,.
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}\ln\p{\frac{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}\,.
 \end{align}
 Thus, the time at which the velocity of the melt front is that of the speed of sound, $v_p$, is given by using the Lambert W-function (or "ProductLog" in Mathamatica) as
 \begin{align}
-t_{\te{fast}} = \f{\alpha}{v_p^2}W\p{{\f{\abs{\frac{dE}{dx}}r_Xv_p^2}{2 \rho \sigma_x c_p \alpha^2 T_\te{melt}}}}
+t_{\te{fast}} = \f{\alpha}{v_p^2}W\p{{\f{\abs{\frac{dE}{dx}}r_Xv_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}}
 \end{align}
 Plugging in $t_{\te{fast}}$ to $r_\te{melt}$, which is a solid approximation for the given case, gives
 \begin{align}
-r_\te{fast melt} =  \frac{2\alpha}{v_p}\sqrt{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_x c_p \alpha^2 T_\te{melt}}}}\ln\ps{\p{\frac{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_x c_p \alpha^2 T_\te{melt}}}\frac{1}{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_x c_p \alpha^2 T_\te{melt}}}}
+r_\te{fast melt} =  \frac{2\alpha}{v_p}\sqrt{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}}\ln\ps{\p{\frac{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}\frac{1}{W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}}
 }}}\,.
 \end{align}
 Notice that this has the form of $\sqrt{W(x)\ln\p{{\frac{x}{W(x)}}}}$, which gives $\sqrt{W(x)^2}$ by the identity $\ln\p{{\frac{x}{W(x)}}} = W(x)$ which holds when $x \geq -1/e$ which is true for the parameters at hand.  Thus, we have,
 \begin{align}
-r_\te{fast melt} =\frac{2\alpha}{v_p}W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_x c_p \alpha^2 T_\te{melt}}}} = \frac{2\alpha}{v_p}W\p{\frac{r_{X}v_{X} v_p^2}{2 c_p \alpha^2 T_\te{melt}}}.
+r_\te{fast melt} =\frac{2\alpha}{v_p}W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}} = \frac{2\alpha}{v_p}W\p{\frac{r_{X}v_{X} v_p^2}{2 c_p \alpha^2 T_\te{melt}}}.
 \end{align}
 which is on the order of micrometers to tenths of micrometers for our case.
 
