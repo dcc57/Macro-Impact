@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -o Moon_Test.o%j
-SBATCH --time=12:00:00
-SBATCH -N 1 -n 1 --mem=10gb
+#SBATCH --time=24:00:00
+#SBATCH -N 1 -n 1 --mem=40gb
 
 
 #Copy to the scratch directory and change directory
@@ -31,4 +31,5 @@ echo This job is allocated $NPROCS nodes
 echo `date`
 
 #Copy Back all the output files to the present working directory
-cp -r Points13.mat $SLURM_SUBMIT_DIR
+cp -r PointsTestMat13.mat $SLURM_SUBMIT_DIR
+cp -r PointsTestNum13.mat $SLURM_SUBMIT_DIR
