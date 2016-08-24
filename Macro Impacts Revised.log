@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 AUG 2016 00:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 AUG 2016 02:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1862,7 +1862,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 876--880
 Here is how much of TeX's memory you used:
  20699 strings out of 493117
  430226 string characters out of 6135433
- 457150 words of memory out of 5000000
+ 457151 words of memory out of 5000000
  23827 multiletter control sequences out of 15000+600000
  12479 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1884,7 +1884,7 @@ m/cmsy5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/euler
 /eusm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on "Macro Impacts Revised.pdf" (40 pages, 306758 bytes).
+Output written on "Macro Impacts Revised.pdf" (40 pages, 306892 bytes).
 PDF statistics:
  202 PDF objects out of 1000 (max. 8388607)
  142 compressed objects within 2 object streams
