@@ -1182,6 +1182,8 @@ Consider the initial condition of a delta source along the z-axis in cylindrical
 \begin{align}
 T(r,0) = \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\delta(r),
 \end{align}
+Note that this model/initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial input of the delta source.
+
 Taking the Fourier transform of this initial condition over r and $\phi$ fixes $C_1$ as 
 \begin{align}
 C_1 =  2\pi \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_{0}^{\infty}\delta(r)e^{i k r} dr = 2\pi\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\,,
@@ -1217,9 +1219,8 @@ Notice that this has the form of $\sqrt{W(x)\ln\p{{\frac{x}{W(x)}}}}$, which giv
 \begin{align}
 r_\te{fast melt} =\frac{2\alpha}{v_p}W\p{{\f{\abs{\frac{dE}{dx}}r_{X}v_p^2}{2 \rho \sigma_X c_p \alpha^2 T_\te{melt}}}} = \frac{2\alpha}{v_p}W\p{\frac{r_{X}v_{X} v_p^2}{2 c_p \alpha^2 T_\te{melt}}}.
 \end{align}
-which is on the order of micrometers to tenths of micrometers for our case.
+which is on the order of micrometers to tenths of micrometers for most marco radii which, for $r_X > 10^-8$ results in $r_\te{fast melt} < r_X$ which is something of a problem.
 
-Conceptually, it would seem that $r_\te{fast melt}$ should be added to $r_\te{Macro}$ to give the full extent of material melted down.
-
+This suggests that much of the melting occurs once the temperature field is expanding slower than the speed of sound, and that the expansion speed of the melt zone slows down very quickly.
 
 \end{document}
