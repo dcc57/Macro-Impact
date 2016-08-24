@@ -214,6 +214,10 @@ In our case $\Xi E= C_1 k^2$ before attenuation. After anelastic attenuation, $E
 \begin{align}
 \abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
 \end{align}
+(28) is impossible to integrate when $E_k$ consists of the energies of two different rays, each with different attenuation factors. When this case arrises, we average $\te{Att}$ among the coincident rays. For the lowest frequency modes $f<20\te{Hz}$, $\te{Att} k$ order 10 at most, and does not contribute significantly to $u$. Taking $\te{Att} = 0$, we have
+\begin{align}
+\abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
+\end{align}
 \section{Simulation}
 The simulation is broken down into two natural parts: data generation and data analysis. The data generation consists of propagating a large number of rays to approximate a line source of $p$-waves and tracking the positions and energies at which they contact the surface of the moon. The data analysis makes use of HEALPix to approximate the energy density on the sphere and then makes use of section IV to measure displacements.
 \subsection{Data Generation}
@@ -236,7 +240,7 @@ If the energy of a ray from every point along the line hitting a single pixel (w
 \begin{align}
 u\leq\sqrt{\f{\Xi E}{\pi^2\rho k v_p^2 R_\te{Moon}^2}}
 \end{align}
-This is independent of the choice of partition. For the triangle wave, we need not test $\sigma_X\leq10^{-9}\te{m}^2$ (I WILL VERIFY THIS).
+This is independent of the choice of partition. For the triangle wave, we need not test $\sigma_X\leq 4\times 10^{-11}\te{m}^2$.
 \section{Results}
 
 \section{Conclusion}
