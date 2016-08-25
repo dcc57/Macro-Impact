@@ -1157,7 +1157,7 @@ The equation governing the evolution of the temperature field in 2 dimensions is
 \begin{align}
 \partial_t T - \alpha\nabla^2 T = 0
 \end{align}
-where $\alpha$ is the thermal diffusivity, and $\alpha=\f{k}{c_p\rho}$. In cylindrical coordinates and for $T = T(r)$, we have
+where $\alpha$ is the thermal diffusivity, and $\alpha=\f{k}{c_p\rho}$ where k, $\rho$ and $c_p$ are the thermal conductivity, density and heat capacity of the impacted material respectively. In cylindrical coordinates and for $T = T(r)$, we have
 \begin{align}
 \partial_t T - \alpha\nabla_r T = 0
 \end{align}
@@ -1182,7 +1182,7 @@ Consider the initial condition of a delta source along the z-axis in cylindrical
 \begin{align}
 T(r,0) = \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\delta(r),
 \end{align}
-Note that this model/initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial input of the delta source.
+where $\frac{dE}{dx}$,$r_X$,$\sigma_{X}$ are the energy deposition, radius and scattering cross section of the Macro respectively. Note that this model/initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial input of the delta source.
 
 Taking the Fourier transform of this initial condition over r and $\phi$ fixes $C_1$ as 
 \begin{align}
