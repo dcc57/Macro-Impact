@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  24 AUG 2016 09:57
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 AUG 2016 16:36
+>>>>>>> origin/master
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1840,10 +1844,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 876--880
 [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40]
 (./Macro Impacts Revised.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  22427 strings out of 493014
  464484 string characters out of 6133351
  476253 words of memory out of 5000000
  25630 multiletter control sequences out of 15000+600000
+=======
+ 20699 strings out of 493117
+ 430226 string characters out of 6135433
+ 457152 words of memory out of 5000000
+ 23827 multiletter control sequences out of 15000+600000
+>>>>>>> origin/master
  12479 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,17n,84p,10429b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1864,7 +1875,11 @@ m/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler
 /eusm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
+<<<<<<< HEAD
 Output written on "Macro Impacts Revised.pdf" (40 pages, 306752 bytes).
+=======
+Output written on "Macro Impacts Revised.pdf" (40 pages, 308610 bytes).
+>>>>>>> origin/master
 PDF statistics:
  202 PDF objects out of 1000 (max. 8388607)
  142 compressed objects within 2 object streams
