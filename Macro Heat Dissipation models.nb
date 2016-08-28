@@ -1,0 +1,2144 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     79286,       2135]
+NotebookOptionsPosition[     73970,       1951]
+NotebookOutlinePosition[     74350,       1968]
+CellTagsIndexPosition[     74307,       1965]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+0th order approximation for the energy of the macro impact dissapated as heat.\
+\>", "Section",
+ CellChangeTimes->{
+  3.678816644769704*^9, {3.678819044398789*^9, 3.678819067298683*^9}}],
+
+Cell["\<\
+Using the equation: E_tot = L*m = L*\[Rho]*\[Pi]*h*r^2, and solving for r, we \
+find the a Macro of a given energy could melt a cylinder of the following \
+radius (with height h equal to the diameter of the impacted body).
+Note that this ignores the energy required to heat a cylinder of these \
+dimensions to the melting point (which, for rock on the moon, may be \
+considerable).\
+\>", "Text",
+ CellChangeTimes->{{3.6788172089329977`*^9, 3.678817261369966*^9}, {
+  3.678817391571568*^9, 3.6788175337423687`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"rMelt", "[", 
+    RowBox[{"eTot_", ",", "L_", ",", "\[Rho]_", ",", "h_"}], "]"}], "=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"eTot", "/", 
+     RowBox[{"(", 
+      RowBox[{"L", "*", "\[Rho]", "*", "\[Pi]", "*", "h"}], ")"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6788166492450533`*^9, 3.678816735226859*^9}}],
+
+Cell["For steel-like parameters, with diameter of earth:", "Text",
+ CellChangeTimes->{{3.6788172718645153`*^9, 3.678817278880126*^9}, {
+  3.678820408679633*^9, 3.678820438931719*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rMelt", "[", 
+  RowBox[{
+   RowBox[{"4.5", "*", 
+    RowBox[{"10", "^", "12"}]}], ",", 
+   RowBox[{"2.5", "*", 
+    RowBox[{"10", "^", "5"}]}], ",", "7850", ",", 
+   RowBox[{"1.2", "*", 
+    RowBox[{"10", "^", "7"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.678816737358135*^9, 3.678816788936839*^9}, {
+  3.679012188829442*^9, 3.679012189423759*^9}}],
+
+Cell[BoxData["0.007798945129353112`"], "Output",
+ CellChangeTimes->{
+  3.678816789628335*^9, {3.6790121899178143`*^9, 3.679012205325357*^9}}]
+}, Open  ]],
+
+Cell["For rock-like parameters,  with diameter of earth", "Text",
+ CellChangeTimes->{{3.678817284866768*^9, 3.678817286368661*^9}, {
+  3.678820443741364*^9, 3.678820446099147*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rMelt", "[", 
+  RowBox[{
+   RowBox[{"4.5", "*", 
+    RowBox[{"10", "^", "12"}]}], ",", "300", ",", "2500", ",", 
+   RowBox[{"1.2", "*", 
+    RowBox[{"10", "^", "7"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.678816800223023*^9, 3.678816831860598*^9}, {
+  3.678816983032139*^9, 3.678816984140272*^9}, {3.67881796405263*^9, 
+  3.678817964534327*^9}, {3.681055987011801*^9, 3.681056020213822*^9}}],
+
+Cell[BoxData["0.3989422804014327`"], "Output",
+ CellChangeTimes->{{3.678816806508338*^9, 3.6788168324746027`*^9}, 
+   3.6788169846609783`*^9, 3.678817965090905*^9, {3.681055988225178*^9, 
+   3.6810560205185127`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"rMelt", "[", 
+    RowBox[{"eTot_", ",", "L_", ",", "\[Rho]_", ",", "h_"}], "]"}], "=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"eTot", "/", 
+     RowBox[{"(", 
+      RowBox[{"L", "*", "\[Rho]", "*", "\[Pi]", "*", "h"}], ")"}]}], "]"}]}], 
+  ";"}]], "Input"],
+
+Cell["\<\
+To account for the energy cost to heat the cylinder, we include the term \
+c*m*(Temp_final - Temp_initial).  Even if this energy will be transformed to \
+seismic wave, it still should be accounted for in computing the melt radius.
+
+Assume the initial temperature of the rock is around 300 K.\
+\>", "Text",
+ CellChangeTimes->{{3.678818076178337*^9, 3.678818121978263*^9}, 
+   3.678818154233882*^9, {3.678818877834597*^9, 3.678818890818606*^9}, {
+   3.6788190856695147`*^9, 3.67881911980939*^9}, {3.6788196424674873`*^9, 
+   3.678819654138278*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"rMeltWithHeating", "[", 
+    RowBox[{
+    "eTot_", ",", "L_", ",", "\[Rho]_", ",", "h_", ",", "c_", ",", 
+     "TempInitial_", ",", "TempFinal_"}], "]"}], "=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"eTot", "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"L", "+", 
+         RowBox[{"c", 
+          RowBox[{"(", 
+           RowBox[{"TempFinal", "-", "TempInitial"}], ")"}]}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"\[Rho]", "*", "\[Pi]", "*", "h"}], ")"}]}], ")"}]}], "]"}]}],
+   ";"}]], "Input",
+ CellChangeTimes->{{3.678817740657711*^9, 3.6788178112180557`*^9}, {
+  3.678817854421384*^9, 3.6788179348456583`*^9}, {3.678818131386259*^9, 
+  3.678818143062152*^9}, {3.6788189119089746`*^9, 3.678818936332107*^9}, {
+  3.678819297289467*^9, 3.6788192993519297`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rMeltWithHeating", "[", 
+  RowBox[{
+   RowBox[{"4.5", "*", 
+    RowBox[{"10", "^", "12"}]}], ",", 
+   RowBox[{"2.5", "*", 
+    RowBox[{"10", "^", "5"}]}], ",", "7850", ",", 
+   RowBox[{"1.2", "*", 
+    RowBox[{"10", "^", "7"}]}], ",", " ", "500", ",", "300", ",", "1800"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6790132373591633`*^9, 3.679013269887773*^9}}],
+
+Cell[BoxData["0.003899472564676556`"], "Output",
+ CellChangeTimes->{3.679013274716264*^9, 3.681057194376397*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rMeltWithHeating", "[", 
+  RowBox[{
+   RowBox[{"4.5", "*", 
+    RowBox[{"10", "^", "12"}]}], ",", "500", ",", "2500", ",", 
+   RowBox[{"1.2", "*", 
+    RowBox[{"10", "^", "7"}]}], ",", " ", "1000", ",", "300", ",", "1500"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.678817940800313*^9, 3.678818059658511*^9}}],
+
+Cell[BoxData["0.006306517584052074`"], "Output",
+ CellChangeTimes->{{3.678818035514998*^9, 3.678818060711245*^9}, 
+   3.678818148063506*^9, 3.678818940563966*^9, 3.6788193024827747`*^9, {
+   3.6810571892010603`*^9, 3.6810571960892477`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"energyDissapatedApprox", "[", 
+    RowBox[{"L_", ",", "\[Rho]_", ",", "h_", ",", "rMacro_"}], "]"}], "=", 
+   RowBox[{"L", "*", 
+    RowBox[{"(", 
+     RowBox[{"\[Rho]", "*", "\[Pi]", "*", "h"}], ")"}], "*", 
+    RowBox[{"rMacro", "^", "2"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.678819352544958*^9, 3.678819375789915*^9}, {
+  3.678819423821362*^9, 3.678819455442045*^9}, {3.6788195004466877`*^9, 
+  3.6788195391084433`*^9}, {3.681056047793021*^9, 3.681056052574443*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"energyDissapatedApprox", "[", 
+  RowBox[{
+   RowBox[{"10", "^", "5"}], ",", "2500", ",", 
+   RowBox[{"1.2", "*", 
+    RowBox[{"10", "^", "7"}]}], ",", "0.006306517584052074`"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6788195494852343`*^9, 3.678819567273028*^9}, {
+  3.6804592965567837`*^9, 3.6804592974481907`*^9}}],
+
+Cell[BoxData["3.7484381507705115`*^11"], "Output",
+ CellChangeTimes->{3.678819568873089*^9, 3.680459297760038*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1st order approximation for dissipated energy", "Section",
+ CellChangeTimes->{{3.681056378023849*^9, 3.6810564066037893`*^9}, {
+  3.68140006201782*^9, 3.6814000723326197`*^9}, {3.681401102400301*^9, 
+  3.6814011297313643`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Energy required to sublimate (turn a solid directly into vapor) impacted \
+material:\
+\>", "Subsection",
+ CellChangeTimes->{{3.681060386771838*^9, 3.681060425616764*^9}, {
+  3.681060523458746*^9, 3.68106053331511*^9}}],
+
+Cell["\<\
+As attempt to establish a lower bound for the energy that is unequivocally \
+dissipated that relies on fewer parameters of the impacted material, consider \
+the energy required to vaporize a cylinder of material (with parameters akin \
+to rock) with radius equal to the macro and length h equal to the diameter of \
+the moon, which is given by\
+\>", "Text",
+ CellChangeTimes->{3.681056199150462*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"energyDissapatedApproxIncludingVaporization", "[", 
+    RowBox[{
+    "Lmelt_", ",", "Lvaporize_", ",", "\[Rho]_", ",", "h_", ",", "rMacro_"}], 
+    "]"}], "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"Lmelt", "+", "Lvaporize"}], ")"}], "*", 
+    RowBox[{"(", 
+     RowBox[{"\[Rho]", "*", "\[Pi]", "*", "h"}], ")"}], "*", 
+    RowBox[{"rMacro", "^", "2"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6810121211523037`*^9, 3.6810121741427813`*^9}, {
+  3.681052842915289*^9, 3.681052848697069*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"energyDissapatedApproxIncludingVaporization", "[", 
+  RowBox[{"300", ",", "4000", ",", "2500", ",", 
+   RowBox[{"2", "*", "1.7", "*", 
+    RowBox[{"10", "^", "6"}]}], ",", 
+   RowBox[{"10", "^", 
+    RowBox[{"-", "6"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6810121850202713`*^9, 3.681012188459528*^9}, {
+   3.681012334757469*^9, 3.6810123380870733`*^9}, {3.6810123691368027`*^9, 
+   3.6810123935347643`*^9}, 3.6810528581911077`*^9, {3.681052900668811*^9, 
+   3.681052941904009*^9}}],
+
+Cell[BoxData["114.82521148870696`"], "Output",
+ CellChangeTimes->{{3.681012382662735*^9, 3.681012393799014*^9}, 
+   3.681052858726429*^9, 3.681052942494193*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2nd order approximation to plastic work/dissipated energy", "Section",
+ CellChangeTimes->{{3.6814001835006523`*^9, 3.681400189906115*^9}, {
+  3.6814010185143948`*^9, 3.681401031271736*^9}, {3.681401138453549*^9, 
+  3.68140113976923*^9}, {3.6814011819908*^9, 3.681401182220645*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Using the model of \[OpenCurlyDoubleQuote]Hypervelocity penetration modeling- \
+momentum vs. energy and energy transfer mechanisms\[CloseCurlyDoubleQuote] by \
+Walker to compute the plastic work done by the Macro\
+\>", "Subsection",
+ CellChangeTimes->{{3.681057314325801*^9, 3.6810573498211403`*^9}, {
+  3.681059948984621*^9, 3.681059960804145*^9}, {3.681399524074957*^9, 
+  3.681399527025083*^9}}],
+
+Cell["\<\
+As noted, for cavity expasion velocities vcavity \[GreaterEqual] 0.2vsound \
+the elastic-plastic interface velocity is nearly the bulk sound speed: \
+vplastic \[TildeTilde] vsound.  Note that y is the yield strength of the \
+impacted material, r is the (final) cavity radius, and vcavity is the cavity \
+expansion velocity.  The following assumes that r \[TildeTilde] r_macro, 
+and that vcavity \[TildeTilde] v_macro. \
+\>", "Text",
+ CellChangeTimes->{{3.6811787114804153`*^9, 3.681178768404007*^9}, {
+  3.681399466682398*^9, 3.681399482009918*^9}, {3.681399579842043*^9, 
+  3.681399733844193*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"plasticWork", "[", 
+    RowBox[{"r_", ",", "y_", ",", "vcavity_", ",", "vplastic_"}], "]"}], "=", 
+   
+   RowBox[{"\[Pi]", "*", 
+    SuperscriptBox["r", "2"], "*", "y", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        FractionBox["2", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"1", "-", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             FractionBox["vcavity", "vplastic"], ")"}], "2"]}], "]"}]], ")"}], 
+       RowBox[{"Log", "[", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"1", "-", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              FractionBox["vcavity", "vplastic"], ")"}], "2"]}], "]"}], 
+          RowBox[{"(", 
+           FractionBox["vcavity", "vplastic"], ")"}]], "+", 
+         FractionBox["1", 
+          RowBox[{"(", 
+           FractionBox["vcavity", "vplastic"], ")"}]]}], "]"}]}], "-", "1"}], 
+     ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.679867086500045*^9, 3.679867106371859*^9}, 
+   3.6798671863321943`*^9, 3.681058000828233*^9}],
+
+Cell[TextData[{
+ "In the limit of v -> infinity, the plastic work becomes negative in this \
+model, which also happens with v = 2.5*10^6.  Hence, ",
+ StyleBox["this model clearly does not work for the macro case",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.681058047325522*^9, {3.681058238203742*^9, 3.681058257425096*^9}, {
+   3.681178940218762*^9, 3.681178942094665*^9}, {3.681399771624305*^9, 
+   3.681399776003484*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"vplastic", "=", " ", "1000"}], "}"}], ",", 
+   RowBox[{"Limit", "[", 
+    RowBox[{
+     RowBox[{"plasticWork", "[", 
+      RowBox[{"r_", ",", "y_", ",", "vcavity_", ",", "vplastic_"}], "]"}], 
+     ",", 
+     RowBox[{"vcavity", "\[Rule]", " ", "Infinity"}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.679860645937965*^9, 3.679860655104691*^9}, 
+   3.6798607409157057`*^9, {3.681178821480393*^9, 3.6811788396060057`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "\[Pi]"}], " ", 
+  SuperscriptBox["r", "2"], " ", "y"}]], "Output",
+ CellChangeTimes->{3.6798606626127787`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Chop", "[", 
+  RowBox[{
+   RowBox[{"plasticWork", "[", 
+    RowBox[{
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}], ",", 
+     RowBox[{"10", "^", "9"}], ",", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "6"}]}], ",", "1000"}], "]"}], ",", 
+   RowBox[{"10", "^", 
+    RowBox[{"-", "9"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.681395548098134*^9, 3.68139556151505*^9}, {
+  3.6813956072618437`*^9, 3.681395610661216*^9}, {3.681395658972876*^9, 
+  3.6813956622745256`*^9}, {3.681397429060976*^9, 3.681397430524159*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "0.003137645816823286`"}]], "Output",
+ CellChangeTimes->{{3.6813955619889097`*^9, 3.681395611025525*^9}, 
+   3.681395662994483*^9, 3.681397431172164*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"plasticWork", "[", 
+      RowBox[{"r", ",", "y", ",", "vcavity", ",", "vplastic"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"vplastic", ",", "1000", ",", "8000"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"10", "^", "7"}], ",", 
+     RowBox[{"10", "^", "9"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}], ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "5"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"vcavity", ",", 
+     RowBox[{"10", "^", "4"}], ",", 
+     RowBox[{"10", "^", "6"}]}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`r$$ = 
+    3.8000962*^-7, $CellContext`vcavity$$ = 10000., $CellContext`y$$ = 1.*^7, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`y$$], 10000000, 1000000000}, {
+      Hold[$CellContext`r$$], 
+      Rational[1, 100000000000], 
+      Rational[1, 100000]}, {
+      Hold[$CellContext`vcavity$$], 10000, 1000000}}, Typeset`size$$ = {
+    360., {96., 100.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`y$15266$$ = 
+    0, $CellContext`r$15267$$ = 0, $CellContext`vcavity$15268$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`r$$ = 
+        Rational[1, 100000000000], $CellContext`vcavity$$ = 
+        10000, $CellContext`y$$ = 10000000}, "ControllerVariables" :> {
+        Hold[$CellContext`y$$, $CellContext`y$15266$$, 0], 
+        Hold[$CellContext`r$$, $CellContext`r$15267$$, 0], 
+        Hold[$CellContext`vcavity$$, $CellContext`vcavity$15268$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        $CellContext`plasticWork[$CellContext`r$$, $CellContext`y$$, \
+$CellContext`vcavity$$, $CellContext`vplastic], {$CellContext`vplastic, 1000, 
+         8000}], "Specifications" :> {{$CellContext`y$$, 10000000, 
+         1000000000}, {$CellContext`r$$, 
+         Rational[1, 100000000000], 
+         Rational[1, 100000]}, {$CellContext`vcavity$$, 10000, 1000000}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {168., 173.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.681399424328061*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1st order approximation to dynamics of energy deposition", "Section",
+ CellChangeTimes->{{3.681058361360318*^9, 3.6810583684620657`*^9}, {
+  3.681401106862349*^9, 3.681401107149967*^9}, {3.681401186740316*^9, 
+  3.6814012068837833`*^9}}],
+
+Cell["\<\
+This model uses a delta potential initial condition for the heat equation in \
+cylindrical coordinates to model the macro\[CloseCurlyQuote]s energy being \
+converted to heat.  This model views the impact as an instantaneous input of \
+heat along the z-axis.
+
+This model/initial condition is reasonable given that the delta source \
+becomes a Gaussian with the same energy an instant after the initial input of \
+the delta source (assuming energy is conserved at least in the intial \
+instant).\
+\>", "Text",
+ CellChangeTimes->{{3.681058371493349*^9, 3.6810584399965076`*^9}, {
+  3.681060025524899*^9, 3.681060029950674*^9}, {3.681401220704352*^9, 
+  3.68140134280335*^9}}],
+
+Cell["\<\
+Note that c1 = a =\[Lambda]/(\[Rho] c), where \[Lambda],\[Rho] and c are the \
+thermal conductivity, density and heat capacity of the material respectively. \
+ The first equation below is the inverse Hankel transform of the solution to \
+the heat equation in k-space:\
+\>", "Text",
+ CellChangeTimes->{{3.680281277217352*^9, 3.680281313951462*^9}, {
+  3.6802813469703283`*^9, 3.680281380486137*^9}, {3.68028141682201*^9, 
+  3.68028145370603*^9}, {3.680281550694866*^9, 3.680281552619787*^9}, {
+  3.681401609028412*^9, 3.6814016394361677`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Assumptions", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"t", ">", "0"}], "&&", 
+    RowBox[{"c1", ">", "0"}], "&&", 
+    RowBox[{"rx", ">", "0"}], "&&", 
+    RowBox[{"r", ">", "0"}]}], ",", 
+   RowBox[{"c2", "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"k", " ", 
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", "c1"}], "*", 
+         RowBox[{"k", "^", "2"}], "*", "t"}], "]"}], "*", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"k", "*", "r"}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.680570360669856*^9, {3.6805705523271217`*^9, 3.680570552439445*^9}, {
+   3.6810003685913677`*^9, 3.6810003747582273`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Assumptions", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"t", ">", "0"}], "&&", 
+    RowBox[{"c1", ">", "0"}], "&&", 
+    RowBox[{"rx", ">", "0"}], "&&", 
+    RowBox[{"r", ">", "0"}]}], ",", 
+   RowBox[{"ConditionalExpression", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"c2", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          SuperscriptBox["r", "2"], 
+          RowBox[{"4", " ", "c1", " ", "t"}]]}]]}], 
+      RowBox[{"2", " ", "c1", " ", "t"}]], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Re", "[", "r", "]"}], "\[GreaterEqual]", "0"}], "&&", 
+      RowBox[{
+       RowBox[{"Re", "[", 
+        RowBox[{"c1", " ", "t"}], "]"}], "\[GreaterEqual]", "0"}], "&&", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Re", "[", "r", "]"}], ">", "0"}], "||", 
+        RowBox[{
+         RowBox[{"Im", "[", "r", "]"}], ">", "0"}]}], ")"}]}]}], "]"}]}], 
+  "]"}]], "Output",
+ CellChangeTimes->{3.680570411782817*^9, 3.680570585820077*^9, 
+  3.681000403717821*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Solving for r_melt by setting the above (after applying initial conditions \
+-- the FT of the delta function intial condition gives c2 = ",
+ Cell[BoxData[
+  FractionBox[
+   RowBox[{"2", "\[Pi]", " ", "rx", " ", "Q"}], 
+   RowBox[{" ", 
+    RowBox[{"c", " ", "\[Rho]", " ", "\[Sigma]"}]}]]], "Input",
+  CellChangeTimes->{{3.6804005299755287`*^9, 3.68040056640619*^9}, {
+   3.680400603222704*^9, 3.680400604166256*^9}, {3.680447130903981*^9, 
+   3.6804471851856833`*^9}, {3.68082544162838*^9, 3.6808254439003677`*^9}}],
+ " , see the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]]],
+ " documnet for detials) equal to melt temperature \[CapitalTheta], gives \
+r_melt = ",
+ Cell[BoxData[
+  RowBox[{"4", " ", "a", " ", "t", "*", 
+   RowBox[{"Log", "[", 
+    FractionBox[
+     RowBox[{"rx", " ", "Q"}], 
+     RowBox[{
+     "4", " ", "a", " ", "c", " ", "\[Pi]", " ", "t", " ", "\[CapitalTheta]", 
+      " ", "\[Rho]", " ", "\[Sigma]"}]], "]"}]}]], "Input",
+  CellChangeTimes->{{3.6804005299755287`*^9, 3.68040056640619*^9}, {
+   3.680400603222704*^9, 3.680400604166256*^9}, {3.680447130903981*^9, 
+   3.6804471851856833`*^9}, {3.68082544162838*^9, 3.6808254439003677`*^9}}],
+ " and then differentiating w.r.t to time gives r_dot_met:"
+}], "Text",
+ CellChangeTimes->{{3.680455824124902*^9, 3.6804558305064*^9}, {
+  3.681058984278696*^9, 3.6810590452884893`*^9}, {3.681401366249755*^9, 
+  3.681401383066104*^9}, {3.681401452819167*^9, 3.681401534110435*^9}, {
+  3.681401763176889*^9, 3.6814018066061974`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"4", " ", "a", " ", "t", "*", 
+     RowBox[{"Log", "[", 
+      FractionBox[
+       RowBox[{"rx", " ", "Q"}], 
+       RowBox[{
+       "2", " ", "a", " ", "c", " ", "t", " ", "\[CapitalTheta]", " ", 
+        "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], "]"}], ",", "t"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6804005299755287`*^9, 3.68040056640619*^9}, {
+   3.680400603222704*^9, 3.680400604166256*^9}, {3.680447130903981*^9, 
+   3.6804471851856833`*^9}, {3.68082544162838*^9, 3.6808254439003677`*^9}, 
+   3.6814017651122217`*^9, {3.681401835383148*^9, 3.681401845846904*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", "a"}], "+", 
+   RowBox[{"a", " ", 
+    RowBox[{"Log", "[", 
+     FractionBox[
+      RowBox[{"Q", " ", "rx"}], 
+      RowBox[{
+      "2", " ", "a", " ", "c", " ", "t", " ", "\[CapitalTheta]", " ", 
+       "\[Rho]", " ", "\[Sigma]"}]], "]"}]}]}], 
+  SqrtBox[
+   RowBox[{"a", " ", "t", " ", 
+    RowBox[{"Log", "[", 
+     FractionBox[
+      RowBox[{"Q", " ", "rx"}], 
+      RowBox[{
+      "2", " ", "a", " ", "c", " ", "t", " ", "\[CapitalTheta]", " ", 
+       "\[Rho]", " ", "\[Sigma]"}]], "]"}]}]]]], "Output",
+ CellChangeTimes->{3.680400604595549*^9, 3.680447189820025*^9, 
+  3.680825447403561*^9, 3.68140185002321*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Since ",
+ Cell[BoxData[
+  RowBox[{"a", " ", 
+   RowBox[{"Log", "[", 
+    FractionBox[
+     RowBox[{"Q", " ", "rx"}], 
+     RowBox[{
+     "2", " ", "a", " ", "c", " ", "t", " ", "\[CapitalTheta]", " ", "\[Rho]",
+       " ", "\[Sigma]"}]], "]"}]}]], "Output",
+  GeneratedCell->False,
+  CellAutoOverwrite->False,
+  CellChangeTimes->{3.680400604595549*^9, 3.680447189820025*^9, 
+   3.680825447403561*^9}],
+ " is on the order of 10 for the given parameters, it is >> 1, and so we can \
+drop the -1 term and proceed as follows:"
+}], "Text",
+ CellChangeTimes->{{3.6810590595640163`*^9, 3.681059090833075*^9}, {
+  3.681401869479424*^9, 3.68140186947992*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{"rx", " ", "Q"}], 
+        RowBox[{
+        "2", "a", " ", "c", "  ", "t", " ", "\[CapitalTheta]", " ", "\[Rho]", 
+         " ", "\[Sigma]"}]], "]"}]}], "t"], "\[Equal]", 
+    RowBox[{"vs", "^", "2"}]}], ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6804557434864397`*^9, 3.680455752582592*^9}, {
+   3.6805741178725348`*^9, 3.680574120123516*^9}, {3.680825606326415*^9, 
+   3.680825606567688*^9}, 3.6814018909812803`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ifun"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Inverse functions are being used by \
+\[NoBreak]\\!\\(Solve\\)\[NoBreak], so some solutions may not be found; use \
+Reduce for complete solution information. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/Solve/ifun\\\", ButtonNote -> \
+\\\"Solve::ifun\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680574121281138*^9, 3.68082561237319*^9, 
+  3.6814018990898647`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"t", "\[Rule]", 
+    FractionBox[
+     RowBox[{"a", " ", 
+      RowBox[{"ProductLog", "[", 
+       FractionBox[
+        RowBox[{"Q", " ", "rx", " ", 
+         SuperscriptBox["vs", "2"]}], 
+        RowBox[{"2", " ", 
+         SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+         "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+     SuperscriptBox["vs", "2"]]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.680455755301793*^9, 3.6805741212840548`*^9, 
+  3.6808256123775263`*^9, 3.681401899094223*^9}]
+}, Open  ]],
+
+Cell["\<\
+So the time elapsed until the melt wave velocity drops to the speed of sound \
+is (using a macro radius of first 10^-11 and then 10^-6):\
+\>", "Text",
+ CellChangeTimes->{{3.68105913471972*^9, 3.681059167087075*^9}, {
+  3.6810592120285063`*^9, 3.681059224229794*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"N", "[", 
+   FractionBox[
+    RowBox[{"a", " ", 
+     RowBox[{"ProductLog", "[", 
+      FractionBox[
+       RowBox[{"Q", " ", "rx", " ", 
+        SuperscriptBox["vs", "2"]}], 
+       RowBox[{"2", " ", 
+        SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+        "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+    SuperscriptBox["vs", "2"]], "]"}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}], ",", 
+    RowBox[{"c", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[CapitalTheta]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"Q", "\[Rule]", " ", 
+     RowBox[{"10", "^", "5"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[Sigma]", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}], ",", 
+    RowBox[{"vs", "\[Rule]", " ", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"rx", "\[Rule]", " ", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6808658453480577`*^9, 3.6808658592424393`*^9}, {
+  3.681059207038361*^9, 3.681059209911951*^9}, {3.681401897122024*^9, 
+  3.6814019044064703`*^9}}],
+
+Cell[BoxData["2.820359468059333`*^-11"], "Output",
+ CellChangeTimes->{{3.680865852932521*^9, 3.680865859770667*^9}, 
+   3.6810592288380737`*^9, 3.681401905046525*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"N", "[", 
+   FractionBox[
+    RowBox[{"a", " ", 
+     RowBox[{"ProductLog", "[", 
+      FractionBox[
+       RowBox[{"Q", " ", "rx", " ", 
+        SuperscriptBox["vs", "2"]}], 
+       RowBox[{"2", " ", 
+        SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+        "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+    SuperscriptBox["vs", "2"]], "]"}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}], ",", 
+    RowBox[{"c", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[CapitalTheta]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"Q", "\[Rule]", " ", 
+     RowBox[{"10", "^", "5"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[Sigma]", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}], ",", 
+    RowBox[{"vs", "\[Rule]", " ", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"rx", "\[Rule]", " ", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.681059124683235*^9, 3.6810591270421457`*^9}, {
+  3.68140190714384*^9, 3.6814019109496307`*^9}}],
+
+Cell[BoxData["3.9382644365410756`*^-11"], "Output",
+ CellChangeTimes->{3.681059127813822*^9, 3.6814019123058367`*^9}]
+}, Open  ]],
+
+Cell["\<\
+Notice that for 10^-6 \[LessEqual] r \[LessEqual] 10^-11, t << 10^(-3.5) so \
+the approximation of dropping the -1 term is valid.\
+\>", "Text",
+ CellChangeTimes->{
+  3.681059180119697*^9, {3.6810592392850933`*^9, 3.681059240933023*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Assuming", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "Q", ",", "t", ",", "a", ",", "rx", ",", "c", ",", "\[Theta]", ",", 
+      "\[Rho]", ",", "\[Sigma]", ",", "vs"}], "}"}], "\[Element]", "Reals"}], 
+   ",", 
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"4", " ", "a", " ", "t", "*", 
+       RowBox[{"Log", "[", 
+        FractionBox[
+         RowBox[{"rx", " ", "Q"}], 
+         RowBox[{
+         "4", " ", "a", " ", "c", " ", "\[Pi]", " ", "t", " ", 
+          "\[CapitalTheta]", " ", "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+      "]"}], "/.", 
+     RowBox[{"t", "\[Rule]", 
+      FractionBox[
+       RowBox[{"a", " ", 
+        RowBox[{"ProductLog", "[", 
+         FractionBox[
+          RowBox[{"Q", " ", "rx", " ", 
+           SuperscriptBox["vs", "2"]}], 
+          RowBox[{"2", " ", 
+           SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+           "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+       SuperscriptBox["vs", "2"]]}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.680456127617272*^9, 3.680456129612895*^9}, {
+  3.68061160635503*^9, 3.680611611113883*^9}, {3.6808256245184298`*^9, 
+  3.680825626567596*^9}, {3.681059260871936*^9, 3.6810593587133083`*^9}, {
+  3.681401916827886*^9, 3.681401924206544*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2", " ", 
+  SqrtBox[
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["a", "2"], " ", 
+     RowBox[{"Log", "[", 
+      FractionBox[
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"ProductLog", "[", 
+         FractionBox[
+          RowBox[{"Q", " ", "rx", " ", 
+           SuperscriptBox["vs", "2"]}], 
+          RowBox[{"2", " ", 
+           SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+           "\[Rho]", " ", "\[Sigma]"}]], "]"}]], 
+       RowBox[{"2", " ", "\[Pi]"}]], "]"}], " ", 
+     RowBox[{"ProductLog", "[", 
+      FractionBox[
+       RowBox[{"Q", " ", "rx", " ", 
+        SuperscriptBox["vs", "2"]}], 
+       RowBox[{"2", " ", 
+        SuperscriptBox["a", "2"], " ", "c", " ", "\[CapitalTheta]", " ", 
+        "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], 
+    SuperscriptBox["vs", "2"]]]}]], "Output",
+ CellChangeTimes->{
+  3.680456130251441*^9, 3.680611613948844*^9, 3.68082563094668*^9, {
+   3.6810593559350767`*^9, 3.6810593795870047`*^9}, 3.681401940901607*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "This actually simplifies further by the identity W[x] = ln[x/W[x]], which \
+gives r_melt_fast = ",
+ Cell[BoxData[
+  RowBox[{"2", 
+   FractionBox["a", "vs"], "  ", 
+   RowBox[{"ProductLog", "[", 
+    FractionBox[
+     RowBox[{"Q", " ", "rx", " ", 
+      SuperscriptBox["vs", "2"]}], 
+     RowBox[{"2", 
+      SuperscriptBox["a", "2"], " ", "c", " ", "\[Pi]", " ", 
+      "\[CapitalTheta]", " ", "\[Rho]", " ", "\[Sigma]"}]], "]"}]}]], "Input",
+  
+  CellChangeTimes->{{3.680575473796051*^9, 3.68057549565473*^9}, {
+    3.6808256384466*^9, 3.6808256561976233`*^9}, 3.680825692152253*^9, {
+    3.6808659301608667`*^9, 3.6808659305784483`*^9}}],
+ " = ",
+ Cell[BoxData[
+  RowBox[{"2", 
+   FractionBox["a", "vs"], "  ", 
+   RowBox[{
+    RowBox[{"ProductLog", "[", 
+     FractionBox[
+      RowBox[{"rx", "  ", 
+       RowBox[{"vx", "^", "2"}], 
+       SuperscriptBox["vs", "2"]}], 
+      RowBox[{"2", " ", 
+       SuperscriptBox["a", "2"], " ", "c", " ", "\[Pi]", " ", 
+       "\[CapitalTheta]", " "}]], "]"}], "."}]}]], "Input",
+  CellChangeTimes->{{3.680575473796051*^9, 3.68057549565473*^9}, {
+    3.6808256384466*^9, 3.6808256561976233`*^9}, 3.680825692152253*^9, {
+    3.6808659301608667`*^9, 3.6808659305784483`*^9}}]
+}], "Text",
+ CellChangeTimes->{{3.681059414375042*^9, 3.681059437110188*^9}, {
+  3.681059671041832*^9, 3.6810597380099297`*^9}, {3.681059801469729*^9, 
+  3.6810598036521473`*^9}, {3.6814019392712803`*^9, 3.681401965786433*^9}}],
+
+Cell["\<\
+This expression for $r_\\te{fast melt}$ is highly sensitive to $\\alpha$ and \
+$v_p$ and relatively insensitive to the macro\[CloseCurlyQuote]s parameters.
+
+It gives results on the order of micrometers to tenths of micrometers for \
+most marco radii which, for $r_X > 10^-8$ results in $r_\\te{fast melt} < \
+r_X$ which is a bit of a problem.\
+\>", "Text",
+ CellChangeTimes->{
+  3.681059871349084*^9, {3.681060105405548*^9, 3.681060117402608*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"N", "[", 
+   RowBox[{"2", 
+    FractionBox["a", "vs"], "  ", 
+    RowBox[{"ProductLog", "[", 
+     FractionBox[
+      RowBox[{"Q", " ", "rx", " ", 
+       SuperscriptBox["vs", "2"]}], 
+      RowBox[{"2", " ", 
+       SuperscriptBox["a", "2"], " ", "c", " ", "\[Pi]", " ", 
+       "\[CapitalTheta]", " ", "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], "]"}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}], ",", 
+    RowBox[{"c", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[CapitalTheta]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"Q", "\[Rule]", " ", 
+     RowBox[{"10", "^", "5"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[Sigma]", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}], ",", 
+    RowBox[{"vs", "\[Rule]", " ", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"rx", "\[Rule]", " ", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.680575473796051*^9, 3.68057549565473*^9}, {
+   3.6808256384466*^9, 3.6808256561976233`*^9}, 3.680825692152253*^9, {
+   3.6808659301608667`*^9, 3.6808659305784483`*^9}, {3.6810598086753483`*^9, 
+   3.681059834536849*^9}, {3.6814019743855457`*^9, 3.681401979734993*^9}}],
+
+Cell[BoxData["5.419764781367027`*^-8"], "Output",
+ CellChangeTimes->{3.680575496690316*^9, 3.68082565712646*^9, 
+  3.6808659312017717`*^9, 3.681059812022393*^9, 3.6810598435374327`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"N", "[", 
+   RowBox[{"2", 
+    FractionBox["a", "vs"], "  ", 
+    RowBox[{"ProductLog", "[", 
+     FractionBox[
+      RowBox[{"Q", " ", "rx", " ", 
+       SuperscriptBox["vs", "2"]}], 
+      RowBox[{"2", " ", 
+       SuperscriptBox["a", "2"], " ", "c", " ", "\[Pi]", " ", 
+       "\[CapitalTheta]", " ", "\[Rho]", " ", "\[Sigma]"}]], "]"}]}], "]"}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}], ",", 
+    RowBox[{"c", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[CapitalTheta]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"Q", "\[Rule]", " ", 
+     RowBox[{"10", "^", "5"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Rule]", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"\[Sigma]", "\[Rule]", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}]}], ",", 
+    RowBox[{"vs", "\[Rule]", " ", 
+     RowBox[{"10", "^", "3"}]}], ",", 
+    RowBox[{"rx", "\[Rule]", " ", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "6"}]}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6808659466745234`*^9, 3.680865948123054*^9}, {
+  3.681059814329173*^9, 3.681059836632822*^9}, {3.681401976535007*^9, 
+  3.681401982238915*^9}}],
+
+Cell[BoxData["7.653332132434412`*^-8"], "Output",
+ CellChangeTimes->{
+  3.680865949943491*^9, {3.681059816379324*^9, 3.681059842119334*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Below is a plot of r_melt_fast, and the x-axis is in terms of the of macro \
+radius.\
+\>", "Text",
+ CellChangeTimes->{{3.681402263529643*^9, 3.681402314017891*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"2", 
+      FractionBox["a", "vs"], "  ", 
+      RowBox[{"ProductLog", "[", 
+       FractionBox[
+        RowBox[{"rx", "  ", 
+         RowBox[{"vx", "^", "2"}], 
+         SuperscriptBox["vs", "2"]}], 
+        RowBox[{"2", " ", 
+         SuperscriptBox["a", "2"], " ", "c", " ", "\[Pi]", " ", 
+         "\[CapitalTheta]", " "}]], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"rx", ",", "0", ",", 
+       RowBox[{"10", "^", 
+        RowBox[{"-", "6"}]}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "7"}]}], ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "4"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", ",", 
+     RowBox[{"10", "^", "2"}], ",", 
+     RowBox[{"10", "^", "3"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalTheta]", ",", 
+     RowBox[{"10", "^", "3"}], ",", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "3"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Q", ",", 
+     RowBox[{"10", "^", "4"}], ",", 
+     RowBox[{"10", "^", "7"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Rho]", ",", 
+     RowBox[{"10", "^", "3"}], ",", 
+     RowBox[{"10", "^", "4"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Sigma]", ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}], ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "7"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"vs", ",", 
+     RowBox[{"10", "^", "3"}], ",", 
+     RowBox[{"10", "^", "4"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rx", ",", " ", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "11"}]}], ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "5"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"vx", ",", 
+     RowBox[{"10", "^", "4"}], ",", 
+     RowBox[{"10", "^", "6"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6814020403150053`*^9, 3.681402057259366*^9}, {
+  3.6814020969653482`*^9, 3.681402242408525*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0.0001, $CellContext`c$$ = 
+    1000., $CellContext`Q$$ = 1.*^7, $CellContext`rx$$ = 
+    0.00001, $CellContext`vs$$ = 10000., $CellContext`vx$$ = 
+    1.*^6, $CellContext`\[CapitalTheta]$$ = 2500., $CellContext`\[Rho]$$ = 
+    10000., $CellContext`\[Sigma]$$ = 1.*^-7, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`a$$], 
+      Rational[1, 10000000], 
+      Rational[1, 10000]}, {
+      Hold[$CellContext`c$$], 100, 1000}, {
+      Hold[$CellContext`\[CapitalTheta]$$], 1000, 2500.}, {
+      Hold[$CellContext`Q$$], 10000, 10000000}, {
+      Hold[$CellContext`\[Rho]$$], 1000, 10000}, {
+      Hold[$CellContext`\[Sigma]$$], 
+      Rational[1, 100000000000], 
+      Rational[1, 10000000]}, {
+      Hold[$CellContext`vs$$], 1000, 10000}, {
+      Hold[$CellContext`rx$$], 
+      Rational[1, 100000000000], 
+      Rational[1, 100000]}, {
+      Hold[$CellContext`vx$$], 10000, 1000000}}, Typeset`size$$ = {
+    360., {101., 106.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`a$23200$$ = 
+    0, $CellContext`c$23201$$ = 0, $CellContext`\[CapitalTheta]$23202$$ = 
+    0, $CellContext`Q$23203$$ = 0, $CellContext`\[Rho]$23204$$ = 
+    0, $CellContext`\[Sigma]$23205$$ = 0, $CellContext`vs$23206$$ = 
+    0, $CellContext`rx$23207$$ = 0, $CellContext`vx$23208$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 
+        Rational[1, 10000000], $CellContext`c$$ = 100, $CellContext`Q$$ = 
+        10000, $CellContext`rx$$ = 
+        Rational[1, 100000000000], $CellContext`vs$$ = 
+        1000, $CellContext`vx$$ = 10000, $CellContext`\[CapitalTheta]$$ = 
+        1000, $CellContext`\[Rho]$$ = 1000, $CellContext`\[Sigma]$$ = 
+        Rational[1, 100000000000]}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$23200$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$23201$$, 0], 
+        Hold[$CellContext`\[CapitalTheta]$$, \
+$CellContext`\[CapitalTheta]$23202$$, 0], 
+        Hold[$CellContext`Q$$, $CellContext`Q$23203$$, 0], 
+        Hold[$CellContext`\[Rho]$$, $CellContext`\[Rho]$23204$$, 0], 
+        Hold[$CellContext`\[Sigma]$$, $CellContext`\[Sigma]$23205$$, 0], 
+        Hold[$CellContext`vs$$, $CellContext`vs$23206$$, 0], 
+        Hold[$CellContext`rx$$, $CellContext`rx$23207$$, 0], 
+        Hold[$CellContext`vx$$, $CellContext`vx$23208$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[2 ($CellContext`a$$/$CellContext`vs$$) 
+        ProductLog[$CellContext`rx$$ $CellContext`vx$$^2 $CellContext`vs$$^2/(
+          2 $CellContext`a$$^2 $CellContext`c$$ 
+          Pi $CellContext`\[CapitalTheta]$$)], {$CellContext`rx$$, 0, 
+         10^(-6)}], "Specifications" :> {{$CellContext`a$$, 
+         Rational[1, 10000000], 
+         Rational[1, 10000]}, {$CellContext`c$$, 100, 
+         1000}, {$CellContext`\[CapitalTheta]$$, 1000, 
+         2500.}, {$CellContext`Q$$, 10000, 10000000}, {$CellContext`\[Rho]$$, 
+         1000, 10000}, {$CellContext`\[Sigma]$$, 
+         Rational[1, 100000000000], 
+         Rational[1, 10000000]}, {$CellContext`vs$$, 1000, 
+         10000}, {$CellContext`rx$$, 
+         Rational[1, 100000000000], 
+         Rational[1, 100000]}, {$CellContext`vx$$, 10000, 1000000}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{634., {140., 146.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.681402226839099*^9, 3.681402243158236*^9}}]
+}, Open  ]],
+
+Cell["\<\
+These results imply that either much of the melting occurs once the \
+temperature field\[CloseCurlyQuote]s expansion is slower than the speed of \
+sound and this slow-down occurs very quickly (as shown above within the \
+assumptions of the model), or that the material parameters -- especially \
+$\\alpha$ and $c_p$ -- are far from constant (or may not even be well \
+defined) in our case. 
+
+As an interesting note, the values found in this model for both the time of \
+the melt wave to fall to the speed of sound and the radius of the quickly \
+melted material are within 1 order of magnitude of those found using a \
+corrected form of \[OpenCurlyDoubleQuote]Localization of strain and the \
+melting wave in high-speed penetration\[CloseCurlyDoubleQuote] as shown below.\
+\>", "Text",
+ CellChangeTimes->{{3.681400825471306*^9, 3.68140084338622*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2nd order approximation to dynamics of energy deposition", "Section",
+ CellChangeTimes->{{3.6814010393276253`*^9, 3.68140107349125*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Using (a corrected form of) the melt zone model in \
+\[OpenCurlyDoubleQuote]Localization of strain and the melting wave in \
+high-speed penetration\[CloseCurlyDoubleQuote] by Stepanenko and Slepyan:\
+\>", "Subsection",
+ CellChangeTimes->{{3.68105640167097*^9, 3.681056446891951*^9}, {
+  3.6810564870619297`*^9, 3.681056490299355*^9}, {3.6810565576867027`*^9, 
+  3.6810565787383137`*^9}, {3.681059938064954*^9, 3.681059938892783*^9}}],
+
+Cell["\<\
+First ploting and then solving (numerically) for the parameter Y that \
+determines the \[OpenCurlyDoubleQuote]best fit model with a Sqrt[t] \
+functional form\[CloseCurlyDoubleQuote] of the melt wave:\
+\>", "Text",
+ CellChangeTimes->{{3.6810569545493107`*^9, 3.681057012962376*^9}, {
+  3.681057287078568*^9, 3.681057295478676*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Re", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["v0", "2"], "*", "\[Mu]", " ", 
+           RowBox[{"Erfi", "[", 
+            SqrtBox[
+             RowBox[{"y", " ", 
+              RowBox[{"(", 
+               RowBox[{
+                FractionBox[
+                 RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+               ")"}]}]], "]"}]}], 
+          RowBox[{"\[Lambda]", 
+           SqrtBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               FractionBox[
+                RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+              ")"}]}]], " ", 
+           SuperscriptBox[
+            RowBox[{"Erf", "[", 
+             SqrtBox["y"], "]"}], "2"]}]]}], "+", 
+        FractionBox[
+         RowBox[{
+          SqrtBox[
+           FractionBox[
+            RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"]], "\[CapitalTheta]", 
+          " "}], 
+         RowBox[{
+          SqrtBox["\[Pi]"], "  ", 
+          RowBox[{"Erfc", "[", 
+           SqrtBox[
+            FractionBox[
+             RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], "]"}]}]], 
+        "-", 
+        RowBox[{
+         SqrtBox["y"], 
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], " ", "L"}]}],
+        "}"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", "0", ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v0", ",", "1", ",", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "6"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Mu]", ",", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "1"}]}], ",", 
+     RowBox[{"10", "^", "9"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Lambda]", ",", "5", ",", "50"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", ",", "500", ",", "1000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"L", ",", "500", ",", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "5"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalTheta]", ",", "1500", ",", "1800"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.679794400199842*^9, 3.679794402839395*^9}, {
+  3.679794474107567*^9, 3.679794619517188*^9}, {3.679794730555092*^9, 
+  3.679794761787384*^9}, {3.679794808096177*^9, 3.6797948172404213`*^9}, {
+  3.679794919636188*^9, 3.679795008506647*^9}, {3.679795511986744*^9, 
+  3.679795512241602*^9}, {3.679795741156743*^9, 3.679795773644292*^9}, {
+  3.679795813759099*^9, 3.67979584897547*^9}, {3.679795909628194*^9, 
+  3.67979591409347*^9}, {3.679795961522418*^9, 3.679796002969075*^9}, {
+  3.679858037981777*^9, 3.679858069194334*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 500., $CellContext`L$$ = 
+    8400., $CellContext`v0$$ = 2.5*^6, $CellContext`\[CapitalTheta]$$ = 
+    1500, $CellContext`\[Lambda]$$ = 50., $CellContext`\[Mu]$$ = 1.7, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`v0$$], 1, 2.5*^6}, {
+      Hold[$CellContext`\[Mu]$$], 
+      Rational[1, 10], 1000000000}, {
+      Hold[$CellContext`\[Lambda]$$], 5, 50}, {
+      Hold[$CellContext`c$$], 500, 1000}, {
+      Hold[$CellContext`L$$], 500, 250000.}, {
+      Hold[$CellContext`\[CapitalTheta]$$], 1500, 1800}}, Typeset`size$$ = {
+    360., {111., 115.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`v0$1981285$$ = 
+    0, $CellContext`\[Mu]$1981286$$ = 0, $CellContext`\[Lambda]$1981287$$ = 
+    0, $CellContext`c$1981288$$ = 0, $CellContext`L$1981289$$ = 
+    0, $CellContext`\[CapitalTheta]$1981290$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 500, $CellContext`L$$ = 
+        500, $CellContext`v0$$ = 1, $CellContext`\[CapitalTheta]$$ = 
+        1500, $CellContext`\[Lambda]$$ = 5, $CellContext`\[Mu]$$ = 
+        Rational[1, 10]}, "ControllerVariables" :> {
+        Hold[$CellContext`v0$$, $CellContext`v0$1981285$$, 0], 
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1981286$$, 0], 
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$1981287$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1981288$$, 0], 
+        Hold[$CellContext`L$$, $CellContext`L$1981289$$, 0], 
+        Hold[$CellContext`\[CapitalTheta]$$, \
+$CellContext`\[CapitalTheta]$1981290$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        Re[{-(($CellContext`v0$$^2 $CellContext`\[Mu]$$) (
+             Erfi[($CellContext`y ($CellContext`c$$ \
+($CellContext`\[Mu]$$/$CellContext`\[Lambda]$$) - 2))^
+               Rational[1, 2]]/(($CellContext`\[Lambda]$$ (
+                Pi ($CellContext`c$$ ($CellContext`\[Mu]$$/$CellContext`\
+\[Lambda]$$) - 2))^Rational[1, 2]) 
+             Erf[$CellContext`y^
+                Rational[
+                 1, 2]]^2))) + ($CellContext`c$$ \
+($CellContext`\[Mu]$$/$CellContext`\[Lambda]$$))^
+            Rational[1, 2] ($CellContext`\[CapitalTheta]$$/(Pi^Rational[1, 2] 
+            Erfc[(($CellContext`c$$ $CellContext`y) \
+($CellContext`\[Mu]$$/$CellContext`\[Lambda]$$))^
+              Rational[1, 2]])) - ($CellContext`y^Rational[1, 2] 
+           E^(($CellContext`c$$ $CellContext`y) \
+($CellContext`\[Mu]$$/$CellContext`\[Lambda]$$))) $CellContext`L$$}], \
+{$CellContext`y, 0, 10}, PlotRange -> {-1, 1}], 
+      "Specifications" :> {{$CellContext`v0$$, 1, 
+         2.5*^6}, {$CellContext`\[Mu]$$, 
+         Rational[1, 10], 1000000000}, {$CellContext`\[Lambda]$$, 5, 
+         50}, {$CellContext`c$$, 500, 1000}, {$CellContext`L$$, 500, 
+         250000.}, {$CellContext`\[CapitalTheta]$$, 1500, 1800}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {225., 230.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6797959891027412`*^9, 3.679796003583667*^9}, {
+  3.679858043495864*^9, 3.67985807302011*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v0", "=", 
+      RowBox[{"2.5", "*", 
+       RowBox[{"10", "^", "6"}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\[Mu]", "=", "0.5"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\[Lambda]", "=", "5"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"c", "=", "1000"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"L", "=", " ", "500"}], ",", 
+     RowBox[{"\[CapitalTheta]", "=", "1500"}], ",", 
+     RowBox[{"\[Rho]", "=", "2500"}]}], "}"}], ",", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Re", "[", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["v0", "2"], "*", "\[Mu]", " ", 
+          RowBox[{"Erfi", "[", 
+           SqrtBox[
+            RowBox[{"y", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               FractionBox[
+                RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+              ")"}]}]], "]"}]}], 
+         RowBox[{"\[Lambda]", 
+          SqrtBox[
+           RowBox[{"\[Pi]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+             ")"}]}]], " ", 
+          SuperscriptBox[
+           RowBox[{"Erf", "[", 
+            SqrtBox["y"], "]"}], "2"]}]]}], "+", 
+       FractionBox[
+        RowBox[{
+         SqrtBox[
+          FractionBox[
+           RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"]], "\[CapitalTheta]", 
+         " "}], 
+        RowBox[{
+         SqrtBox["\[Pi]"], "  ", 
+         RowBox[{"Erfc", "[", 
+          SqrtBox[
+           FractionBox[
+            RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], "]"}]}]], 
+       "-", 
+       RowBox[{
+        SqrtBox["y"], 
+        SuperscriptBox["\[ExponentialE]", 
+         FractionBox[
+          RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], " ", "L"}]}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", "0", ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.681056595312542*^9, 3.681056646749276*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, 
+   {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+    1.], LineBox[{{4.061451356634959, -1.}, {4.061451356634959, 1.}}]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{"DefaultBoundaryStyle" -> Automatic, "ScalingFunctions" -> None},
+  PlotRange->{{0., 6.968842471042533}, {-1, 1}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {0, 0}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.681056589681385*^9, 3.6810566500292597`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v0", "=", 
+      RowBox[{"2.5", "*", 
+       RowBox[{"10", "^", "6"}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\[Mu]", "=", "0.5"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\[Lambda]", "=", "5"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"c", "=", "1000"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"L", "=", " ", "500"}], ",", 
+     RowBox[{"\[CapitalTheta]", "=", "1500"}], ",", 
+     RowBox[{"\[Rho]", "=", "2500"}]}], "}"}], ",", 
+   RowBox[{"NSolve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["v0", "2"], "*", "\[Mu]", " ", 
+           RowBox[{"Erfi", "[", 
+            SqrtBox[
+             RowBox[{"y", " ", 
+              RowBox[{"(", 
+               RowBox[{
+                FractionBox[
+                 RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+               ")"}]}]], "]"}]}], 
+          RowBox[{"\[Lambda]", 
+           SqrtBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               FractionBox[
+                RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"], "-", "2"}], 
+              ")"}]}]], " ", 
+           SuperscriptBox[
+            RowBox[{"Erf", "[", 
+             SqrtBox["y"], "]"}], "2"]}]]}], "+", 
+        FractionBox[
+         RowBox[{
+          SqrtBox[
+           FractionBox[
+            RowBox[{"c", " ", "\[Mu]"}], "\[Lambda]"]], "\[CapitalTheta]", 
+          " "}], 
+         RowBox[{
+          SqrtBox["\[Pi]"], "  ", 
+          RowBox[{"Erfc", "[", 
+           SqrtBox[
+            FractionBox[
+             RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], "]"}]}]], 
+        "-", 
+        RowBox[{
+         SqrtBox["y"], 
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"c", " ", "y", " ", "\[Mu]"}], "\[Lambda]"]], " ", "L"}]}],
+        "\[Equal]", "0"}], "&&", 
+      RowBox[{"4", "<", "y", "\[LessEqual]", "5"}]}], ",", "y"}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.681056662911935*^9, 3.68105666575056*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ratnz"}], "MessageName"], ":", 
+  " ", "\<\"Solve was unable to solve the system with inexact coefficients. \
+The answer was obtained by solving a corresponding exact system and \
+numericizing the result. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Solve\\\", ButtonNote -> \
+\\\"Solve::ratnz\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.681056666867042*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"y", "\[Rule]", "4.06172405151474`"}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.681056666869895*^9}]
+}, Open  ]],
+
+Cell["The above gives us the melt wave as a function of time:", "Text",
+ CellChangeTimes->{{3.681057020252461*^9, 3.681057032242125*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"X", "[", 
+    RowBox[{"y_", ",", "t_"}], "]"}], "=", 
+   RowBox[{"2", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"\[Mu]", "*", "y", "*", 
+      RowBox[{"t", "/", "\[Rho]"}]}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.679851509872116*^9, 3.679851556417007*^9}, {
+  3.6798515979425383`*^9, 3.6798515980226994`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"X", "[", 
+  RowBox[{"4.06172405151474`", ",", "t"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"0.057003326580225055`", " ", 
+  SqrtBox["t"]}]], "Output",
+ CellChangeTimes->{3.679859263227084*^9}]
+}, Open  ]],
+
+Cell["\<\
+Now, we solve for the time at which the melt wave velocity falls to the speed \
+of sound:\
+\>", "Text",
+ CellChangeTimes->{{3.6810570426578627`*^9, 3.681057052361157*^9}, {
+  3.681057099950015*^9, 3.681057105515732*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"X", "[", 
+    RowBox[{"4.06172405151474`", ",", "t"}], "]"}], ",", "t"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6798516691665163`*^9, 3.679851678800599*^9}, 
+   3.6798578727727003`*^9}],
+
+Cell[BoxData[
+ FractionBox["0.028501663290112528`", 
+  SqrtBox["t"]]], "Output",
+ CellChangeTimes->{3.679851680077408*^9, 3.679857873437963*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"timeVelocityFallsToSpeedOfSound", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     FractionBox["0.028501663290112528`", 
+      SqrtBox["t"]], "\[Equal]", "8000"}], ",", "t"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6798517006358843`*^9, 3.6798517109554253`*^9}, {
+  3.6798579015700703`*^9, 3.679857906421548*^9}, {3.679859530458652*^9, 
+  3.679859579332094*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"t", "\[Rule]", "1.2692887660983564`*^-11"}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.679851712041553*^9, 3.679857908155815*^9, 
+  3.679859580348341*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"radiusOfFasterThanSoundMaterial", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"X", "[", 
+      RowBox[{"4.06172405151474`", ",", 
+       RowBox[{"timeVelocityFallsToSpeedOfSound", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1", ",", "2"}], "]"}], "]"}]}], "]"}], "\[Equal]",
+      "r"}], ",", "r"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.679859382446301*^9, 3.679859432457069*^9}, {
+  3.679859597020228*^9, 3.679859636768199*^9}, {3.679859689901978*^9, 
+  3.679859714576824*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"r", "\[Rule]", "2.0308620257573702`*^-7"}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.6798596282554827`*^9, 3.679859637235373*^9}, {
+  3.6798596933981447`*^9, 3.6798597150776873`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"X", "[", 
+    RowBox[{"4.06172405151474`", ",", "t"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "0.012239926793871484`"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.679851558841914*^9, 3.6798515860225677`*^9}, 
+   3.679851733636158*^9, 3.6798578635261583`*^9, 3.6798579153973713`*^9, 
+   3.6798594518974857`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, 
+   {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+    1.], LineBox[CompressedData["
+1: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
+/wfA1CA2
+     "]]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{"DefaultBoundaryStyle" -> Automatic, "ScalingFunctions" -> None},
+  PlotRange->{{0, 0.012239926793871484`}, {0., 0.006306517519699853}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.679851586702819*^9, 3.679851621951314*^9, 
+  3.67985173478643*^9, 3.679857865691502*^9, 3.679857916886509*^9, 
+  3.6798594525014973`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   FractionBox["0.028501663290112528`", 
+    SqrtBox["t"]], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "0.012239926793871484`"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "10"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.679851632155179*^9, 3.679851648829595*^9}, 
+   3.6798516879360437`*^9, {3.679851718399159*^9, 3.6798517199482718`*^9}, {
+   3.679857877886447*^9, 3.679857890175325*^9}, {3.679859471817893*^9, 
+   3.679859483372604*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, 
+   {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+    1.], LineBox[CompressedData["
+1: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
+     "]]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{"DefaultBoundaryStyle" -> Automatic, "ScalingFunctions" -> None},
+  PlotRange->{{0., 0.01223992654407706}, {0, 10}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {0, 0}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.679851689923799*^9, {3.679857878781164*^9, 3.679857890999905*^9}, {
+   3.6798594728048687`*^9, 3.6798594842947206`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Solving for a rough estimate of the total time taken by the melt wave to \
+reach its full extent using the value of rMeltWithHeating for rock parameters \
+found in section above:\
+\>", "Text",
+ CellChangeTimes->{{3.681057147660967*^9, 3.6810572336003942`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"0.057003326580225055`", " ", 
+     SqrtBox["t"]}], "==", "0.006306517584052074`"}], ",", "t"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.679859269905157*^9, 3.679859273593137*^9}, {
+  3.679859310532379*^9, 3.6798593127197943`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"t", "\[Rule]", "0.012239926793871484`"}], "}"}], "}"}]], "Output",\
+
+ CellChangeTimes->{3.679859313154011*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conclusions", "Section",
+ CellChangeTimes->{{3.681400869607946*^9, 3.6814008713355417`*^9}}],
+
+Cell["\<\
+Two models that attempted to capture the macro impact\[CloseCurlyQuote]s \
+dynamics appear to imply that either much of the melting occurs once the \
+temperature field\[CloseCurlyQuote]s expansion is slower than the speed of \
+sound and this slow-down occurs very quickly (as shown above within the \
+assumptions of the model), or that the material parameters of the impacted \
+material -- especially $\\alpha$ and $c_p$ -- are far from constant (or may \
+not even be well defined) in our case. 
+
+As noted above, the values found in both models for the time of the melt wave \
+to fall to the speed of sound and the radius of the quickly melted material \
+are within 1 order of magnitude of each other.  It is worth noting that the \
+assumptions of both models -- that the energy deposition of the macro is \
+immediately turned to either heat as an initial condition or through the \
+creation of plastic shear strain which is immediately turned to heat -- will \
+tend to de-emphasize the significance of the parameters of the macro, and \
+(over)emphasize the significance of the parameters of the impacted material. 
+
+A model that would best reflect the physics of macro impacts should:
+1. be sensitive to the macro\[CloseCurlyQuote]s parameters
+2. be relatively insensitive to the impacted material\[CloseCurlyQuote]s \
+parameters (unless macro-macro collisions are to be considered).
+3. Take into account the effects of QM when the macro radii considered are on \
+atomic scales.
+4. Take into account the effects of SR when the macro speeds achieve an \
+appreciable fraction of c.
+
+Given the speeds (fast), densities (large) and sizes (small) involved in \
+macro impacts it is possible that these dynamics can\[CloseCurlyQuote]t be \
+well modeled by purely classical means -- macros might represent an \
+interesting semi-classical limit of general-relativistic quantum mechanics.\
+\>", "Text",
+ CellChangeTimes->{{3.681060131842814*^9, 3.681060135075502*^9}, {
+  3.6810602033805437`*^9, 3.681060286950478*^9}, {3.681094437221963*^9, 
+  3.681094449039289*^9}, {3.681399815094873*^9, 3.681399925530808*^9}, {
+  3.681400015848487*^9, 3.681400029311693*^9}, {3.681400218606266*^9, 
+  3.6814004203708353`*^9}, {3.681400463185339*^9, 3.6814007260192327`*^9}, {
+  3.681400763476778*^9, 3.681400793154293*^9}, {3.6814008766427593`*^9, 
+  3.681400977692692*^9}, {3.681412986143921*^9, 3.681413168466228*^9}}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{808, 846},
+WindowMargins->{{Automatic, -5}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 196, 4, 99, "Section"],
+Cell[779, 28, 524, 9, 87, "Text"],
+Cell[1306, 39, 370, 10, 28, "Input"],
+Cell[1679, 51, 183, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1887, 57, 376, 10, 28, "Input"],
+Cell[2266, 69, 141, 2, 28, "Output"]
+}, Open  ]],
+Cell[2422, 74, 180, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[2627, 80, 420, 9, 28, "Input"],
+Cell[3050, 91, 216, 3, 28, "Output"]
+}, Open  ]],
+Cell[3281, 97, 302, 9, 28, "Input"],
+Cell[3586, 108, 556, 10, 87, "Text"],
+Cell[4145, 120, 847, 22, 46, "Input"],
+Cell[CellGroupData[{
+Cell[5017, 146, 385, 10, 28, "Input"],
+Cell[5405, 158, 112, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5554, 164, 334, 8, 28, "Input"],
+Cell[5891, 174, 240, 3, 28, "Output"]
+}, Open  ]],
+Cell[6146, 180, 524, 11, 28, "Input"],
+Cell[CellGroupData[{
+Cell[6695, 195, 342, 8, 28, "Input"],
+Cell[7040, 205, 114, 1, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7203, 212, 233, 3, 64, "Section"],
+Cell[CellGroupData[{
+Cell[7461, 219, 228, 5, 44, "Subsection"],
+Cell[7692, 226, 409, 7, 87, "Text"],
+Cell[8104, 235, 546, 14, 46, "Input"],
+Cell[CellGroupData[{
+Cell[8675, 253, 512, 10, 46, "Input"],
+Cell[9190, 265, 160, 2, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9411, 274, 287, 3, 64, "Section"],
+Cell[CellGroupData[{
+Cell[9723, 281, 408, 7, 94, "Subsection"],
+Cell[10134, 290, 608, 10, 87, "Text"],
+Cell[10745, 302, 1124, 33, 96, "Input"],
+Cell[11872, 337, 444, 10, 49, "Text"],
+Cell[CellGroupData[{
+Cell[12341, 351, 510, 13, 46, "Input"],
+Cell[12854, 366, 150, 4, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13041, 375, 557, 14, 28, "Input"],
+Cell[13601, 391, 181, 3, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13819, 399, 730, 22, 46, "Input"],
+Cell[14552, 423, 2322, 46, 358, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16935, 476, 243, 3, 64, "Section"],
+Cell[17181, 481, 682, 13, 125, "Text"],
+Cell[17866, 496, 552, 9, 68, "Text"],
+Cell[CellGroupData[{
+Cell[18443, 509, 812, 24, 46, "Input"],
+Cell[19258, 535, 1066, 32, 93, "Output"]
+}, Open  ]],
+Cell[20339, 570, 1829, 43, 87, "Text"],
+Cell[CellGroupData[{
+Cell[22193, 617, 655, 15, 49, "Input"],
+Cell[22851, 634, 674, 20, 88, "Output"]
+}, Open  ]],
+Cell[23540, 657, 668, 18, 59, "Text"],
+Cell[CellGroupData[{
+Cell[24233, 679, 591, 15, 59, "Input"],
+Cell[24827, 696, 579, 12, 41, "Message"],
+Cell[25409, 710, 570, 15, 64, "Output"]
+}, Open  ]],
+Cell[25994, 728, 276, 5, 49, "Text"],
+Cell[CellGroupData[{
+Cell[26295, 737, 1272, 36, 86, "Input"],
+Cell[27570, 775, 166, 2, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27773, 782, 1219, 35, 86, "Input"],
+Cell[28995, 819, 117, 1, 32, "Output"]
+}, Open  ]],
+Cell[29127, 823, 246, 5, 30, "Text"],
+Cell[CellGroupData[{
+Cell[29398, 832, 1334, 34, 96, "Input"],
+Cell[30735, 868, 1027, 27, 89, "Output"]
+}, Open  ]],
+Cell[31777, 898, 1461, 36, 64, "Text"],
+Cell[33241, 936, 457, 9, 106, "Text"],
+Cell[CellGroupData[{
+Cell[33723, 949, 1380, 36, 73, "Input"],
+Cell[35106, 987, 185, 2, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35328, 994, 1254, 35, 73, "Input"],
+Cell[36585, 1031, 140, 2, 32, "Output"]
+}, Open  ]],
+Cell[36740, 1036, 174, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[36939, 1044, 2020, 63, 98, "Input"],
+Cell[38962, 1109, 4231, 82, 303, "Output"]
+}, Open  ]],
+Cell[43208, 1194, 860, 14, 163, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44105, 1213, 142, 1, 64, "Section"],
+Cell[CellGroupData[{
+Cell[44272, 1218, 443, 7, 69, "Subsection"],
+Cell[44718, 1227, 340, 6, 49, "Text"],
+Cell[CellGroupData[{
+Cell[45083, 1237, 2962, 83, 166, "Input"],
+Cell[48048, 1322, 3889, 73, 472, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51974, 1400, 2252, 66, 241, "Input"],
+Cell[54229, 1468, 916, 22, 241, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55182, 1495, 2178, 63, 206, "Input"],
+Cell[57363, 1560, 510, 10, 41, "Message"],
+Cell[57876, 1572, 161, 4, 28, "Output"]
+}, Open  ]],
+Cell[58052, 1579, 137, 1, 30, "Text"],
+Cell[58192, 1582, 366, 10, 28, "Input"],
+Cell[CellGroupData[{
+Cell[58583, 1596, 93, 2, 28, "Input"],
+Cell[58679, 1600, 124, 3, 33, "Output"]
+}, Open  ]],
+Cell[58818, 1606, 230, 5, 30, "Text"],
+Cell[CellGroupData[{
+Cell[59073, 1615, 246, 7, 28, "Input"],
+Cell[59322, 1624, 144, 3, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59503, 1632, 400, 9, 54, "Input"],
+Cell[59906, 1643, 218, 6, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60161, 1654, 543, 13, 46, "Input"],
+Cell[60707, 1669, 249, 6, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60993, 1680, 402, 10, 28, "Input"],
+Cell[61398, 1692, 3367, 66, 230, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64802, 1763, 562, 13, 54, "Input"],
+Cell[65367, 1778, 5230, 95, 256, "Output"]
+}, Open  ]],
+Cell[70612, 1876, 270, 5, 49, "Text"],
+Cell[CellGroupData[{
+Cell[70907, 1885, 306, 8, 39, "Input"],
+Cell[71216, 1895, 167, 5, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71444, 1907, 98, 1, 64, "Section"],
+Cell[71545, 1910, 2409, 38, 448, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
