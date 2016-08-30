@@ -78,7 +78,7 @@ The energy from the initial impact generates a column of melted rock. The super-
 \begin{align}
 p = p_0 f(r)\chi_{(r,z)\in [a,b]\times [-\f \ell 2,\f \ell 2]}\,,
 \end{align}
-where $f$ is an analytic function whose range is a subset of $[-1,1]$, and $p_0$ is the maximum differential pressure in this region. After a short time, the pressure is still of this form, since the anisotropy of the Moon is significant only on large scales.
+where $f$ is an analytic function whose range is a subset of $[-1,1]$, and $p_0$ is the maximum differential pressure in this region. After a short time, the pressure is still of this form, since the inhomogeneity of the Moon is significant only on large scales.
 
 The seismometers on the moon have a net useful range of up to $20\,\te{Hz}$ and are sensitive to displacements as small as $0.3\,\text{nm}$ \cite{latham1973lunar}. Therefore, we only calculate the energy contained in the modes of frequency less than $20\,\te{Hz}$. 
 
@@ -224,18 +224,20 @@ If there are $n$ lunar seismometers, we suppose that each occupies its own HEALP
 \begin{align}
 \scr P &= 1-\ps{\f{(n_\te{pix}-n)!(n_\te{pix}-m)!}{n_\te{pix}!(n_\te{pix}-n-m)!}}^{\scr M}\,.
 \end{align}
-\subsection{Analytic Upper Bound}
-If the energy of a ray from every point along the line hitting a single pixel (with no reflection, refraction, or attenuation) is less than the displacement threshold, there is no chance of detection and no need to run the simulation. (If two rays from the same point on the line source hit the same pixel as $n_\te{side}\to\infty$, then they must be the same ray). Thus, we bound the displacement by
+\subsection{Isotropic Limit Bound}
+In the case of a homogeneous moon, we obtain the following upper bound.
 \begin{align}
 u\leq\sqrt{\f{\Xi E}{\pi^2\rho k v_p^2 R_\te{Moon}^2}}
 \end{align}
-This expression is independent of the choice of $n_\te{side}$. For the triangle wave, we need not test $\sigma_X\leq 4\times 10^{-11}\te{m}^2$.
+This expression is independent of the choice of $n_\te{side}$. For the triangle wave $\sigma_X\leq 4.4\times 10^{-7}\te{\,cm}^2$ is undetectable in the homogeneous limit.
 \section{Results}
 Data has been generated but not run through the analysis routine yet. Preliminary results suggest that the computer analysis will not produce results much stronger than (30).
 \section{Conclusion}
-For Macros with density sufficient to pass nearly unimpeded through the Moon, and in particular nuclear dense objects such as strange quark nuggets, we have demonstrated that seismological constraints are insufficient to rule them out. Since the Moon (and Earth) preferentially attenuate higher frequency modes, it is unlikely that measuring high frequencies would greatly improve sensitivity to these types of impacts. On the other hand, increasing the lunar seismometer sensitivity to small displacements would allow one to use seismological evidence to rule out high density Macros. That said, it is uncertain whether seismic noise at such small displacements would make Macro impacts indistinguishable from the background.
+For Macros with density sufficient to pass nearly unimpeded through the Moon and sufficiently small cross-section, and in particular nuclear dense objects such as strange quark nuggets with cross-section $\sigma_X\leq 4\times 10^{-7}\te{\, cm}^2$, we have demonstrated that seismological constraints are insufficient to rule them out. Since the Moon (and Earth) preferentially attenuate higher frequency modes, it is unlikely that measuring high frequencies would greatly improve sensitivity to these types of impacts. On the other hand, increasing the lunar seismometer sensitivity to small displacements may allow one to use seismological evidence to rule out high density Macros, although it is uncertain whether seismic noise at such small displacements would make Macro impacts indistinguishable from the background.
+
+Future work will include new lower bounds on lunar and terrestrial seismic response to high density Macros. In the future, a more sensitive lunar array will allow for a better understanding of the lunar structure and for a greater volume of Macro parameter space to be considered through seismic means. In the case that the lunar seismic background is too loud for extremely small displacements to be distinguished, it will be necessary to reconstruct the seismic response to high density Macros in order to measure an approximate event rate.
 \section{Acknowledgements}
-The author would like to thank SOURCE for supporting this research.
+TO BE FINISHED: The author would like to thank SOURCE for supporting this research.
 \section{Summer Reflection}
 My research this summer will be very important when I make my case to graduate schools that I am capable of doing independent research and problem solving. This project will likely be developed into my capstone, and we will try to publish this work. For next year's students, drink lots of coffee.
 \bibliography{Macro-Impact}{}
