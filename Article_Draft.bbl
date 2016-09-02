@@ -1,0 +1,116 @@
+%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (72) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{6}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Banerdt}\ \emph {et~al.}(2005)\citenamefont
+  {Banerdt}, \citenamefont {Chui}, \citenamefont {Herrin}, \citenamefont
+  {Rosenbaum},\ and\ \citenamefont {Teplitz}}]{banerdt2005seismic}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~B.}\ \bibnamefont
+  {Banerdt}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Chui}},
+  \bibinfo {author} {\bibfnamefont {E.~T.}\ \bibnamefont {Herrin}}, \bibinfo
+  {author} {\bibfnamefont {D.}~\bibnamefont {Rosenbaum}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {V.~L.}\ \bibnamefont {Teplitz}},\ }in\ \href@noop {}
+  {\emph {\bibinfo {booktitle} {The Identification of Dark Matter}}}\ (\bibinfo
+  {year} {2005})\ pp.\ \bibinfo {pages} {581--586}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Latham}\ \emph {et~al.}(1973)\citenamefont {Latham},
+  \citenamefont {Ewing}, \citenamefont {Dorman}, \citenamefont {Nakamura},
+  \citenamefont {Press}, \citenamefont {Toks{\H{o}}z}, \citenamefont {Sutton},
+  \citenamefont {Duennebier},\ and\ \citenamefont
+  {Lammlein}}]{latham1973lunar}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Latham}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Ewing}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Dorman}}, \bibinfo
+  {author} {\bibfnamefont {Y.}~\bibnamefont {Nakamura}}, \bibinfo {author}
+  {\bibfnamefont {F.}~\bibnamefont {Press}}, \bibinfo {author} {\bibfnamefont
+  {N.}~\bibnamefont {Toks{\H{o}}z}}, \bibinfo {author} {\bibfnamefont
+  {G.}~\bibnamefont {Sutton}}, \bibinfo {author} {\bibfnamefont
+  {F.}~\bibnamefont {Duennebier}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Lammlein}},\ }\href@noop {} {\bibfield  {journal}
+  {\bibinfo  {journal} {The Moon}\ }\textbf {\bibinfo {volume} {7}},\ \bibinfo
+  {pages} {396} (\bibinfo {year} {1973})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Forbes}(2013)}]{forbes2013shock}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~W.}\ \bibnamefont
+  {Forbes}},\ }\href@noop {} {\emph {\bibinfo {title} {Shock wave compression
+  of condensed matter: a primer}}}\ (\bibinfo  {publisher} {Springer Science \&
+  Business Media},\ \bibinfo {year} {2013})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Lockner}\ and\ \citenamefont
+  {Beeler}(2002)}]{lockner200232}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~A.}\ \bibnamefont
+  {Lockner}}\ and\ \bibinfo {author} {\bibfnamefont {N.~M.}\ \bibnamefont
+  {Beeler}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {International Geophysics}\ }\textbf {\bibinfo {volume} {81}},\ \bibinfo
+  {pages} {505} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Garcia}\ \emph {et~al.}(2011)\citenamefont {Garcia},
+  \citenamefont {Gagnepain-Beyneix}, \citenamefont {Chevrot},\ and\
+  \citenamefont {Lognonn{\'e}}}]{garcia2011very}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.~F.}\ \bibnamefont
+  {Garcia}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Gagnepain-Beyneix}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Chevrot}}, \ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Lognonn{\'e}}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Physics of the Earth and Planetary Interiors}\ }\textbf {\bibinfo {volume}
+  {188}},\ \bibinfo {pages} {96} (\bibinfo {year} {2011})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Dziewonski}\ and\ \citenamefont
+  {Anderson}(1981)}]{dziewonski1981preliminary}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~M.}\ \bibnamefont
+  {Dziewonski}}\ and\ \bibinfo {author} {\bibfnamefont {D.~L.}\ \bibnamefont
+  {Anderson}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Physics of the earth and planetary interiors}\ }\textbf {\bibinfo {volume}
+  {25}},\ \bibinfo {pages} {297} (\bibinfo {year} {1981})}\BibitemShut
+  {NoStop}%
+\end{thebibliography}%
