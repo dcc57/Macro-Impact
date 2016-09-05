@@ -76,10 +76,11 @@ Teplitz \textit{et al.} \cite{banerdt2005seismic} have suggested that the energy
 The moon is an attractive site to carry out a seismological search for Macro impacts. Unlike the Earth, the Moon is nearly dormant. Most internal seismological activity in the Moon originates from deep Moonquakes, which are very attenuated by the time they reach the surface. Most of the noise in lunar seismograms comes from asteroids, but these are for the most part easily identifiable as such. Thus, in the case that we can distinguish between asteroids and Macros, the Moon is a nearly ideal location to place constraints via total seismic event rate. However, in the case that the Macro impacts are very weak, it may be impossible to distinguish them from asteroids or weak Moonquakes based on a single seismogram. In this case, it is necessary to identify correlated events among lunar seismometers which correspond to a propagating source of seismic waves. This sort of analysis will be left to future work.
 \section{The Seismic Source}
 \subsection{Seismic Wave Generation}
-The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be measured at detectors. Macro's with velocity insignificantly changed by their encounter with the Moon source a pressure of the form
+The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be measured at detectors. Macro's with velocity insignificantly changed by their encounter with the Moon source an overpressure pressure of the form
 \begin{align}
 p = p_0 f(r)\chi_{(r,z)\in [a,b]\times [-\f \ell 2,\f \ell 2]}\,,
 \end{align}
+*CHANGE $\chi$ TO CASES*
 where $f$ is an analytic function whose range is a subset of $[-1,1]$, and $p_0$ is the maximum differential pressure in this region. After a short time, the pressure is still of this form, since the inhomogeneity of the Moon is significant only on large scales.
 
 The seismometers on the moon have a net useful range of up to $20\,\te{Hz}$ and are sensitive to displacements as small as $0.3\,\text{nm}$ \cite{latham1973lunar}. Therefore, we only calculate the energy contained in the modes of frequency less than $20\,\te{Hz}$. 
@@ -220,7 +221,7 @@ Using (27) we compute an upper bound for the displacement within a given HEALPix
 
 This procedure is repeated for 17 values of $D$ spaced evenly by $100\,\te{km}$. The average fraction of detectable surface area is then approximately
 \begin{align}
-\scr F = \sum_D\f{\scr F_D D}{D}\,.
+\scr F =\f{\sum_D \scr F_D}{\sum_D D}\,.
 \end{align}
 If there are $n$ lunar seismometers, we suppose that each occupies its own HEALPix pixel. Define $m = \scr Fn_\te{pix}$, the average number of pixels with detectable frequency. If $n+m\geq n_\te{pix}$, then detection is guaranteed. Otherwise, if $\scr M$ Macros impact the moon, the likelihood of any of them being detected is
 \begin{align}
