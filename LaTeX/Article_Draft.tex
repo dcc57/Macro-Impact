@@ -76,13 +76,13 @@ Teplitz \textit{et al.} \cite{banerdt2005seismic} have suggested that the energy
 The moon is an attractive site to carry out a seismological search for Macro impacts. Unlike the Earth, the Moon is nearly dormant. Most internal seismological activity in the Moon originates from deep Moonquakes, which are very attenuated by the time they reach the surface. Most of the noise in lunar seismograms comes from asteroids, but these are for the most part easily identifiable as such. Thus, in the case that we can distinguish between asteroids and Macros, the Moon is a nearly ideal location to place constraints via total seismic event rate. However, in the case that the Macro impacts are very weak, it may be impossible to distinguish them from asteroids or weak Moonquakes based on a single seismogram. In this case, it is necessary to identify correlated events among lunar seismometers which correspond to a propagating source of seismic waves. This sort of analysis will be left to future work.
 \section{The Seismic Source}
 \subsection{Seismic Wave Generation}
-The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be measured at detectors. Macro's with velocity insignificantly changed by their encounter with the Moon source an overpressure pressure of the form
+The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be measured at detectors. Macro's with velocity insignificantly changed by their encounter with the Moon source an overpressure of the form
 \begin{align}
 \begin{array}{cc}p = p_0 f(r)&\te{ if }a<r<b,-\f h2<z<\f h2\,,\\ p = 0&\te{ else,}\end{array}
 \end{align}
 where $f$ is an analytic function on $[a,b]$ whose range is a subset of $[-1,1]$, and $p_0$ is the maximum differential pressure in this region. After a short time, the pressure is still of this form, since the inhomogeneity of the Moon is significant only on large scales.
 
-The seismometers on the moon have a net useful range of up to $16\,\te{Hz}$ and are sensitive to displacements as small as $0.3\,\text{nm}$ \cite{latham1973lunar}\cite{nakamura1982apollo}. Therefore, we only calculate the energy contained in the modes of frequency less than $20\,\te{Hz}$\cite{nakamura1982apollo}. 
+The seismometers on the moon have a net useful range of up to $16\,\te{Hz}$ and are sensitive to displacements as small as $0.3\,\text{nm}$ \cite{latham1973lunar}\cite{nakamura1982apollo}. Therefore, we only calculate the energy contained in the modes of frequency less than $16\,\te{Hz}$. 
 
 The Fourier transform of $p$ to leading order in $kb$ is
 \begin{align}
@@ -153,6 +153,7 @@ It is important to note that these expressions only hold for $k(r_0+\Delta r)\ll
 
 It is important to note that $p_0\to 0$ does not imply $\Xi\to\infty$, since $p_0$ is implicitly a function of $\epsilon$ when $p_0<10^8\,\te{Pa}$. In this case, the ratio $\epsilon/p_0^2$ is always finite since $\epsilon\propto p_0^2$.
 
+The choice of $p_0 = 10^8\,\te{Pa}$ does significantly impact our result; ultimately the measured displacements we calculate will be inversely proportional to $p_0$. Our choice of $p_0$, however, is well below the overpressure corresponding to the boundary between linear and non-linear elasticity in the Moon. As the ambient pressure on a sample of rock increases, so too does $p_0$. We have taken $p_0$ to be a factor of $3$ below that of granite with a modest $50\te{ MPa}$ overpressure \cite{lockner200232}. In reality, $p_0$ is probably, on average, several orders of magnitude larger than we claim it to be because the ambient pressure in the Moon is on the order of $\te{GPa}$ rather than $\te{MPa}$, but no measurements, to our knowledge, probe the elastic behavior of rock at these high pressures. It is also important to notice that this choice of $p_0$ corresponds to $r_0$ on the order of $1\te{ km}$, which well exceeds the regime of non-linearity we would have expected based on the solutions to the heat equation. 
 \section{Seismic Wave Propagation}
 The velocity of $p$-waves as a function of distance from the center $r$ of the Earth and Moon (and presumably other spherical rocky celestial bodies) is of the form $v = a^2 - b^2 r^2$ \cite{garcia2011very}\cite{dziewonski1981preliminary}. Using Snell's law, we obtain the differential equations for the trajectory of $p$-wave rays within such bodies
 \begin{align}
@@ -180,7 +181,7 @@ The VPREMOON Model \cite{garcia2011very} provides piecewise constant data for $Q
 where $\te{Ref}_i$ are the reflection or transmission coefficients of boundary $i$ on which the ray is incident.
 
 \section{Seismic Wave Detection}
-Consider a $p$-wave traveling towards positive $x$ and of compact support $S$ in the plane normal to to its motion. Denote $A =\int_S\diff y\diff z$ The displacement field is
+Consider a $p$-wave traveling towards positive $x$ and of compact support $S$ in the plane normal to to its motion. Denote $A =\int_S\diff y\diff z$, and let $\chi_S$ be $1$ on $S$ and $0$ elsewhere. The displacement field is
 \begin{align}
 u(\vec x,t) &= \chi_{\R\times S}\int\f{\diff k}{2\pi}U(k)e^{-\I k(x-v_p t)}\,,\\
 \abs{u(\vec x,t)}&\leq\int\f{\diff k}{2\pi}\abs{U(k)}\,,
@@ -205,12 +206,11 @@ In our case $\Xi E= C_1 k^2$ before attenuation. After anelastic attenuation, $E
 \begin{align}
 \abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
 \end{align}
-(25) is impossible to integrate when $E_k$ consists of the energies of two different rays, each with different attenuation factors. If attenuation were important, we may average $\te{Att}$ among the coincident rays and obtain an approximate expression. However, since we only wish to consider the lowest frequency modes, $f<20\te{Hz}$, the suppression $\te{Att} k$ is order unity, and does not contribute significantly to $u$. Taking $\te{Att} = 0$, the displacement caused by the incident $p$-wave is bounded above by
+(25) is impossible to integrate when $E_k$ consists of the energies of two different rays, each with different attenuation factors. If attenuation were important, we may average $\te{Att}$ among the coincident rays and obtain an approximate expression. However, since we only wish to consider the lowest frequency modes, $f<16\te{Hz}$, the suppression $\te{Att} k$ is order unity, and does not contribute significantly to $u$. Taking $\te{Att} = 0$, the displacement caused by the incident $p$-wave is bounded above by
 \begin{align}
-\abs{u(\vec x,t)}&\leq\sqrt{\f{4\te{Ref}\,\Xi E}{\pi k\rho v_p^2 A}}\,,\\
-&=\sqrt{\f{9\te{Ref}}{2mn}\f{\kappa\rho\ell}{\pi v_p^3A}}\f{\sqrt{ f_\te{max}}\sigma_Xv_X^2}{p_0}\,.
+\abs{u(\vec x,t)}&\leq\sqrt{\f{4\te{Ref}\,\Xi E}{\pi k\rho v_p^2 A}}\,.
 \end{align}
-(28 will be deleted, I'm just using it to remember the formula)
+
 \section{Simulation}
 In previous works, e.g. \cite{banerdt2005seismic}, the homogeneous Earth and Moon models have been used to place constraints of the parameter space of macroscopic dark matter. This approach neglects lensing which occurs because of the velocity gradient and the spherical boundaries of strata, and neglects the energy losses from reflection and refraction across these boundaries. We use the analysis in section III to propagate rays, each carrying a fraction of the total energy deposited by the Macro, to the boundary of the Moon. We then use HEALPix to create an intensity map of the lunar surface for a representative sample of Macro impacts. We then convert the intensity maps to displacement maps, and using the sensitivity of the lunar seismometers, we obtain an average event rate that the lunar seismometers would measure.
 \subsection{Data Generation}
@@ -233,11 +233,11 @@ To obtain an estimate of the size of a detectable Macro, we suppose that one ray
 \begin{align}
 u\leq\sqrt{\f{\Xi E}{\pi^2\rho k v_p^2 R_\te{Moon}^2}}\,.
 \end{align}
-This expression is independent of the choice of $n_\te{side}$. For the triangle wave, $\sigma_X\leq 4.4\times 10^{-7}\te{\,cm}^2$ is unlikely to be detected unless it enters or exits the Moon adjacent to a seismometer.
+This expression is independent of the choice of $n_\te{side}$. For the triangle wave, $\sigma_X\leq 1\times 10^{-7}\te{\,cm}^2$ is unlikely to be detected unless it enters or exits the Moon adjacent to a seismometer.
 \section{Results}
 Data has been generated but not run through the analysis routine yet. Preliminary results suggest that the computer analysis will not produce results much stronger than (30).
 \section{Conclusion}
-For Macros with density sufficient to pass nearly unimpeded through the Moon and sufficiently small cross-section, and in particular nuclear dense objects such as strange quark nuggets with cross-section $\sigma_X\leq 4\times 10^{-7}\te{\, cm}^2$, we have demonstrated that seismological constraints are insufficient to rule them out. Since the Moon (and Earth) preferentially attenuate higher frequency modes, it is unlikely that measuring high frequencies would greatly improve sensitivity to these types of impacts. On the other hand, increasing the lunar seismometer sensitivity to small displacements may allow one to use seismological evidence to rule out high density Macros, although it is uncertain whether seismic noise at such small displacements would make Macro impacts indistinguishable from the background.
+For Macros with density sufficient to pass nearly unimpeded through the Moon and sufficiently small cross-section, and in particular nuclear dense objects such as strange quark nuggets with cross-section $\sigma_X\leq 1\times 10^{-7}\te{\, cm}^2$, we have demonstrated that seismological constraints are insufficient to rule them out. Since the Moon (and Earth) preferentially attenuate higher frequency modes, it is unlikely that measuring high frequencies would greatly improve sensitivity to these types of impacts. On the other hand, increasing the lunar seismometer sensitivity to small displacements may allow one to use seismological evidence to rule out high density Macros, although it is uncertain whether seismic noise at such small displacements would make Macro impacts indistinguishable from the background.
 
 Future work will include new lower bounds on lunar and terrestrial seismic response to high density Macros. In the future, a more sensitive lunar array will allow for a better understanding of the lunar structure and for a greater volume of Macro parameter space to be considered through seismic means. In the case that the lunar seismic background is too loud for extremely small displacements to be distinguished, it will be necessary to reconstruct the seismic response to high density Macros in order to measure an approximate event rate.
 \section{Acknowledgements}
