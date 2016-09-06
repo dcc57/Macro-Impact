@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  6 SEP 2016 18:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  6 SEP 2016 19:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1723,10 +1723,10 @@ Overfull \hbox (14.89374pt too wide) in paragraph at lines 110--110
 
 [2] [3] [4] (./Article_Draft.bbl [5]) [6] (./Article_Draft.aux) ) 
 Here is how much of TeX's memory you used:
- 24404 strings out of 493014
- 490660 string characters out of 6133351
- 521088 words of memory out of 5000000
- 27587 multiletter control sequences out of 15000+600000
+ 24416 strings out of 493014
+ 490981 string characters out of 6133351
+ 521194 words of memory out of 5000000
+ 27599 multiletter control sequences out of 15000+600000
  8337 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,15n,84p,10419b,311s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1749,7 +1749,7 @@ s/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2016/texmf-dist/fonts/
 type1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/2016/texmf-dist/font
 s/type1/public/amsfonts/euler/eusm7.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Article_Draft.pdf (6 pages, 225968 bytes).
+Output written on Article_Draft.pdf (6 pages, 226940 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  71 compressed objects within 1 object stream
