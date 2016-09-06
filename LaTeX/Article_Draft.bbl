@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{6}%
+\begin{thebibliography}{7}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -78,6 +78,16 @@
   {D.}~\bibnamefont {Lammlein}},\ }\href@noop {} {\bibfield  {journal}
   {\bibinfo  {journal} {The Moon}\ }\textbf {\bibinfo {volume} {7}},\ \bibinfo
   {pages} {396} (\bibinfo {year} {1973})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Nakamura}\ \emph {et~al.}(1982)\citenamefont
+  {Nakamura}, \citenamefont {Latham},\ and\ \citenamefont
+  {Dorman}}]{nakamura1982apollo}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Nakamura}}, \bibinfo {author} {\bibfnamefont {G.~V.}\ \bibnamefont
+  {Latham}}, \ and\ \bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+  {Dorman}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {Lunar and
+  Planetary Science Conference Proceedings}}},\ Vol.~\bibinfo {volume} {13}\
+  (\bibinfo {year} {1982})\ p.\ \bibinfo {pages} {117}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Forbes}(2013)}]{forbes2013shock}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~W.}\ \bibnamefont
