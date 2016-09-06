@@ -208,8 +208,10 @@ In our case $\Xi E= C_1 k^2$ before attenuation. After anelastic attenuation, $E
 \end{align}
 (25) is impossible to integrate when $E_k$ consists of the energies of two different rays, each with different attenuation factors. If attenuation were important, we may average $\te{Att}$ among the coincident rays and obtain an approximate expression. However, since we only wish to consider the lowest frequency modes, $f<20\te{Hz}$, the suppression $\te{Att} k$ is order unity, and does not contribute significantly to $u$. Taking $\te{Att} = 0$, the displacement caused by the incident $p$-wave is bounded above by
 \begin{align}
-\abs{u(\vec x,t)}\leq\sqrt{\f{4\te{Ref}\,\Xi E}{\pi k\rho v_p^2 A}}\,.
+\abs{u(\vec x,t)}&\leq\sqrt{\f{4\te{Ref}\,\Xi E}{\pi k\rho v_p^2 A}}\,,\\
+&=\sqrt{\f{9\te{Ref}}{2mn}\f{\kappa\rho  f_\te{max}\ell}{\pi v_p^3A}}\f{\sigma_Xv_X^2}{p_0}\,.
 \end{align}
+(28 will be deleted, I'm just using it to remember the formula)
 \section{Simulation}
 In previous works, e.g. \cite{banerdt2005seismic}, the homogeneous Earth and Moon models have been used to place constraints of the parameter space of macroscopic dark matter. This approach neglects lensing which occurs because of the velocity gradient and the spherical boundaries of strata, and neglects the energy losses from reflection and refraction across these boundaries. We use the analysis in section III to propagate rays, each carrying a fraction of the total energy deposited by the Macro, to the boundary of the Moon. We then use HEALPix to create an intensity map of the lunar surface for a representative sample of Macro impacts. We then convert the intensity maps to displacement maps, and using the sensitivity of the lunar seismometers, we obtain an average event rate that the lunar seismometers would measure.
 \subsection{Data Generation}
