@@ -13,13 +13,13 @@ vsurf = float(sys.argv[3]); #Velocity of Rays at Surface EG 1.0E3
 frequencymax = float(sys.argv[4]); #Maximum Detectable Frequency EG 2.0E1
 
 A = hp.nside2pixarea(nside) * R**2 #Area of pixel
-T = ((A/np.pi)**.5)/vsurf; #How close in time do two rays have to be in order to be considered hitting together?
+T = ((A/np.pi)**(1/2))/vsurf; #How close in time do two rays have to be in order to be considered hitting together?
 N = hp.nside2npix(nside);
 
 #Loading Data from Matlab
-mat_contents = sio.loadmat('PointsTestMat'+sys.argv[5]+'.mat');
+mat_contents = sio.loadmat('/Users/David/Macro-Impact/Data/PointsTestMat'+sys.argv[5]+'.mat');
 points = mat_contents['outputmat']; #Points has the format (x,y,z,time,density,REF,ATT,kappa,velocity)
-num_contents = sio.loadmat('PointsTestNum'+sys.argv[5]+'.mat');
+num_contents = sio.loadmat('/Users/David/Macro-Impact/Data/PointsTestNum'+sys.argv[5]+'.mat');
 numbers = num_contents['outputnum']; #Points has the format (M,N,L,D)
 length = len(points);
 
@@ -50,8 +50,9 @@ for i in range(0,N):
     d = np.abs(PixelTimes[i,ind[:,0]] - PixelTimes[i,ind[:,1]])
     for ii in np.where((d < T) & (d > 0))[0]:
         PixelDisplacements[i,ind[ii,0]] += PreDisplacementPrime[i,ind[ii,1]]
+
 #Now we find the maximum displacement factor on each pixel
-PreDisplacement = ((np.amax(PixelDisplacements, axis=1))**.5) * (((9 * L) / (2 * np.pi * n * m * A))**.5) #Multiply by fmax**(1/2) * sigmaX * (vX**2) * p0**(-1) to get displacement
-print(PreDisplacement)
+PreDisplacement = np.amax(PixelDisplacements, axis=1)**(1/2) * ((9 * L) / (2 * np.pi * n * m * A))**(1/2); #Multiply by fmax**(1/2) * sigmaX * (vX**2) * p0**(-1) to get displacement
+
 #We save the max displacements in each pixel (up to position independent info i.e. fmax**(1/2) * sigmaX * (vX**2) * p0**(-1))
 sio.savemat('PreDisplacement'+sys.argv[5]+'.mat', {'PreDisplacement':PreDisplacement})
