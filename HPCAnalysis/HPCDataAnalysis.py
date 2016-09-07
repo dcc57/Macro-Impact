@@ -52,6 +52,7 @@ for i in range(0,N):
         PixelDisplacements[ind[ii,0]] += PreDisplacementPrime[i][ind[ii,1]]
     #Now we find the maximum displacement factor on each pixel
     PreDisplacement[i] = (np.amax(PixelDisplacements)**.5) * (((9 * L) / (2 * np.pi * n * m * A))**.5) #Multiply by fmax**(1/2) * sigmaX * (vX**2) * p0**(-1) to get displacement
+    print(i)
     PixelDisplacements = np.zeros(len(hppoints))
 
 print(PreDisplacement)
