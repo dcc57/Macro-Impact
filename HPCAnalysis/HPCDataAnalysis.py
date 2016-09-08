@@ -25,7 +25,7 @@ length = len(points);
 
 hppoints = hp.pixelfunc.vec2pix(nside, points[:,0],points[:,1],points[:,2]) #Assigning each point its HEALPix coordinate
 PixelTimes = np.zeros((N,len(hppoints))); #Each row contains a list of times at which rays struck the nth pixel
-PreDisplacementPrime = np.zeros((N,len(hppoints))); #Intermediate array to store ray initial condition dependent information
+PreDisplacementPrime = np.zeros(len(hppoints)); #Intermediate array to store ray initial condition dependent information
 PixelDisplacements = np.zeros(len(hppoints)); #Maximum Displacements measured in a pixel
 PreDisplacement = np.zeros(N)
 m = numbers[0][0]
@@ -34,22 +34,28 @@ L = numbers[0][2]
 D = numbers[0][3]
 
 #Now we assign PixelTimes and PixelEnergies their values
+#for i in range(0,N):
+#    counter = 0;
+#    for j in range(0,length):
+#        if hppoints[j] == i:
+#            PixelTimes[i][counter] = points[j,3];
+#            PreDisplacementPrime[i][counter] = (points[j,5] * points[j,7] * points[j,4])/(points[j,8]**3)
+#           counter = counter + 1;
+#New improved code by Prof. Copi
+#Now we add together those energies whose times are close together
 for i in range(0,N):
     counter = 0;
     for j in range(0,length):
         if hppoints[j] == i:
             PixelTimes[i][counter] = points[j,3];
-            PreDisplacementPrime[i][counter] = (points[j,5] * points[j,7] * points[j,4])/(points[j,8]**3)
+            PreDisplacementPrime[counter] = (points[j,5] * points[j,7] * points[j,4])/(points[j,8]**3)
             counter = counter + 1;
-#New improved code by Prof. Copi
-#Now we add together those energies whose times are close together
-for i in range(0,N):
     nz = np.nonzero(PixelTimes[i])[0]
     if len(nz) < 2 : continue
     ind = np.array(list(it.combinations(range(len(nz)),2)))
     d = np.abs(PixelTimes[i,ind[:,0]] - PixelTimes[i,ind[:,1]])
     for ii in np.where((d < T) & (d > 0))[0]:
-        PixelDisplacements[ind[ii,0]] += PreDisplacementPrime[i][ind[ii,1]]
+        PixelDisplacements[ind[ii,0]] += PreDisplacementPrime[ind[ii,1]]
     #Now we find the maximum displacement factor on each pixel
     PreDisplacement[i] = (np.amax(PixelDisplacements)**.5) * (((9 * L) / (2 * np.pi * n * m * A))**.5) #Multiply by fmax**(1/2) * sigmaX * (vX**2) * p0**(-1) to get displacement
     print(i)
