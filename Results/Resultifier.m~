@@ -1,0 +1,7 @@
+clear
+
+format long
+
+for i = 1 : 17
+    strcat('PreDisp',int2str(i))
+    load PreDisp
