@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -o Disp1.o%j
-#SBATCH --time=24:00:00
-#SBATCH -N 1 -n 1 --mem=40gb
+#SBATCH --time=48:00:00
+#SBATCH -N 1 -n 4 --mem=80gb
 
 cp SlowAnalysis17.m $PFSDIR
 cp PointsTestMat17.mat $PFSDIR
