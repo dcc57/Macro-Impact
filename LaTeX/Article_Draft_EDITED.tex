@@ -1,0 +1,254 @@
+\documentclass[prd,reprint,10pt]{revtex4-1}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+
+\begin{document}
+
+\title{New seismological constraints on the available parameter space of macroscopic dark matter}
+\author{}
+\affiliation{Physics Department\\ Case Western Reserve University\\ Cleveland, Ohio 44106-7079, USA}
+
+\begin{abstract}
+Limits have been proposed constraining the available parameter space of macroscopic dark matter (Macros). These limits were based on the energy deposition of Macros into low frequency seismic modes being akin to that of a nuclear or chemical bomb. We show that this assumption does not hold by considering the mechanism through which Macro impacts generate seismic waves. Our new estimates take into account the effect of seismometer sensitivity and energy distribution across frequencies, anelastic attenuation, geometric effects, internal anisotropy of the Earth or Moon, as well as energy loss due to melting. We produce limits describing the Macro parameter space which can be ruled out by current seismological evidence.
+\end{abstract}
+\maketitle
+\section{Introduction}
+Teplitz \textit{et al.} \cite{banerdt2005seismic} have suggested that the energy deposition into the $1\,\te{Hz}$ range from a nuclearite (Macro) impact should be $0.05$ of the total energy deposition. This, as shown in section II A, is a gross overestimate even compared to our own generous overestimation. We produce a more accurate model of the seismic effects of Macro impacts, including in our model the effects of geometric lensing, stratification of the Moon, anelastic attenuation, and geometric attenuation. The result of this analysis is an upper bound on the event rate that would be measured by the Apollo lunar seismometers. We also include a simple argument which demonstrates that a large portion of the available parameter space cannot be ruled out by seismological constraints.
+
+The moon is an attractive site to carry out a seismological search for Macro impacts. Unlike the Earth, the Moon is nearly dormant. Most internal seismological activity in the Moon originates from deep Moonquakes, which are very attenuated by the time they reach the surface. Most of the noise in lunar seismograms comes from asteroids, but these are for the most part easily identifiable as such. Thus, in the case that we can distinguish between asteroids and Macros, the Moon is a nearly ideal location to place constraints via total seismic event rate. However, in the case that the Macro impacts are very weak, it may be impossible to distinguish them from asteroids or weak Moonquakes based on a single seismogram. In this case, it is necessary to identify correlated events among lunar seismometers which correspond to a propagating source of seismic waves. This sort of analysis will be left to future work.
+\section{The Seismic Source}
+\subsection{Seismic Wave Generation}
+The energy from the initial impact generates a column of melted rock. The super-heated rock, held at constant volume, generates a pressure which sources the seismic waves that can be measured at detectors. Macro's with velocity insignificantly changed by their encounter with the Moon source an overpressure of the form
+\begin{align}
+\begin{array}{cc}p = p_0 f(r)&\te{ if }a<r<b,-\f h2<z<\f h2\,,\\ p = 0&\te{ else,}\end{array}
+\end{align}
+where $f$ is an analytic function on $[a,b]$ whose range is a subset of $[-1,1]$, and $p_0$ is the maximum differential pressure in this region. After a short time, the pressure is still of this form, since the inhomogeneity of the Moon is significant only on large scales.
+
+The seismometers on the moon have a net useful range of up to $16\,\te{Hz}$ and are sensitive to displacements as small as $0.3\,\text{nm}$ \cite{latham1973lunar}\cite{nakamura1982apollo}. However, they were primarily run in low frequency peaked response mode \cite{eichelman1974apollo}. In this mode, the useful range is limited to $2\te{ Hz}$. Therefore, we only calculate the energy contained in the modes of frequency less than $2\,\te{Hz}$. 
+
+The Fourier transform of $p$ to leading order in $kb$ is
+\begin{align}
+P = \f{4\pi p_0}{k\cos\theta}\sin\p{\f{h k\cos\theta}{2}}F+\scr O((kb)^0)\,,
+\end{align}
+where $\theta,\phi$ are the momentum space polar angles, $k$ is the magnitude of the wave-vector, $F = b^2f_1(b)-a^2f_1(a)$ and
+\begin{align}
+f_1(x) = \sum_{n=0}^\infty\sum_{m=0}^n\binom{n}{m}\f{f^{(n)}(x_0)}{n!}\f{(-x_0)^{n-m}}{2+m}x^{m}\,,
+\end{align}
+for some $x_0\in[a,b]$. The energy of a seismic $p$-wave is
+\begin{align}
+E = \f12\int\diff^3 x\p{ \rho\abs{\partial_t u}^2+(\lambda+2\mu)\abs{\nabla u}^2}\,,
+\end{align}
+where $u$ is the displacement field, and $\rho,\lambda,\mu$ are the density and Lam\`e coefficients respectively. For $p$-waves, $p = -K\nabla\cdot u$ where $K$ is the bulk modulus. Define $\kappa = K^2/(\lambda + 2\mu)$. It follows that
+\begin{align}
+E =\f1\kappa\int\f{\diff^3 k}{(2\pi)^3}\abs{P}^2\,.
+\end{align}
+Since a seismometer can only detect lower frequency modes, the detectible energy is
+\begin{align}
+E_k = \f1\kappa\int_0^k\f{\diff k'\diff\theta}{(2\pi)^2}k'^2\sin\theta\abs{P}^2\,.
+\end{align}
+Substituting in our $P$, we find that
+\begin{align}
+\notag E_k&=\f1\kappa 2p_0^2F^2\ell k^2\\\notag&\times\p{\f{\sin(\ell k)+k\ell(\cos(\ell k)-2)}{\ell^2 k^2}+\te{Si}(\ell k)}+\scr O((kb)^4)\,.
+\end{align}
+When $\ell k>1$ it is a good approximation to take
+\begin{align}
+E_k&=\f1\kappa \pi\ell p_0^2F^2 k^2:=C_1 k^2\,.
+\end{align}
+
+Although the initial pressure is fixed by the fast behavior of the melt wave, linear elasticity may not be appropriate for the pressures near the source. As the pressure wave propagates outward, it is geometrically attenuated until the pressure differential is within the linear regime. The Macro travels at super-sonic speeds and will generate a shock wave. Shock waves typically evolve to pressure fronts resembling a right triangle \cite{forbes2013shock} i.e. $f = \p{r - r_0}/\Delta r$ where $a = r_0$ and $b = r_0 + \Delta r$. This shape is also chosen for its simplicity. In this case $f_1(x) = \p{2 x-3r_0}/6\Delta r$ and
+\begin{align}
+E_k = \f{\Delta r^2(3r_0+2\Delta r)^2}{36 \kappa} \pi\ell p_0^2k^2\,.
+\end{align}
+The total energy of the pressure wave is
+\begin{align}
+E \notag&= \f{2\pi p_0^2\ell}{\kappa}\int_a^b r\diff r f(r)^2\,,\\
+&=\f{p_0^2}{6\kappa}\pi\Delta r \ell(4r_0 + 3\Delta r)\,.
+\end{align}
+The Macro deposits energy
+\begin{align}
+E_\te{initial} = \abs{\td{E}{x}{}}\ell = \rho\sigma_X v_X^2\ell\,,
+\end{align}
+and loses some energy from phase changes of its surroundings. Thus, the pressure waves have initial energy
+\begin{align}
+E_\te{propagated} \notag&= E_\te{initial} - E_\te{melt}\,,\\
+&= \p{\rho\sigma_X v_X^2 - \epsilon_\te{melt}}\ell:=\epsilon\ell\,.
+\end{align}
+A very unrealistic assumption is that no energy is lost during the non-linear evolution. Nonetheless, it will produce a generous over-estimate of the energy in the linear regime. We thus set $E = E_\te{propagated}$ and obtain an expression for $r_0$
+\begin{align}
+r_0 =  \f{3\kappa\epsilon}{2\pi p_0^2\Delta r}-\f{3\Delta r}{4}\,.
+\end{align}
+$r_0$ demarcates the end of the non-linear regime. The non-linear regime is characterized by faulting and fracturing. Brittle failure for granite occurs at stress exceeding $3\times 10^8\,\te{Pa}$ \cite{lockner200232}. We thus take $p_0 = \min\p{10^8\,\te{Pa},p_\te{source}}$. Note that $p_\te{source}\gg 10^8\,\te{Pa}$ for Macros that we will consider. By ignoring the effects of the non-linear regime on the seismic waves, we are grossly overestimating the energy that could reach detectors. 
+
+A lower bound on $r_0$ is 0, corresponding to entirely linear behavior. This, in turn, imposes an upper bound on the pulse width
+\begin{align}
+\Delta r\leq\sqrt{\f{2\kappa \epsilon}{\pi p_0^2}}\,.
+\end{align}
+We now form $\Xi:=E_k/E_\te{propagated}$ representing the fraction of deposited energy detectable to seismometers
+\begin{align}
+\Xi = k^2\f{\p{\pi p_0^2\Delta r^2-18\kappa \epsilon}^2}{576 \pi p_0^2 \kappa \epsilon}\,.
+\end{align}
+When $\Delta r$ is restricted to its physical range, $\Xi$ is a monotonic decreasing function in $\Delta r$. Thus
+\begin{align}
+\f{4}{9}\f{\kappa\epsilon k^2}{\pi  p_0^2} \leq \Xi <\f{9}{16}\f{\kappa\epsilon k^2}{\pi  p_0^2}\,.
+\end{align}
+It is important to note that these expressions only hold for $k(r_0+\Delta r)\ll 1$, however they will always provide an over-estimate of the fraction of detectable energy. Moreover, this condition holds for a wide variety of relevant parameters. Taking $\epsilon_\te{melt} = 0$, $\rho = 3.3\times 10^3\,\te{kg m}^{-3}$, $v_X = 2.5\times 10^5\,\te{m s}^{-1}$, $\kappa = 5.5\times 10^{10}\,\te{Pa}$, and $k = 1.5\times 10^{-2}\,\te{m}^{-1}$ \cite{garcia2011very}, we obtain $\Xi<4.5\times 10^4 (\sigma_X/\te{m}^2)$. To obtain the figure that Teplitz \textit{et al.} have used, one must take $\sigma_X >10^{-2}\te{\,cm}^2$, which is rather large.
+
+It is important to note that $p_0\to 0$ does not imply $\Xi\to\infty$, since $p_0$ is implicitly a function of $\epsilon$ when $p_0<10^8\,\te{Pa}$. In this case, the ratio $\epsilon/p_0^2$ is always finite since $\epsilon\propto p_0^2$.
+
+The choice of $p_0 = 10^8\,\te{Pa}$ does significantly impact our result; ultimately the measured displacements we calculate will be inversely proportional to $p_0$. Our choice of $p_0$, however, is well below the overpressure corresponding to the boundary between linear and non-linear elasticity in the Moon. As the ambient pressure on a sample of rock increases, so too does $p_0$ \cite{mair2002influence}\cite{shimada1993lithosphere}\cite{ord1991deformation}. We have taken $p_0$ to be a factor of $3$ below that of granite with a modest $50\te{ MPa}$ overpressure \cite{lockner200232}. In reality, $p_0$ is probably, on average, several orders of magnitude larger than we claim it to be because the ambient pressure in the Moon is on the order of $\te{GPa}$ rather than $\te{MPa}$, but no measurements, to our knowledge, probe the elastic behavior of rock at these high pressures. It is also important to notice that this choice of $p_0$ corresponds to $r_0$ on the order of $1\te{ km}$, which well exceeds the regime of non-linearity we would have expected based on the solutions to the heat equation. 
+
+\subsection{Heat Equation solution analysis}
+We consider only the melting or vaporization that occurs prior to the onset of the deposited energy serving as a source for seismic waves, since the initiation of seismic wave propagation complicates assessing the amount of energy dissipated in melting (and vaporizing) the impacted material and its surroundings.  To model an instantaneous energy deposition along the z-axis, we use a delta function, and set the solution of the heat equation equal to a fixed temperature (of melting). This yields an expression for the radius, as a function of time, of the impacted material and its surroundings that has reached its melting point temperature, $r_\te{melt}(t)$.  Differentiating $r_\te{melt}(t)$ with respect to time, setting the result equal to the bulk speed of sound and solving for t yields the time at which the propagation of the "melt point temperature zone" falls to the speed of sound.  Plugging this time into $r_\te{melt}(t)$ yields $r_\te{fast melt}$: the extent of the impacted material and its surroundings that is heated to its melting point more rapidly than bulk sound speed. Replacing the melting point temperature with the vaporization point temperature in the above demonstrates that $r_\te{fast melt}$ is essentially equal to $r_\te{fast vaporize}$ for all Macro radii.  This result indicates that for macros with radii greater than ***$10^{-9} m$***(pending resolution of consistency check issue, and minor additional refinements), $r_\te{fast vaporize}$ is of the same order as $r_\te{Macro}$.  A simple computation shows that the heat dissipated in sublimating a column of material with radius $r_\te{fast vaporize}$ ranges from less than $1 J$ to $10^2 J$, a negligible amount (note, these details are all found in Macro impacts revised eqs. 306-322). 
+The extreme temperatures generated by the impact (approximately $10^{15} K$, again pending resolution of consistency check issue that arose in computing this value) will convert the vaporized material to plasma; however, this conversion is a second order phase transition, and so does not require a latent heat input to occur.  Thus, the energy to transition from vapor to plasma could conceivably transfer back into seismic waves (as the particles slow down, recombine as vapor, condense to liquid, and then solidify). Similarly, the energy required to raise the temperature of the impacted material and its surroundings to their melting and vaporization points could subsequently source seismic waves: temperature changes in the column of heated material result in expansions  and contractions that lead to a column of ovepressure/underpressure. Hence, to model the energy dissipated both in raising the temperature of the impacted material and its surroundings, and in effecting a transition to plasma are complicated by the concurrent energy transfer to seismic waves.
+The force of these results are that either much of the melting occurs once the temperature field's expansion is slower than the speed of sound and this slow-down occurs very quickly, or that the material parameters -- especially the thermal diffusion coefficient and the heat capacity of the impacted material -- are far from constant in the case at hand (given the extremes of pressure and temperature involved, it is more likely the latter).  In addition, the instantaneous energy deposition model de-emphasizes the significance of the parameters of the macro, and appears to (over)emphasize the significance of the parameters of the impacted material. 
+
+
+\section{Seismic Wave Propagation}
+The velocity of $p$-waves as a function of distance from the center $r$ of the Earth and Moon (and presumably other spherical rocky celestial bodies) is of the form $v = a^2 - b^2 r^2$ \cite{garcia2011very}\cite{dziewonski1981preliminary}. Using Snell's law, we obtain the differential equations for the trajectory of $p$-wave rays within such bodies
+\begin{align}
+v^2 \notag&= \dot r^2 + \f{p_\te{ray}^2 v^4}{r^2}\,,\\
+0 &=\dot\theta\pm\f{p_\te{ray} v^2}{r^2}\,.
+\end{align}
+where $r$ is the radial coordinate of the ray, $\theta$ is the polar angle of the ray measured from the center of the body, and $p_\te{ray}$ is the ray parameter, which is fixed along a ray trajectory. These equations can be integrated. In the case that $v = a^2 - b^2 r^2$, we obtain for some constants $q$ and $\theta_0$.
+\begin{align}
+\notag&r(t) = \f{a\sqrt{(q^2e^{2abt}-b)^2 + 4a^2b^4 p_\te{ray}}}{b\sqrt{(qe^{2abt}+b)^2 + 4a^2b^4 p_\te{ray}}}\,,\\
+&\tan(\theta(t) - \theta_0) = \f{qe^{4abt}-b^2}{4ab^3p_\te{ray}}+abp_\te{ray}\,.
+\end{align}
+\textit{A priori} these are geodesics on the Poincar\'e disc of radius $\f ab$, which is easily seen from the form of $v$.
+
+The Earth and Moon are stratified. At each boundary, a ray will be reflected and transmitted. We assume that the reflection and transmission coefficients are frequency independent for simplicity. 
+
+The last effect to account for is anelastic attenuation, which does depend on frequency. Anelastic attenuation is characterized by the quality factor $Q$, which is, in general, dependent on $r$. For a given mode, the ratio of final to initial amplitude is
+\begin{align}
+\exp\ps{-k \int_{t_0}^t\diff t'\f{v(r(t))}{2Q(r(t))}}:=\exp\ps{-k \te{Att}}\,.
+\end{align}
+The VPREMOON Model \cite{garcia2011very} provides piecewise constant data for $Q$, so it is reasonable to subdivide the moon further into strata of different $Q$. For propagation within a given layer $i$, the factor $\te{Att}$ is given by $\Delta t_i v_i/Q_i$, where we take $v_i$ to be the average velocity within a given strata. For the case of the Earth and Moon, this is a good approximation since $v$ doesn't change significantly within a given layer of constant $Q$. Thus, the amplitude of a ray can be computed by knowing the two numbers
+\begin{align}
+\te{Ref} \notag&= \prod_i\te{Ref}_i\,,\\
+\te{Att} &=\sum_i\f{\Delta t_i v_i}{Q_i}\,,
+\end{align}
+where $\te{Ref}_i$ are the reflection or transmission coefficients of boundary $i$ on which the ray is incident.
+
+\section{Seismic Wave Detection}
+Consider a $p$-wave traveling towards positive $x$ and of compact support $S$ in the plane normal to to its motion. Denote $A =\int_S\diff y\diff z$, and let $\chi_S$ be $1$ on $S$ and $0$ elsewhere. The displacement field is
+\begin{align}
+u(\vec x,t) &= \chi_{\R\times S}\int\f{\diff k}{2\pi}U(k)e^{-\I k(x-v_p t)}\,,\\
+\abs{u(\vec x,t)}&\leq\int\f{\diff k}{2\pi}\abs{U(k)}\,,
+\end{align}
+and the energy is
+\begin{align}
+E = \rho v_p^2 A\int\f{\diff k}{2\pi}k^2\abs{U(k)}^2\,.
+\end{align}
+As before, we denote the energy in the low frequency spectrum
+\begin{align}
+E_k = \rho v_p^2 A\int_0^k\f{\diff k'}{2\pi}k'^2\abs{U(k')}^2\,.
+\end{align}
+It follows that
+\begin{align}
+\abs{U(k)} = \sqrt{\f{2\pi}{\rho v_p^2 A}}\f1k\sqrt{\td{E_k}{k}{}}\,,
+\end{align}
+and from the estimate above
+\begin{align}
+\abs{u(\vec x,t)}\leq(2\pi\rho v_p^2 A)^{-1/2}\int_0^k\f{\diff k'}{k'}\sqrt{\td{E_{k'}}{k'}{}}\,.
+\end{align}
+In our case $\Xi E= C_1 k^2$ before attenuation. After anelastic attenuation, $E_k =\te{Ref}\,2C_1 k e^{-k\,\te{Att}}$
+\begin{align}
+\abs{u(\vec x,t)}\leq\sqrt{\f{2}{\rho v_p^2 A}}\sqrt{\f{\te{Ref}\,\Xi E}{\te{Att}}}\f1k\te{Erf}\ps{\sqrt{\f{\te{Att}\,k}{2}}}\,.
+\end{align}
+(25) is impossible to integrate when $E_k$ consists of the energies of two different rays, each with different attenuation factors. If attenuation were important, we may average $\te{Att}$ among the coincident rays and obtain an approximate expression. However, since we only wish to consider the lowest frequency modes, $f<16\te{Hz}$, the suppression $\te{Att} k$ is order unity, and does not contribute significantly to $u$. Taking $\te{Att} = 0$, the displacement caused by the incident $p$-wave is bounded above by
+\begin{align}
+\abs{u(\vec x,t)}&\leq\sqrt{\f{4\te{Ref}\,\Xi E}{\pi k\rho v_p^2 A}}\,.
+\end{align}
+
+\section{Simulation}
+In previous works, e.g. \cite{banerdt2005seismic}, the homogeneous Earth and Moon models have been used to place constraints of the parameter space of macroscopic dark matter. This approach neglects lensing which occurs because of the velocity gradient and the spherical boundaries of strata, and neglects the energy losses from reflection and refraction across these boundaries. We use the analysis in section III to propagate rays, each carrying a fraction of the total energy deposited by the Macro, to the boundary of the Moon. We then use HEALPix to create an intensity map of the lunar surface for a representative sample of Macro impacts. We then convert the intensity maps to displacement maps, and using the sensitivity of the lunar seismometers, we obtain an average event rate that the lunar seismometers would measure.
+\subsection{Data Generation}
+We consider a Macro trajectory which passes a distance $D$ from the center of the moon. The Macro trajectory has length $L$, and along its trajectory we consider a set of $M$ points. From each of these points we propagate $N$ randomly oriented rays, each endowed with $E_i = \rho(r_{i})\sigma_Xv_X^2 L/(MN)$ energy, where $i\in\{1,\dots,M\}$ labels the point, and $\rho$ is taken to be a function of the radius. Because of the spherical symmetry, each ray is confined to a subspace of two dimensions. We use the trajectories in section III to propagate the rays. Since the moon is stratified, we must halt the propagation at the boundary of each layer to reflect and transmit rays. During a ray's propagation through a given stratum, its time spent in that layer $\Delta t_i$ is recorded, the attenuation factor in that layer $\te{Att}_i$ is recorded, and the reflection/refraction coefficient $\te{Ref}_i$ is recorded. Each time a ray makes contact with the surface of the Moon, its position, $\te{Att}$, $\te{Ref}$, and $\Delta t$ are recorded. The data produced by the propagation routine is a table of these values and the corresponding surface coordinates, as well as density at the source, $\kappa$ at the source, and $p$-wave velocity at the source. In this model, it takes 16 iterations to propagate a ray from one side of the moon to the other. Rays which propagate from one side of the moon to the other only after 16 iterations will be weak from undergoing 16 refractions. Thus in order to save on computation time, it is reasonable to reduce the number of iterations to 9.
+\subsection{Data Analysis}
+Analysis begins by converting the position data to HEALPix coordinates for a given $n_\te{side}$. We pick $n_\te{side} = 4$ since this corresponds to an angular resolution of 7 degrees, which accounts for the effects of diffraction about the strata boundaries. Define $A_\te{pix} = 4\pi R_\te{moon}^2/n_\te{pix}$ the area of a HEALPix pixel, where $n_\te{pix} = 12\times 2^{n_{\te{side}}}$. The time it takes a ray to cross a HEALPix pixel can be estimated $t_\te{crossing}^2 = A_\te{pix}/\pi v_\te{surface}^2$. According to VPREMOON, $v_\te{surface} = 1\,\te{km s}^{-1}$. Rays that contact a pixel within $t_\te{crossing}$ of one another are considered to add constructively. Since the integral in section IV is unreasonable to do for more than one ray, we average $\te{Att}$ over the coincident rays. We require that each ray distributes its energy evenly over the area of the HEALPix pixel, and thus set $A = A_\te{pix}$. This is a good approximation when $N=n_\te{pix}$, since the average angular separation of the rays at the source corresponds to the average angular separation of the HEALPix pixels.
+
+Using (27) we compute an upper bound for the displacement within a given HEALPix pixel, and compare that to the sensitivity of the lunar seismometers given in \cite{latham1973lunar}. If the calculated displacement is less than the seismometer sensitivity then the pixel is marked undetectable and is otherwise marked detectable. The number of detectable pixels is divided by the total number of pixels to obtain the fraction $\scr F_D$ of the lunar surface with a detectable signal for a Macro making closest approach $D$ to the lunar center.
+
+This procedure is repeated for 17 values of $D$ spaced evenly by $100\,\te{km}$. The average fraction of detectable surface area is then approximately
+\begin{align}
+\scr F =\f{\sum_D \scr F_D}{\sum_D D}\,.
+\end{align}
+If there are $n$ lunar seismometers, we suppose that each occupies its own HEALPix pixel. Define $m = \scr Fn_\te{pix}$, the average number of pixels with detectable frequency. If $n+m\geq n_\te{pix}$, then detection is guaranteed. Otherwise, if $\scr M$ Macros impact the moon, the likelihood of any of them being detected is
+\begin{align}
+\scr P &= 1-\ps{\f{(n_\te{pix}-n)!(n_\te{pix}-m)!}{n_\te{pix}!(n_\te{pix}-n-m)!}}^{\scr M}\,.
+\end{align}
+\subsection{Homogeneous Limit}
+To obtain an estimate of the size of a detectable Macro, we suppose that one ray from each point source on the Macro Trajectory hits a single pixel. In the case that rays don't bend, this is a good approximation for behavior away from the source. Note, however, that this does not account for geometric focusing e.g. around the entrance and exit of the Macro trajectory.
+\begin{align}
+u\leq\sqrt{\f{\Xi E}{\pi^2\rho k v_p^2 R_\te{Moon}^2}}\,.
+\end{align}
+This expression is independent of the choice of $n_\te{side}$. For the triangle wave, $\sigma_X\leq 1\times 10^{-7}\te{\,cm}^2$ is unlikely to be detected unless it enters or exits the Moon adjacent to a seismometer.
+\section{Results}
+Data has been generated but not run through the analysis routine yet. Preliminary results suggest that the computer analysis will not produce results much stronger than (30).
+\section{Conclusion}
+For Macros with density sufficient to pass nearly unimpeded through the Moon and sufficiently small cross-section, and in particular nuclear dense objects such as strange quark nuggets with cross-section $\sigma_X\leq 1\times 10^{-7}\te{\, cm}^2$, we have demonstrated that seismological constraints are insufficient to rule them out. Since the Moon (and Earth) preferentially attenuate higher frequency modes, it is unlikely that measuring high frequencies would greatly improve sensitivity to these types of impacts. On the other hand, increasing the lunar seismometer sensitivity to small displacements may allow one to use seismological evidence to rule out high density Macros, although it is uncertain whether seismic noise at such small displacements would make Macro impacts indistinguishable from the background.
+
+Future work will include new lower bounds on lunar and terrestrial seismic response to high density Macros. In the future, a more sensitive lunar array will allow for a better understanding of the lunar structure and for a greater volume of Macro parameter space to be considered through seismic means. In the case that the lunar seismic background is too loud for extremely small displacements to be distinguished, it will be necessary to reconstruct the seismic response to high density Macros in order to measure an approximate event rate.
+\section{Acknowledgements}
+This work made use of the High Performance Computing Resource in the Core Facility for Advanced Research Computing at Case Western Reserve University. David Cyncynates would like to thank SOURCE for supporting this research.
+\bibliography{Macro-Impact}{}
+\bibliographystyle{apsrev4-1}
+\end{document}

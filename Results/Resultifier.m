@@ -1,12 +1,12 @@
 clear
 
 format long
-SampleSize = 16;
-Threshold = 5E-11;
+SampleSize = 17;
+Threshold = 3E-10;
 
 fmax = 20;
 vX = 2.7E5;
-sX = 1E-12;
+sX = 1E-11;
 p0 = 3.0E8;
 
 C = zeros(SampleSize,1);
@@ -24,4 +24,4 @@ for i = 1 : SampleSize
     Disp = PreDisp .* ((p0 ^ (-1)) * (fmax ^ (1/2)) * sX * (vX ^ 2));
     C(i) = nnz(Disp > Threshold);
 end
-F = (sum(C.*D)/sum(D))
+F = (sum(C.*D)/sum(D))/n
