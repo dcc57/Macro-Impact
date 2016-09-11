@@ -2,11 +2,11 @@ clear
 
 format long
 SampleSize = 17;
-Threshold = 10 * 3E-10;
+Threshold = 8 * 3E-10;
 
 fmax = 20;
 vX = 2.7E5;
-sX = 1E-11;
+sX = 5E-12;
 p0 = 1.0E8;
 
 C = zeros(SampleSize,1);

@@ -33,7 +33,7 @@ for i = 0 : N - 1
     TempData = Data(C : C + I - 1,2 : 6);
     C = C + nnz(Data(:,1) == i);
     for j = 1 : I
-        LID = abs(TempData(j,1) - TempData(:,1)) < dT & abs(TempData(j,1) - TempData(:,1)) > 0;
+        LID = abs(TempData(j,1) - TempData(:,1)) < dT;
         Disp(i+1,1) = max(Disp(i+1,1),sum((TempData(LID,2) .* TempData(LID,3) .* TempData(LID,4)) ./ (TempData(LID,5).^3)));
     end
 end
