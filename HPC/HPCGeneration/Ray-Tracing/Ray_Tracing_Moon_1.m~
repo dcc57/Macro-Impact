@@ -88,7 +88,7 @@ RandY = cos(Beta).*RandYrote + sin(Beta).*RandZrote;
 RandZ = -sin(Beta).*RandYrote + cos(Beta).*RandZrote;
 
 SourceVelocity = zeros(size(x0));
-mu = zeros(size(x0)); %LAME COEFFICIENTS
+mu = zeros(size(x0));
 lambda = zeros(size(x0));
 BulkMod = zeros(size(x0));
 kappa = zeros(size(x0));
