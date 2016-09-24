@@ -4,12 +4,38 @@ format long
 
 %INPUTS
 D = 100*10^3; %THE DISTANCE OF CLOSEST APPROACH TO THE CENTER m
-ACO = 9; %IT TAKES 16 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE MOON
-
+ACO = 5; %IT TAKES 16 ITERATIONS FOR A RAY TO PASS ENTIRELY THROUGH THE MOON
 M = 200; %NUMBER OF POINTS ON THE LINE
-N = 12; %NUMBER OF RAYS FROM EACH POINT
+N = 192; %NUMBER OF RAYS FROM EACH POINT
+
+%VPREMOON MODEL WITH SIMPLIFIED ATTENUATION
+
+%%{
+a = ([8.26955,5.5,3.2,1.0].*10^3).^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE km/s
+b = ([2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].*10^(-3)).^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD 1/(s*km)
+
+as = ([4.66221,3.3,1.8,0.5].*10^3).^(1/2); %SHEAR WAVE VELOCITY CONSTANTS
+bs = ([1.08519*10^(-7),10^(-11),10^(-11),10^(-11)].*10^(-3)).^(1/2); %NOTE THAT b IS ESSENTIALLY SET TO 0 FOR 3 OUTER LAYERS BECAUSE THEY ARE SO THIN
+
+Radii = [0,1709.1,1725.1,1736.1,1737.1].*10^3; %NOTE THAT WE MUST TAKE 0 AS A LAYER FOR TECHNICAL PURPOSES km
+
+Q = [6750,6750,6750,6750].*10^3; %THE QUALITY FACTOR IN THE DIFFERENT REGIONS
+
+AverageV = [8.07936,5.5,3.2,1.0].*10^3; %THE AVERAGE VELOCITY IN EACH OF THESE REGIONS km/s (INTEGRAL r^2 dr v(r) / INTEGRAL r^2 dr), USED TO CALCULATE ATTENUATION, NOT RAY PROPAGATION
+
+rhoBoundaries = [   2.762       ,   2.762               ;...
+                    2.762       ,   2.762               ;...
+                    2.762       ,   2.600               ;...
+                    2.600       ,   0.000               ].*(10^3);
+                    %THE DENSITY OF THE MEDIA AT THEIR DISCONTINUOUS
+                    %BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO
+                    %THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE
+                    %OUTER DENSITY kg/m^3
+%}
 
 %VPREMOON MODEL (PLOTTED DATA POINTS AND FIT)
+
+%{
 a = ([8.26955,8.26955,8.26955,8.26955,8.26955,5.5,3.2,1.0].*10^3).^(1/2); %THESE ARE THE CONSTANT TERMS IN THE PARABOLIC VELOCITY FIELD STRUCTURE, THE FIRST ENTRY CORRESPONDING TO THE CORE km/s
 b = ([2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),2.47697*10^(-7),10^(-11),10^(-11),10^(-11)].*10^(-3)).^(1/2); %THESE ARE THE COEFFICIENTS OF THE QUADRATIC TERM IN THE VELOCITY FIELD 1/(s*km)
 
@@ -34,6 +60,9 @@ rhoBoundaries = [   3.406       ,   3.406               ;...
                     %BOUNDARIES - THE LEFT ENTRY IN EACH ROW CORRESPONDS TO
                     %THE INNER DENSITY AND THE RIGHT CORRESPONDS TO THE
                     %OUTER DENSITY kg/m^3
+%}
+
+%DENSITY FIT
 
 c = 3.446 * 10^3; %THE CONSTANTS WHICH DESCRIBE THE DENSITY FIELD c - d(r - e)^2 kg/m^3
 d = 5*(10^(-8)) * 10^(-3); %THESE ARE USED TO GET THE INITIAL ENERGY OF THE RAYS d=kg/m^5
@@ -88,7 +117,7 @@ RandY = cos(Beta).*RandYrote + sin(Beta).*RandZrote;
 RandZ = -sin(Beta).*RandYrote + cos(Beta).*RandZrote;
 
 SourceVelocity = zeros(size(x0));
-mu = zeros(size(x0)); %LAME COEFFICIENTS
+mu = zeros(size(x0)); %LAMÈ COEFFICIENTS
 lambda = zeros(size(x0));
 BulkMod = zeros(size(x0));
 kappa = zeros(size(x0));
@@ -110,7 +139,7 @@ RayArrayAlpha = zeros(M,N,2^(ACO));
 RayArrayTime = zeros(M,N,2^(ACO));
 
 %ASSIGNMENT OF INITIAL CONDITIONS
-%%{
+
 RayArrayAlpha(:,:,1) = atan2(RandY,RandX - x0);
 RayArrayx0(:,:,1) = x0(:,:);
 RayArrayx0(:,:,2:2^(ACO)) = NaN;
@@ -123,20 +152,6 @@ SourceVelocity = repmat(SourceVelocity,[1,1,2^(ACO + 1)]);
 Density = c - d.*((RayArrayx0(:,:,1) - e).^2);
 
 RayArrayDensity = repmat(Density,[1,1,2^(ACO + 1)]);
-
-%}
-%TESTING
-%{
-                RayArrayAlpha(:,:,1) = pi;
-                RayArrayx0(:,:,1) = 1736;
-                RayArrayx0(:,:,2:2^(ACO)) = 0;
-                RayArrayAmp(:,:,1) = 1;
-                RayArrayPlaneAngle = zeros(M,N,2^(ACO+1));
-                RayArrayRayAngle = zeros(M,N,2^(ACO+1));
-                Density = c - d.*((RayArrayx0(:,:,1) - e).^2);
-                RayArrayDensity = repmat(Density,[1,1,2^(ACO + 1)]);
-%}
-%END TESTING
 
 OutArrayAngDisp = zeros(M,N,2^(ACO + 1));
 OutArrayAmp = zeros(M,N,2^(ACO + 1));
@@ -199,10 +214,9 @@ for i = 1 : ACO
         if i == 1
             LIdOutward(:,:,1 : 2^(i - 1)) = ((( RayArrayAlpha(:,:,1 : 2^(i - 1)) < pi / 2 ) & ( Radii(j) <= RayArrayx0(:,:,1 : 2^(i - 1)) & RayArrayx0(:,:,1 : 2^(i - 1)) < Radii(j + 1) )) & (~LIdOutward(:,:,1 : 2^(i-1)))) & (~LIdInward(:,:,1 : 2^(i - 1)) );
             LIdInward(:,:,1 : 2^(i - 1)) = ((( RayArrayAlpha(:,:,1 : 2^(i - 1)) >= pi / 2 ) & ( Radii(j) <= RayArrayx0(:,:,1 : 2^(i - 1)) & RayArrayx0(:,:,1 : 2^(i - 1)) < Radii(j + 1) )) & (~LIdInward(:,:,1 : 2^(i-1)))) & (~LIdOutward(:,:,1 : 2^(i - 1)) );
-        else %Every ray is on a boundary
+        else %EVERY RAY IS ON A BOUNDARY
             if j == Layers - 1
-                LIdOutward(:,:,1 : 2^(i - 1)) = (( RayArrayAlpha(:,:,1 : 2^(i - 1)) < pi / 2 ) & ( Radii(j) <= RayArrayx0(:,:,1 : 2^(i - 1)) & RayArrayx0(:,:,1 : 2^(i - 1)) < Radii(j + 1) )) & (~LIdOutward(:,:,1 : 2^(i-1)));
-                LIdOutward(:,:,1 : 2^(i - 1)) = false(M,N,2^(i - 1)); %Outward bound rays cannot exist on the outermost boundary
+                LIdOutward(:,:,1 : 2^(i - 1)) = false(M,N,2^(i - 1)); %OUTWARD BOUND RAYS CANNOT EXIST ON THE OUTERMOST BOUNDARY
             else
                 LIdOutward(:,:,1 : 2^(i - 1)) = ( RayArrayAlpha(:,:,1 : 2^(i - 1)) < pi / 2 ) & ( Radii(j + 1) == RayArrayx0(:,:,1 : 2^(i - 1)) ) & (~LIdOutward(:,:,1 : 2^(i-1)));
             end
@@ -292,8 +306,7 @@ for i = 1 : ACO
         RayArraySup(TempId) = QualityFactor(j,SOutward100(TempId) - SXOutward(TempId),AverageV,Q,TempSup);
         RayArrayTime(TempId) = TempTime + SInward000(TempId) - SXInward(TempId);
         
-        %REFLECTED OUTWARD BOUND RAYS (These are the rays which can bounce
-        %along the surface)
+        %REFLECTED OUTWARD BOUND RAYS (THESE ARE THE RAYS WHICH CAN BOUNCE ALONG THE SURFACE)
         
         RayArrayAngDisp(TempIdPrime) = TempDisp + ThetaInward000(TempId);
         RayArrayAlpha(TempIdPrime) = pi - asin(sinAngleOfIncidenceInward000(TempId));
@@ -367,7 +380,7 @@ for i = 1 : ACO
 end
 REF = OutArrayAmp(OutArrayTime > 0 & OutArrayAmp > 0);
 ATT= OutArraySup(OutArrayTime > 0 & OutArrayAmp > 0);
-OutTim = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
+OutTime = OutArrayTime(OutArrayTime > 0 & OutArrayAmp > 0);
 Density = RayArrayDensity(OutArrayTime > 0 & OutArrayAmp > 0);
 kappa = kappa(OutArrayTime > 0 & OutArrayAmp> 0 );
 velocity = SourceVelocity(OutArrayTime > 0 & OutArrayAmp > 0);
@@ -384,8 +397,8 @@ Xfinal = cos(OutPla).*Xrote - sin(OutPla).*Yrote;
 Yfinal = sin(OutPla).*Xrote + cos(OutPla).*Yrote;
 Zfinal = Zrote;
 
-outputmat = cat(2,Xfinal,Yfinal,Zfinal,OutTim,Density,REF,ATT,kappa,velocity);
+outputmat = cat(2,Xfinal,Yfinal,Zfinal,OutTime,Density,REF,ATT,kappa,velocity);
 outputnum = [M,N,L,D];
 
-save PointsTestMat1.mat outputmat;
-save PointsTestNum1.mat outputnum;
+save PointsMat1.mat outputmat;
+save PointsNum1.mat outputnum;
