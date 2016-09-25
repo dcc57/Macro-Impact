@@ -1180,20 +1180,30 @@ Now, we integrate $\partial_t\tilde T =-\alpha k_r^2 \tilde T\,$ and find that
 
 Consider the initial condition of a delta source along the z-axis in cylindrical coordinates:
 \begin{align}
-T(r,0) = \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\delta(r),
+T(r,0) = \f{\abs{\frac{dE}{dx}}\sigma_X}{2\pi \rho \sigma_X c_p}\f{\delta(r)}{r} = \f{\sigma_{X} v_X^2}{2\pi c_p}\f{\delta(r)}{r}\,,
 \end{align}
 where $\frac{dE}{dx}$,$r_X$,$\sigma_{X}$ are the energy deposition, radius and scattering cross section of the Macro respectively. Note that this model/initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial input of the delta source.
 
 Taking the Fourier transform of this initial condition over r and $\phi$ fixes $C_1$ as 
 \begin{align}
-C_1 =  2\pi \f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_{0}^{\infty}\delta(r)e^{i k r} dr = 2\pi\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\,,
+C_1 &= \int_0^\infty 2\pi r\diff r J_0 (k_r r) T(r,0) \,,\\
+&= \int_0^\infty 2\pi r\diff r J_0 (k_r r) \f{\sigma_{X} v_X^2}{2\pi c_p}\f{\delta(r)}{r} \,,\\
+&=\f{\sigma_{X} v_X^2}{c_p}\,.
 \end{align}
 where the factor of $2 \pi$ comes from the $\phi$ integral.
 $T$ in real space is given by inverting the Fourier transform:
 \begin{align}
-T(r,t) &=\frac{1}{\p{2\pi}} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{2\pi}{2\pi}\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
-&=\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,.
+T(r,t) &=\int_0^\infty \f{k_r\diff r}{2\pi} J_0(k_r r) C_1 e^{-\alpha k_r^2 t}\,,\\
+&=\int_0^\infty \f{k_r\diff k_r}{2\pi} J_0(k_r r) C_1 e^{-\alpha k_r^2 t}\,,\\
+&=\f{C_1 e^{-\f{r^2}{4t\alpha}}}{4\pi t\alpha}\,,\\
+&=\f{\sigma_{X} v_X^2}{4\pi \alpha c_p}\f{e^{-\f{r^2}{4t\alpha}}}{t}\,.
 \end{align}
+\begin{align}
+T(r,t) &=\frac{1}{\p{2\pi}} \int_0^\infty k_r \diff{k_r}\tilde{T} = \frac{2\pi}{2\pi}\f{\abs{\frac{dE}{dx}}r_X}{\rho \sigma_X c_p}\int_0^\infty k_r\diff k_r e^{-\alpha k_r^2 t}J_0(k_r r)\,,\\
+&=\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha t}\ e^{-\f{r^2}{4t\alpha}}\,,\\
+&=\f{r_X v_X^2}{2 \alpha c_p } \f{e^{-\f{r^2}{4t\alpha}}}{t}\,,\\
+\end{align}
+(INDEED, REPLACE $r_X$ WITH $\sigma_X/2\pi$)
 Setting $T = T_\te{melt}$, we have
 \begin{align}
 r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{\abs{\frac{dE}{dx}}r_X}{2 \rho \sigma_X c_p \alpha T_\te{melt} t}}}\,.

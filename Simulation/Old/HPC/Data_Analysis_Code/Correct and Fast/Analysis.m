@@ -4,11 +4,11 @@ format long
 
 R = 1.737 * 10^6; % m
 vsurf = 1000; %m/s
-Res = 100; %Number of subdivisions per dT
+Res = 1000; %Number of subdivisions per dT
 
-load hppoints12.mat hppoints
-load PointsTestMat12.mat outputmat
-load PointsTestNum12.mat outputnum
+load hppoints17.mat hppoints
+load PointsTestMat17.mat outputmat
+load PointsTestNum17.mat outputnum
 
 hppoints = double(hppoints);
 outputmat = double(outputmat);
@@ -28,9 +28,9 @@ Data = sortrows(Data,1);
 C = 1;
 Disp = zeros(N,1);
 
-%NEW DATA ANALYSIS
+%NEW DATA ANALYSIS (MUCH FASTER)
 
-%{
+%%{
 Tmax = max(Data(:,2));
 Tmin = min(Data(:,2));
 
@@ -46,18 +46,28 @@ end
 Data(:,2) = T;
 Data = sortrows(Data,2);
 
+Points = Data(:,1);
+T = Data(:,2);
+
 TempDisp = zeros(N,Bins);
 TempDispMax = zeros(N,1);
 
 tic
+AllTempDisp = (Data(:,3) .* Data(:,4) .* Data(:,5)) ./ (Data(:,6).^3);
+SumTempDisp = zeros(N,Bins);
+parfor j = 0 : N - 1
+    for i = 1 : Bins
+        Id = (T == i) & (Points == j);
+        SumTempDisp(j + 1,i) = sum(AllTempDisp(Id));
+    end
+end
 
-AllTempDisp = sum((Data(:,3) .* Data(Id,4) .* Data(Id,5)) ./ (Data(Id,6).^3))
+Numbers = transpose(1 : Bins);
 
 for j = 0 : N - 1;
-    j
     for i = 1 : Bins
-        Id = Data(:,2) >= i - 1 & Data(:,2) < Res + i & Data(:,1) == j;
-        TempDisp(j + 1,i) = sum((Data(Id,3) .* Data(Id,4) .* Data(Id,5)) ./ (Data(Id,6).^3));
+        Id = Numbers >= i - 1 & Numbers < Res + i;
+        TempDisp(j + 1,i) = sum(SumTempDisp(j + 1,Id));
     end
     TempDispMax(j + 1) = max(TempDisp(j + 1,:));
 end
@@ -68,13 +78,12 @@ PreDisp = ((TempDispMax * 9 * L) / (2 * pi * N * m * A)).^(1/2);
 
 %}
 
-%OLD DATA ANALYSIS
+%OLD DATA ANALYSIS (FOR COMPARISON)
 
-%%{
+%{
 tic
 
 for i = 0 : N - 1
-    i
     I = nnz(Data(:,1) == i);
     TempData = Data(C : C + I - 1,2 : 6);
     C = C + nnz(Data(:,1) == i);
@@ -89,4 +98,4 @@ toc
 PreDisp = ((Disp * 9 * L) / (2 * pi * N * m * A)).^(1/2);
 %}
 
-save PreDisp12.mat PreDisp;
+save PreDisp17.mat PreDisp;
