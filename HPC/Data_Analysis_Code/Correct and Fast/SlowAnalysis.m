@@ -6,9 +6,9 @@ R = 1.737 * 10^6; % m
 vsurf = 1000; %m/s
 Res = 1000; %Number of subdivisions per dT
 
-load hppoints12.mat hppoints
-load PointsTestMat12.mat outputmat
-load PointsTestNum12.mat outputnum
+load hppoints17.mat hppoints
+load PointsTestMat17.mat outputmat
+load PointsTestNum17.mat outputnum
 
 hppoints = double(hppoints);
 outputmat = double(outputmat);
@@ -98,4 +98,4 @@ toc
 PreDisp = ((Disp * 9 * L) / (2 * pi * N * m * A)).^(1/2);
 %}
 
-save PreDisp12.mat PreDisp;
+save PreDisp17.mat PreDisp;
