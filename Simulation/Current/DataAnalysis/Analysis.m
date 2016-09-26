@@ -6,9 +6,9 @@ R = 1.737 * 10^6; % m
 vsurf = 1000; %m/s
 Res = 1000; %Number of subdivisions per dT
 
-load hppoints17.mat hppoints
-load PointsTestMat17.mat outputmat
-load PointsTestNum17.mat outputnum
+load /Users/David/Macro-Impact/Simulation/Current/Cart2Hp/hppoints1.mat hppoints
+load /Users/David/Macro-Impact/Simulation/Current/DataGeneration/Mat1.mat outputmat
+load /Users/David/Macro-Impact/Simulation/Current/DataGeneration/Num1.mat outputnum
 
 hppoints = double(hppoints);
 outputmat = double(outputmat);
@@ -52,7 +52,6 @@ T = Data(:,2);
 TempDisp = zeros(N,Bins);
 TempDispMax = zeros(N,1);
 
-tic
 AllTempDisp = (Data(:,3) .* Data(:,4) .* Data(:,5)) ./ (Data(:,6).^3);
 SumTempDisp = zeros(N,Bins);
 parfor j = 0 : N - 1
@@ -71,8 +70,6 @@ for j = 0 : N - 1;
     end
     TempDispMax(j + 1) = max(TempDisp(j + 1,:));
 end
-
-toc
 
 PreDisp = ((TempDispMax * 9 * L) / (2 * pi * N * m * A)).^(1/2);
 
@@ -98,4 +95,4 @@ toc
 PreDisp = ((Disp * 9 * L) / (2 * pi * N * m * A)).^(1/2);
 %}
 
-save PreDisp17.mat PreDisp;
+save PreDisp1.mat PreDisp;
