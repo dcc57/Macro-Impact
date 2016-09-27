@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  27 SEP 2016 16:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  27 SEP 2016 17:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1724,13 +1724,13 @@ Overfull \hbox (14.89374pt too wide) in paragraph at lines 110--110
 [2] [3] [4] [5] (./Article_Draft_EDITED.bbl [6]) [7]
 (./Article_Draft_EDITED.aux) ) 
 Here is how much of TeX's memory you used:
- 24422 strings out of 493014
- 491192 string characters out of 6133351
- 517245 words of memory out of 5000000
- 27605 multiletter control sequences out of 15000+600000
+ 24421 strings out of 493014
+ 491181 string characters out of 6133351
+ 518245 words of memory out of 5000000
+ 27604 multiletter control sequences out of 15000+600000
  8337 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,15n,84p,10426b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,15n,84p,10426b,311s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
@@ -1750,7 +1750,7 @@ b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.
 pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7
 .pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
 bm7.pfb>
-Output written on Article_Draft_EDITED.pdf (7 pages, 233402 bytes).
+Output written on Article_Draft_EDITED.pdf (7 pages, 234329 bytes).
 PDF statistics:
  103 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream
