@@ -4,7 +4,7 @@ format long
 
 Save = 1; %1 = save displacement arrays, 0 = do not save
 SampleSize = 1;
-Threshold = 1* 3E-10;
+Threshold = 0.0000001* 3E-10;
 p = 1; %Detection Likelihood Scaling
 
 fmax = 20;
@@ -26,7 +26,7 @@ for i = 1 : SampleSize
     L = outputnum(3);
     D(i) = outputnum(4);
     Disp = PreDisp .* ((p0 ^ (-1)) * (fmax ^ (1/2)) * sX * (vX ^ 2));
-    WeightedDisp = max(1 - exp(p.*(-(Disp-Threshold)./Threshold)),0);
+    WeightedDisp = max(1 - exp(p.*(Disp)),0);
     C(i) = nnz(Disp> Threshold);
     Cweight(i) = sum(WeightedDisp);
     

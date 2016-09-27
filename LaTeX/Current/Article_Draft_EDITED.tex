@@ -235,6 +235,12 @@ If there are $n$ lunar seismometers, we suppose that each occupies its own HEALP
 \begin{align}
 \scr P &= 1-\ps{\f{(n_\te{pix}-n)!(n_\te{pix}-m)!}{n_\te{pix}!(n_\te{pix}-n-m)!}}^{\scr M}\,.
 \end{align}
+
+Since it is unlikely that a Macro impact will be detected if it only just exceeds one digital unit of displacement, it is useful to use a weighted sum. As the strength of the signal goes to $\infty$, we should always expect impact to be seen, and as the displacement approaches $d = 3\times 10^{-10}\te{ m}$, we should expect no chance of detection. Hence, a tile with displacement $\Delta x$ has detection likelihood
+\begin{align}
+1-e^{p(1-\f{\Delta x}{d})}\,,
+\end{align}
+where $p$ describes how the detection probability increases as the strength of signal increases.
 \subsection{Homogeneous Limit}
 To obtain an estimate of the size of a detectable Macro, we suppose that one ray from each point source on the Macro Trajectory hits a single pixel. In the case that rays don't bend, this is a good approximation for behavior away from the source. Note, however, that this does not account for geometric focusing e.g. around the entrance and exit of the Macro trajectory.
 \begin{align}
