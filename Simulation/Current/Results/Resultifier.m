@@ -5,7 +5,7 @@ format long
 Save = 1; %1 = save displacement arrays, 0 = do not save
 SampleSize = 1;
 Threshold = 1* 3E-10;
-p = 1; %Detection Likelihood Scaling
+p = log(sqrt(2)); %Detection Likelihood Scaling
 
 fmax = 20;
 vX = 2.5E5;
