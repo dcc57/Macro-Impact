@@ -1,0 +1,217 @@
+\documentclass[prd,reprint,10pt]{revtex4-1}
+
+% Packages
+
+\usepackage{fullpage}
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, calrsfs, tensor, physics,tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+\setlist[description]{font=\normalfont}
+
+% Custom Commands
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\nrml{\vartriangleleft}
+\newcommand*\scr[1]{\mathscr{#1}}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\la{\langle}
+\newcommand*\ra{\rangle}
+\newcommand*\gen[1]{\langle #1 \rangle}
+\newcommand*\x{\times}
+\newcommand*\st{\text{ s.t. }}
+\newcommand*\ord[1]{\left\vert#1\right\vert}
+\newcommand*\aut{\text{Aut}}
+\newcommand*\lcm{\text{lcm}}
+\newcommand*\mcal{\mathcal}
+\newcommand*\es{\emptyset}
+\newcommand*\im{\text{ Im }}
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\R{\mathbb R}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\C{\mathbb C}
+\newcommand*\te[1]{\text{#1}}
+\newcommand*\en[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand*\e{\varepsilon}
+\newcommand*\p[1]{\left(#1\right)}
+\newcommand*\ps[1]{\left[#1\right]}
+\newcommand*\pc[1]{\left\{#1\right\}}
+\newcommand*\f[2]{\frac{#1}{#2}}
+\newcommand*\mat[2]{\left(\begin{array}{#1}#2\end{array}\right)}
+\newcommand*\ocross{\otimes}
+\newcommand*\I{\te{i}}
+\newcommand*\pd[3]{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand*\td[3]{\frac{d^{#3}#1}{d #2^{#3}}}
+\newcommand*\m{\te{Mat}}
+\newcommand*\End{\te{End}}
+\newcommand*\irr{\te{Irr}}
+\newcommand*\sgn{\te{sgn}}
+\newcommand*\pn[2]{\left\|#1\right\|_{#2}}
+\newcommand*\esssup{\te{ess sup}}
+\newcommand*\essinf{\te{ess inf}}
+
+% Miscellaneous
+
+\newtheorem{theorem}{Theorem}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+
+% Title
+
+\begin{document}
+\subsection{Heat Equation analysis}
+As a first approximation for the energy dissipated as heat in a Macro impact, we consider only the melting or vaporization that occurs prior to the onset of the deposited energy serving as a source for seismic waves, since the initiation of seismic wave propagation complicates assessing the amount of energy dissipated in melting (and vaporizing) the impacted material.  To model an instantaneous energy deposition along the z-axis, we use the following initial condition
+\begin{align}
+T(r,0) = \f{\abs{\frac{dE}{dx}}\sigma_X}{2\pi \rho \sigma_X c_p}\f{\delta(r)}{r} = \f{\sigma_{X} v_X^2}{2\pi c_p}\f{\delta(r)}{r}\,,
+\end{align}
+where $\abs{\frac{dE}{dx}}$, $\sigma_{X}$, $v_X$ are the energy deposition, scattering cross section and velocity of the Macro respectively, and $c_p$, $\rho$ are the heat capacity and density of the impacted material respectively. This initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial energy deposition.
+This gives the temperature field
+\begin{align}
+T(r,t) = \f{\sigma_{X} v_X^2}{4\pi \alpha c_p}\f{e^{-\f{r^2}{4t\alpha}}}{t},\,
+\end{align} which is normalized such that $T(r_X,t_{max}) = \frac{\sigma_X v_X^2}{e \pi  c_p r_X^2} \approx 10^7 K$, where $r_X$ is the Macro radius and $t_{max}$ is found by maximizing $T(r_X,t)$. 
+
+\par Setting $T(r,t) = T_{melt}$ (the derivation for $T_{vaporization}$ is analogous) yields an expression for the radius, as a function of time, of the impacted material that has reached its melting point temperature,
+\begin{align}
+r_\te{melt}(t) = \sqrt{4t\alpha\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}\,.
+\end{align} 
+Differentiating $r_\te{melt}(t)$ with respect to time yields
+\begin{align}
+\dot r_\te{melt}(t) &=\sqrt{\f{\alpha}{t}}\p{\f{\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}} - 1}{\sqrt{\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}}}\,.
+\end{align}
+For the parameters at hand, $\ln\p{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}$ is of order $10 \gg 1$, when $t < 2.2*10^{-6} s$ for $\sigma_X = 10^{-11} m^2$, and $t < 2.2*10^{-9} s$ for $\sigma_X = 10^{-14} m^2$; these thresholds of validity are significantly greater than the values found for $t_{fast} \approx 10^{-13} s$, where $t_{fast}$ is described below.  Hence, it is a reasonable approximation (as an overestimate) to take
+\begin{align}
+\dot r_\te{melt}(t) &=\sqrt{\f{\alpha}{t}\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}\,.
+\end{align}
+Setting $\dot r_\te{melt}(t) = v_p$, where $v_p$ is the bulk speed of sound, and solving for $t$ yields $t_{fast}$: the time at which the propagation of the "melt point temperature zone" falls to the speed of sound.  Plugging $t_{fast}$ into $r_\te{melt}(t)$ yields
+\begin{align}
+r_\te{fast melt} =  \frac{2\alpha}{v_p}W\p{\frac{v_p^2 v_X^2 \sigma_X}{4 \pi c_p \alpha^2 T_\te{melt}}}
+\\
+= \frac{2\alpha}{v_p}W\p{\frac{v_p^2 v_X^2 r_X^2}{4 c_p \alpha^2 T_\te{melt}}}:
+\end{align}the extent of the impacted material heated to its melting point more rapidly than the bulk sound speed. 
+
+\par Observe that $ 1.07*10^9 \leq \frac{v_p^2 v_X^2 r_X^2}{4 c_p \alpha^2 T_\te{melt}} \leq 2.03*10^{12}$ for the parameters of limestone (lower bound, with $\sigma =10^{-14} m^2$) and granite (upper bound, with $\sigma = 10^{-11} m^2$) (parameter values are from Thermal properties of rocks report and Deep Geothermal Drilling Using Millimeter Wave Technology).  Hence, we can Taylor expand the Lambert function $W(x)$ around $x\to \infty$, and iterate $r_\te{fast melt}$ to find the macro radii for which $r_\te{fast melt} \approx r_X$.  We find that for limestone, if $r_X \leq 3.12*10^{-9} m$ then $r_\te{fast melt} \approx r_X$ and for granite, if $r_X \leq 3.29*10^{-9} m$, then $r_\te{fast melt} \approx r_X$.
+
+Replacing the melting point temperature with the vaporization point temperature in the derivation above shows that $r_\te{fast melt}$ is essentially the same as $r_\te{fast vaporize}$ for all Macro radii.  Thus, for macros with radii greater than $2.92*10^{-9} m$, $r_\te{fast vaporize} \approx r_X$.  
+
+\par These results are notable for a number of reasons. First, $r_\te{fast melt}$ is highly sensitive to $\alpha$ and $v_p$ and relatively insensitive to the Macro's parameters, in contrast to what might be expected physically: for the limiting case which Macro impacts represent, the properties of the impacted material should be relatively unimportant in the physics of the impact (and, in particular, the initial heat transfer dynamics).  The instantaneous energy deposition model de-emphasizes the significance of the parameters of the Macro, and appears to (over)emphasize the significance of the parameters of the impacted material. 
+
+At face value, these results indicate that much of the melting occurs once the temperature field's expansion is slower than the speed of sound and that this deceleration occurs quite quickly.  
+However, the assumptions of constant material parameters -- particularly $\alpha$ and $c_p$ -- and the applicability of Fourier's law, which assumes that any thermal gradients are small, while reasonable to first order, are suspect for this highly non-linear process.  Strikingly, this model implies a negligible quantity of the macro's energy deposition is rapidly dissipated in either melting or vaporization of the impacted material, since the heat dissipated in sublimating a column of material with radius $r_\te{fast vaporize} \approx r_X$ is given by
+\begin{align}
+Q_\te{sublimate} = (L_\te{melt} + L_\te{vaporization})\rho \pi h(r_X)^2,
+\end{align}
+where $L_\te{melt}$, $L_\te{vaporization}$, $\rho$ and $h$ are the latent heats of melting and vaporization, density, and diameter of the impacted material body.  $Q_\te{sublimate}$ ranges from less than $1 J$ to $10^2 J$, a negligible amount in comparison to $\abs{\frac{dE}{dx}}$.  This is of greater note when we recall the overestimation that results from dropping the negative term in $\dot r_\te{melt}(t)$.
+
+The extreme temperatures generated by the impact (approximately $10^7 K$, as noted above) will convert much of the vaporized material to plasma; however, this conversion is a second order phase transition, and so does not require a latent heat input to occur.  Thus, the energy to transition from vapor to plasma could conceivably transfer back into seismic waves (as the particles slow down, recombine as vapor, condense to liquid, and then solidify). Similarly, the energy required to raise the temperature of the impacted material to its melting and vaporization points could subsequently source seismic waves: temperature changes in the column of heated material result in expansions  and contractions that lead to a column of ovepressure/underpressure. Hence, modeling the energy dissipated both in raising the temperature of the impacted material and in effecting a transition to plasma are complicated by the concurrent energy transfer to seismic waves.
+
+
+
+\subsection{Heat Equation analysis, take 1}
+\par Two approaches that initially present themselves to model the heat transfer due to a Macro impact as a limiting case of models found in impact engineering or astrophysical impact modeling present a number of challenges.  The immense speed of Macros added to their density differences with a target of standard Baryonic matter imply a negligible loss of momentum throughout any impact process.  This poses an obstacle for using momentum balance equations, a standard approach in impact engineering.  Moreover, it is assumed that no erosion nor disintegration will occur to the Macro penetrator, which further complicates applying the models of these two fields.  Additionally, impacts to brittle and ductile materials exhibit velocity thresholds (which are far lower than Macro speeds) at which impacts to these materials show significant alterations in the impact dynamics (e.g. the disappearance of a "cracked region" in the impacted material -- see page 11 of Penetration into dry porous rock; and there are numerous sources for each of the above points in the dropbox.  See especially "Modeling asteroid collisions and impact processes" section 3 where they describe the use of "point source models").  As one example of the failure of these models, consider equation (38) in Hypervelocity penetration modeling- momentum vs. energy and energy transfer mechanisms" which gives the plastic work done by a non-eroding penetrator:
+\begin{multline}
+W_p = 
+\\
+\pi  r^2 y \p{\frac{2 \ln(\frac{v_{plastic}
+   \sqrt{1-\frac{v_{cavity}^2}{v_{plastic}^2}}}{v_{cavity}}+\frac{{v_{plastic}}}{v_{cavity}})}{\sqrt{1-\frac{\
+   v_{cavity}^2}{v_{plastic}^2}}}-1} \geq 0,
+\end{multline}
+where $y$ is the yield strength of the impacted material, $r$ is the (final) cavity radius, and $v_{cavity}$ is the cavity expansion velocity.  The following assumes that $r \approx r_{macro}$, 
+and that $v_{cavity} \approx v_{macro} = 2.5*10^5 m/s$. 
+For cavity expansion velocities where $v_{cavity} \geq 0.2v_{sound}$ the elastic-plastic interface velocity is nearly the bulk sound speed: $v_{plastic} \approx v_{sound}$. Plugging $v_{macro}$ into the above amounts to taking $v_{cavity}\to \infty$ which gives $W_p = -\pi r_X y $ which, within the model this equation was derived for is highly suspect as a negative energy.
+
+\par Instead of pursing the above models we consider, as a first approximation for the energy dissipated as heat in a Macro impact, only the melting or vaporization that occurs prior to the onset of the deposited energy serving as a source for seismic waves, since the initiation of seismic wave propagation complicates assessing the amount of energy dissipated in melting (and vaporizing) the impacted material.  To model an instantaneous energy deposition along the z-axis, we use a delta function, and set the solution of the heat equation equal to a fixed temperature (of melting). This yields an expression for the radius, as a function of time, of the impacted material and its surroundings that has reached its melting point temperature, $r_\te{melt}(t)$.  Differentiating $r_\te{melt}(t)$ with respect to time, setting the result equal to the bulk speed of sound and solving for t yields the time at which the propagation of the "melt point temperature zone" falls to the speed of sound.  Plugging this time into $r_\te{melt}(t)$ yields $r_\te{fast melt}$: the extent of the impacted material and its surroundings that is heated to its melting point more rapidly than bulk sound speed. Replacing the melting point temperature with the vaporization point temperature in the above demonstrates that $r_\te{fast melt}$ is essentially equal to $r_\te{fast vaporize}$ for all Macro radii.  This result indicates that for macros with radii greater than $10^{-9} m$, $r_\te{fast vaporize}$ is of the same order as $r_\te{Macro}$.  A simple computation shows that the heat dissipated in sublimating a column of material with radius $r_\te{fast vaporize}$ ranges from less than $1 J$ to $10^2 J$, a negligible amount.
+The extreme temperatures generated by the impact (approximately $10^7 K$) will convert the vaporized material to plasma; however, this conversion is a second order phase transition, and so does not require a latent heat input to occur.  Thus, the energy to transition from vapor to plasma could conceivably transfer back into seismic waves (as the particles slow down, recombine as vapor, condense to liquid, and then solidify). Similarly, the energy required to raise the temperature of the impacted material and its surroundings to their melting and vaporization points could subsequently source seismic waves: temperature changes in the column of heated material result in expansions  and contractions that lead to a column of ovepressure/underpressure. Hence, to model the energy dissipated both in raising the temperature of the impacted material and its surroundings, and in effecting a transition to plasma are complicated by the concurrent energy transfer to seismic waves.
+The force of these results are that either much of the melting occurs once the temperature field's expansion is slower than the speed of sound and this slow-down occurs very quickly, or that the material parameters -- especially the thermal diffusion coefficient and the heat capacity of the impacted material -- are far from constant in the case at hand (given the extremes of pressure and temperature involved, it is more likely the latter).  In addition, the instantaneous energy deposition model de-emphasizes the significance of the parameters of the macro, and appears to (over)emphasize the significance of the parameters of the impacted material. 
+
+\subsection{Heat Equation analysis, take 2}
+
+The equation governing the evolution of the temperature field in 2 dimensions is, with no driving term,
+\begin{align}
+\partial_t T - \alpha\nabla^2 T = 0
+\end{align}
+where $\alpha$ is the thermal diffusivity, and $\alpha=\f{k}{c_p\rho}$ where k, $\rho$ and $c_p$ are the thermal conductivity, density and heat capacity of the impacted material respectively. In cylindrical coordinates and for $T = T(r)$, we have
+\begin{align}
+\partial_t T - \alpha\nabla_r T = 0
+\end{align}
+We now Fourier transform in $r$ and $\phi$, yielding
+\begin{align}
+\partial_t\tilde T =-\alpha k_r^2 \tilde T\,,
+\end{align}
+where
+\begin{multline}
+\tilde T =  \int_0^\infty r \diff r\int_{0}^{2\pi} T e^{i r(k_x\cos\phi +k_y\sin\phi)}\diff \phi\, 
+\\
+= 2\pi \int_0^\infty r \diff r  T J_0(k_r r)\,.
+\end{multline}
+where
+\begin{align}
+k_r = \sqrt{k_x^2 +k_y^2}
+\end{align}
+Now, we integrate $\partial_t\tilde T =-\alpha k_r^2 \tilde T\,$ and find that
+\begin{align}
+\tilde T = C_1e^{-\alpha k_r^2 t}.
+\end{align}
+
+Consider the initial condition of a delta source along the z-axis in cylindrical coordinates:
+\begin{align}
+T(r,0) = \f{\abs{\frac{dE}{dx}}\sigma_X}{2\pi \rho \sigma_X c_p}\f{\delta(r)}{r} = \f{\sigma_{X} v_X^2}{2\pi c_p}\f{\delta(r)}{r}\,,
+\end{align}
+where $\abs{\frac{dE}{dx}}$, $\sigma_{X}$ are the energy deposition and scattering cross section of the Macro respectively and where $\frac{v_{X}^2}{c_p} =  \frac{\rho \sigma_X v_X^2}{\rho \sigma_X c_p} = \frac{\abs{\frac{dE}{dx}}}{\rho \sigma_X c_p}$.  
+Note that this model/initial condition is reasonable given that the delta source becomes a Gaussian with the same energy (assuming energy is conserved) an instant after the initial input of the delta source.
+
+Taking the Fourier transform of this initial condition over r and $\phi$ fixes $C_1$ as 
+\begin{align}
+C_1 &= \int_0^\infty 2\pi r\diff r J_0 (k_r r) T(r,0) \,,\\
+&= \int_0^\infty 2\pi r\diff r J_0 (k_r r) \f{\sigma_{X} v_X^2}{2\pi c_p}\f{\delta(r)}{r} \,,\\
+&=\f{\sigma_{X} v_X^2}{c_p}\,.
+\end{align}
+where the factor of $2 \pi$ comes from the $\phi$ integral.
+$T$ in real space is given by inverting the Fourier transform:
+\begin{align}
+T(r,t) &=\int_0^\infty \f{k_r\diff r}{2\pi} J_0(k_r r) C_1 e^{-\alpha k_r^2 t}\,,\\
+&=\int_0^\infty \f{k_r\diff k_r}{2\pi} J_0(k_r r) C_1 e^{-\alpha k_r^2 t}\,,\\
+&=\f{C_1 e^{-\f{r^2}{4t\alpha}}}{4\pi t\alpha}\,,\\
+&=\f{\sigma_{X} v_X^2}{4\pi \alpha c_p}\f{e^{-\f{r^2}{4t\alpha}}}{t}\,.
+\end{align}
+Setting $T = T_\te{melt}$, we have
+\begin{align}
+r_\te{melt} = \sqrt{4t\alpha\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}\,.
+\end{align}
+where the positive branch of the square root has been taken as this is the physical result. Then taking the derivative w.r.t to time gives
+\begin{align}
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}}\p{\f{\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}} - 1}{\sqrt{\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}}}\,.
+\end{align}
+Since, for the parameters at hand, $\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}$ is at least of order $10 \gg 1$ (for $t < 2.2*10^{-6} s$, which is within the relevant time scale), it is a reasonable approximation (as an overestimate) to take
+\begin{align}
+\dot r_\te{melt} &=\sqrt{\f{\alpha}{t}\ln\ps{\f{v_X^2\sigma_X}{4 \pi c_p \alpha T_\te{melt} t}}}\,.
+\end{align}
+Thus, the time at which the velocity of the melt front is that of the speed of sound, $v_p$, is given by using the Lambert W-function (or "ProductLog" in Mathamatica) as
+\begin{align}
+t_{\te{fast}} = \f{\alpha}{v_p^2}W\p{\frac{v_p^2 v_X^2 \sigma_X}{4 \pi c_p \alpha^2 T_\te{melt}}}
+\end{align}
+Plugging in $t_{\te{fast}}$ to $r_\te{melt}$, which is a solid approximation for the given case, gives
+\begin{multline}
+r_\te{fast melt} =  \frac{2\alpha}{v_p}W\p{\frac{v_p^2 v_X^2 \sigma_X}{4 \pi c_p \alpha^2 T_\te{melt}}}
+\\
+= \frac{2\alpha}{v_p}W\p{\frac{v_p^2 v_X^2 r_X^2}{4 c_p \alpha^2 T_\te{melt}}},
+\end{multline}
+where $r_X$ is the macro radius.
+\\\
+Observe that $ 1.07*10^9 \leq \frac{v_p^2 v_X^2 r_X^2}{4 c_p \alpha^2 T_\te{melt}} \leq 2.03*10^{12}$ for $10^{-14} \leq \sigma_X \leq 10^{-11}$ and the parameters of limestone (lower bound, with $\sigma =10^{-14}$) and granite (upper bound, with $\sigma = 10^{-11}$) (parameter values are from Thermal properties of rocks report and Deep Geothermal Drilling Using Millimeter Wave Technology).  Hence, we can Taylor expand the Lambert function $W(x)$ around $x\to \infty$, and iterate $r_\te{fast melt}$ to find the macro radii for which $r_\te{fast melt} \approx r_X$.  We find that for limestone, if $r_X \leq 3.12*10^{-9}$ then $r_\te{fast melt} \approx r_X$ and for granite, if $r_X \leq 3.29*10^{-9}$, then $r_\te{fast melt} \approx r_X$.
+
+These results are notable for a number of reasons. First, $r_\te{fast melt}$ is highly sensitive to $\alpha$ and $v_p$ and relatively insensitive to the macro's parameters, in contrast to what might be expected physically: for the limiting case which macro impacts represent, the properties of the impacted material should be relatively unimportant in the physics of the impact (and, in particular, the heat transfer dynamics).
+
+At face value, these results indicate that much of the melting occurs once the temperature field's expansion is slower than the speed of sound and that this deceleration occurs quite quickly.  However, the assumptions of constant material parameters -- particularly $\alpha$ and $c_p$ -- and the applicability of Fourier's law, which assumes that any thermal gradients are small, while reasonable to first order, are suspect for this highly non-linear process.
+
+As attempt to establish a lower bound for the energy that is unequivocally dissipated that relies on fewer parameters of the impacted material, consider the energy required to vaporize a cylinder of material (with parameters akin to rock) with radius equal to the macro and length h equal to the diameter of the moon, which is given by
+\begin{align}
+Q_\te{sublimate} = (L_\te{melt} + L_\te{vaporization})\rho \pi h(r_X)^2,
+\end{align}
+
+As an example, for $r_X \propto 10^{-6}$, this gives $Q \propto 10^2 J$ which is quite small, and for $r_X < 10^{-9}$ this gives results that are less than 1 J.
+
+\bibliography{Macro-Impact}{}
+\bibliographystyle{apsrev4-1}
+\end{document}
